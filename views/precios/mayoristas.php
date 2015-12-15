@@ -6,4 +6,4 @@
  * and open the template in the editor.
  */
 
-echo "¡¡¡APUNTATE A LA COMIDA MAMÓN!!!";
+echo "<h1>¡¡¡NO VOY A LA COMIDA!!!</h1>";
