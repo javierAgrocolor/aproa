@@ -6,17 +6,68 @@ $this->title = 'My Yii Application';
 ?>
 <div class="site-index">
 
-    <div class="jumbotron">
+    <!--<div class="jumbotron">
         <h1>Congratulations!</h1>
 
         <p class="lead">You have successfully created your Yii-powered application.</p>
 
         <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
+    </div>-->
 
     <div class="body-content">
-
+        <div class="row-fluid">
+            <!-- Cabecera -->
+            <div class="span12">
+                <img src="../images/1.jpg" class="img-responsive center-block">
+            </div>            
+        </div>
         <div class="row">
+            <!-- Pizarras -->
+            <div class="col-lg-6">
+                <img src="../images/1.jpg" class="img-responsive center-block">
+            </div>
+            <div class="col-lg-6">
+                <img src="../images/1.jpg" class="img-responsive center-block">
+            </div>
+        </div>
+        <div class="row">
+            <!-- Ultimos informes -->
+            <p>Ultimos informes...</p>
+        </div>
+        <div class="row">
+            <!-- Botones informes-->
+            <div class="col-lg-3">
+                <img src="../images/1.jpg" class="img-responsive center-block">
+                <img src="../images/1.jpg" class="img-responsive center-block">
+                <img src="../images/1.jpg" class="img-responsive center-block">
+            </div>
+            <div class="col-lg-3">
+                <img src="../images/1.jpg" class="img-responsive center-block">
+                <img src="../images/1.jpg" class="img-responsive center-block">
+                <img src="../images/1.jpg" class="img-responsive center-block">
+            </div>
+            <div class="col-lg-3">
+                <img src="../images/1.jpg" class="img-responsive center-block">
+                <img src="../images/1.jpg" class="img-responsive center-block">
+                <img src="../images/1.jpg" class="img-responsive center-block">
+            </div>
+            <div class="col-lg-3">
+                <img src="../images/1.jpg" class="img-responsive center-block">
+                <img src="../images/1.jpg" class="img-responsive center-block">
+                <img src="../images/1.jpg" class="img-responsive center-block">
+            </div>
+        </div>
+        <div class="row">
+            <!-- Correo -->
+            <p>Correo...</p>
+        </div>
+        <div class="row">
+            <!-- Publi APK -->
+            <div class="span12">
+                <img src="../images/appandroid.jpg" class="img-responsive center-block">
+            </div>
+        </div>
+        <!--<div class="row-fluid">
             <div class="col-lg-4">
                 <h2>Heading</h2>
 
@@ -45,9 +96,9 @@ $this->title = 'My Yii Application';
                     ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
                     fugiat nulla pariatur.</p>
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
+                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/"><img src="../images/1.jpg"></a></p>
             </div>
-        </div>
+        </div>-->
 
     </div>
 </div>
