@@ -30,10 +30,7 @@ $this->title = 'My Yii Application';
                 <img src="../images/1.jpg" class="img-responsive center-block">
             </div>
         </div>
-        <div class="row">
-            <!-- Ultimos informes -->
-            <p>Ultimos informes...</p>
-        </div>
+        
         <div class="row">
             <!-- Botones informes-->
             <div class="col-lg-3">
@@ -61,10 +58,14 @@ $this->title = 'My Yii Application';
             <!-- Correo -->
             <p>Correo...</p>
         </div>
+        <!--<div class="row">
+            !-- Ultimos informes --
+            <p>Ultimos informes...</p>
+        </div>-->
         <div class="row">
             <!-- Publi APK -->
             <div class="span12">
-                <img src="../images/appandroid.jpg" class="img-responsive center-block">
+                <img src="../images/apkdescarga.png" class="img-responsive center-block">
             </div>
         </div>
         <!--<div class="row-fluid">
