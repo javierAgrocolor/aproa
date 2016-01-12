@@ -52,4 +52,9 @@ class Origen extends \yii\db\ActiveRecord
             'origen' => 'Origen',
         ];
     }
+    
+    public function leerTodos(){
+        return Origen::find()->orderBy("origen")->all();
+    }
+    
 }

@@ -5,25 +5,25 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "Datos_generales_mayoristas".
+ * This is the model class for table "Volumen_Cooperativa".
  *
- * @property string $id
+ * @property integer $id
  * @property string $fecha
  * @property integer $cod_producto
  * @property integer $cod_categoria
  * @property integer $cod_presentacion
  * @property integer $cod_localizacion
  * @property integer $cod_origen
- * @property double $precio
+ * @property double $volumen
  */
-class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
+class VolumenCooperativa extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'Datos_generales_mayoristas';
+        return 'Volumen_Cooperativa';
     }
 
     /**
@@ -42,7 +42,7 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
         return [
             [['fecha'], 'safe'],
             [['cod_producto', 'cod_categoria', 'cod_presentacion', 'cod_localizacion', 'cod_origen'], 'integer'],
-            [['precio'], 'number']
+            [['volumen'], 'number']
         ];
     }
 
@@ -59,11 +59,7 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
             'cod_presentacion' => 'Cod Presentacion',
             'cod_localizacion' => 'Cod Localizacion',
             'cod_origen' => 'Cod Origen',
-            'precio' => 'Precio',
+            'volumen' => 'Volumen',
         ];
     }
-    
-    
-    
-    
 }

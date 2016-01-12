@@ -52,4 +52,8 @@ class Producto extends \yii\db\ActiveRecord
             'producto' => 'Producto',
         ];
     }
+    
+    public function leerTodos(){
+        return Producto::find()->orderBy("producto")->all();
+    }
 }

@@ -10,6 +10,9 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\DatosGeneralesMayoristas;
+use app\models\Producto;
+use app\models\Origen;
 
 class PreciosController extends Controller
 {
@@ -51,7 +54,24 @@ class PreciosController extends Controller
 
     public function actionMayoristas()
     {
-        return $this -> render('mayoristas');
+        $mayoristas = DatosGeneralesMayoristas::find()->where('id = 4138')->all();
+        //Construimos los modelos que vamos a necesitar.
+        $productModel = new Producto();
+        $origenModel = new Origen();
+        
+        // Leemos el contenido de las tablas.
+        $producto = $productModel->leerTodos();
+        $origen = $origenModel->leerTodos();
+        
+        if ($mayoristas === null) {
+            throw new NotFoundHttpException;
+        }
+
+        return $this->render('mayoristas', [
+            'mayoristas' => $mayoristas,
+            'producto' => $producto,
+            'origen' => $origen
+        ]);
     }
     
     public function actionOrigen()
