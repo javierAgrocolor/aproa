@@ -24,34 +24,34 @@ $this->title = 'My Yii Application';
         <div class="row">
             <!-- Pizarras -->
             <div class="col-lg-6">
-                <img src="../images/1.jpg" class="img-responsive center-block">
+                <img src="../images/pizarra.png" class="img-responsive center-block">
             </div>
             <div class="col-lg-6">
-                <img src="../images/1.jpg" class="img-responsive center-block">
+                <img src="../images/pizarra.png" class="img-responsive center-block">
             </div>
         </div>
         
         <div class="row">
             <!-- Botones informes-->
             <div class="col-lg-3">
-                <img src="../images/1.jpg" class="img-responsive center-block">
-                <img src="../images/1.jpg" class="img-responsive center-block">
-                <img src="../images/1.jpg" class="img-responsive center-block">
+                <img src="../images/boton1.jpg" class="img-responsive center-block">
+                <img src="../images/boton1.jpg" class="img-responsive center-block">
+                <img src="../images/boton1.jpg" class="img-responsive center-block">
             </div>
             <div class="col-lg-3">
-                <img src="../images/1.jpg" class="img-responsive center-block">
-                <img src="../images/1.jpg" class="img-responsive center-block">
-                <img src="../images/1.jpg" class="img-responsive center-block">
+                <img src="../images/boton1.jpg" class="img-responsive center-block">
+                <img src="../images/boton1.jpg" class="img-responsive center-block">
+                <img src="../images/boton1.jpg" class="img-responsive center-block">
             </div>
             <div class="col-lg-3">
-                <img src="../images/1.jpg" class="img-responsive center-block">
-                <img src="../images/1.jpg" class="img-responsive center-block">
-                <img src="../images/1.jpg" class="img-responsive center-block">
+                <img src="../images/boton2.jpg" class="img-responsive center-block">
+                <img src="../images/boton2.jpg" class="img-responsive center-block">
+                <img src="../images/boton2.jpg" class="img-responsive center-block">
             </div>
             <div class="col-lg-3">
-                <img src="../images/1.jpg" class="img-responsive center-block">
-                <img src="../images/1.jpg" class="img-responsive center-block">
-                <img src="../images/1.jpg" class="img-responsive center-block">
+                <img src="../images/boton2.jpg" class="img-responsive center-block">
+                <img src="../images/boton2.jpg" class="img-responsive center-block">
+                <img src="../images/boton2.jpg" class="img-responsive center-block">
             </div>
         </div>
         <div class="row">
