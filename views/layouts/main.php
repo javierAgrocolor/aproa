@@ -27,7 +27,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'My Company',
+        'brandLabel' => 'APROA - Prevención y Gestión de Crisis',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -42,6 +42,7 @@ AppAsset::register($this);
             ['label' => 'Origen', 'url' => ['/precios/origen']],
             ['label' => 'Mayoristas', 'url' => ['/precios/mayoristas']],
             ['label' => 'Supermercados', 'url' => ['/precios/supermercados']],
+            ['label' => 'Precios Ponderados', 'url' => ['/site/preciosponderados']],
             Yii::$app->user->isGuest ?
                 ['label' => 'Login', 'url' => ['/site/login']] :
                 [
@@ -54,7 +55,7 @@ AppAsset::register($this);
     NavBar::end();
     ?>
 
-    <div class="container">
+    <div class="container contenidoPrincipal">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
@@ -64,9 +65,9 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <p class="pull-left">&copy; <img src="../images/aproafooter.png" > <?= date('Y') ?></p>
+        <p class="pull-right">Subvencionado a través del Programa operativo parcial de APROA: Medidas de Prevención y Gestión de Crisis.</p>
+       <!-- <p class="pull-right"><?= Yii::powered() ?></p>-->
     </div>
 </footer>
 
