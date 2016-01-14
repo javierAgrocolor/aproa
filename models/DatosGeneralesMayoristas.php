@@ -63,7 +63,9 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
         ];
     }
     
-    
+    public function leerDatos($productos, $origen, $localizacion){
+        return DatosGeneralesMayoristas::findAll(['cod_producto' => $productos, 'cod_origen' => $origen, 'cod_localizacion' => $localizacion]);
+    }
     
     
 }

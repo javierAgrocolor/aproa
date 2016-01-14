@@ -13,9 +13,11 @@ use app\models\ContactForm;
 use app\models\DatosGeneralesMayoristas;
 use app\models\Producto;
 use app\models\Origen;
+use app\models\Presentacion;
+use app\models\Localizacion;
 
 class PreciosController extends Controller
-{
+{   
     public function behaviors()
     {
         return [
@@ -54,23 +56,55 @@ class PreciosController extends Controller
 
     public function actionMayoristas()
     {
-        $mayoristas = DatosGeneralesMayoristas::find()->where('id = 4138')->all();
+        
         //Construimos los modelos que vamos a necesitar.
         $productModel = new Producto();
         $origenModel = new Origen();
-        
+        $localizacionModel = new Localizacion();
+        $mayoristasModel = new DatosGeneralesMayoristas();
         // Leemos el contenido de las tablas.
-        $producto = $productModel->leerTodos();
-        $origen = $origenModel->leerTodos();
+        $listaProductos = $productModel->leerTodos();
+        $listaOrigenes = $origenModel->leerTodos();
+        $listaLocalizaciones = $localizacionModel -> leerTodos();
         
-        if ($mayoristas === null) {
-            throw new NotFoundHttpException;
+        
+        
+        // Leemos la petición POST/GET
+        $request = yii::$app->request;
+        
+        // En base a si recibimos parámetros GET/POST mandamos unos datos a la vista o mandamos otros.
+        if (count($request->queryParams) != 0){
+            $productos = $request->get('productos');
+            $origen = $request->get('origen');
+            $localizacion = $request->get('localizacion');
+            
+            // Establecemos la consulta de datos con los parametros recibidos.            
+            $resultado = $mayoristasModel ->leerDatos($productos, $origen, $localizacion);
+            
+            
+            return $this->render('mayoristas', [
+                'listaProductos' => $listaProductos,
+                'listaOrigenes' => $listaOrigenes,
+                'listaLocalizaciones' => $listaLocalizaciones,
+                'productos' => $productos,
+                'origen' => $origen,
+                'localizacion' => $localizacion,
+                'tabla' => $resultado
+        ]);
+        }else{
+            return $this->render('mayoristas', [
+                'listaProductos' => $listaProductos,
+                'listaOrigenes' => $listaOrigenes,
+                'listaLocalizaciones' => $listaLocalizaciones
+        ]);
         }
-
-        return $this->render('mayoristas', [
-            'mayoristas' => $mayoristas,
-            'producto' => $producto,
-            'origen' => $origen
+    }
+    
+    public function actionLeermayoristas(){
+        $request = yii::$app->request;
+        $origen = $request->get('productos');
+        return $this -> render('prueba',[
+            'productos' => $origen
         ]);
     }
     

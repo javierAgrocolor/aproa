@@ -14,6 +14,12 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'urlManager' => [
+            'class' => 'yii\web\UrlManager',
+            'showScriptName' => TRUE,
+            'enablePrettyUrl' => true,
+            'rules' => array(),
+        ],
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,

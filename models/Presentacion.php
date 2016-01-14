@@ -52,4 +52,8 @@ class Presentacion extends \yii\db\ActiveRecord
             'presentacion' => 'Presentacion',
         ];
     }
+    
+    public function leerTodos(){
+        return Presentacion::find()->orderBy("presentacion")->all();
+    }
 }

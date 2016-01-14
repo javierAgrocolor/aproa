@@ -52,4 +52,8 @@ class Localizacion extends \yii\db\ActiveRecord
             'Localizacion' => 'Localizacion',
         ];
     }
+    
+    public function leerTodos(){
+        return Localizacion::find()->orderBy("Localizacion")->all();
+    }
 }
