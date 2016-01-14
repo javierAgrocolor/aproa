@@ -2,7 +2,7 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'APROA - Gestión de Crisis';
 ?>
 <div class="site-index">
 
@@ -18,45 +18,52 @@ $this->title = 'My Yii Application';
         <div class="row-fluid">
             <!-- Cabecera -->
             <div class="span12">
-                <img src="../images/1.jpg" class="img-responsive center-block">
+                <img src="../images/cabecera.png" class="img-responsive center-block">
             </div>            
         </div>
-        <div class="row">
+        <div class="row h6">
             <!-- Pizarras -->
             <div class="col-lg-6">
-                <img src="../images/pizarra.png" class="img-responsive center-block">
+                <a href="http://localhost/aproa/web/index.php?r=site%preciosponderados"><img src="../images/pizarra.png" class="img-responsive center-block"></a>
             </div>
             <div class="col-lg-6">
                 <img src="../images/pizarra.png" class="img-responsive center-block">
             </div>
         </div>
-        
         <div class="row">
+            <!-- Informes -->
+            <div class="span12">
+                <p class="titulosPaginaPrincipal">INFORMES</p>
+            </div>              
+        </div>
+        <div class="row ">
             <!-- Botones informes-->
             <div class="col-lg-3">
-                <img src="../images/boton1.jpg" class="img-responsive center-block">
-                <img src="../images/boton1.jpg" class="img-responsive center-block">
-                <img src="../images/boton1.jpg" class="img-responsive center-block">
+                <img src="../images/boton1.jpg" class="img-responsive center-block h6">
+                <img src="../images/boton1.jpg" class="img-responsive center-block h6">
+                <img src="../images/boton1.jpg" class="img-responsive center-block h6">
             </div>
             <div class="col-lg-3">
-                <img src="../images/boton1.jpg" class="img-responsive center-block">
-                <img src="../images/boton1.jpg" class="img-responsive center-block">
-                <img src="../images/boton1.jpg" class="img-responsive center-block">
+                <img src="../images/boton1.jpg" class="img-responsive center-block h6">
+                <img src="../images/boton1.jpg" class="img-responsive center-block h6">
+                <img src="../images/boton1.jpg" class="img-responsive center-block h6">
             </div>
             <div class="col-lg-3">
-                <img src="../images/boton2.jpg" class="img-responsive center-block">
-                <img src="../images/boton2.jpg" class="img-responsive center-block">
-                <img src="../images/boton2.jpg" class="img-responsive center-block">
+                <img src="../images/boton7.jpg" class="img-responsive center-block h6">
+                <img src="../images/boton7.jpg" class="img-responsive center-block h6">
+                <img src="../images/boton7.jpg" class="img-responsive center-block h6">
             </div>
             <div class="col-lg-3">
-                <img src="../images/boton2.jpg" class="img-responsive center-block">
-                <img src="../images/boton2.jpg" class="img-responsive center-block">
-                <img src="../images/boton2.jpg" class="img-responsive center-block">
+                <img src="../images/boton7.jpg" class="img-responsive center-block h6">
+                <img src="../images/boton7.jpg" class="img-responsive center-block h6">
+                <img src="../images/boton7.jpg" class="img-responsive center-block h6">
             </div>
         </div>
         <div class="row">
             <!-- Correo -->
-            <p>Correo...</p>
+            <div class="span12">
+                <p class="titulosPaginaPrincipal">CORREO</p>
+            </div>              
         </div>
         <!--<div class="row">
             !-- Ultimos informes --
