@@ -97,7 +97,7 @@ AppAsset::register($this);
           }
          },
          timepicker:false,
-         format:'d/m/Y'
+         format:'d-m-Y'
         });
         
         jQuery.datetimepicker.setLocale('es');
@@ -117,7 +117,7 @@ AppAsset::register($this);
           }
          },
          timepicker:false,
-         format:'d/m/Y'
+         format:'d-m-Y'
         });
         
         jQuery.datetimepicker.setLocale('es');

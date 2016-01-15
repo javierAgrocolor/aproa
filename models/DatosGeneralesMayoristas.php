@@ -116,21 +116,30 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
      * @param Array $origen Contiene los códigos de los origenes a filtrar.
      * @param Array $localizacion Contiene los códigos de las localizaciones a filtrar.
      */
-    public function leerDatos($productos, $origen, $localizacion){
+    public function leerDatos($productos, $origen, $localizacion, $fechaInicial, $fechaFinal){
         
         $condiciones = "Datos_generales_mayoristas.cod_categoria = 1";
         
         if ($productos != ""){
-            $condiciones .= "and Datos_generales_mayoristas.cod_producto = ".$productos;
+            $condiciones .= " and Datos_generales_mayoristas.cod_producto = ".$productos;
         }
         
         if ($origen != ""){
-            $condiciones .= "and Datos_generales_mayoristas.cod_origen = ".$origen;
+            $condiciones .= " and Datos_generales_mayoristas.cod_origen = ".$origen;
         }
         
         if ($localizacion != ""){
-            $condiciones .= "and Datos_generales_mayoristas.cod_localizacion = ".$localizacion;
+            $condiciones .= " and Datos_generales_mayoristas.cod_localizacion = ".$localizacion;
         }
+        
+        if ($fechaInicial != ""){
+            $condiciones .= " and Datos_generales_mayoristas.fecha >= convert(datetime,'".$fechaInicial."')";
+        }
+        
+        if ($fechaFinal != ""){
+            $condiciones .= " and Datos_generales_mayoristas.fecha <= convert(datetime,'".$fechaFinal."')";
+        }
+        
         $query = new \yii\db\Query();
         $query->select('*')
                 ->from('Datos_generales_mayoristas')

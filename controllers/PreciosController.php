@@ -77,9 +77,11 @@ class PreciosController extends Controller
             $productos = $request->get('productos');
             $origen = $request->get('origen');
             $localizacion = $request->get('localizacion');
+            $fechaInicial = $request->get('fechaInicial');
+            $fechaFinal = $request->get('fechaFinal');
             
             // Establecemos la consulta de datos con los parametros recibidos.            
-            $resultado = $mayoristasModel ->leerDatos($productos, $origen, $localizacion);
+            $resultado = $mayoristasModel ->leerDatos($productos, $origen, $localizacion, $fechaInicial, $fechaFinal);
             
             
             return $this->render('mayoristas', [
