@@ -20,10 +20,7 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
-    <!-- this should go after your </body> -->
-    <link rel="stylesheet" type="text/css" href="../../assets/datetimepicker-master/jquery.datetimepicker.css" />
-    <script src="../../assets/datetimepicker-master//jquery.js"></script>
-    <script src="../../assets/datetimepicker-master/build/jquery.datetimepicker.full.min.js"></script>
+
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -77,5 +74,50 @@ AppAsset::register($this);
 
 <?php $this->endBody() ?>
 </body>
+    <!-- this should go after your </body> -->
+    <link rel="stylesheet" type="text/css" href="../../assets/datetimepicker-master/jquery.datetimepicker.css" />
+    <script src="../../assets/datetimepicker-master/jquery.js"></script>
+    <script src="../../assets/datetimepicker-master/build/jquery.datetimepicker.full.min.js"></script>
+    <script>
+        jQuery.datetimepicker.setLocale('es');
+
+        jQuery('#datetimepicker1').datetimepicker({
+         i18n:{
+          de:{
+           months:[
+            'Enero','Febrero','Marzo','Abril',
+            'Mayo','Junio','Julio','Agosto',
+            'Septiembre','Octubre','Noviembre','Diciembre',
+           ],
+           dayOfWeek:[
+            "So.", "Mo", "Di", "Mi", 
+            "Do", "Fr", "Sa.",
+           ]
+          }
+         },
+         timepicker:false,
+         format:'d/m/Y'
+        });
+        
+        jQuery.datetimepicker.setLocale('es');
+
+        jQuery('#datetimepicker-1').datetimepicker({
+         i18n:{
+          de:{
+           months:[
+            'Enero','Febrero','Marzo','Abril',
+            'Mayo','Junio','Julio','Agosto',
+            'Septiembre','Octubre','Noviembre','Diciembre',
+           ],
+           dayOfWeek:[
+            "So.", "Mo", "Di", "Mi", 
+            "Do", "Fr", "Sa.",
+           ]
+          }
+         },
+         timepicker:false,
+         format:'d/m/Y'
+        });
+    </script>
 </html>
 <?php $this->endPage() ?>

@@ -8,7 +8,7 @@ use yii\helpers\ArrayHelper;
 ?>
 
 <form action="mayoristas" id="filtroProducto">
-    <div class="span6">
+    <div class="col-lg-6">
         <label>Productos</label>
         <select id="productos" name="productos" class="form-control">
             <?php 
@@ -38,11 +38,19 @@ use yii\helpers\ArrayHelper;
         </select>
     <br>
     </div>
-    <div class="span12">
+    <div class="col-lg-6">
         <label>Fecha Inicial</label>
-        <input id="datetimepicker" type="text" >
+        <input id="datetimepicker1" type="text" class="form-control" />
+        <br>
+        <label>Fecha Final</label>
+        <input id="datetimepicker-1" type="text" class="form-control" />
+        <br>
     </div>
-    <input class="btn btn-primary" type="submit">
+    <div class="row-fluid">
+        <div class="col-lg-12">
+            <input class="btn btn-primary" type="submit">
+        </div>
+    </div>
 </form>
 <?php
     if (isset($tabla)){
