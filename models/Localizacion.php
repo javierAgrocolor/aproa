@@ -10,6 +10,10 @@ use Yii;
  * @property integer $id
  * @property integer $codigo_localizacion
  * @property string $Localizacion
+ *
+ * @property DatosGeneralesMayoristas[] $datosGeneralesMayoristas
+ * @property DatosOrigen[] $datosOrigens
+ * @property DatosSupermercados[] $datosSupermercados
  */
 class Localizacion extends \yii\db\ActiveRecord
 {
@@ -52,7 +56,36 @@ class Localizacion extends \yii\db\ActiveRecord
             'Localizacion' => 'Localizacion',
         ];
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDatosGeneralesMayoristas()
+    {
+        return $this->hasMany(DatosGeneralesMayoristas::className(), ['cod_localizacion' => 'codigo_localizacion']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDatosOrigens()
+    {
+        return $this->hasMany(DatosOrigen::className(), ['cod_localizacion' => 'codigo_localizacion']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDatosSupermercados()
+    {
+        return $this->hasMany(DatosSupermercados::className(), ['cod_localizacion' => 'codigo_localizacion']);
+    }
     
+    
+    /**
+     * Devuelve todas las localizaciones ordenadas alfabeticamente.
+     * @return Array
+     */
     public function leerTodos(){
         return Localizacion::find()->orderBy("Localizacion")->all();
     }

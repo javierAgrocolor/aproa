@@ -20,6 +20,10 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <!-- this should go after your </body> -->
+    <link rel="stylesheet" type="text/css" href="../../assets/datetimepicker-master/jquery.datetimepicker.css" />
+    <script src="../../assets/datetimepicker-master//jquery.js"></script>
+    <script src="../../assets/datetimepicker-master/build/jquery.datetimepicker.full.min.js"></script>
 </head>
 <body>
 <?php $this->beginBody() ?>

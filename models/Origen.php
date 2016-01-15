@@ -10,6 +10,10 @@ use Yii;
  * @property integer $id
  * @property integer $codigo_origen
  * @property string $origen
+ *
+ * @property DatosGeneralesMayoristas[] $datosGeneralesMayoristas
+ * @property DatosOrigen[] $datosOrigens
+ * @property DatosSupermercados[] $datosSupermercados
  */
 class Origen extends \yii\db\ActiveRecord
 {
@@ -52,9 +56,36 @@ class Origen extends \yii\db\ActiveRecord
             'origen' => 'Origen',
         ];
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDatosGeneralesMayoristas()
+    {
+        return $this->hasMany(DatosGeneralesMayoristas::className(), ['cod_origen' => 'codigo_origen']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDatosOrigens()
+    {
+        return $this->hasMany(DatosOrigen::className(), ['cod_origen' => 'codigo_origen']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDatosSupermercados()
+    {
+        return $this->hasMany(DatosSupermercados::className(), ['cod_origen' => 'codigo_origen']);
+    }
     
+    /**
+     * Devuelve todos los origenes ordenados alfabeticamente.
+     * @return Array 
+     */
     public function leerTodos(){
         return Origen::find()->orderBy("origen")->all();
     }
-    
 }

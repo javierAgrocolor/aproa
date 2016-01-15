@@ -5,24 +5,24 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "Producto".
+ * This is the model class for table "Categoria".
  *
  * @property integer $id
- * @property integer $codigo_producto
- * @property string $producto
+ * @property string $categoria
+ * @property integer $cod_categoria
  *
  * @property DatosGeneralesMayoristas[] $datosGeneralesMayoristas
  * @property DatosOrigen[] $datosOrigens
  * @property DatosSupermercados[] $datosSupermercados
  */
-class Producto extends \yii\db\ActiveRecord
+class Categoria extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'Producto';
+        return 'Categoria';
     }
 
     /**
@@ -39,9 +39,9 @@ class Producto extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['codigo_producto', 'producto'], 'required'],
-            [['codigo_producto'], 'integer'],
-            [['producto'], 'string']
+            [['id', 'categoria', 'cod_categoria'], 'required'],
+            [['id', 'cod_categoria'], 'integer'],
+            [['categoria'], 'string']
         ];
     }
 
@@ -52,8 +52,8 @@ class Producto extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'codigo_producto' => 'Codigo Producto',
-            'producto' => 'Producto',
+            'categoria' => 'Categoria',
+            'cod_categoria' => 'Cod Categoria',
         ];
     }
 
@@ -62,7 +62,7 @@ class Producto extends \yii\db\ActiveRecord
      */
     public function getDatosGeneralesMayoristas()
     {
-        return $this->hasMany(DatosGeneralesMayoristas::className(), ['cod_producto' => 'codigo_producto']);
+        return $this->hasMany(DatosGeneralesMayoristas::className(), ['cod_categoria' => 'cod_categoria']);
     }
 
     /**
@@ -70,7 +70,7 @@ class Producto extends \yii\db\ActiveRecord
      */
     public function getDatosOrigens()
     {
-        return $this->hasMany(DatosOrigen::className(), ['cod_producto' => 'codigo_producto']);
+        return $this->hasMany(DatosOrigen::className(), ['cod_categoria' => 'cod_categoria']);
     }
 
     /**
@@ -78,15 +78,6 @@ class Producto extends \yii\db\ActiveRecord
      */
     public function getDatosSupermercados()
     {
-        return $this->hasMany(DatosSupermercados::className(), ['cod_producto' => 'codigo_producto']);
+        return $this->hasMany(DatosSupermercados::className(), ['cod_categoria' => 'cod_categoria']);
     }
-    
-    /**
-     * Devuelve todos los productos ordenados alfabeticamente.
-     * @return Array
-     */
-    public function leerTodos(){
-        return Producto::find()->orderBy("producto")->all();
-    }
-    
 }

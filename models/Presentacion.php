@@ -10,6 +10,10 @@ use Yii;
  * @property integer $id
  * @property integer $codigo
  * @property string $presentacion
+ *
+ * @property DatosGeneralesMayoristas[] $datosGeneralesMayoristas
+ * @property DatosOrigen[] $datosOrigens
+ * @property DatosSupermercados[] $datosSupermercados
  */
 class Presentacion extends \yii\db\ActiveRecord
 {
@@ -52,7 +56,35 @@ class Presentacion extends \yii\db\ActiveRecord
             'presentacion' => 'Presentacion',
         ];
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDatosGeneralesMayoristas()
+    {
+        return $this->hasMany(DatosGeneralesMayoristas::className(), ['cod_presentacion' => 'codigo']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDatosOrigens()
+    {
+        return $this->hasMany(DatosOrigen::className(), ['cod_presentacion' => 'codigo']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDatosSupermercados()
+    {
+        return $this->hasMany(DatosSupermercados::className(), ['cod_presentacion' => 'codigo']);
+    }
     
+    /**
+     * Devuelve todas las presentaciones ordenadas alfabeticamente.
+     * @return Array
+     */
     public function leerTodos(){
         return Presentacion::find()->orderBy("presentacion")->all();
     }
