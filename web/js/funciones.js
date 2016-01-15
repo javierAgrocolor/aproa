@@ -8,3 +8,7 @@ $(document).ready(function() {
     $(".filtros").prepend("<option id='null' value='' selected='selected'></option>");
 });
 
+$(document).ready(function() {
+    $(".filtros2").prepend("<option id='null' value='%' selected='selected'></option>");
+});
+

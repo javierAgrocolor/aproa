@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <form id="filtroPreciosponderados">
         <div class="col-xs-2">
         <label>Empresa</label>
-        <select id="empresas" name="empresas" class="form-control">
+        <select id="empresas" name="empresas" class="form-control filtros2">
             <option value="LA UNION">LA UNION</option>
             <option value="FEMAGO">FEMAGO</option>
             
@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="col-xs-2">
         <label>Producto</label>
-        <select id="productos" name="productos" class="form-control">
+        <select id="productos" name="productos" class="form-control filtros2">
             <option value="Pepino Almeria">Pepino Almeria</option>
             <option value="Berenjena Larga">Berenjena Larga</option>
             
@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="col-xs-2">
         <label>Tipo</label>
-        <select id="tipo" name="tipo" class="form-control">
+        <select id="tipo" name="tipo" class="form-control filtros2">
             <option value="Precios">Precios</option>
             <option value="Toneladas">Toneladas</option>
             
@@ -36,11 +36,11 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="col-xs-2">
         <label>Fecha Inicial</label>
-        <input id="datetimepicker2" name="datetimepicker2" type="text" class="form-control" />
+        <input id="datetimepicker2" name="datetimepicker2" type="text" class="form-control filtros" />
         </div>
         <div class="col-xs-2">
         <label>Fecha Final</label>
-        <input id="datetimepicker-2" name="datetimepicker-2" type="text" class="form-control" />
+        <input id="datetimepicker-2" name="datetimepicker-2" type="text" class="form-control filtros" />
           
         </div>
         <div class="row-fluid">
@@ -79,25 +79,26 @@ $this->params['breadcrumbs'][] = $this->title;
             </thead>
             <tbody>
                 
-                    <?php foreach($tabla as $row){?>
-                <tr>
-                    <td><?php echo $row->Producto;?></td>
-                    <td><?php echo $row->Fecha;?></td>
-                    <td><?php echo $row->Empresa;?></td>
-                    <td><?php echo $row->Tipo;?></td>
-                    <td><?php echo $row->Pond_Suma;?></td>
-                    <td><?php echo $row->Media;?></td>
-                    <td><?php echo $row->C1;?></td>
-                    <td><?php echo $row->C2;?></td>
-                    <td><?php echo $row->C3;?></td>
-                    <td><?php echo $row->C4;?></td>
-                    <td><?php echo $row->C5;?></td>
-                    <td><?php echo $row->C6;?></td>
-                    <td><?php echo $row->C7;?></td>
-                    <td><?php echo $row->C8;?></td>
-                    <td><?php echo $row->C9;?></td>                    
-                    <td><?php echo $row->C10;}}?></td>
-                </tr>
+                    <?php foreach($tabla as $row){
+                echo "<tr>
+                    <td>".$row['Producto']."</td>
+                    <td>".$row['Fecha']."</td>
+                    <td>".$row['Empresa']."</td>
+                    <td>".$row['Tipo']."</td>
+                    <td>".$row['Pond_Suma']."</td>
+                    <td>".$row['Media']."</td>
+                    <td>".$row['C1']."</td>
+                    <td>".$row['C2']."</td>
+                    <td>".$row['C3']."</td>
+                    <td>".$row['C4']."</td>
+                    <td>".$row['C5']."</td>
+                    <td>".$row['C6']."</td>
+                    <td>".$row['C7']."</td>
+                    <td>".$row['C8']."</td>
+                    <td>".$row['C9']."</td>                    
+                    <td>".$row['C10']."</td>
+    </tr>";}}
+                ?>
             </tbody>
         </table>
             
