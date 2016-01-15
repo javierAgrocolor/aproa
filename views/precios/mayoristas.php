@@ -10,7 +10,7 @@ use yii\helpers\ArrayHelper;
 <form action="mayoristas" id="filtroProducto">
     <div class="col-lg-6">
         <label>Productos</label>
-        <select id="productos" name="productos" class="form-control">
+        <select id="productos" name="productos" class="form-control filtros">
             <?php 
                 foreach ($listaProductos as $especieOption){
                     echo "<option id='".$especieOption->codigo_producto."' value='".$especieOption->codigo_producto."'>".$especieOption->producto."</option>";
@@ -20,7 +20,7 @@ use yii\helpers\ArrayHelper;
         <!-- el br de debajo es una ñapa temporal no me seas mendrugo.-->
         <br>
         <label>Origen</label>
-        <select id="origen" name="origen" class="form-control">
+        <select id="origen" name="origen" class="form-control filtros">
             <?php
                 foreach ($listaOrigenes as $paisOption){
                     echo "<option id='".$paisOption->codigo_origen."' value='".$paisOption->codigo_origen."'>".$paisOption->origen."</option>";
@@ -29,7 +29,7 @@ use yii\helpers\ArrayHelper;
         </select>
         <br>
         <label>Localización</label>
-        <select id="localizacion" name="localizacion" class="form-control">
+        <select id="localizacion" name="localizacion" class="form-control filtros">
             <?php
                 foreach ($listaLocalizaciones as $localizacionOption){
                     echo "<option id='".$localizacionOption->codigo_localizacion."' value='".$localizacionOption->codigo_localizacion."'>".$localizacionOption->Localizacion."</option>";
@@ -40,10 +40,10 @@ use yii\helpers\ArrayHelper;
     </div>
     <div class="col-lg-6">
         <label>Fecha Inicial</label>
-        <input id="datetimepicker1" type="text" class="form-control" />
+        <input id="datetimepicker1" name="fechaInicial" type="text" class="form-control" />
         <br>
         <label>Fecha Final</label>
-        <input id="datetimepicker-1" type="text" class="form-control" />
+        <input id="datetimepicker-1" name="fechaFinal" type="text" class="form-control" />
         <br>
     </div>
     <div class="row-fluid">
