@@ -113,8 +113,11 @@ class SiteController extends Controller
         if (count($request->queryParams) != 0){
         $empresas = $request->get('empresas');
         $productos = $request->get('productos');
+        $tipo = $request->get('tipo');
+        $fechaini = $request->get('datetimepicker2');
+        $fechafin = $request->get('datetimepicker-2');
         
-        $resultado = $alhondigasppModels ->leerDatos($productos,$empresas);
+        $resultado = $alhondigasppModels ->leerDatos($productos,$empresas,$tipo,$fechaini,$fechafin);
         
         return $this->render('preciosponderados',['tabla'=>$resultado]);
         }else{
