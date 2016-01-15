@@ -118,25 +118,26 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
      */
     public function leerDatos($productos, $origen, $localizacion){
         
-        $condiciones = "";
+        $condiciones = "Datos_generales_mayoristas.cod_categoria = 1";
         
-        /*if ($productos != ""){
-            $condiciones .= "";
+        if ($productos != ""){
+            $condiciones .= "and Datos_generales_mayoristas.cod_producto = ".$productos;
         }
         
         if ($origen != ""){
-            
+            $condiciones .= "and Datos_generales_mayoristas.cod_origen = ".$origen;
         }
         
         if ($localizacion != ""){
-            
-        }*/
+            $condiciones .= "and Datos_generales_mayoristas.cod_localizacion = ".$localizacion;
+        }
         $query = new \yii\db\Query();
         $query->select('*')
                 ->from('Datos_generales_mayoristas')
                 ->innerJoin('Origen', 'Origen.codigo_origen = Datos_generales_mayoristas.cod_origen')
                 ->innerJoin('Localizacion', 'Localizacion.codigo_localizacion = Datos_generales_mayoristas.cod_localizacion')
-                ->innerJoin('Producto', 'Producto.codigo_producto = Datos_generales_mayoristas.cod_producto');
+                ->innerJoin('Producto', 'Producto.codigo_producto = Datos_generales_mayoristas.cod_producto')
+                ->where($condiciones);
         $rows = $query->all(DatosGeneralesMayoristas::getDb());
         return $rows;
         //return DatosGeneralesMayoristas::find()->all();
