@@ -33,7 +33,7 @@ $this->title = 'APROA - Gestión de Crisis';
         <div class="row">
             <!-- Informes -->
             <div class="span12">
-                <p class="titulosPaginaPrincipal">INFORMES</p>
+                <h1 class="titulosPaginaPrincipal">Informes</h1>
             </div>              
         </div>
         <div class="row ">
@@ -62,7 +62,7 @@ $this->title = 'APROA - Gestión de Crisis';
         <div class="row">
             <!-- Correo -->
             <div class="span12">
-                <p class="titulosPaginaPrincipal">CORREO</p>
+                <h1 class="titulosPaginaPrincipal">CORREO</h1>
             </div>              
         </div>
         <!--<div class="row">

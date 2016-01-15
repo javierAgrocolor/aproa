@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <select id="empresas" name="empresas" class="form-control">
             <option value="LA UNION">LA UNION</option>
             <option value="FEMAGO">FEMAGO</option>
-            <option value="0">prueba</option>
+            
         </select>
         </div>
         <div class="col-xs-2">
@@ -36,11 +36,11 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="col-xs-2">
         <label>Fecha Inicial</label>
-        <input id="datetimepicker1" type="text" class="form-control" />
+        <input id="datetimepicker2" name="datetimepicker2" type="text" class="form-control" />
         </div>
         <div class="col-xs-2">
         <label>Fecha Final</label>
-        <input id="datetimepicker-1" type="text" class="form-control" />
+        <input id="datetimepicker-2" name="datetimepicker-2" type="text" class="form-control" />
           
         </div>
         <div class="row-fluid">

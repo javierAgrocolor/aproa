@@ -114,8 +114,10 @@ class SiteController extends Controller
         $empresas = $request->get('empresas');
         $productos = $request->get('productos');
         $tipo = $request->get('tipo');
+        $fechaini = $request->get('datetimepicker2');
+        $fechafin = $request->get('datetimepicker-2');
         
-        $resultado = $alhondigasppModels ->leerDatos($productos,$empresas,$tipo);
+        $resultado = $alhondigasppModels ->leerDatos($productos,$empresas,$tipo,$fechaini,$fechafin);
         
         return $this->render('preciosponderados',['tabla'=>$resultado]);
         }else{
