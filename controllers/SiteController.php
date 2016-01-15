@@ -113,8 +113,9 @@ class SiteController extends Controller
         if (count($request->queryParams) != 0){
         $empresas = $request->get('empresas');
         $productos = $request->get('productos');
+        $tipo = $request->get('tipo');
         
-        $resultado = $alhondigasppModels ->leerDatos($productos,$empresas);
+        $resultado = $alhondigasppModels ->leerDatos($productos,$empresas,$tipo);
         
         return $this->render('preciosponderados',['tabla'=>$resultado]);
         }else{

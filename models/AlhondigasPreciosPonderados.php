@@ -93,8 +93,9 @@ class AlhondigasPreciosPonderados extends \yii\db\ActiveRecord
         ];
     }
     
-    public function leerDatos($productos,$empresas){
-        return AlhondigasPreciosPonderados::find()->where(['Producto'=>$productos])->andWhere(['Empresa'=>$empresas])->limit(50)->all();
+    public function leerDatos($productos,$empresas,$tipo){
+        return AlhondigasPreciosPonderados::find()->where(['Producto'=>$productos])->
+                andWhere(['Empresa'=>$empresas])->andWhere(['Tipo'=>$tipo])->limit(50)->all();
     }
 
 }
