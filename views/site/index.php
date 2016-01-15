@@ -62,7 +62,7 @@ $this->title = 'APROA - Gestión de Crisis';
         <div class="row">
             <!-- Correo -->
             <div class="span12">
-                <h1 class="titulosPaginaPrincipal">CORREO</h1>
+                <h1 class="titulosPaginaPrincipal">Correo</h1>
             </div>              
         </div>
         <!--<div class="row">

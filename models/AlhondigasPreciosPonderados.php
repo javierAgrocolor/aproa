@@ -94,10 +94,23 @@ class AlhondigasPreciosPonderados extends \yii\db\ActiveRecord
     }
     
     public function leerDatos($productos,$empresas,$tipo,$fechaini,$fechafin){
-        return AlhondigasPreciosPonderados::find()->where(['Producto'=>$productos])->
-                andWhere(['Empresa'=>$empresas])->andWhere(['Tipo'=>$tipo])->andWhere(['Fecha'=>$fechaini])->all();
+        $query = new \yii\db\Query();
+        if(1==1){
+            $query->select('*')
+                ->from('alhondigas')
+                ->where('Fecha>=:fechaini and Fecha <=:fechafin',array(':fechaini'=>$fechaini,':fechafin'=>$fechafin))
+                ->andWhere('Producto LIKE :producto',array(':producto'=>$productos))
+                ->andWhere('Empresa LIKE :empresa',array(':empresa'=>$empresas))
+                ->andWhere('Tipo LIKE :tipo',array(':tipo'=>$tipo));
+        }else{
+            $query->select('*')
+                ->from('alhondigas')
+                ->where('Fecha>=:fechaini and Fecha <=:fechafin',array(':fechaini'=>$fechaini,':fechafin'=>$fechafin));
+        }      
         
-        
+                
+        $rows = $query->all(AlhondigasPreciosPonderados::getDb());
+        return $rows;
     }
 
 }
