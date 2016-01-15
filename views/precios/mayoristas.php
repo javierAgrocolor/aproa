@@ -68,7 +68,7 @@ use yii\helpers\ArrayHelper;
             <tbody>
             <?php
         foreach($tabla as $row){
-            echo "<tr><td>".$row->codProducto->producto."</td><td>".$row->codLocalizacion->Localizacion."</td><td>".$row->codOrigen->origen."</td><td>".$row->precio."</td><td>".$row->fecha."</td></tr>";
+            echo "<tr><td>".$row['producto']."</td><td>".$row['Localizacion']."</td><td>".$row['origen']."</td><td>".substr($row['precio'], 0, 4)."</td><td>".$row['fecha']."</td></tr>";
         }
         echo "</tbody>
         </table>";

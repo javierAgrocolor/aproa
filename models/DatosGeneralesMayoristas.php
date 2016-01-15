@@ -117,6 +117,28 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
      * @param Array $localizacion Contiene los códigos de las localizaciones a filtrar.
      */
     public function leerDatos($productos, $origen, $localizacion){
-        return DatosGeneralesMayoristas::find()->where(['cod_producto' => $productos, 'cod_origen' => $origen, 'cod_localizacion' => $localizacion])->with('codLocalizacion','codOrigen','codPresentacion','codProducto')->all();
+        
+        $condiciones = "";
+        
+        /*if ($productos != ""){
+            $condiciones .= "";
+        }
+        
+        if ($origen != ""){
+            
+        }
+        
+        if ($localizacion != ""){
+            
+        }*/
+        $query = new \yii\db\Query();
+        $query->select('*')
+                ->from('Datos_generales_mayoristas')
+                ->innerJoin('Origen', 'Origen.codigo_origen = Datos_generales_mayoristas.cod_origen')
+                ->innerJoin('Localizacion', 'Localizacion.codigo_localizacion = Datos_generales_mayoristas.cod_localizacion')
+                ->innerJoin('Producto', 'Producto.codigo_producto = Datos_generales_mayoristas.cod_producto');
+        $rows = $query->all(DatosGeneralesMayoristas::getDb());
+        return $rows;
+        //return DatosGeneralesMayoristas::find()->all();
     }
 }

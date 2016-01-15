@@ -4,5 +4,7 @@
  * and open the template in the editor.
  */
 
-$(document).ready
+$(document).ready(function() {
+    $(".filtros").prepend("<option id='null' value='' selected='selected'></option>");
+});
 

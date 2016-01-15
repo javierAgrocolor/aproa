@@ -20,7 +20,8 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
-
+    <script src="../../../vendor/bower/jquery/dist/jquery.js"></script>
+    <script src="../../js/funciones.js" type="text/javascript"></script>
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -76,7 +77,7 @@ AppAsset::register($this);
 </body>
     <!-- this should go after your </body> -->
     <link rel="stylesheet" type="text/css" href="../../assets/datetimepicker-master/jquery.datetimepicker.css" />
-    <script src="../../assets/datetimepicker-master/jquery.js"></script>
+    <!--<script src="../../assets/datetimepicker-master/jquery.js"></script>-->
     <script src="../../assets/datetimepicker-master/build/jquery.datetimepicker.full.min.js"></script>
     <script>
         jQuery.datetimepicker.setLocale('es');
