@@ -6,6 +6,7 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
+use app\models\AlhondigasPreciosPonderados;
 use app\models\LoginForm;
 use app\models\ContactForm;
 
@@ -103,7 +104,21 @@ class SiteController extends Controller
         return $this->render('about');
     }
     
-    public function actionPreciosPonderados(){
-        return $this->render('preciosponderados');
+    public function actionPreciosponderados(){
+        $alhondigasppModels = new AlhondigasPreciosPonderados();
+        
+        // Leemos la petición POST/GET
+        $request = yii::$app->request;
+        
+        if (count($request->queryParams) != 0){
+        $empresas = $request->get('empresas');
+        $productos = $request->get('productos');
+        
+        $resultado = $alhondigasppModels ->leerDatos($productos,$empresas);
+        
+        return $this->render('preciosponderados',['tabla'=>$resultado]);
+        }else{
+            return $this->render('preciosponderados');
+        }
     }
 }

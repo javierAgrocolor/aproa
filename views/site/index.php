@@ -18,16 +18,16 @@ $this->title = 'APROA - Gestión de Crisis';
         <div class="row-fluid">
             <!-- Cabecera -->
             <div class="span12">
-                <img src="../images/cabecera.png" class="img-responsive center-block">
+                <img src="/aproa/images/cabecera.png" class="img-responsive center-block">
             </div>            
         </div>
         <div class="row h6">
             <!-- Pizarras -->
             <div class="col-lg-6">
-                <a href="http://localhost/aproa/web/index.php?r=site%preciosponderados"><img src="../images/pizarra.png" class="img-responsive center-block"></a>
+                <a href="/aproa/web/index.php/site/preciosponderados"><img src="/aproa/images/pizarra.png" class="img-responsive center-block"></a>
             </div>
             <div class="col-lg-6">
-                <img src="../images/pizarra.png" class="img-responsive center-block">
+                <img src="/aproa/images/pizarra.png" class="img-responsive center-block">
             </div>
         </div>
         <div class="row">
@@ -39,24 +39,24 @@ $this->title = 'APROA - Gestión de Crisis';
         <div class="row ">
             <!-- Botones informes-->
             <div class="col-lg-3">
-                <img src="../images/boton1.jpg" class="img-responsive center-block h6">
-                <img src="../images/boton1.jpg" class="img-responsive center-block h6">
-                <img src="../images/boton1.jpg" class="img-responsive center-block h6">
+                <img src="/aproa/images/boton1.jpg" class="img-responsive center-block h6">
+                <img src="/aproa/images/boton1.jpg" class="img-responsive center-block h6">
+                <img src="/aproa/images/boton1.jpg" class="img-responsive center-block h6">
             </div>
             <div class="col-lg-3">
-                <img src="../images/boton1.jpg" class="img-responsive center-block h6">
-                <img src="../images/boton1.jpg" class="img-responsive center-block h6">
-                <img src="../images/boton1.jpg" class="img-responsive center-block h6">
+                <img src="/aproa/images/boton1.jpg" class="img-responsive center-block h6">
+                <img src="/aproa/images/boton1.jpg" class="img-responsive center-block h6">
+                <img src="/aproa/images/boton1.jpg" class="img-responsive center-block h6">
             </div>
             <div class="col-lg-3">
-                <img src="../images/boton7.jpg" class="img-responsive center-block h6">
-                <img src="../images/boton7.jpg" class="img-responsive center-block h6">
-                <img src="../images/boton7.jpg" class="img-responsive center-block h6">
+                <img src="/aproa/images/boton7.jpg" class="img-responsive center-block h6">
+                <img src="/aproa/images/boton7.jpg" class="img-responsive center-block h6">
+                <img src="/aproa/images/boton7.jpg" class="img-responsive center-block h6">
             </div>
             <div class="col-lg-3">
-                <img src="../images/boton7.jpg" class="img-responsive center-block h6">
-                <img src="../images/boton7.jpg" class="img-responsive center-block h6">
-                <img src="../images/boton7.jpg" class="img-responsive center-block h6">
+                <img src="/aproa/images/boton7.jpg" class="img-responsive center-block h6">
+                <img src="/aproa/images/boton7.jpg" class="img-responsive center-block h6">
+                <img src="/aproa/images/boton7.jpg" class="img-responsive center-block h6">
             </div>
         </div>
         <div class="row">
@@ -72,7 +72,7 @@ $this->title = 'APROA - Gestión de Crisis';
         <div class="row">
             <!-- Publi APK -->
             <div class="span12">
-                <img src="../images/apkdescarga.png" class="img-responsive center-block">
+                <img src="/aproa/images/apkdescarga.png" class="img-responsive center-block">
             </div>
         </div>
         <!--<div class="row-fluid">

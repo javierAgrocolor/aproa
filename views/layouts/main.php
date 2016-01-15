@@ -69,8 +69,8 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; <img src="../images/aproafooter.png" > <?= date('Y') ?></p>
-        <p class="pull-right">Subvencionado a través del Programa operativo parcial de APROA: Medidas de Prevención y Gestión de Crisis.</p>
+        <p class="pull-left"><strong>&copy; <img src="/aproa/images/aproafooter.png" > <?= date('Y') ?></strong></p>
+        <p class="pull-right"><strong>Subvencionado a través del Programa operativo parcial de APROA: Medidas de Prevención y Gestión de Crisis.</strong></p>
        <!-- <p class="pull-right"><?= Yii::powered() ?></p>-->
     </div>
 </footer>
