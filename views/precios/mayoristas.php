@@ -6,11 +6,21 @@ use yii\helpers\ArrayHelper;
  * and open the template in the editor.
  */
 ?>
+<script type="text/javascript">
+    /*$(document).ready(function(){
+        $('#anadirProducto').click(function(){
+            //var productos = new Array();
+            $('#productos').push($('#productos option:selected').val());
+        });
+    });*/
+</script>
+
+
 
 <form action="mayoristas" id="filtroProducto">
     <div class="col-lg-6">
         <label>Productos</label>
-        <select id="productos" name="productos" class="form-control filtros">
+        <select id="productos" name="productos[]" multiple class="form-control filtros chosen-select-width">
             <?php 
                 foreach ($listaProductos as $especieOption){
                     echo "<option id='".$especieOption->codigo_producto."' value='".$especieOption->codigo_producto."'>".$especieOption->producto."</option>";
@@ -20,7 +30,7 @@ use yii\helpers\ArrayHelper;
         <!-- el br de debajo es una ñapa temporal no me seas mendrugo.-->
         <br>
         <label>Origen</label>
-        <select id="origen" name="origen" class="form-control filtros">
+        <select id="origen" name="origen[]" multiple class="form-control filtros chosen-select-width">
             <?php
                 foreach ($listaOrigenes as $paisOption){
                     echo "<option id='".$paisOption->codigo_origen."' value='".$paisOption->codigo_origen."'>".$paisOption->origen."</option>";
@@ -29,7 +39,7 @@ use yii\helpers\ArrayHelper;
         </select>
         <br>
         <label>Localización</label>
-        <select id="localizacion" name="localizacion" class="form-control filtros">
+        <select id="localizacion" name="localizacion[]" multiple class="form-control filtros chosen-select-width">
             <?php
                 foreach ($listaLocalizaciones as $localizacionOption){
                     echo "<option id='".$localizacionOption->codigo_localizacion."' value='".$localizacionOption->codigo_localizacion."'>".$localizacionOption->Localizacion."</option>";
@@ -48,6 +58,7 @@ use yii\helpers\ArrayHelper;
     </div>
     <div class="row-fluid">
         <div class="col-lg-12">
+            <br>
             <input class="btn btn-primary" type="submit">
         </div>
     </div>

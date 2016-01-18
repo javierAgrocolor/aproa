@@ -21,7 +21,16 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
     <script src="../../../vendor/bower/jquery/dist/jquery.js"></script>
-    <script src="../../js/funciones.js" type="text/javascript"></script>
+    <!--<script src="../../js/funciones.js" type="text/javascript"></script>-->
+        <script src="../../assets/pluginDropdown/chosen.jquery.js"></script>
+    <link href="../../assets/pluginDropdown/chosen.css" type="text/css" rel="stylesheet" />
+    <script src="../../assets/pluginDropdown/docsupport/prism.js"></script>
+    <link href="../../assets/pluginDropdown/docsupport/prism.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript">
+    $(document).ready(function($){
+        $('.chosen-select-width').chosen();
+    });
+    </script>
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -160,5 +169,6 @@ AppAsset::register($this);
          format:'Y-m-d'
         });
     </script>
+
 </html>
 <?php $this->endPage() ?>

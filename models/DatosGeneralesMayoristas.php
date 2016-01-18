@@ -116,20 +116,50 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
      * @param Array $origen Contiene los códigos de los origenes a filtrar.
      * @param Array $localizacion Contiene los códigos de las localizaciones a filtrar.
      */
-    public function leerDatos($productos, $origen, $localizacion, $fechaInicial, $fechaFinal){
+    public function leerDatos($productos, $origenes, $localizaciones, $fechaInicial, $fechaFinal){
         
         $condiciones = "Datos_generales_mayoristas.cod_categoria = 1";
         
         if ($productos != ""){
-            $condiciones .= " and Datos_generales_mayoristas.cod_producto = ".$productos;
+            $contador = 0;
+            $condiciones .= " and Datos_generales_mayoristas.cod_producto in (";
+            foreach($productos as $producto){
+                if ($contador == 0){
+                    $condiciones .= $producto;
+                }else{
+                    $condiciones .= ",".$producto;
+                }
+                $contador++;
+            }
+            $condiciones .= ")";
         }
         
-        if ($origen != ""){
-            $condiciones .= " and Datos_generales_mayoristas.cod_origen = ".$origen;
+        if ($origenes != ""){
+            $contador = 0;
+            $condiciones .= " and Datos_generales_mayoristas.cod_origen in (";
+            foreach($origenes as $origen){
+                if ($contador == 0){
+                    $condiciones .= $origen;
+                }else{
+                    $condiciones .= ",".$origen;
+                }
+                $contador++;
+            }
+            $condiciones .= ")";
         }
         
-        if ($localizacion != ""){
-            $condiciones .= " and Datos_generales_mayoristas.cod_localizacion = ".$localizacion;
+        if ($localizaciones != ""){
+            $contador = 0;
+            $condiciones .= " and Datos_generales_mayoristas.cod_localizacion in (";
+            foreach ($localizaciones as $localizacion){
+                if ($contador == 0){
+                    $condiciones .= $localizacion;
+                }else{
+                    $condiciones .= ",".$localizacion;
+                }
+                $contador++;
+            }
+            $condiciones .= ")";
         }
         
         if ($fechaInicial != ""){
