@@ -55,17 +55,40 @@ use yii\helpers\ArrayHelper;
         <label>Fecha Final</label>
         <input id="datetimepicker-1" name="fechaFinal" type="text" class="form-control" />
         <br>
+        <label>Calcular Medias</label>
+        <input id="media" type="checkbox" name="media" />
     </div>
     <div class="row-fluid">
         <div class="col-lg-12">
             <br>
-            <input class="btn btn-primary" type="submit">
+            <input class="btn btn-primary" type="submit" />
         </div>
     </div>
 </form>
 <?php
     if (isset($tabla)){
+        if (isset($tabla[0]['preciomedio'])){
+?>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Localización</th>
+            <th>Origen</th>
+            <th>Precio Medio</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        foreach ($tabla as $row){
+            echo "<tr><td>".$row['producto']."</td><td>".$row['Localizacion']."</td><td>".$row['origen']."</td><td>".substr($row['preciomedio'], 0, 4)."</td></tr>";
+        }
         ?>
+    </tbody>
+</table>
+<?php
+        }else{
+?>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -83,6 +106,8 @@ use yii\helpers\ArrayHelper;
         }
         echo "</tbody>
         </table>";
+        }
+        
     }
     
 ?>

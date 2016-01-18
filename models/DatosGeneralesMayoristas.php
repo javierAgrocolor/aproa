@@ -110,65 +110,123 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
     }
     
     /**
-     * Devuelve los datos filtrados por localizaciones, origenes y productos. 
+     * Devuelve los datos filtrados por localizaciones, origenes y productos o devuelve las medias del precio de lo filtrado por localizaciones, origenes y productos. 
      * @return Array
      * @param Array $productos Contiene los códigos de los productos a filtrar.
      * @param Array $origen Contiene los códigos de los origenes a filtrar.
      * @param Array $localizacion Contiene los códigos de las localizaciones a filtrar.
      */
-    public function leerDatos($productos, $origenes, $localizaciones, $fechaInicial, $fechaFinal){
+    public function leerDatos($productos, $origenes, $localizaciones, $fechaInicial, $fechaFinal, $medias){
+        $condiciones = $this -> generarCondiciones($productos, $origenes, $localizaciones, $fechaInicial, $fechaFinal);
+        if ($medias != ""){
+            $rows = $this -> consultarMediasDosFechas($condiciones);
+        }else{
+            $rows = $this -> consultarTodos($condiciones);
+        //return DatosGeneralesMayoristas::find()->all();
+        }
+        return $rows;
+    }
+    
+    
+    /**
+     * Devuelve una consulta con las medias agrupadas por producto, localización y origen entre dos fechas.
+     * @param type $productos
+     * @param type $origenes
+     * @param type $localizaciones
+     * @param type $fechaInicial
+     * @param type $fechaFinal
+     * @param type $medias
+     * @param type $condiciones
+     * @return Array
+     */
+    public function consultarMediasDosFechas($condiciones){
         
+        $query = new \yii\db\Query();
+        $query->select('producto.producto, Localizacion.Localizacion, origen.origen, avg(precio) as preciomedio')
+                ->from('Datos_generales_mayoristas')
+                ->innerJoin('Origen', 'Origen.codigo_origen = Datos_generales_mayoristas.cod_origen')
+                ->innerJoin('Localizacion', 'Localizacion.codigo_localizacion = Datos_generales_mayoristas.cod_localizacion')
+                ->innerJoin('Producto', 'Producto.codigo_producto = Datos_generales_mayoristas.cod_producto')
+                ->where($condiciones)
+                ->groupBy(['Producto', 'Localizacion', 'Origen']);
+        $rows = $query->all(DatosGeneralesMayoristas::getDb());
+        return $rows;
+    }
+    
+    
+    /**
+     * Genera un String con las condiciones de los filtros del where si es que los hay.
+     * @param Array $productos
+     * @param Array $origenes
+     * @param Array $localizaciones
+     * @param Array $fechaInicial
+     * @param Array $fechaFinal
+     * @return string
+     */
+    public function generarCondiciones($productos, $origenes, $localizaciones, $fechaInicial, $fechaFinal){
         $condiciones = "Datos_generales_mayoristas.cod_categoria = 1";
-        
         if ($productos != ""){
-            $contador = 0;
-            $condiciones .= " and Datos_generales_mayoristas.cod_producto in (";
-            foreach($productos as $producto){
-                if ($contador == 0){
-                    $condiciones .= $producto;
-                }else{
-                    $condiciones .= ",".$producto;
+                $contador = 0;
+                $condiciones .= " and Datos_generales_mayoristas.cod_producto in (";
+                foreach($productos as $producto){
+                    if ($contador == 0){
+                        $condiciones .= $producto;
+                    }else{
+                        $condiciones .= ",".$producto;
+                    }
+                    $contador++;
                 }
-                $contador++;
-            }
-            $condiciones .= ")";
+                $condiciones .= ")";
         }
-        
+
         if ($origenes != ""){
-            $contador = 0;
-            $condiciones .= " and Datos_generales_mayoristas.cod_origen in (";
-            foreach($origenes as $origen){
-                if ($contador == 0){
-                    $condiciones .= $origen;
-                }else{
-                    $condiciones .= ",".$origen;
+                $contador = 0;
+                $condiciones .= " and Datos_generales_mayoristas.cod_origen in (";
+                foreach($origenes as $origen){
+                    if ($contador == 0){
+                        $condiciones .= $origen;
+                    }else{
+                        $condiciones .= ",".$origen;
+                    }
+                    $contador++;
                 }
-                $contador++;
-            }
-            $condiciones .= ")";
+                $condiciones .= ")";
         }
-        
+
         if ($localizaciones != ""){
-            $contador = 0;
-            $condiciones .= " and Datos_generales_mayoristas.cod_localizacion in (";
-            foreach ($localizaciones as $localizacion){
-                if ($contador == 0){
-                    $condiciones .= $localizacion;
-                }else{
-                    $condiciones .= ",".$localizacion;
+                $contador = 0;
+                $condiciones .= " and Datos_generales_mayoristas.cod_localizacion in (";
+                foreach ($localizaciones as $localizacion){
+                    if ($contador == 0){
+                        $condiciones .= $localizacion;
+                    }else{
+                        $condiciones .= ",".$localizacion;
+                    }
+                    $contador++;
                 }
-                $contador++;
-            }
-            $condiciones .= ")";
+                $condiciones .= ")";
         }
-        
+
         if ($fechaInicial != ""){
-            $condiciones .= " and Datos_generales_mayoristas.fecha >= convert(datetime,'".$fechaInicial."')";
+                $condiciones .= " and Datos_generales_mayoristas.fecha >= convert(datetime,'".$fechaInicial."')";
         }
-        
+
         if ($fechaFinal != ""){
-            $condiciones .= " and Datos_generales_mayoristas.fecha <= convert(datetime,'".$fechaFinal."')";
+                $condiciones .= " and Datos_generales_mayoristas.fecha <= convert(datetime,'".$fechaFinal."')";
         }
+        return $condiciones;
+    }
+
+    /**
+     * Devuelve los datos filtrados por localizaciones, origenes y productos.
+     * @param Array $productos
+     * @param Array $origenes
+     * @param Array $localizaciones
+     * @param Array $fechaInicial
+     * @param Array $fechaFinal
+     * @return Array
+     */
+    public function consultarTodos($condiciones){
         
         $query = new \yii\db\Query();
         $query->select('*')
@@ -179,6 +237,5 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
                 ->where($condiciones);
         $rows = $query->all(DatosGeneralesMayoristas::getDb());
         return $rows;
-        //return DatosGeneralesMayoristas::find()->all();
     }
 }
