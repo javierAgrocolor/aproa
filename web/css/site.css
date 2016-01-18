@@ -12,8 +12,11 @@ box-shadow: 0px 0px 30px #ffffff;
 }
 
 .titulosPaginaPrincipal{
-    margin-left: 30px;
-     
+    margin-left: 30px;     
+}
+
+.imgInformes{
+    margin-top: 5px;
 }
 
 .wrap {

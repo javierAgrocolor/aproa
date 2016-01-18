@@ -33,36 +33,40 @@ $this->title = 'APROA - Gestión de Crisis';
         <div class="row">
             <!-- Informes -->
             <div class="span12">
-                <h1 class="titulosPaginaPrincipal">Informes</h1>
+                <h3 class="titulosPaginaPrincipal">Informes</h3>
             </div>              
         </div>
         <div class="row ">
             <!-- Botones informes-->
             <div class="col-lg-3">
-                <img src="/aproa/images/boton1.jpg" class="img-responsive center-block h6">
-                <img src="/aproa/images/boton1.jpg" class="img-responsive center-block h6">
-                <img src="/aproa/images/boton1.jpg" class="img-responsive center-block h6">
+                <img src="/aproa/images/boton1.jpg" class="img-responsive center-block imgInformes">
+                <img src="/aproa/images/boton1.jpg" class="img-responsive center-block imgInformes">
+                <img src="/aproa/images/boton1.jpg" class="img-responsive center-block imgInformes">
+                <img src="/aproa/images/boton1.jpg" class="img-responsive center-block imgInformes">
             </div>
             <div class="col-lg-3">
-                <img src="/aproa/images/boton1.jpg" class="img-responsive center-block h6">
-                <img src="/aproa/images/boton1.jpg" class="img-responsive center-block h6">
-                <img src="/aproa/images/boton1.jpg" class="img-responsive center-block h6">
+                <img src="/aproa/images/boton1.jpg" class="img-responsive center-block imgInformes">
+                <img src="/aproa/images/boton1.jpg" class="img-responsive center-block imgInformes">
+                <img src="/aproa/images/boton1.jpg" class="img-responsive center-block imgInformes">
+                <img src="/aproa/images/boton1.jpg" class="img-responsive center-block imgInformes">
             </div>
             <div class="col-lg-3">
-                <img src="/aproa/images/boton7.jpg" class="img-responsive center-block h6">
-                <img src="/aproa/images/boton7.jpg" class="img-responsive center-block h6">
-                <img src="/aproa/images/boton7.jpg" class="img-responsive center-block h6">
+                <img src="/aproa/images/boton7.jpg" class="img-responsive center-block imgInformes">
+                <img src="/aproa/images/boton7.jpg" class="img-responsive center-block imgInformes">
+                <img src="/aproa/images/boton7.jpg" class="img-responsive center-block imgInformes">
+                <img src="/aproa/images/boton7.jpg" class="img-responsive center-block imgInformes">
             </div>
             <div class="col-lg-3">
-                <img src="/aproa/images/boton7.jpg" class="img-responsive center-block h6">
-                <img src="/aproa/images/boton7.jpg" class="img-responsive center-block h6">
-                <img src="/aproa/images/boton7.jpg" class="img-responsive center-block h6">
+                <img src="/aproa/images/boton7.jpg" class="img-responsive center-block imgInformes">
+                <img src="/aproa/images/boton7.jpg" class="img-responsive center-block imgInformes">
+                <img src="/aproa/images/boton7.jpg" class="img-responsive center-block imgInformes">
+                <img src="/aproa/images/boton7.jpg" class="img-responsive center-block imgInformes">
             </div>
         </div>
         <div class="row">
             <!-- Correo -->
             <div class="span12">
-                <h1 class="titulosPaginaPrincipal">Correo</h1>
+                <h3 class="titulosPaginaPrincipal">Correo Diario</h3>
             </div>              
         </div>
         <!--<div class="row">
