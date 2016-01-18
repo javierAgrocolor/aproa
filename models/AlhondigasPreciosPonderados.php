@@ -94,21 +94,56 @@ class AlhondigasPreciosPonderados extends \yii\db\ActiveRecord
     }
     
     public function leerDatos($productos,$empresas,$tipo,$fechaini,$fechafin){
+        
+        $condiciones = "1=1";
+        
+        if($empresas != ""){
+        $contador = 0;    
+        $condiciones .= " and (";
+        foreach($empresas as $empresa){
+            if ($contador > 0){
+                    $condiciones .= " or";
+                }
+                $contador++;
+            $condiciones .= " Empresa LIKE '".$empresa."'";            
+        }
+        $condiciones .=")";
+        }
+        
+                
+        if($productos != ""){
+        $condiciones .=" and (";    
+        $contador = 0;        
+        foreach($productos as $producto){
+            if ($contador > 0){
+                    $condiciones .= " or";
+                }
+                $contador++;
+            $condiciones .= " Producto LIKE '".$producto."'";            
+        }
+        $condiciones .=")";
+        }
+        
         $query = new \yii\db\Query();
-        if(1==1){
+        if($fechaini != '' && $fechafin !=''){
             $query->select('*')
                 ->from('alhondigas')
                 ->where('Fecha>=:fechaini and Fecha <=:fechafin',array(':fechaini'=>$fechaini,':fechafin'=>$fechafin))
-                ->andWhere('Producto LIKE :producto',array(':producto'=>$productos))
-                ->andWhere('Empresa LIKE :empresa',array(':empresa'=>$empresas))
-                ->andWhere('Tipo LIKE :tipo',array(':tipo'=>$tipo));
-        }else{
+                ->andWhere('Tipo LIKE :tipo',array(':tipo'=>$tipo))    
+                ->andWhere($condiciones);
+        }else if($fechaini != ''){
             $query->select('*')
                 ->from('alhondigas')
-                ->where('Fecha>=:fechaini and Fecha <=:fechafin',array(':fechaini'=>$fechaini,':fechafin'=>$fechafin));
-        }      
-        
-                
+                ->where('Fecha>=:fechaini',array(':fechaini'=>$fechaini))
+                ->andWhere('Tipo LIKE :tipo',array(':tipo'=>$tipo))
+                ->andWhere($condiciones);
+        }else{
+            $query->select('*')
+                ->from('alhondigas')                
+                ->where('Tipo LIKE :tipo',array(':tipo'=>$tipo))
+                ->andWhere($condiciones);
+        }    
+                        
         $rows = $query->all(AlhondigasPreciosPonderados::getDb());
         return $rows;
     }
