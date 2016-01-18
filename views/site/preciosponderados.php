@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <form id="filtroPreciosponderados">
         <div class="col-xs-2">
         <label>Empresa</label>
-        <select id="empresas" name="empresas" class="form-control filtros2">
+        <select id="empresas" name="empresas[]" multiple class="form-control chosen-select-width">
             <option value="LA UNION">LA UNION</option>
             <option value="FEMAGO">FEMAGO</option>
             
@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="col-xs-2">
         <label>Producto</label>
-        <select id="productos" name="productos" class="form-control filtros2">
+        <select id="productos" name="productos[]" multiple class="form-control chosen-select-width">
             <option value="Pepino Almeria">Pepino Almeria</option>
             <option value="Berenjena Larga">Berenjena Larga</option>
             
@@ -28,7 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="col-xs-2">
         <label>Tipo</label>
-        <select id="tipo" name="tipo" class="form-control filtros2">
+        <select id="tipo" name="tipo" class="form-control">
+            <option id='null' value='%' selected='selected'></option>
             <option value="Precios">Precios</option>
             <option value="Toneladas">Toneladas</option>
             
@@ -36,11 +37,11 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="col-xs-2">
         <label>Fecha Inicial</label>
-        <input id="datetimepicker2" name="datetimepicker2" type="text" class="form-control filtros" />
+        <input id="datetimepicker2" name="datetimepicker2" type="text" class="form-control" />
         </div>
         <div class="col-xs-2">
         <label>Fecha Final</label>
-        <input id="datetimepicker-2" name="datetimepicker-2" type="text" class="form-control filtros" />
+        <input id="datetimepicker-2" name="datetimepicker-2" type="text" class="form-control" />
           
         </div>
         <div class="row-fluid">

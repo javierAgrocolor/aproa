@@ -1,5 +1,4 @@
 <?php
-
 /* @var $this yii\web\View */
 
 $this->title = 'APROA - Gestión de Crisis';
@@ -39,28 +38,36 @@ $this->title = 'APROA - Gestión de Crisis';
         <div class="row ">
             <!-- Botones informes-->
             <div class="col-lg-3">
-                <img src="/aproa/images/boton1.jpg" class="img-responsive center-block imgInformes">
+                <div class="btn-group center-block">
+                    <img src="/aproa/images/boton1.jpg" class="img-responsive imgInformes center-block dropdown-toggle" data-toggle="dropdown">                 
+                    <ul class="dropdown-menu menuDesplegable" role="menu">
+                        <li><a href="#">Acción #1</a></li>
+                        <li><a href="#">Acción #2</a></li>
+                        <li><a href="#">Acción #3</a></li>    
+                        <li><a href="#">Acción #4</a></li>
+                    </ul>
+                </div>
+                <img src="/aproa/images/boton2.jpg" class="img-responsive center-block imgInformes">
+                <img src="/aproa/images/boton3.jpg" class="img-responsive center-block imgInformes">
+                <img src="/aproa/images/boton4.jpg" class="img-responsive center-block imgInformes">
+            </div>
+            <div class="col-lg-3">
+                <img src="/aproa/images/boton5.jpg" class="img-responsive center-block imgInformes">
                 <img src="/aproa/images/boton1.jpg" class="img-responsive center-block imgInformes">
                 <img src="/aproa/images/boton1.jpg" class="img-responsive center-block imgInformes">
                 <img src="/aproa/images/boton1.jpg" class="img-responsive center-block imgInformes">
             </div>
             <div class="col-lg-3">
-                <img src="/aproa/images/boton1.jpg" class="img-responsive center-block imgInformes">
-                <img src="/aproa/images/boton1.jpg" class="img-responsive center-block imgInformes">
-                <img src="/aproa/images/boton1.jpg" class="img-responsive center-block imgInformes">
-                <img src="/aproa/images/boton1.jpg" class="img-responsive center-block imgInformes">
-            </div>
-            <div class="col-lg-3">
-                <img src="/aproa/images/boton7.jpg" class="img-responsive center-block imgInformes">
+                <img src="/aproa/images/boton9.jpg" class="img-responsive center-block imgInformes">
                 <img src="/aproa/images/boton7.jpg" class="img-responsive center-block imgInformes">
                 <img src="/aproa/images/boton7.jpg" class="img-responsive center-block imgInformes">
                 <img src="/aproa/images/boton7.jpg" class="img-responsive center-block imgInformes">
             </div>
             <div class="col-lg-3">
                 <img src="/aproa/images/boton7.jpg" class="img-responsive center-block imgInformes">
-                <img src="/aproa/images/boton7.jpg" class="img-responsive center-block imgInformes">
-                <img src="/aproa/images/boton7.jpg" class="img-responsive center-block imgInformes">
-                <img src="/aproa/images/boton7.jpg" class="img-responsive center-block imgInformes">
+                <img src="/aproa/images/boton14.jpg" class="img-responsive center-block imgInformes">
+                <img src="/aproa/images/boton15.jpg" class="img-responsive center-block imgInformes">
+                <img src="/aproa/images/boton16.jpg" class="img-responsive center-block imgInformes">
             </div>
         </div>
         <div class="row">
