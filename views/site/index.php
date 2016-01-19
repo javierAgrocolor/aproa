@@ -53,18 +53,18 @@ $this->title = 'APROA - Gestión de Crisis';
             </div>
             <div class="col-lg-3">
                 <img src="/aproa/images/boton5.jpg" class="img-responsive center-block imgInformes">
-                <img src="/aproa/images/boton1.jpg" class="img-responsive center-block imgInformes">
-                <img src="/aproa/images/boton1.jpg" class="img-responsive center-block imgInformes">
-                <img src="/aproa/images/boton1.jpg" class="img-responsive center-block imgInformes">
+                <img src="/aproa/images/boton6.jpg" class="img-responsive center-block imgInformes">
+                <img src="/aproa/images/boton7.jpg" class="img-responsive center-block imgInformes">
+                <img src="/aproa/images/boton8.jpg" class="img-responsive center-block imgInformes">
             </div>
             <div class="col-lg-3">
                 <img src="/aproa/images/boton9.jpg" class="img-responsive center-block imgInformes">
-                <img src="/aproa/images/boton7.jpg" class="img-responsive center-block imgInformes">
-                <img src="/aproa/images/boton7.jpg" class="img-responsive center-block imgInformes">
-                <img src="/aproa/images/boton7.jpg" class="img-responsive center-block imgInformes">
+                <img src="/aproa/images/boton10.jpg" class="img-responsive center-block imgInformes">
+                <img src="/aproa/images/boton11.jpg" class="img-responsive center-block imgInformes">
+                <img src="/aproa/images/boton12.jpg" class="img-responsive center-block imgInformes">
             </div>
             <div class="col-lg-3">
-                <img src="/aproa/images/boton7.jpg" class="img-responsive center-block imgInformes">
+                <img src="/aproa/images/boton13.jpg" class="img-responsive center-block imgInformes">
                 <img src="/aproa/images/boton14.jpg" class="img-responsive center-block imgInformes">
                 <img src="/aproa/images/boton15.jpg" class="img-responsive center-block imgInformes">
                 <img src="/aproa/images/boton16.jpg" class="img-responsive center-block imgInformes">
