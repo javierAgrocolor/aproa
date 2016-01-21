@@ -106,10 +106,12 @@ class SiteController extends Controller
     
     public function actionPreciosponderados(){
         $alhondigasppModels = new AlhondigasPreciosPonderados();
-        
+        //$alhondigasppModels2 = new AlhondigasPreciosPonderados();
         // Leemos la petición POST/GET
         $request = yii::$app->request;
-        
+        //$fecha_actual2 = date('Y-m-d');
+        $fecha_actual = '2016-01-20';
+        /*
         if (count($request->queryParams) != 0){
         $empresas = $request->get('empresas');
         $productos = $request->get('productos');
@@ -121,7 +123,14 @@ class SiteController extends Controller
         
         return $this->render('preciosponderados',['tabla'=>$resultado]);
         }else{
-            return $this->render('preciosponderados');
-        }
+            //return $this->render('preciosponderados');
+         }*/
+            $resultado = $alhondigasppModels ->laUnion($fecha_actual);
+            $resultado2 = $alhondigasppModels ->casi($fecha_actual);
+            return $this->render('preciosponderados',['tablaLaunion'=>$resultado,'tablaCasi'=>$resultado2]);
+            
+            
+            
+        
     }
 }
