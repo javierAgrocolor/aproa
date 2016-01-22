@@ -38,17 +38,25 @@ $this->title = 'APROA - Gestión de Crisis';
         <div class="row ">
             <!-- Botones informes-->
             <div class="col-lg-3">
-                <div class="btn-group center-block">
-                    <img src="/aproa/images/boton1.jpg" class="img-responsive imgInformes center-block dropdown-toggle" data-toggle="dropdown">                 
-                    <ul class="dropdown-menu menuDesplegable" role="menu">
-                        <li><a href="#">Acción #1</a></li>
-                        <li><a href="#">Acción #2</a></li>
-                        <li><a href="#">Acción #3</a></li>    
-                        <li><a href="#">Acción #4</a></li>
+                <a href="#"><img src="/aproa/images/boton1.jpg" class="img-responsive center-block imgInformes"></a>
+                <div class="dropdown m-b center-block">
+                    <a class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" data-submenu="" aria-expanded="true"><img src="/aproa/images/boton2.jpg" class="img-responsive imgInformes center-block"></a>                 
+                    <ul class="dropdown-menu menuDesplegable">
+                        <li class="dropdown-submenu open">
+                            <a tabindex="0">More options</a>
+                            <ul class="dropdown-menu">
+                                <li><a tabindex="0">Acción #2</a></li>
+                                <li><a tabindex="0">Acción #3</a></li>    
+                                <li><a tabindex="0">Acción #4</a></li>
+                            </ul>
+                        </li>
+                        <li><a tabindex="0" >Acción #2</a></li>
+                        <li><a tabindex="0" >Acción #3</a></li>    
+                        <li><a tabindex="0" >Acción #4</a></li>
                     </ul>
                 </div>
-                <img src="/aproa/images/boton2.jpg" class="img-responsive center-block imgInformes">
-                <img src="/aproa/images/boton3.jpg" class="img-responsive center-block imgInformes">
+
+                <a href="#"><img src="/aproa/images/boton3.jpg" class="img-responsive center-block imgInformes"></a>
                 <img src="/aproa/images/boton4.jpg" class="img-responsive center-block imgInformes">
             </div>
             <div class="col-lg-3">
@@ -70,6 +78,7 @@ $this->title = 'APROA - Gestión de Crisis';
                 <img src="/aproa/images/boton16.jpg" class="img-responsive center-block imgInformes">
             </div>
         </div>
+        
         <div class="row">
             <!-- Correo -->
             <div class="span12">

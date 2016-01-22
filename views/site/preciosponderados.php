@@ -8,6 +8,18 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div >
     <h1><?= Html::encode($this->title) ?></h1>
+    <div class="row marginbotton">
+        <div class="col-md-2 col-md-offset-5">
+    <form id="filtroPreciosponderados">
+        
+        <label>Fecha</label>
+        <input id="datetimepicker2" name="datetimepicker2" type="text" class="form-control" />    
+        <input class="btn btn-primary col-md-12" type="submit">
+        
+        
+    </form>
+            </div>
+    </div>
     <!--
     <form id="filtroPreciosponderados">
         <div class="col-xs-2">
@@ -65,10 +77,8 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
     <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="heading1">
-            <h4 class="panel-title">
-                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="true" aria-controls="collapse1">
-                    RESUMEN
-                </a>
+            <h4 role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="true" aria-controls="collapse1" class="panel-title"> 
+                    RESUMEN                
             </h4>
         </div>
         <div id="collapse1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading1">
@@ -79,10 +89,8 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="heading2">
-            <h4 class="panel-title">
-                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="false" aria-controls="collapse2">
-                    LA UNION
-                </a>
+            <h4 role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="false" aria-controls="collapse2" class="panel-title">
+                LA UNION
             </h4>
         </div>
         <div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
@@ -156,10 +164,8 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="heading3">
-            <h4 class="panel-title">
-                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="false" aria-controls="collapse3">
-                    CASI
-                </a>
+            <h4 role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="false" aria-controls="collapse3" class="panel-title">
+                CASI
             </h4>
         </div>
         <div id="collapse3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading3">
@@ -233,43 +239,226 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="heading4">
-            <h4 class="panel-title">
-                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false" aria-controls="collapse4">
-                    COSTA
-                </a>
+            <h4 role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false" aria-controls="collapse4" class="panel-title">
+                COSTA
             </h4>
         </div>
         <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4">
             <div class="panel-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            <?php
+                if (isset($tablaCosta[0]['Producto'])) {
+                    ?>
+                <img src="/aproa/images/<?php echo $tablaCosta[0]['Empresa']; ?>.jpg" class="img-responsive center-block">
+                <h4>Fecha: <?php echo $tablaCosta[0]['Fecha']; ?></h4>
+                
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Producto</th>                                
+                                <th>Tipo</th>
+                                <th>Suma Pond</th>
+                                <th>Media</th>
+                                <th>C1</th>
+                                <th>C2</th>
+                                <th>C3</th>
+                                <th>C4</th>
+                                <th>C5</th>
+                                <th>C6</th>
+                                <th>C7</th>
+                                <th>C8</th>
+                                <th>C9</th>
+                                <th>C10</th>    
+                                <th>C11</th>    
+                                <th>C12</th>    
+                                <th>C13</th>    
+                                <th>C14</th>
+                                <th>C15</th>    
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <?php
+                            foreach ($tablaCosta as $row) {
+                                echo "<tr>
+                    <td>" . $row['Producto'] . "</td>                    
+                    <td>" . $row['Tipo'] . "</td>
+                    <td>" . $row['Pond_Suma'] . "</td>
+                    <td>" . $row['Media'] . "</td>
+                    <td>" . $row['C1'] . "</td>
+                    <td>" . $row['C2'] . "</td>
+                    <td>" . $row['C3'] . "</td>
+                    <td>" . $row['C4'] . "</td>
+                    <td>" . $row['C5'] . "</td>
+                    <td>" . $row['C6'] . "</td>
+                    <td>" . $row['C7'] . "</td>
+                    <td>" . $row['C8'] . "</td>
+                    <td>" . $row['C9'] . "</td>                    
+                    <td>" . $row['C10'] . "</td>
+                    <td>" . $row['C11'] . "</td>
+                    <td>" . $row['C12'] . "</td>
+                    <td>" . $row['C13'] . "</td>
+                    <td>" . $row['C14'] . "</td>
+                    <td>" . $row['C15'] . "</td>
+                    </tr>";
+                            }
+                        }else{
+                            ?>
+                        <p align="center">Aun no se han generado precios para este día.</p>
+                             <?php
+                        }
+                        ?>
+                    </tbody>
+                    </table>    
             </div>
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="heading5">
-            <h4 class="panel-title">
-                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse5" aria-expanded="false" aria-controls="collapse5">
-                    FEMAGO
-                </a>
+            <h4 role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse5" aria-expanded="false" aria-controls="collapse5" class="panel-title">
+                FEMAGO
             </h4>
         </div>
         <div id="collapse5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading5">
             <div class="panel-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            <?php
+                if (isset($tablaFemago[0]['Producto'])) {
+                    ?>
+                <img src="/aproa/images/<?php echo $tablaFemago[0]['Empresa']; ?>.jpg" class="img-responsive center-block">
+                <h4>Fecha: <?php echo $tablaFemago[0]['Fecha']; ?></h4>
+                
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Producto</th>                                
+                                <th>Tipo</th>
+                                <th>Suma Pond</th>
+                                <th>Media</th>
+                                <th>C1</th>
+                                <th>C2</th>
+                                <th>C3</th>
+                                <th>C4</th>
+                                <th>C5</th>
+                                <th>C6</th>
+                                <th>C7</th>
+                                <th>C8</th>
+                                <th>C9</th>
+                                <th>C10</th>    
+                                <th>C11</th>    
+                                <th>C12</th>    
+                                <th>C13</th>    
+                                <th>C14</th>
+                                <th>C15</th>    
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <?php
+                            foreach ($tablaFemago as $row) {
+                                echo "<tr>
+                    <td>" . $row['Producto'] . "</td>                    
+                    <td>" . $row['Tipo'] . "</td>
+                    <td>" . $row['Pond_Suma'] . "</td>
+                    <td>" . $row['Media'] . "</td>
+                    <td>" . $row['C1'] . "</td>
+                    <td>" . $row['C2'] . "</td>
+                    <td>" . $row['C3'] . "</td>
+                    <td>" . $row['C4'] . "</td>
+                    <td>" . $row['C5'] . "</td>
+                    <td>" . $row['C6'] . "</td>
+                    <td>" . $row['C7'] . "</td>
+                    <td>" . $row['C8'] . "</td>
+                    <td>" . $row['C9'] . "</td>                    
+                    <td>" . $row['C10'] . "</td>
+                    <td>" . $row['C11'] . "</td>
+                    <td>" . $row['C12'] . "</td>
+                    <td>" . $row['C13'] . "</td>
+                    <td>" . $row['C14'] . "</td>
+                    <td>" . $row['C15'] . "</td>
+                    </tr>";
+                            }
+                        }else{
+                            ?>
+                        <p align="center">Aun no se han generado precios para este día.</p>
+                             <?php
+                        }
+                        ?>
+                    </tbody>
+                    </table>    
             </div>
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="heading6">
-            <h4 class="panel-title">
-                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse6" aria-expanded="false" aria-controls="collapse6">
-                    AGROPONIENTE
-                </a>
+            <h4 role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse6" aria-expanded="false" aria-controls="collapse6" class="panel-title">
+                AGROPONIENTE
             </h4>
         </div>
         <div id="collapse6" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading6">
             <div class="panel-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            <?php
+                if (isset($tablaAgroponiente[0]['Producto'])) {
+                    ?>
+                <img src="/aproa/images/<?php echo $tablaAgroponiente[0]['Empresa']; ?>.jpg" class="img-responsive center-block">
+                <h4>Fecha: <?php echo $tablaAgroponiente[0]['Fecha']; ?></h4>
+                
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Producto</th>                                
+                                <th>Tipo</th>
+                                <th>Suma Pond</th>
+                                <th>Media</th>
+                                <th>C1</th>
+                                <th>C2</th>
+                                <th>C3</th>
+                                <th>C4</th>
+                                <th>C5</th>
+                                <th>C6</th>
+                                <th>C7</th>
+                                <th>C8</th>
+                                <th>C9</th>
+                                <th>C10</th>    
+                                <th>C11</th>    
+                                <th>C12</th>    
+                                <th>C13</th>    
+                                <th>C14</th>
+                                <th>C15</th>    
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <?php
+                            foreach ($tablaAgroponiente as $row) {
+                                echo "<tr class='success'>
+                    <td>" . $row['Producto'] . "</td>                    
+                    <td>" . $row['Tipo'] . "</td>
+                    <td>" . $row['Pond_Suma'] . "</td>
+                    <td>" . $row['Media'] . "</td>
+                    <td>" . $row['C1'] . "</td>
+                    <td>" . $row['C2'] . "</td>
+                    <td>" . $row['C3'] . "</td>
+                    <td>" . $row['C4'] . "</td>
+                    <td>" . $row['C5'] . "</td>
+                    <td>" . $row['C6'] . "</td>
+                    <td>" . $row['C7'] . "</td>
+                    <td>" . $row['C8'] . "</td>
+                    <td>" . $row['C9'] . "</td>                    
+                    <td>" . $row['C10'] . "</td>
+                    <td>" . $row['C11'] . "</td>
+                    <td>" . $row['C12'] . "</td>
+                    <td>" . $row['C13'] . "</td>
+                    <td>" . $row['C14'] . "</td>
+                    <td>" . $row['C15'] . "</td>
+                    </tr>";
+                            }
+                        }else{
+                            ?>
+                        <p align="center">Aun no se han generado precios para este día.</p>
+                             <?php
+                        }
+                        ?>
+                    </tbody>
+                    </table>    
             </div>
         </div>
     </div>
