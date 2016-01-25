@@ -56,9 +56,7 @@ class SiteController extends Controller {
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->render('index');
         }
-        return $this->render('login', [
-                    'model' => $model,
-        ]);
+        return $this->render('login', ['model' => $model,]);
     }
 
     public function actionLogin() {
@@ -105,7 +103,7 @@ class SiteController extends Controller {
         //$fecha_actual2 = date('Y-m-d');
         if (count($request->queryParams) != 0) {
             $fecha_actual = $request->get('datetimepicker2');
-        }else{
+        } else {
             $fecha_actual = date('Y-m-d');
         }
         /*
@@ -128,7 +126,19 @@ class SiteController extends Controller {
         $resultado4 = $alhondigasppModels->femago($fecha_actual);
         $resultado5 = $alhondigasppModels->agroponiente($fecha_actual);
         return $this->render('preciosponderados', ['tablaLaunion' => $resultado, 'tablaCasi' => $resultado2, 'tablaCosta' => $resultado3
-                , 'tablaFemago' => $resultado4, 'tablaAgroponiente' => $resultado5]);
+                    , 'tablaFemago' => $resultado4, 'tablaAgroponiente' => $resultado5]);
+    }
+
+    public function actionBuscar() {
+        $request = yii::$app->request;
+        //$fecha_actual2 = date('Y-m-d');
+        if (count($request->queryParams) != 0) {
+            $fecha_actual = $request->get('Agregar');
+        } else {
+            $fecha_actual = date('Y-m-d');
+        }
+        
+        return $this->render('prueba.pdf');
     }
 
 }
