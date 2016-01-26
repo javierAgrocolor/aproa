@@ -148,4 +148,63 @@ class AlhondigasPreciosPonderados extends \yii\db\ActiveRecord
         return $rows;
     }
 
+    public function laUnion($fecha_actual){
+        $query = new \yii\db\Query(); 
+        //$fecha_actual = date('Y-m-d');
+        $query->select('*')
+                ->from('alhondigas')
+                ->where('Empresa LIKE :empresa',array(':empresa'=>'LA UNION'))
+                ->andWhere('Fecha=:fecha',array(':fecha'=>$fecha_actual))
+                ->orderBy('Producto');
+        $rows = $query->all(AlhondigasPreciosPonderados::getDb());
+        return $rows;
+    }
+    
+    public function casi($fecha_actual){
+        $query = new \yii\db\Query(); 
+        //$fecha_actual = date('Y-m-d');
+        $query->select('*')
+                ->from('alhondigas')
+                ->where('Empresa LIKE :empresa',array(':empresa'=>'CASI'))
+                ->andWhere('Fecha=:fecha',array(':fecha'=>$fecha_actual))
+                ->orderBy('Producto');
+        $rows = $query->all(AlhondigasPreciosPonderados::getDb());
+        return $rows;
+    }
+    
+    public function costa($fecha_actual){
+        $query = new \yii\db\Query(); 
+        //$fecha_actual = date('Y-m-d');
+        $query->select('*')
+                ->from('alhondigas')
+                ->where('Empresa LIKE :empresa',array(':empresa'=>'COSTA'))
+                ->andWhere('Fecha=:fecha',array(':fecha'=>$fecha_actual))
+                ->orderBy('Producto');
+        $rows = $query->all(AlhondigasPreciosPonderados::getDb());
+        return $rows;
+    }
+    
+    public function femago($fecha_actual){
+        $query = new \yii\db\Query(); 
+        //$fecha_actual = date('Y-m-d');
+        $query->select('*')
+                ->from('alhondigas')
+                ->where('Empresa LIKE :empresa',array(':empresa'=>'FEMAGO'))
+                ->andWhere('Fecha=:fecha',array(':fecha'=>$fecha_actual))
+                ->orderBy('Producto');
+        $rows = $query->all(AlhondigasPreciosPonderados::getDb());
+        return $rows;
+    }
+    
+    public function agroponiente($fecha_actual){
+        $query = new \yii\db\Query(); 
+        //$fecha_actual = date('Y-m-d');
+        $query->select('*')
+                ->from('alhondigas')
+                ->where('Empresa LIKE :empresa',array(':empresa'=>'AGROPONIENTE'))
+                ->andWhere('Fecha=:fecha',array(':fecha'=>$fecha_actual))
+                ->orderBy('Producto');
+        $rows = $query->all(AlhondigasPreciosPonderados::getDb());
+        return $rows;
+    }
 }

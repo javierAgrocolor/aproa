@@ -38,38 +38,208 @@ $this->title = 'APROA - Gestión de Crisis';
         <div class="row ">
             <!-- Botones informes-->
             <div class="col-lg-3">
-                <div class="btn-group center-block">
-                    <img src="/aproa/images/boton1.jpg" class="img-responsive imgInformes center-block dropdown-toggle" data-toggle="dropdown">                 
-                    <ul class="dropdown-menu menuDesplegable" role="menu">
-                        <li><a href="#">Acción #1</a></li>
-                        <li><a href="#">Acción #2</a></li>
-                        <li><a href="#">Acción #3</a></li>    
-                        <li><a href="#">Acción #4</a></li>
-                    </ul>
-                </div>
-                <img src="/aproa/images/boton2.jpg" class="img-responsive center-block imgInformes">
-                <img src="/aproa/images/boton3.jpg" class="img-responsive center-block imgInformes">
-                <img src="/aproa/images/boton4.jpg" class="img-responsive center-block imgInformes">
+                <a target="_blank" href="/aproa/web/index.php/site/buscar" value="Agregar"><img src="/aproa/images/boton1.jpg" class="img-responsive center-block imgInformes"></a>            
+                <ul class="nav nav-pills">
+                    <li class="dropdown">
+                        <img src="/aproa/images/boton2.jpg"  data-toggle="dropdown" class="dropdown-toggle img-responsive imgInformes">
+                        <ul class="dropdown-menu menuDesplegable" id="menu1">
+                            <li>
+                                <a href="#">España <span class=" menu-ico-collapse"><i class="glyphicon glyphicon-chevron-right"></i></span></a>
+                                <ul class="dropdown-menu sub-menu">
+                                    <li><a href="#">Total hortalizas</a></li>
+                                    <li><a href="#">Sandia</a></li>
+                                    <li><a href="#">Melon</a></li>                                    
+                                    <li><a href="#">Pimiento</a></li>
+                                    <li><a href="#">Pepino</a></li>
+                                    <li><a href="#">Calabacin</a></li>
+                                    <li><a href="#">Berenjena</a></li>
+                                    <li><a href="#">Tomate</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Union Europea <span class=" menu-ico-collapse"><i class="glyphicon glyphicon-chevron-right"></i></span></a>
+                                <ul class="dropdown-menu sub-menu">
+                                    <li><a href="#">Total hortalizas</a></li>
+                                    <li><a href="#">Sandia</a></li>
+                                    <li><a href="#">Melon</a></li>                                    
+                                    <li><a href="#">Pimiento</a></li>
+                                    <li><a href="#">Pepino</a></li>
+                                    <li><a href="#">Calabacin</a></li>
+                                    <li><a href="#">Berenjena</a></li>
+                                    <li><a href="#">Tomate</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <a href="#"><img src="/aproa/images/boton3.jpg" class="img-responsive center-block imgInformes"></a>
+                <a href="#"><img src="/aproa/images/boton4.jpg" class="img-responsive center-block imgInformes"></a>
             </div>
             <div class="col-lg-3">
-                <img src="/aproa/images/boton5.jpg" class="img-responsive center-block imgInformes">
-                <img src="/aproa/images/boton1.jpg" class="img-responsive center-block imgInformes">
-                <img src="/aproa/images/boton1.jpg" class="img-responsive center-block imgInformes">
-                <img src="/aproa/images/boton1.jpg" class="img-responsive center-block imgInformes">
+                <a href="#"><img src="/aproa/images/boton5.jpg" class="img-responsive center-block imgInformes"></a>
+                <ul class="nav nav-pills">
+                    <li class="dropdown">
+                        <img src="/aproa/images/boton6.jpg"  data-toggle="dropdown" class="dropdown-toggle img-responsive imgInformes">
+                        <ul class="dropdown-menu menuDesplegable" id="menu1">
+                            <li><a href="#">Marruecos</a></li>
+                            <li><a href="#">Turquia</a></li>                            
+                            <li><a href="#">Holanda</a></li>
+                            <li><a href="#">Israel</a></li>
+                            <li><a href="#">Otros</a></li>                            
+                        </ul>
+                    </li>
+                </ul>
+                <a href="#"><img src="/aproa/images/boton7.jpg" class="img-responsive center-block imgInformes"></a>
+                <a href="#"><img src="/aproa/images/boton8.jpg" class="img-responsive center-block imgInformes"></a>
+            </div>
+            <div class="col-lg-3">                
+                <ul class="nav nav-pills">
+                    <li class="dropdown">
+                        <img src="/aproa/images/boton9.jpg"  data-toggle="dropdown" class="dropdown-toggle img-responsive imgInformes">
+                        <ul class="dropdown-menu menuDesplegable2" id="menu1">
+                            <li>
+                                <a href="#">España <span class=" menu-ico-collapse"><i class="glyphicon glyphicon-chevron-down"></i></span></a>
+                                <ul class="dropdown-menu sub-menu">
+                                    <li><a href="#">Total hortalizas</a></li>
+                                    <li><a href="#">Sandia</a></li>
+                                    <li><a href="#">Melon</a></li>                                    
+                                    <li><a href="#">Pimiento</a></li>
+                                    <li><a href="#">Pepino</a></li>
+                                    <li><a href="#">Calabacin</a></li>
+                                    <li><a href="#">Berenjena</a></li>
+                                    <li><a href="#">Tomate</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Francia <span class=" menu-ico-collapse"><i class="glyphicon glyphicon-chevron-down"></i></span></a>
+                                <ul class="dropdown-menu sub-menu">
+                                    <li><a href="#">Total hortalizas</a></li>
+                                    <li><a href="#">Sandia</a></li>
+                                    <li><a href="#">Melon</a></li>                                    
+                                    <li><a href="#">Pimiento</a></li>
+                                    <li><a href="#">Pepino</a></li>
+                                    <li><a href="#">Calabacin</a></li>
+                                    <li><a href="#">Berenjena</a></li>
+                                    <li><a href="#">Tomate</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Reino Unido <span class=" menu-ico-collapse"><i class="glyphicon glyphicon-chevron-down"></i></span></a>
+                                <ul class="dropdown-menu sub-menu">
+                                    <li><a href="#">Total hortalizas</a></li>
+                                    <li><a href="#">Sandia</a></li>
+                                    <li><a href="#">Melon</a></li>                                    
+                                    <li><a href="#">Pimiento</a></li>
+                                    <li><a href="#">Pepino</a></li>
+                                    <li><a href="#">Calabacin</a></li>
+                                    <li><a href="#">Berenjena</a></li>
+                                    <li><a href="#">Tomate</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Alemania <span class=" menu-ico-collapse"><i class="glyphicon glyphicon-chevron-down"></i></span></a>
+                                <ul class="dropdown-menu sub-menu">
+                                    <li><a href="#">Total hortalizas</a></li>
+                                    <li><a href="#">Sandia</a></li>
+                                    <li><a href="#">Melon</a></li>                                    
+                                    <li><a href="#">Pimiento</a></li>
+                                    <li><a href="#">Pepino</a></li>
+                                    <li><a href="#">Calabacin</a></li>
+                                    <li><a href="#">Berenjena</a></li>
+                                    <li><a href="#">Tomate</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Polonia <span class=" menu-ico-collapse"><i class="glyphicon glyphicon-chevron-down"></i></span></a>
+                                <ul class="dropdown-menu sub-menu">
+                                    <li><a href="#">Total hortalizas</a></li>
+                                    <li><a href="#">Sandia</a></li>
+                                    <li><a href="#">Melon</a></li>                                    
+                                    <li><a href="#">Pimiento</a></li>
+                                    <li><a href="#">Pepino</a></li>
+                                    <li><a href="#">Calabacin</a></li>
+                                    <li><a href="#">Berenjena</a></li>
+                                    <li><a href="#">Tomate</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Otros UE <span class=" menu-ico-collapse"><i class="glyphicon glyphicon-chevron-down"></i></span></a>
+                                <ul class="dropdown-menu sub-menu">                                    
+                                    <li><a href="#">Total hortalizas</a></li>
+                                    <li><a href="#">Sandia</a></li>
+                                    <li><a href="#">Melon</a></li>                                    
+                                    <li><a href="#">Pimiento</a></li>
+                                    <li><a href="#">Pepino</a></li>
+                                    <li><a href="#">Calabacin</a></li>
+                                    <li><a href="#">Berenjena</a></li>
+                                    <li><a href="#">Tomate</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <ul class="nav nav-pills">
+                    <li class="dropdown">
+                        <img src="/aproa/images/boton10.jpg"  data-toggle="dropdown" class="dropdown-toggle img-responsive imgInformes">
+                        <ul class="dropdown-menu menuDesplegable2" id="menu1">
+                            <li><a href="#">Cotización</a></li>
+                            <li><a href="#">Volumen</a></li>                                                
+                        </ul>
+                    </li>
+                </ul>
+                
+                <ul class="nav nav-pills">
+                    <li class="dropdown">
+                        <img src="/aproa/images/boton11.jpg"  data-toggle="dropdown" class="dropdown-toggle img-responsive imgInformes">
+                        <ul class="dropdown-menu menuDesplegable2" id="menu1">
+                            <li>
+                                <a href="#">Cotización <span class=" menu-ico-collapse"><i class="glyphicon glyphicon-chevron-right"></i></span></a>
+                                <ul class="dropdown-menu sub-menu">
+                                    <li><a href="#">Alhondigas diario</a></li>
+                                    <li><a href="#">Cooperativas semanal</a></li>                                    
+                                </ul>
+                            </li>                            
+                        </ul>
+                    </li>
+                </ul>
+                
+                <ul class="nav nav-pills">
+                    <li class="dropdown">
+                        <img src="/aproa/images/boton12.jpg"  data-toggle="dropdown" class="dropdown-toggle img-responsive imgInformes">
+                        <ul class="dropdown-menu menuDesplegable2" id="menu1">
+                            <li><a href="#">Alemania</a></li>
+                            <li><a href="#">Reino unido</a></li>                            
+                            <li><a href="#">Francia</a></li>
+                            <li><a href="#">Polonia</a></li>
+                            <li><a href="#">Italia</a></li>    
+                            <li><a href="#">España</a></li>
+                            <li><a href="#">Rusia</a></li>
+                            <li><a href="#">Otros UE</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
             <div class="col-lg-3">
-                <img src="/aproa/images/boton9.jpg" class="img-responsive center-block imgInformes">
-                <img src="/aproa/images/boton7.jpg" class="img-responsive center-block imgInformes">
-                <img src="/aproa/images/boton7.jpg" class="img-responsive center-block imgInformes">
-                <img src="/aproa/images/boton7.jpg" class="img-responsive center-block imgInformes">
-            </div>
-            <div class="col-lg-3">
-                <img src="/aproa/images/boton7.jpg" class="img-responsive center-block imgInformes">
-                <img src="/aproa/images/boton14.jpg" class="img-responsive center-block imgInformes">
-                <img src="/aproa/images/boton15.jpg" class="img-responsive center-block imgInformes">
-                <img src="/aproa/images/boton16.jpg" class="img-responsive center-block imgInformes">
+                <a href="#"><img src="/aproa/images/boton13.jpg" class="img-responsive center-block imgInformes"></a>
+                <ul class="nav nav-pills">
+                    <li class="dropdown">
+                        <img src="/aproa/images/boton14.jpg"  data-toggle="dropdown" class="dropdown-toggle img-responsive imgInformes">
+                        <ul class="dropdown-menu menuDesplegable2" id="menu1">
+                            <li><a href="#">Origen</a></li>
+                            <li><a href="#">Mayoristas</a></li>                            
+                            <li><a href="#">Supermercados</a></li>
+                            <li><a href="#">Exportación</a></li>
+                            <li><a href="#">Comercialización APROA</a></li>                              
+                        </ul>
+                    </li>
+                </ul>
+                <a href="#"><img src="/aproa/images/boton15.jpg" class="img-responsive center-block imgInformes"></a>
+                <a href="#"><img src="/aproa/images/boton16.jpg" class="img-responsive center-block imgInformes"></a>
             </div>
         </div>
+
         <div class="row">
             <!-- Correo -->
             <div class="span12">
