@@ -20,17 +20,21 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
-    <script src="../../../vendor/bower/jquery/dist/jquery.js"></script>
-    <!--<script src="../../js/funciones.js" type="text/javascript"></script>-->
-        <script src="../../assets/pluginDropdown/chosen.jquery.js"></script>
-    <link href="../../assets/pluginDropdown/chosen.css" type="text/css" rel="stylesheet" />
+    <!--<script src="../../../vendor/bower/jquery/dist/jquery.js"></script>-->
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="../../assets/pluginDropdown/docsupport/prism.js"></script>
     <link href="../../assets/pluginDropdown/docsupport/prism.css" type="text/css" rel="stylesheet" />
+    <script src="../../assets/pluginDropdown/chosen.jquery.js"></script>
+    <link href="../../assets/pluginDropdown/chosen.css" type="text/css" rel="stylesheet" />
+
     <script type="text/javascript">
     $(document).ready(function($){
         $('.chosen-select-width').chosen();
     });
     </script>
+    <script src="../../js/funciones.js" type="text/javascript"></script>
+    <?php $this->registerJsFile(Yii::$app->request->baseUrl.'/assets/pluginDropdown/chosen.jquery.js',['depends' => [\yii\web\JqueryAsset::className()]]); ?>
 </head>
 <body>
 <?php $this->beginBody() ?>

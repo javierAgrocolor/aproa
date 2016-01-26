@@ -66,6 +66,10 @@ class PreciosController extends Controller
         $listaProductos = $productModel->leerTodos();
         $listaOrigenes = $origenModel->leerTodos();
         $listaLocalizaciones = $localizacionModel -> leerTodos();
+        $listaYears = $mayoristasModel -> leerYears();
+        
+        $contadorYears = count($listaYears);
+        $listaSemanas = $mayoristasModel ->leerSemanas($listaYears[$contadorYears-2]['year']);
         
         
         
@@ -79,16 +83,17 @@ class PreciosController extends Controller
             $localizacion = $request->get('localizacion');
             $fechaInicial = $request->get('fechaInicial');
             $fechaFinal = $request->get('fechaFinal');
-            $medias = $request->get('media');
+            $tipoConsulta = $request->get('opcionesConsulta');
             
             // Establecemos la consulta de datos con los parametros recibidos.            
-            $resultado = $mayoristasModel ->leerDatos($productos, $origen, $localizacion, $fechaInicial, $fechaFinal, $medias);
+            $resultado = $mayoristasModel ->leerDatos($productos, $origen, $localizacion, $fechaInicial, $fechaFinal, $tipoConsulta);
             
             
             return $this->render('mayoristas', [
                 'listaProductos' => $listaProductos,
                 'listaOrigenes' => $listaOrigenes,
                 'listaLocalizaciones' => $listaLocalizaciones,
+                'listaYears' => $listaYears,
                 'productos' => $productos,
                 'origen' => $origen,
                 'localizacion' => $localizacion,
@@ -98,9 +103,49 @@ class PreciosController extends Controller
             return $this->render('mayoristas', [
                 'listaProductos' => $listaProductos,
                 'listaOrigenes' => $listaOrigenes,
-                'listaLocalizaciones' => $listaLocalizaciones
+                'listaLocalizaciones' => $listaLocalizaciones,
+                'listaYears' => $listaYears,
+                'listaSemanas' => $listaSemanas
         ]);
         }
+    }
+    
+    public function actionLeersemanas(){
+        
+        $mayoristasModel = new DatosGeneralesMayoristas();
+        $request = yii::$app->request;
+        $year = $request->POST('id');
+        /*print_r($year);
+        exit();*/
+        $rows = $mayoristasModel ->leerSemanas($year);
+        $rows = json_encode($rows);
+        return $rows;
+    }
+    
+    public function actionLeersemanas2(){
+        
+        //Construimos los modelos que vamos a necesitar.
+        $productModel = new Producto();
+        $origenModel = new Origen();
+        $localizacionModel = new Localizacion();
+        $mayoristasModel = new DatosGeneralesMayoristas();
+        // Leemos el contenido de las tablas.
+        $listaProductos = $productModel->leerTodos();
+        $listaOrigenes = $origenModel->leerTodos();
+        $listaLocalizaciones = $localizacionModel -> leerTodos();
+        $listaYears = $mayoristasModel -> leerYears();
+
+        $request = yii::$app->request;
+        $year = $request->get('year');
+        $listaSemanas = $mayoristasModel ->leerSemanas($year);
+        
+        return $this->render('mayoristas', [
+                'listaProductos' => $listaProductos,
+                'listaOrigenes' => $listaOrigenes,
+                'listaLocalizaciones' => $listaLocalizaciones,
+                'listaYears' => $listaYears,
+                'listaSemanas' => $listaSemanas
+                ]);
     }
     
     public function actionLeermayoristas(){
