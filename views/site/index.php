@@ -38,7 +38,7 @@ $this->title = 'APROA - Gestión de Crisis';
         <div class="row ">
             <!-- Botones informes-->
             <div class="col-lg-3">
-                <a target="_blank" href="/aproa/web/index.php/site/buscar" value="Agregar"><img src="/aproa/images/boton1.jpg" class="img-responsive center-block imgInformes"></a>            
+                <a target="_blank" href="/aproa/web/index.php/site/buscar"><img src="/aproa/images/boton1.jpg" class="img-responsive center-block imgInformes"></a>            
                 <ul class="nav nav-pills">
                     <li class="dropdown">
                         <img src="/aproa/images/boton2.jpg"  data-toggle="dropdown" class="dropdown-toggle img-responsive imgInformes">

@@ -130,15 +130,17 @@ class SiteController extends Controller {
     }
 
     public function actionBuscar() {
-        $request = yii::$app->request;
+        
         //$fecha_actual2 = date('Y-m-d');
-        if (count($request->queryParams) != 0) {
-            $fecha_actual = $request->get('Agregar');
+        if ($prueba = 'caddsa') {
+           
+            return $this->render('about.php');
         } else {
-            $fecha_actual = date('Y-m-d');
+            
+            return $this->render('prueba.pdf');
         }
         
-        return $this->render('prueba.pdf');
+        
     }
 
 }
