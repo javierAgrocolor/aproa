@@ -116,14 +116,57 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
      * @param Array $origen Contiene los códigos de los origenes a filtrar.
      * @param Array $localizacion Contiene los códigos de las localizaciones a filtrar.
      */
-    public function leerDatos($productos, $origenes, $localizaciones, $fechaInicial, $fechaFinal, $medias){
-        $condiciones = $this -> generarCondiciones($productos, $origenes, $localizaciones, $fechaInicial, $fechaFinal);
-        if ($medias != ""){
+    public function leerDatos($productos, $origenes, $localizaciones, $fechaInicial, $fechaFinal, $tipoConsulta){
+        
+        if ($tipoConsulta == "consultaMedias"){
+            $condiciones = $this -> generarCondiciones($productos, $origenes, $localizaciones, $fechaInicial, $fechaFinal);
             $rows = $this -> consultarMediasDosFechas($condiciones);
-        }else{
+        }
+        if ($tipoConsulta == "consultaNormal"){
+            $condiciones = $this -> generarCondiciones($productos, $origenes, $localizaciones, $fechaInicial, $fechaFinal);
             $rows = $this -> consultarTodos($condiciones);
         //return DatosGeneralesMayoristas::find()->all();
         }
+        
+        if ($tipoConsulta == "consultaSemanal"){
+            
+        }
+        return $rows;
+    }
+    
+    /**
+     * Devuelve una consulta con todos los años registrados dentro de la tabla de mayoristas.
+     * @return Array
+     */
+    public function leerYears(){
+        $query = new \yii\db\Query();
+        $query ->select(['distinct datepart(year,fecha) as year'])
+                ->from('Datos_generales_mayoristas')
+                ->orderBy('year');
+        $rows = $query->all(DatosGeneralesMayoristas::getDb());
+        /*$query -> select('Precio')
+                ->selectOption('datepart(year,fecha)')
+                ->from('Datos_generales_mayoristas');
+        $rows = $query->all(DatosGeneralesMayoristas::getDb());*/
+        return $rows;
+    }
+    
+    /**
+     * Devuelve las fechas distintas y las semanas a las que corresponden según la campaña proporcionada.
+     * @param type Año Inicial
+     * @param type Año Final
+     * @return Array
+     */
+    public function leerSemanas($fechaInicial){
+        
+        $fechaFinal = $fechaInicial + 1;
+        $query = new \yii\db\Query();
+        $query ->select(['distinct fecha, convert(varchar(10),fecha,103) as fechaCorta, datepart(week,fecha) as week'])
+                ->from('Datos_generales_mayoristas')
+                ->where("fecha>'01-08-".$fechaInicial."'and fecha<'31-07-".$fechaFinal."'")
+                ->groupBy('fecha')
+                ->orderBy('Datos_generales_mayoristas.fecha');
+        $rows = $query -> all(DatosGeneralesMayoristas::getDb());
         return $rows;
     }
     
@@ -195,6 +238,7 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
 
         if ($localizaciones != ""){
                 $contador = 0;
+                exit ($condiciones);
                 $condiciones .= " and Datos_generales_mayoristas.cod_localizacion in (";
                 foreach ($localizaciones as $localizacion){
                     if ($contador == 0){

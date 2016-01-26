@@ -7,16 +7,28 @@ use yii\helpers\ArrayHelper;
  */
 ?>
 <script type="text/javascript">
-    /*$(document).ready(function(){
-        $('#anadirProducto').click(function(){
+    $(document).ready(function(){
+        /*$('#anadirProducto').click(function(){
             //var productos = new Array();
             $('#productos').push($('#productos option:selected').val());
-        });
-    });*/
+        });*/
+        $('#yearsMayoristas option:last').attr('selected', 'selected');
+        
+        $('#consultaSemanal').change(function (){
+            $('select#yearsMayoristas, select#semanas, #semanas_chosen, .etiquetaOculta').css('visibility', 'visible');
+            $('div#fechas').css('display', 'none');
+        })
+        
+        $('#consultaNormal, #consultaMedias').change(function (){
+            $('select#yearsMayoristas, select#semanas, #semanas_chosen, .etiquetaOculta').css('visibility', 'hidden');
+            $('div#fechas').css('display', 'initial');
+        })
+        
+    });
 </script>
 
 
-
+<form action="leersemanas2" id="formYears"></form>
 <form action="mayoristas" id="filtroProducto">
     <div class="col-lg-6">
         <label>Productos</label>
@@ -49,14 +61,67 @@ use yii\helpers\ArrayHelper;
     <br>
     </div>
     <div class="col-lg-6">
+        <div id="fechas">
         <label>Fecha Inicial</label>
         <input id="datetimepicker1" name="fechaInicial" type="text" class="form-control" />
         <br>
         <label>Fecha Final</label>
         <input id="datetimepicker-1" name="fechaFinal" type="text" class="form-control" />
         <br>
-        <label>Calcular Medias</label>
-        <input id="media" type="checkbox" name="media" />
+        </div>
+        <label>Tipo de Consulta:</label>
+        <br>
+        <label>
+            <input type="radio" name="opcionesConsulta" id="consultaNormal" value="consultaNormal" />
+            Consulta Normal.
+        </label>
+        <label>
+            <input type="radio" name="opcionesConsulta" id="consultaMedias" value="consultaMedias"/>
+            Media entre dos fechas.
+        </label>
+        <label>
+            <input type="radio" name="opcionesConsulta" id="consultaSemanal" value="consultaSemanal" />
+            Medias semanales.
+        </label>
+        <label class="etiquetaOculta">
+            Campañas
+        </label>
+        <select id="yearsMayoristas" name="year" class="form-control" form="formYears">
+                <?php
+                    for($i = 0; $i<count($listaYears)-1; $i++){
+                        echo "<option id='".$listaYears[$i]['year']."/".$listaYears[$i+1]['year']."' value='".$listaYears[$i]['year']."'>".$listaYears[$i]['year']."/".$listaYears[$i+1]['year']."</option>";
+                    }
+                ?>
+        </select>
+        <br>
+        <label class="etiquetaOculta">
+            Semanas
+        </label>
+        <select id="semanas" name="semanas[]" multiple="multiple" class="semanas form-control form_field chosen-select-width">
+            <?php
+            $i = 0;
+            $aux = 0;
+                for($x=0; $x < count($listaSemanas); $x++){
+                    $yearValue = substr($listaSemanas[$x]['fechaCorta'], 6, 4);
+                    if ($aux == 0){
+                        $option = "<option id='".$x."' value=".$listaSemanas[$x]['week']."-".$yearValue."'>".$listaSemanas[$x]['fechaCorta'];
+                        $aux = 1;
+                    }
+                    
+                    if (count($listaSemanas) != $x+1){
+                        if ($aux == 1 && $listaSemanas[$x]['week'] != $listaSemanas[$x+1]['week']){
+                            $option .= "-".$listaSemanas[$x+1]['fechaCorta']."</option>";
+                            $aux = 0;
+                            echo $option;
+                        }
+                    }
+                }
+                echo $option;
+            ?>
+        </select>
+        
+        <!--<label>Calcular Medias</label>
+        <input id="media" type="checkbox" name="media" />-->
     </div>
     <div class="row-fluid">
         <div class="col-lg-12">
