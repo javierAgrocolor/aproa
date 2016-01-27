@@ -135,12 +135,29 @@ class SiteController extends Controller {
                 
         $request = yii::$app->request;
         if (count($request->queryParams) != 0){
-            $tipo = $request->get('informes');
-            $filename = $boletinesModels-> buscarPdf($tipo);
+            $tipo = $request->get('informes');            
+            if($tipo!='Historico' && $tipo!='Otros'){
+                $filename = $boletinesModels-> buscarPdf($tipo);
             //exit($filename[0]['Boletin']);           
-            
-            return $this->redirect('/aproa/pdf/'.$filename[0]['Boletin'].'.pdf');
+                return $this->redirect('/aproa/pdf/'.$filename[0]['Boletin'].'.pdf');
+            }else{
+                if($tipo!='Otros'){
+                    $historico = $boletinesModels-> buscarHistorico();
+                    return $this->render('historico',['tablaHistorico'=>$historico]);
+                }else{
+                    $otros = $boletinesModels->buscarOtros();
+                    return $this->render('otros',['tablaOtros'=>$otros]);
+                }
+            }            
         }    
+    }
+    
+    public function actionAbrirpdf(){
+        $request = yii::$app->request;
+        if (count($request->queryParams) != 0){
+            $pdf = $request->get('informes');  
+            return $this->redirect('/aproa/pdf/'.$pdf.'.pdf');
+        }
     }
 
 }
