@@ -17,22 +17,39 @@ use yii\helpers\ArrayHelper;
         $('#consultaSemanal').change(function (){
             $('select#yearsMayoristas, select#semanas, #semanas_chosen, .etiquetaOculta').css('visibility', 'visible');
             $('div#fechas').css('display', 'none');
-        })
+        });
         
         $('#consultaNormal, #consultaMedias').change(function (){
             $('select#yearsMayoristas, select#semanas, #semanas_chosen, .etiquetaOculta').css('visibility', 'hidden');
             $('div#fechas').css('display', 'initial');
-        })
+        });
         
     });
 </script>
+
+<?php
+
+    if (isset($year)){
+        ?>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("option[value='<?php echo $year ?>']").attr('selected', 'selected');
+                $("input[value='consultaSemanal']").attr('checked', 'checked');
+                $('select#yearsMayoristas, select#semanas, #semanas_chosen, .etiquetaOculta').css('visibility', 'visible');
+                $('div#fechas').css('display', 'none');
+            });
+        </script>
+<?php
+    }
+
+?>
 
 
 <form action="leersemanas2" id="formYears"></form>
 <form action="mayoristas" id="filtroProducto">
     <div class="col-lg-6">
         <label>Productos</label>
-        <select id="productos" name="productos[]" multiple class="form-control filtros chosen-select-width">
+        <select id="productos" name="productos[]" multiple class="form-control chosen-select-width">
             <?php 
                 foreach ($listaProductos as $especieOption){
                     echo "<option id='".$especieOption->codigo_producto."' value='".$especieOption->codigo_producto."'>".$especieOption->producto."</option>";
@@ -42,7 +59,7 @@ use yii\helpers\ArrayHelper;
         <!-- el br de debajo es una ñapa temporal no me seas mendrugo.-->
         <br>
         <label>Origen</label>
-        <select id="origen" name="origen[]" multiple class="form-control filtros chosen-select-width">
+        <select id="origen" name="origen[]" multiple class="form-control chosen-select-width">
             <?php
                 foreach ($listaOrigenes as $paisOption){
                     echo "<option id='".$paisOption->codigo_origen."' value='".$paisOption->codigo_origen."'>".$paisOption->origen."</option>";
@@ -51,7 +68,7 @@ use yii\helpers\ArrayHelper;
         </select>
         <br>
         <label>Localización</label>
-        <select id="localizacion" name="localizacion[]" multiple class="form-control filtros chosen-select-width">
+        <select id="localizacion" name="localizacion[]" multiple class="form-control chosen-select-width">
             <?php
                 foreach ($listaLocalizaciones as $localizacionOption){
                     echo "<option id='".$localizacionOption->codigo_localizacion."' value='".$localizacionOption->codigo_localizacion."'>".$localizacionOption->Localizacion."</option>";
@@ -104,13 +121,13 @@ use yii\helpers\ArrayHelper;
                 for($x=0; $x < count($listaSemanas); $x++){
                     $yearValue = substr($listaSemanas[$x]['fechaCorta'], 6, 4);
                     if ($aux == 0){
-                        $option = "<option id='".$x."' value=".$listaSemanas[$x]['week']."-".$yearValue."'>".$listaSemanas[$x]['fechaCorta'];
+                        $option = "<option id='".$x."' value=".$listaSemanas[$x]['week']."-".$yearValue."'>".$listaSemanas[$x]['week'].".- ".$listaSemanas[$x]['fechaCorta'];
                         $aux = 1;
                     }
                     
                     if (count($listaSemanas) != $x+1){
                         if ($aux == 1 && $listaSemanas[$x]['week'] != $listaSemanas[$x+1]['week']){
-                            $option .= "-".$listaSemanas[$x+1]['fechaCorta']."</option>";
+                            $option .= " - ".$listaSemanas[$x+1]['fechaCorta']."</option>";
                             $aux = 0;
                             echo $option;
                         }
@@ -141,12 +158,19 @@ use yii\helpers\ArrayHelper;
             <th>Localización</th>
             <th>Origen</th>
             <th>Precio Medio</th>
+            <?php
+                if (isset($tabla[0]['Semana'])){
+                    echo "<th>Semana</th>";
+                }
+            ?>
         </tr>
     </thead>
     <tbody>
         <?php
         foreach ($tabla as $row){
-            echo "<tr><td>".$row['producto']."</td><td>".$row['Localizacion']."</td><td>".$row['origen']."</td><td>".substr($row['preciomedio'], 0, 4)."</td></tr>";
+            echo "<tr><td>".$row['producto']."</td><td>".$row['Localizacion']."</td><td>".$row['origen']."</td><td>".substr($row['preciomedio'], 0, 5)."</td>";
+            if (isset($tabla[0]['Semana'])){ echo "<td>".$row['Semana']."</td>"; }
+            echo "</tr>";
         }
         ?>
     </tbody>
@@ -167,7 +191,7 @@ use yii\helpers\ArrayHelper;
             <tbody>
             <?php
         foreach($tabla as $row){
-            echo "<tr><td>".$row['producto']."</td><td>".$row['Localizacion']."</td><td>".$row['origen']."</td><td>".substr($row['precio'], 0, 4)."</td><td>".$row['fecha']."</td></tr>";
+            echo "<tr><td>".$row['producto']."</td><td>".$row['Localizacion']."</td><td>".$row['origen']."</td><td>".substr($row['precio'], 0, 5)."</td><td>".$row['fecha']."</td></tr>";
         }
         echo "</tbody>
         </table>";
@@ -175,6 +199,6 @@ use yii\helpers\ArrayHelper;
         
     }
     
-?>
+
             
 

@@ -34,7 +34,7 @@ box-shadow: 0px 0px 30px #ffffff;
   margin-bottom: 10px;   
 }
 
-//PRUEBAAAAAA
+/*PRUEBAAAAAA*/
 
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
             background-image:none !important;
@@ -85,7 +85,6 @@ box-shadow: 0px 0px 30px #ffffff;
     top: 11px;
     left: -6px;
 }
-//
 
 .wrap {
     min-height: 100%;

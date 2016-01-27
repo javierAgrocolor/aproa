@@ -17,6 +17,14 @@ $(document).ready(function() {
         }
     });
     
+    /*$("input[name='opcionesConsulta']").change(function(){
+        if ($("#consultaSemanal").is(':checked')){
+            alert ("consultaSemanal elegida");
+        }
+    });*/
+    
+    
+    
     /*function cargarSemanas(){
         var idCampania = $("#yearsMayoristas option:selected").val();
         $.ajax({

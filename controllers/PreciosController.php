@@ -84,9 +84,9 @@ class PreciosController extends Controller
             $fechaInicial = $request->get('fechaInicial');
             $fechaFinal = $request->get('fechaFinal');
             $tipoConsulta = $request->get('opcionesConsulta');
-            
+            $semanas = $request->get('semanas');
             // Establecemos la consulta de datos con los parametros recibidos.            
-            $resultado = $mayoristasModel ->leerDatos($productos, $origen, $localizacion, $fechaInicial, $fechaFinal, $tipoConsulta);
+            $resultado = $mayoristasModel ->leerDatos($productos, $origen, $localizacion, $fechaInicial, $fechaFinal, $tipoConsulta, $semanas);
             
             
             return $this->render('mayoristas', [
@@ -97,7 +97,8 @@ class PreciosController extends Controller
                 'productos' => $productos,
                 'origen' => $origen,
                 'localizacion' => $localizacion,
-                'tabla' => $resultado
+                'tabla' => $resultado,
+                'listaSemanas' => $listaSemanas
         ]);
         }else{
             return $this->render('mayoristas', [
@@ -144,7 +145,8 @@ class PreciosController extends Controller
                 'listaOrigenes' => $listaOrigenes,
                 'listaLocalizaciones' => $listaLocalizaciones,
                 'listaYears' => $listaYears,
-                'listaSemanas' => $listaSemanas
+                'listaSemanas' => $listaSemanas,
+                'year' => $year
                 ]);
     }
     

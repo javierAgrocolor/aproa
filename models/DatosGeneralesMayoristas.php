@@ -116,7 +116,7 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
      * @param Array $origen Contiene los códigos de los origenes a filtrar.
      * @param Array $localizacion Contiene los códigos de las localizaciones a filtrar.
      */
-    public function leerDatos($productos, $origenes, $localizaciones, $fechaInicial, $fechaFinal, $tipoConsulta){
+    public function leerDatos($productos, $origenes, $localizaciones, $fechaInicial, $fechaFinal, $tipoConsulta, $semanas){
         
         if ($tipoConsulta == "consultaMedias"){
             $condiciones = $this -> generarCondiciones($productos, $origenes, $localizaciones, $fechaInicial, $fechaFinal);
@@ -125,11 +125,11 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
         if ($tipoConsulta == "consultaNormal"){
             $condiciones = $this -> generarCondiciones($productos, $origenes, $localizaciones, $fechaInicial, $fechaFinal);
             $rows = $this -> consultarTodos($condiciones);
-        //return DatosGeneralesMayoristas::find()->all();
         }
         
         if ($tipoConsulta == "consultaSemanal"){
-            
+            $condiciones = $this -> generarCondicionesSemanales($productos, $origenes, $localizaciones, $semanas);
+            $rows = $this -> consultarMediasSemanales($condiciones);
         }
         return $rows;
     }
@@ -170,22 +170,38 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
         return $rows;
     }
     
+    /**
+     * Devuelve una consulta con las medias para distintas semanas 
+     * @param string $condiciones
+     */
+    public function consultarMediasSemanales($condiciones){
+        $query = new \yii\db\Query();
+        $query -> select(['producto.producto, Localizacion.Localizacion, origen.origen, Round(avg(precio),3) as preciomedio, DATEPART(week, Datos_generales_mayoristas.fecha) as Semana'])
+                -> from('Datos_generales_mayoristas')
+                -> innerJoin('Origen', 'Origen.codigo_origen = Datos_generales_mayoristas.cod_origen')
+                -> innerJoin('Localizacion', 'Localizacion.codigo_localizacion = Datos_generales_mayoristas.cod_localizacion')
+                -> innerJoin('Producto', 'Producto.codigo_producto = Datos_generales_mayoristas.cod_producto')
+                ->where($condiciones)
+                ->groupBy(['Producto', 'Localizacion', 'Origen', 'DATEPART(week, Datos_generales_mayoristas.fecha)']);
+        $rows = $query -> all(DatosGeneralesMayoristas::getDb());
+        return $rows;
+    }
     
     /**
      * Devuelve una consulta con las medias agrupadas por producto, localización y origen entre dos fechas.
-     * @param type $productos
-     * @param type $origenes
-     * @param type $localizaciones
-     * @param type $fechaInicial
-     * @param type $fechaFinal
-     * @param type $medias
-     * @param type $condiciones
+     * @param Array $productos
+     * @param Array $origenes
+     * @param Array $localizaciones
+     * @param Array $fechaInicial
+     * @param Array $fechaFinal
+     * @param string $medias
+     * @param string $condiciones
      * @return Array
      */
     public function consultarMediasDosFechas($condiciones){
         
         $query = new \yii\db\Query();
-        $query->select('producto.producto, Localizacion.Localizacion, origen.origen, avg(precio) as preciomedio')
+        $query->select('producto.producto, Localizacion.Localizacion, origen.origen, Round(avg(precio),3) as preciomedio')
                 ->from('Datos_generales_mayoristas')
                 ->innerJoin('Origen', 'Origen.codigo_origen = Datos_generales_mayoristas.cod_origen')
                 ->innerJoin('Localizacion', 'Localizacion.codigo_localizacion = Datos_generales_mayoristas.cod_localizacion')
@@ -196,6 +212,131 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
         return $rows;
     }
     
+    /**
+     * Genera un String con las condiciones de los filtros del where si es que los hay para las consultas semanales.
+     * @param Array $productos
+     * @param Array $origenes
+     * @param Array $localizaciones
+     * @param Array $semanas
+     */
+    public function generarCondicionesSemanales($productos, $origenes, $localizaciones, $semanas){
+        $condiciones = "Datos_generales_mayoristas.cod_categoria = 1";
+        
+        if ($productos[0] !== ""){
+            $condiciones = $this -> generarCondProductos($productos, $condiciones);
+        }
+        
+        if ($origenes[0] !== ""){
+            $condiciones = $this -> generarCondOrigenes($origenes, $condiciones);
+        }
+        
+        if ($localizaciones[0] !== ""){
+            $condiciones = $this -> generarCondLocalizaciones($localizaciones, $condiciones);
+        }
+        
+        if ($semanas[0] !== ""){
+            $condiciones = $this -> generarCondSemanas($semanas, $condiciones);
+        }
+        
+        return $condiciones;
+    }
+    
+    
+    /**
+     * Devuelve un string con las condiciones del filtro de Semanas para la consultas semanales.
+     * @param Array $semanas
+     * @param string $condiciones
+     */
+    public function generarCondSemanas($semanas, $condiciones){
+        $contador = 0;
+        $condiciones .= " and DATEPART(week, Datos_generales_mayoristas.fecha) in (";
+        // Recorremos una vez el array para añadir la condición de la semana.
+        foreach($semanas as $semana){
+            if ($contador === 0){
+                $condiciones .= substr($semana, 0, 2);
+            }else{
+                $condiciones .= ",".substr($semana, 0, 2);
+            }
+            $contador++;
+        }
+        $condiciones .= ")";
+        
+        // Recorremos otra vez el array para añadir la condición del año (ya que la semana se repite año a año).
+        $condiciones .= " and DATEPART(year, Datos_generales_mayoristas.fecha) in (";
+        $contador = 0;
+        foreach ($semanas as $semana){
+            if ($contador === 0){
+                $condiciones .= substr($semana, 3, 4);
+            }else{
+                $condiciones .= ",".substr($semana, 3, 4);
+            }
+            $contador++;
+        }
+        $condiciones .= ")";
+        
+        return $condiciones;
+    }
+    
+    /**
+     * Genera la condición del filtro de productos.
+     * @param Array $productos
+     * @return string
+     */
+    public function generarCondProductos($productos, $condiciones){
+        $contador = 0;
+        $condiciones .= " and Datos_generales_mayoristas.cod_producto in (";
+        foreach($productos as $producto){
+            if ($contador == 0){
+                $condiciones .= $producto;
+            }else{
+                $condiciones .= ",".$producto;
+            }
+                $contador++;
+        }
+        $condiciones .= ")";
+        return $condiciones;
+    }
+    
+    
+    /**
+     * Genera un string con las condiciones del filtro de Origenes.
+     * @param Array $origenes
+     * @return string
+     */
+    public function generarCondOrigenes($origenes, $condiciones){
+        $contador = 0;
+            $condiciones .= " and Datos_generales_mayoristas.cod_origen in (";
+            foreach($origenes as $origen){
+                if ($contador == 0){
+                    $condiciones .= $origen;
+                }else{
+                    $condiciones .= ",".$origen;
+                }
+                $contador++;
+            }
+        $condiciones .= ")";
+        return $condiciones;
+    }
+    
+    /**
+     * Genera un string con las condiciones del filtro de Localizaciones.
+     * @param type $localizaciones
+     * @return string
+     */
+    public function generarCondLocalizaciones($localizaciones, $condiciones){
+        $contador = 0;
+        $condiciones .= " and Datos_generales_mayoristas.cod_localizacion in (";
+            foreach ($localizaciones as $localizacion){
+                if ($contador == 0){
+                    $condiciones .= $localizacion;
+                }else{
+                    $condiciones .= ",".$localizacion;
+                }
+                $contador++;
+            }
+        $condiciones .= ")";
+        return $condiciones;
+    }
     
     /**
      * Genera un String con las condiciones de los filtros del where si es que los hay.
@@ -208,55 +349,24 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
      */
     public function generarCondiciones($productos, $origenes, $localizaciones, $fechaInicial, $fechaFinal){
         $condiciones = "Datos_generales_mayoristas.cod_categoria = 1";
-        if ($productos != ""){
-                $contador = 0;
-                $condiciones .= " and Datos_generales_mayoristas.cod_producto in (";
-                foreach($productos as $producto){
-                    if ($contador == 0){
-                        $condiciones .= $producto;
-                    }else{
-                        $condiciones .= ",".$producto;
-                    }
-                    $contador++;
-                }
-                $condiciones .= ")";
+        if ($productos[0] !== ""){
+            $condiciones = $this -> generarCondProductos($productos, $condiciones);
         }
 
-        if ($origenes != ""){
-                $contador = 0;
-                $condiciones .= " and Datos_generales_mayoristas.cod_origen in (";
-                foreach($origenes as $origen){
-                    if ($contador == 0){
-                        $condiciones .= $origen;
-                    }else{
-                        $condiciones .= ",".$origen;
-                    }
-                    $contador++;
-                }
-                $condiciones .= ")";
+        if ($origenes[0] !== ""){
+            $condiciones = $this -> generarCondOrigenes($origenes, $condiciones);
         }
 
-        if ($localizaciones != ""){
-                $contador = 0;
-                exit ($condiciones);
-                $condiciones .= " and Datos_generales_mayoristas.cod_localizacion in (";
-                foreach ($localizaciones as $localizacion){
-                    if ($contador == 0){
-                        $condiciones .= $localizacion;
-                    }else{
-                        $condiciones .= ",".$localizacion;
-                    }
-                    $contador++;
-                }
-                $condiciones .= ")";
+        if  ($localizaciones[0] !== ""){
+            $condiciones = $this -> generarCondLocalizaciones($localizaciones, $condiciones);
         }
 
         if ($fechaInicial != ""){
-                $condiciones .= " and Datos_generales_mayoristas.fecha >= convert(datetime,'".$fechaInicial."')";
+            $condiciones .= " and Datos_generales_mayoristas.fecha >= convert(datetime,'".$fechaInicial."')";
         }
 
         if ($fechaFinal != ""){
-                $condiciones .= " and Datos_generales_mayoristas.fecha <= convert(datetime,'".$fechaFinal."')";
+            $condiciones .= " and Datos_generales_mayoristas.fecha <= convert(datetime,'".$fechaFinal."')";
         }
         return $condiciones;
     }
