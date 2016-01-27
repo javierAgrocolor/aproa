@@ -9,6 +9,7 @@ use yii\filters\VerbFilter;
 use app\models\AlhondigasPreciosPonderados;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Boletines;
 
 class SiteController extends Controller {
 
@@ -130,15 +131,16 @@ class SiteController extends Controller {
     }
 
     public function actionBuscar() {
+        $boletinesModels = new Boletines();     
+                
         $request = yii::$app->request;
-        //$fecha_actual2 = date('Y-m-d');
-        if (count($request->queryParams) != 0) {
-            $fecha_actual = $request->get('Agregar');
-        } else {
-            $fecha_actual = date('Y-m-d');
-        }
-        
-        return $this->render('prueba.pdf');
+        if (count($request->queryParams) != 0){
+            $tipo = $request->get('informes');
+            $filename = $boletinesModels-> buscarPdf($tipo);
+            //exit($filename[0]['Boletin']);           
+            
+            return $this->redirect('/aproa/pdf/'.$filename[0]['Boletin'].'.pdf');
+        }    
     }
 
 }

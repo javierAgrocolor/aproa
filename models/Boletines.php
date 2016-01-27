@@ -47,4 +47,16 @@ class Boletines extends \yii\db\ActiveRecord
             'tipo' => 'Tipo',
         ];
     }
+    
+    public function buscarPdf($tipo){
+        $query = new \yii\db\Query(); 
+        
+        $query->select('Boletin')
+                ->from('boletines')
+                ->where('Tipo LIKE :tipo',array(':tipo'=>$tipo))                
+                ->orderBy('Fecha DESC')
+                ->limit(1);
+        $rows = $query->all(Boletines::getDb());
+        return $rows;
+    }
 }
