@@ -5,6 +5,10 @@ use yii\helpers\ArrayHelper;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+
+$this->title = 'Precios Mayoristas';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <script type="text/javascript">
     $(document).ready(function(){
@@ -44,8 +48,10 @@ use yii\helpers\ArrayHelper;
 
 ?>
 
+        
+<h1>PRECIOS MAYORISTAS</h1>       
 
-<form action="leersemanas2" id="formYears"></form>
+<form action="leersemanas2" id="formYears"><input class="inputOculto" name="tipoConsultaSemanas" value="mayoristas" /></form>
 <form action="mayoristas" id="filtroProducto">
     <div class="col-lg-6">
         <label>Productos</label>
@@ -196,7 +202,6 @@ use yii\helpers\ArrayHelper;
         echo "</tbody>
         </table>";
         }
-        
     }
     
 
