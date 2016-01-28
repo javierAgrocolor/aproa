@@ -235,8 +235,8 @@ $this->title = 'APROA - Gestión de Crisis';
                         </ul>
                     </li>
                 </ul>
-                <a target="_blank" href="/aproa/web/index.php/site/buscar?informes=Historico"><img src="/aproa/images/boton15.jpg" class="img-responsive center-block imgInformes"></a>
-                <a target="_blank" href="/aproa/web/index.php/site/buscar?informes=Otros"><img src="/aproa/images/boton16.jpg" class="img-responsive center-block imgInformes"></a>
+                <a href="/aproa/web/index.php/site/buscar?informes=Historico"><img src="/aproa/images/boton15.jpg" class="img-responsive center-block imgInformes"></a>
+                <a href="/aproa/web/index.php/site/buscar?informes=Otros"><img src="/aproa/images/boton16.jpg" class="img-responsive center-block imgInformes"></a>
             </div>
         </div>
 

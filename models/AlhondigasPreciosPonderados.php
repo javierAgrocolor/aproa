@@ -207,4 +207,15 @@ class AlhondigasPreciosPonderados extends \yii\db\ActiveRecord
         $rows = $query->all(AlhondigasPreciosPonderados::getDb());
         return $rows;
     }
+    
+    public function graficoPpt($fecha_actual){
+        $query = new \yii\db\Query(); 
+        //$fecha_actual = date('Y-m-d');
+        $query->select('Producto,sum(Pond_Suma) as Suma')
+                ->from('alhondigas')
+                ->where('Fecha=:fecha',array(':fecha'=>$fecha_actual))    
+                ->groupBy('Producto,Tipo');
+        $rows = $query->all(AlhondigasPreciosPonderados::getDb());
+        return $rows;
+    }
 }

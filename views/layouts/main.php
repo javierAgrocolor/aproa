@@ -34,6 +34,7 @@ AppAsset::register($this);
     });
     </script>
     <script src="../../js/funciones.js" type="text/javascript"></script>
+    <script src="../../js/jquery.simplePagination.js" type="text/javascript"></script>
     <?php $this->registerJsFile(Yii::$app->request->baseUrl.'/assets/pluginDropdown/chosen.jquery.js',['depends' => [\yii\web\JqueryAsset::className()]]); ?>
 </head>
 <body>
