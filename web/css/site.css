@@ -180,3 +180,7 @@ select#yearsMayoristas, select#semanas, #semanas_chosen {
 .etiquetaOculta {
     visibility: hidden;
 }
+
+.inputOculto {
+    display: none;
+}

@@ -64,4 +64,227 @@ class DatosOrigen extends \yii\db\ActiveRecord
             'tipo_precio' => 'Tipo Precio',
         ];
     }
+    
+    /**
+     * Devuelve una consulta con todos los años registrados dentro de la tabla de Origen.
+     * @return Array
+     */
+    public function leerYears(){
+        $query = new \yii\db\Query();
+        $query ->select(['distinct datepart(year,fecha) as year'])
+                ->from('Datos_origen')
+                ->orderBy('year');
+        $rows = $query->all(DatosOrigen::getDb());
+        /*$query -> select('Precio')
+                ->selectOption('datepart(year,fecha)')
+                ->from('Datos_generales_mayoristas');
+        $rows = $query->all(DatosGeneralesMayoristas::getDb());*/
+        return $rows;
+    }
+    
+    
+    /**
+     * Devuelve las fechas distintas y las semanas a las que corresponden según la campaña proporcionada.
+     * @param type Año Inicial
+     * @param type Año Final
+     * @return Array
+     */
+    public function leerSemanas($fechaInicial){
+        
+        $fechaFinal = $fechaInicial + 1;
+        $query = new \yii\db\Query();
+        $query ->select(['distinct fecha, convert(varchar(10),fecha,103) as fechaCorta, datepart(week,fecha) as week'])
+                ->from('Datos_origen')
+                ->where("fecha>'01-08-".$fechaInicial."'and fecha<'31-07-".$fechaFinal."'")
+                ->groupBy('fecha')
+                ->orderBy('Datos_origen.fecha');
+        $rows = $query -> all(DatosOrigen::getDb());
+        return $rows;
+    }
+    
+    /**
+     * Devuelve los datos filtrados por productos o devuelve las medias del precio de lo filtrado por productos. 
+     * @return Array
+     * @param Array $productos Contiene los códigos de los productos a filtrar.
+     */
+    public function leerDatos($productos, $fechaInicial, $fechaFinal, $tipoConsulta, $semanas){
+        
+        if ($tipoConsulta == "consultaMedias"){
+            $condiciones = $this -> generarCondiciones($productos, $fechaInicial, $fechaFinal);
+            $rows = $this -> consultarMediasDosFechas($condiciones);
+        }
+        
+        if ($tipoConsulta == "consultaNormal"){
+            $condiciones = $this -> generarCondiciones($productos, $fechaInicial, $fechaFinal);
+            $rows = $this -> consultarTodos($condiciones);
+        }
+        
+        if ($tipoConsulta == "consultaSemanal"){
+            $condiciones = $this -> generarCondicionesSemanales($productos, $semanas);
+            $rows = $this -> consultarMediasSemanales($condiciones);
+        }
+        
+        return $rows;
+    }
+    
+    /**
+     * Genera un String con las condiciones de los filtros del where si es que los hay.
+     * @param Array $productos
+     * @param Array $fechaInicial
+     * @param Array $fechaFinal
+     * @return string
+     */
+    public function generarCondiciones($productos, $fechaInicial, $fechaFinal){
+        
+        $condiciones = "Datos_origen.cod_presentacion = 0";
+        
+        if (isset($productos)){
+            $condiciones = $this -> generarCondProductos($productos, $condiciones);
+        }
+
+        if ($fechaInicial != ""){
+            $condiciones .= " and Datos_origen.fecha >= convert(datetime,'".$fechaInicial."')";
+        }
+
+        if ($fechaFinal != ""){
+            $condiciones .= " and Datos_origen.fecha <= convert(datetime,'".$fechaFinal."')";
+        }
+        
+        return $condiciones;
+    }
+    
+    /**
+     * Genera un String con las condiciones de los filtros del where si es que los hay para las consultas semanales.
+     * @param Array $productos
+     * @param Array $semanas
+     */
+    public function generarCondicionesSemanales($productos, $semanas){
+        $condiciones = "Datos_origen.cod_presentacion = 0";
+        
+        if ($productos[0] !== ""){
+            $condiciones = $this -> generarCondProductos($productos, $condiciones);
+        }
+        
+        if ($semanas[0] !== ""){
+            $condiciones = $this -> generarCondSemanas($semanas, $condiciones);
+        }
+        
+        return $condiciones;
+    }
+    
+    
+    /**
+     * Devuelve un string con las condiciones del filtro de Semanas para la consultas semanales.
+     * @param Array $semanas
+     * @param string $condiciones
+     */
+    public function generarCondSemanas($semanas, $condiciones){
+        $contador = 0;
+        
+        if (isset($semanas)){
+            $condiciones .= " and DATEPART(week, Datos_origen.fecha) in (";
+            // Recorremos una vez el array para añadir la condición de la semana.
+            foreach($semanas as $semana){
+                if ($contador === 0){
+                    $condiciones .= substr($semana, 0, 2);
+                }else{
+                    $condiciones .= ",".substr($semana, 0, 2);
+                }
+                $contador++;
+            }
+            $condiciones .= ")";
+        
+            // Recorremos otra vez el array para añadir la condición del año (ya que la semana se repite año a año).
+            $condiciones .= " and DATEPART(year, Datos_origen.fecha) in (";
+            $contador = 0;
+            foreach ($semanas as $semana){
+                if ($contador === 0){
+                    $condiciones .= substr($semana, 3, 4);
+                }else{
+                    $condiciones .= ",".substr($semana, 3, 4);
+                }
+                $contador++;
+            }
+            $condiciones .= ")";
+        }
+        return $condiciones;
+    }
+    
+    /**
+     * Genera la condición del filtro de productos.
+     * @param Array $productos
+     * @return string
+     */
+    public function generarCondProductos($productos, $condiciones){
+        $contador = 0;
+        
+        if (isset($productos)){
+            $condiciones .= " and Datos_origen.cod_producto in (";
+            foreach($productos as $producto){
+                if ($contador == 0){
+                    $condiciones .= $producto;
+                }else{
+                    $condiciones .= ",".$producto;
+                }
+                    $contador++;
+            }
+            $condiciones .= ")";
+        }
+        return $condiciones;
+    }
+    
+    
+    /**
+     * Devuelve los datos filtrados por localizaciones, origenes y productos.
+     * @param String $condiciones
+     * @return Array
+     */
+    public function consultarTodos($condiciones){
+        $query = new \yii\db\Query();
+        $query->select(['*'])
+                ->from('Datos_origen')
+                ->innerJoin('Origen', 'Origen.codigo_origen = Datos_origen.cod_origen')
+                ->innerJoin('Localizacion', 'Localizacion.codigo_localizacion = Datos_origen.cod_localizacion')
+                ->innerJoin('Producto', 'Producto.codigo_producto = Datos_origen.cod_producto')
+                ->where($condiciones);
+        $rows = $query->all(DatosOrigen::getDb());
+        return $rows;
+    }
+    
+    /**
+     * Devuelve una consulta con las medias agrupadas por producto, localización y origen entre dos fechas.
+     * @param string $condiciones
+     * @return Array
+     */
+    public function consultarMediasDosFechas($condiciones){
+        
+        $query = new \yii\db\Query();
+        $query->select(['producto.producto, Localizacion.Localizacion, origen.origen, Round(avg(precio),2) as preciomedio'])
+                ->from('Datos_origen')
+                ->innerJoin('Origen', 'Origen.codigo_origen = Datos_origen.cod_origen')
+                ->innerJoin('Localizacion', 'Localizacion.codigo_localizacion = Datos_origen.cod_localizacion')
+                ->innerJoin('Producto', 'Producto.codigo_producto = Datos_origen.cod_producto')
+                ->where($condiciones)
+                ->groupBy(['Producto', 'Localizacion', 'Origen']);
+        $rows = $query->all(DatosOrigen::getDb());
+        return $rows;
+    }
+    
+    /**
+     * Devuelve una consulta con las medias para distintas semanas 
+     * @param string $condiciones
+     */
+    public function consultarMediasSemanales($condiciones){
+        $query = new \yii\db\Query();
+        $query -> select(['producto.producto, Localizacion.Localizacion, origen.origen, Round(avg(precio),2) as preciomedio, DATEPART(week, Datos_origen.fecha) as Semana'])
+                -> from('Datos_origen')
+                -> innerJoin('Origen', 'Origen.codigo_origen = Datos_origen.cod_origen')
+                -> innerJoin('Localizacion', 'Localizacion.codigo_localizacion = Datos_origen.cod_localizacion')
+                -> innerJoin('Producto', 'Producto.codigo_producto = Datos_origen.cod_producto')
+                ->where($condiciones)
+                ->groupBy(['Producto', 'Localizacion', 'Origen', 'DATEPART(week, Datos_origen.fecha)']);
+        $rows = $query -> all(DatosGeneralesMayoristas::getDb());
+        return $rows;
+    }
+    
 }

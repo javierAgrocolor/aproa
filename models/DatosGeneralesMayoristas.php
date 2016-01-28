@@ -189,19 +189,13 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
     
     /**
      * Devuelve una consulta con las medias agrupadas por producto, localización y origen entre dos fechas.
-     * @param Array $productos
-     * @param Array $origenes
-     * @param Array $localizaciones
-     * @param Array $fechaInicial
-     * @param Array $fechaFinal
-     * @param string $medias
      * @param string $condiciones
      * @return Array
      */
     public function consultarMediasDosFechas($condiciones){
         
         $query = new \yii\db\Query();
-        $query->select('producto.producto, Localizacion.Localizacion, origen.origen, Round(avg(precio),3) as preciomedio')
+        $query->select(['producto.producto, Localizacion.Localizacion, origen.origen, Round(avg(precio),3) as preciomedio'])
                 ->from('Datos_generales_mayoristas')
                 ->innerJoin('Origen', 'Origen.codigo_origen = Datos_generales_mayoristas.cod_origen')
                 ->innerJoin('Localizacion', 'Localizacion.codigo_localizacion = Datos_generales_mayoristas.cod_localizacion')
@@ -349,15 +343,15 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
      */
     public function generarCondiciones($productos, $origenes, $localizaciones, $fechaInicial, $fechaFinal){
         $condiciones = "Datos_generales_mayoristas.cod_categoria = 1";
-        if ($productos[0] !== ""){
+        if (isset($productos)){
             $condiciones = $this -> generarCondProductos($productos, $condiciones);
         }
 
-        if ($origenes[0] !== ""){
+        if (isset($origenes)){
             $condiciones = $this -> generarCondOrigenes($origenes, $condiciones);
         }
 
-        if  ($localizaciones[0] !== ""){
+        if (isset($localizaciones)){
             $condiciones = $this -> generarCondLocalizaciones($localizaciones, $condiciones);
         }
 
@@ -373,15 +367,10 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
 
     /**
      * Devuelve los datos filtrados por localizaciones, origenes y productos.
-     * @param Array $productos
-     * @param Array $origenes
-     * @param Array $localizaciones
-     * @param Array $fechaInicial
-     * @param Array $fechaFinal
+     * @param String $condiciones
      * @return Array
      */
     public function consultarTodos($condiciones){
-        
         $query = new \yii\db\Query();
         $query->select('*')
                 ->from('Datos_generales_mayoristas')
