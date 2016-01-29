@@ -30,29 +30,26 @@ use Yii;
  * @property double $C14
  * @property double $C15
  */
-class AlhondigasPreciosPonderados extends \yii\db\ActiveRecord
-{
+class AlhondigasPreciosPonderados extends \yii\db\ActiveRecord {
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'alhondigas';
     }
 
     /**
      * @return \yii\db\Connection the database connection used by this AR class.
      */
-    public static function getDb()
-    {
+    public static function getDb() {
         return Yii::$app->get('db3');
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['Producto', 'Fecha', 'Empresa', 'Tipo', 'Pond_Suma'], 'required'],
             [['Fecha'], 'safe'],
@@ -65,8 +62,7 @@ class AlhondigasPreciosPonderados extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'ID' => 'ID',
             'Producto' => 'Producto',
@@ -92,130 +88,156 @@ class AlhondigasPreciosPonderados extends \yii\db\ActiveRecord
             'C15' => 'C15',
         ];
     }
-    
-    public function leerDatos($productos,$empresas,$tipo,$fechaini,$fechafin){
-        
+
+    public function leerDatos($productos, $empresas, $tipo, $fechaini, $fechafin) {
+
         $condiciones = "1=1";
-        
-        if($empresas != ""){
-        $contador = 0;    
-        $condiciones .= " and (";
-        foreach($empresas as $empresa){
-            if ($contador > 0){
+
+        if ($empresas != "") {
+            $contador = 0;
+            $condiciones .= " and (";
+            foreach ($empresas as $empresa) {
+                if ($contador > 0) {
                     $condiciones .= " or";
                 }
                 $contador++;
-            $condiciones .= " Empresa LIKE '".$empresa."'";            
+                $condiciones .= " Empresa LIKE '" . $empresa . "'";
+            }
+            $condiciones .=")";
         }
-        $condiciones .=")";
-        }
-        
-                
-        if($productos != ""){
-        $condiciones .=" and (";    
-        $contador = 0;        
-        foreach($productos as $producto){
-            if ($contador > 0){
+
+
+        if ($productos != "") {
+            $condiciones .=" and (";
+            $contador = 0;
+            foreach ($productos as $producto) {
+                if ($contador > 0) {
                     $condiciones .= " or";
                 }
                 $contador++;
-            $condiciones .= " Producto LIKE '".$producto."'";            
+                $condiciones .= " Producto LIKE '" . $producto . "'";
+            }
+            $condiciones .=")";
         }
-        $condiciones .=")";
-        }
-        
+
         $query = new \yii\db\Query();
-        if($fechaini != '' && $fechafin !=''){
+        if ($fechaini != '' && $fechafin != '') {
             $query->select('*')
-                ->from('alhondigas')
-                ->where('Fecha>=:fechaini and Fecha <=:fechafin',array(':fechaini'=>$fechaini,':fechafin'=>$fechafin))
-                ->andWhere('Tipo LIKE :tipo',array(':tipo'=>$tipo))    
-                ->andWhere($condiciones);
-        }else if($fechaini != ''){
+                    ->from('alhondigas')
+                    ->where('Fecha>=:fechaini and Fecha <=:fechafin', array(':fechaini' => $fechaini, ':fechafin' => $fechafin))
+                    ->andWhere('Tipo LIKE :tipo', array(':tipo' => $tipo))
+                    ->andWhere($condiciones);
+        } else if ($fechaini != '') {
             $query->select('*')
-                ->from('alhondigas')
-                ->where('Fecha>=:fechaini',array(':fechaini'=>$fechaini))
-                ->andWhere('Tipo LIKE :tipo',array(':tipo'=>$tipo))
-                ->andWhere($condiciones);
-        }else{
+                    ->from('alhondigas')
+                    ->where('Fecha>=:fechaini', array(':fechaini' => $fechaini))
+                    ->andWhere('Tipo LIKE :tipo', array(':tipo' => $tipo))
+                    ->andWhere($condiciones);
+        } else {
             $query->select('*')
-                ->from('alhondigas')                
-                ->where('Tipo LIKE :tipo',array(':tipo'=>$tipo))
-                ->andWhere($condiciones);
-        }    
-                        
+                    ->from('alhondigas')
+                    ->where('Tipo LIKE :tipo', array(':tipo' => $tipo))
+                    ->andWhere($condiciones);
+        }
+
         $rows = $query->all(AlhondigasPreciosPonderados::getDb());
         return $rows;
     }
 
-    public function laUnion($fecha_actual){
-        $query = new \yii\db\Query(); 
+    public function laUnion($fecha_actual) {
+        $query = new \yii\db\Query();
         //$fecha_actual = date('Y-m-d');
         $query->select('*')
                 ->from('alhondigas')
-                ->where('Empresa LIKE :empresa',array(':empresa'=>'LA UNION'))
-                ->andWhere('Fecha=:fecha',array(':fecha'=>$fecha_actual))
+                ->where('Empresa LIKE :empresa', array(':empresa' => 'LA UNION'))
+                ->andWhere('Fecha=:fecha', array(':fecha' => $fecha_actual))
                 ->orderBy('Producto');
         $rows = $query->all(AlhondigasPreciosPonderados::getDb());
         return $rows;
     }
-    
-    public function casi($fecha_actual){
-        $query = new \yii\db\Query(); 
+
+    public function casi($fecha_actual) {
+        $query = new \yii\db\Query();
         //$fecha_actual = date('Y-m-d');
         $query->select('*')
                 ->from('alhondigas')
-                ->where('Empresa LIKE :empresa',array(':empresa'=>'CASI'))
-                ->andWhere('Fecha=:fecha',array(':fecha'=>$fecha_actual))
+                ->where('Empresa LIKE :empresa', array(':empresa' => 'CASI'))
+                ->andWhere('Fecha=:fecha', array(':fecha' => $fecha_actual))
                 ->orderBy('Producto');
         $rows = $query->all(AlhondigasPreciosPonderados::getDb());
         return $rows;
     }
-    
-    public function costa($fecha_actual){
-        $query = new \yii\db\Query(); 
+
+    public function costa($fecha_actual) {
+        $query = new \yii\db\Query();
         //$fecha_actual = date('Y-m-d');
         $query->select('*')
                 ->from('alhondigas')
-                ->where('Empresa LIKE :empresa',array(':empresa'=>'COSTA'))
-                ->andWhere('Fecha=:fecha',array(':fecha'=>$fecha_actual))
+                ->where('Empresa LIKE :empresa', array(':empresa' => 'COSTA'))
+                ->andWhere('Fecha=:fecha', array(':fecha' => $fecha_actual))
                 ->orderBy('Producto');
         $rows = $query->all(AlhondigasPreciosPonderados::getDb());
         return $rows;
     }
-    
-    public function femago($fecha_actual){
-        $query = new \yii\db\Query(); 
+
+    public function femago($fecha_actual) {
+        $query = new \yii\db\Query();
         //$fecha_actual = date('Y-m-d');
         $query->select('*')
                 ->from('alhondigas')
-                ->where('Empresa LIKE :empresa',array(':empresa'=>'FEMAGO'))
-                ->andWhere('Fecha=:fecha',array(':fecha'=>$fecha_actual))
+                ->where('Empresa LIKE :empresa', array(':empresa' => 'FEMAGO'))
+                ->andWhere('Fecha=:fecha', array(':fecha' => $fecha_actual))
                 ->orderBy('Producto');
         $rows = $query->all(AlhondigasPreciosPonderados::getDb());
         return $rows;
     }
-    
-    public function agroponiente($fecha_actual){
-        $query = new \yii\db\Query(); 
+
+    public function agroponiente($fecha_actual) {
+        $query = new \yii\db\Query();
         //$fecha_actual = date('Y-m-d');
         $query->select('*')
                 ->from('alhondigas')
-                ->where('Empresa LIKE :empresa',array(':empresa'=>'AGROPONIENTE'))
-                ->andWhere('Fecha=:fecha',array(':fecha'=>$fecha_actual))
+                ->where('Empresa LIKE :empresa', array(':empresa' => 'AGROPONIENTE'))
+                ->andWhere('Fecha=:fecha', array(':fecha' => $fecha_actual))
                 ->orderBy('Producto');
         $rows = $query->all(AlhondigasPreciosPonderados::getDb());
         return $rows;
     }
-    
-    public function graficoPpt($fecha_actual){
-        $query = new \yii\db\Query(); 
+
+    public function graficoPpt($fecha_actual) {
+        $query = new \yii\db\Query();
         //$fecha_actual = date('Y-m-d');
-        $query->select('Producto,sum(Pond_Suma) as Suma')
+        $query->select('Fecha,Producto,sum(Pond_Suma) as Suma')
                 ->from('alhondigas')
-                ->where('Fecha=:fecha',array(':fecha'=>$fecha_actual))    
+                ->where('Fecha=:fecha', array(':fecha' => $fecha_actual))
                 ->groupBy('Producto,Tipo');
         $rows = $query->all(AlhondigasPreciosPonderados::getDb());
         return $rows;
     }
+
+    public function graficoEvolucion($productos, $empresas, $sd, $fechafin) {
+        $query = new \yii\db\Query();
+        /* $query->select('Fecha,Producto,sum(Pond_Suma) as Suma')
+          ->from('alhondigas')
+          ->where('Fecha=:fecha',array(':fecha'=>'2015-10-23'))
+          ->groupBy('Producto,Tipo'); */
+        if($empresas!='') {
+            $query->select('Fecha,Pond_Suma,Producto,Empresa')
+                    ->from('alhondigas')
+                    ->where('Producto=:producto and Empresa=:empresa and  Fecha BETWEEN :fechaini AND :fechafin', array(':producto' => $productos, ':empresa' => $empresas, ':fechaini' => '2015-09-01', ':fechafin' => $fechafin))
+                    ->orderBy('Fecha,Tipo');
+            $rows = $query->all(AlhondigasPreciosPonderados::getDb());
+            return $rows;
+        } else {
+            //Pruebasssssssssssss AQUI PONER SEMANAL (ARCHIVO GRAF3)
+            $query->select('Fecha,sum(Pond_Suma) as Pond_Suma,Producto,Empresa')
+                    ->from('alhondigas')
+                    ->where('Producto=:producto', array(':producto' => $productos))
+                    ->groupBy('Tipo','Fecha')
+                    ->orderBy('Fecha','Tipo');
+            $rows = $query->all(AlhondigasPreciosPonderados::getDb());
+            return $rows;
+        }
+    }
+
 }

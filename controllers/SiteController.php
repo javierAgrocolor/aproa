@@ -104,8 +104,32 @@ class SiteController extends Controller {
         //$fecha_actual2 = date('Y-m-d');
         if (count($request->queryParams) != 0) {
             $fecha_actual = $request->get('datetimepicker2');
+            $empresas = $request->get('empresas');
+            $productos = $request->get('productos');
+            $sd = $request->get('sd');
+            $fechafin = $request->get('datetimepicker-2');
+
+            $resultado = $alhondigasppModels->laUnion($fecha_actual);
+            $resultado2 = $alhondigasppModels->casi($fecha_actual);
+            $resultado3 = $alhondigasppModels->costa($fecha_actual);
+            $resultado4 = $alhondigasppModels->femago($fecha_actual);
+            $resultado5 = $alhondigasppModels->agroponiente($fecha_actual);
+            $grafico1 = $alhondigasppModels->graficoPpt($fecha_actual);
+            $grafico2 = $alhondigasppModels->graficoEvolucion($productos, $empresas, $sd, $fechafin);
+            return $this->render('preciosponderados', ['tablaLaunion' => $resultado, 'tablaCasi' => $resultado2, 'tablaCosta' => $resultado3
+                        , 'tablaFemago' => $resultado4, 'tablaAgroponiente' => $resultado5, 'tablaGraficoppt' => $grafico1, 'tablaGraficoevolucion' => $grafico2]);
         } else {
             $fecha_actual = date('Y-m-d');
+
+            $resultado = $alhondigasppModels->laUnion($fecha_actual);
+            $resultado2 = $alhondigasppModels->casi($fecha_actual);
+            $resultado3 = $alhondigasppModels->costa($fecha_actual);
+            $resultado4 = $alhondigasppModels->femago($fecha_actual);
+            $resultado5 = $alhondigasppModels->agroponiente($fecha_actual);
+            $grafico1 = $alhondigasppModels->graficoPpt($fecha_actual);
+
+            return $this->render('preciosponderados', ['tablaLaunion' => $resultado, 'tablaCasi' => $resultado2, 'tablaCosta' => $resultado3
+                        , 'tablaFemago' => $resultado4, 'tablaAgroponiente' => $resultado5, 'tablaGraficoppt' => $grafico1]);
         }
         /*
           if (count($request->queryParams) != 0){
@@ -121,43 +145,35 @@ class SiteController extends Controller {
           }else{
           //return $this->render('preciosponderados');
           } */
-        $resultado = $alhondigasppModels->laUnion($fecha_actual);
-        $resultado2 = $alhondigasppModels->casi($fecha_actual);
-        $resultado3 = $alhondigasppModels->costa($fecha_actual);
-        $resultado4 = $alhondigasppModels->femago($fecha_actual);
-        $resultado5 = $alhondigasppModels->agroponiente($fecha_actual);
-        $grafico1 = $alhondigasppModels->graficoPpt($fecha_actual);
-        return $this->render('preciosponderados', ['tablaLaunion' => $resultado, 'tablaCasi' => $resultado2, 'tablaCosta' => $resultado3
-                    , 'tablaFemago' => $resultado4, 'tablaAgroponiente' => $resultado5,'tablaGraficoppt'=>$grafico1]);
     }
 
     public function actionBuscar() {
-        $boletinesModels = new Boletines();     
-                
+        $boletinesModels = new Boletines();
+
         $request = yii::$app->request;
-        if (count($request->queryParams) != 0){
-            $tipo = $request->get('informes');            
-            if($tipo!='Historico' && $tipo!='Otros'){
-                $filename = $boletinesModels-> buscarPdf($tipo);
-            //exit($filename[0]['Boletin']);           
-                return $this->redirect('/aproa/pdf/'.$filename[0]['Boletin'].'.pdf');
-            }else{
-                if($tipo!='Otros'){
-                    $historico = $boletinesModels-> buscarHistorico();
-                    return $this->render('historico',['tablaHistorico'=>$historico]);
-                }else{
+        if (count($request->queryParams) != 0) {
+            $tipo = $request->get('informes');
+            if ($tipo != 'Historico' && $tipo != 'Otros') {
+                $filename = $boletinesModels->buscarPdf($tipo);
+                //exit($filename[0]['Boletin']);           
+                return $this->redirect('/aproa/pdf/' . $filename[0]['Boletin'] . '.pdf');
+            } else {
+                if ($tipo != 'Otros') {
+                    $historico = $boletinesModels->buscarHistorico();
+                    return $this->render('historico', ['tablaHistorico' => $historico]);
+                } else {
                     $otros = $boletinesModels->buscarOtros();
-                    return $this->render('otros',['tablaOtros'=>$otros]);
+                    return $this->render('otros', ['tablaOtros' => $otros]);
                 }
-            }            
-        }    
+            }
+        }
     }
-    
-    public function actionAbrirpdf(){
+
+    public function actionAbrirpdf() {
         $request = yii::$app->request;
-        if (count($request->queryParams) != 0){
-            $pdf = $request->get('informes');  
-            return $this->redirect('/aproa/pdf/'.$pdf.'.pdf');
+        if (count($request->queryParams) != 0) {
+            $pdf = $request->get('informes');
+            return $this->redirect('/aproa/pdf/' . $pdf . '.pdf');
         }
     }
 

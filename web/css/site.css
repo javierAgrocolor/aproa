@@ -33,6 +33,14 @@ box-shadow: 0px 0px 30px #ffffff;
 .marginbotton{
   margin-bottom: 10px;   
 }
+
+.marginbotton50{
+    margin-bottom: 50px;
+}
+
+.trrow{
+    display: table-row !important;
+}
 //CSS Pagination
 /**
 * CSS themes for simplePagination.js
