@@ -243,31 +243,33 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
      */
     public function generarCondSemanas($semanas, $condiciones){
         $contador = 0;
-        $condiciones .= " and DATEPART(week, Datos_generales_mayoristas.fecha) in (";
-        // Recorremos una vez el array para añadir la condición de la semana.
-        foreach($semanas as $semana){
-            if ($contador === 0){
-                $condiciones .= substr($semana, 0, 2);
-            }else{
-                $condiciones .= ",".substr($semana, 0, 2);
-            }
-            $contador++;
-        }
-        $condiciones .= ")";
         
-        // Recorremos otra vez el array para añadir la condición del año (ya que la semana se repite año a año).
-        $condiciones .= " and DATEPART(year, Datos_generales_mayoristas.fecha) in (";
-        $contador = 0;
-        foreach ($semanas as $semana){
-            if ($contador === 0){
-                $condiciones .= substr($semana, 3, 4);
-            }else{
-                $condiciones .= ",".substr($semana, 3, 4);
+        if (isset($semanas)){
+            $condiciones .= " and DATEPART(week, Datos_generales_mayoristas.fecha) in (";
+            // Recorremos una vez el array para añadir la condición de la semana.
+            foreach($semanas as $semana){
+                if ($contador === 0){
+                    $condiciones .= substr($semana, 0, 2);
+                }else{
+                    $condiciones .= ",".substr($semana, 0, 2);
+                }
+                $contador++;
             }
-            $contador++;
+            $condiciones .= ")";
+
+            // Recorremos otra vez el array para añadir la condición del año (ya que la semana se repite año a año).
+            $condiciones .= " and DATEPART(year, Datos_generales_mayoristas.fecha) in (";
+            $contador = 0;
+            foreach ($semanas as $semana){
+                if ($contador === 0){
+                    $condiciones .= substr($semana, 3, 4);
+                }else{
+                    $condiciones .= ",".substr($semana, 3, 4);
+                }
+                $contador++;
+            }
+            $condiciones .= ")";
         }
-        $condiciones .= ")";
-        
         return $condiciones;
     }
     
@@ -278,16 +280,18 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
      */
     public function generarCondProductos($productos, $condiciones){
         $contador = 0;
-        $condiciones .= " and Datos_generales_mayoristas.cod_producto in (";
-        foreach($productos as $producto){
-            if ($contador == 0){
-                $condiciones .= $producto;
-            }else{
-                $condiciones .= ",".$producto;
+        if(isset($productos)){
+            $condiciones .= " and Datos_generales_mayoristas.cod_producto in (";
+            foreach($productos as $producto){
+                if ($contador == 0){
+                    $condiciones .= $producto;
+                }else{
+                    $condiciones .= ",".$producto;
+                }
+                    $contador++;
             }
-                $contador++;
+            $condiciones .= ")";
         }
-        $condiciones .= ")";
         return $condiciones;
     }
     
@@ -299,6 +303,7 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
      */
     public function generarCondOrigenes($origenes, $condiciones){
         $contador = 0;
+        if (isset($origenes)){
             $condiciones .= " and Datos_generales_mayoristas.cod_origen in (";
             foreach($origenes as $origen){
                 if ($contador == 0){
@@ -308,7 +313,8 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
                 }
                 $contador++;
             }
-        $condiciones .= ")";
+            $condiciones .= ")";
+        }
         return $condiciones;
     }
     
@@ -319,7 +325,8 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
      */
     public function generarCondLocalizaciones($localizaciones, $condiciones){
         $contador = 0;
-        $condiciones .= " and Datos_generales_mayoristas.cod_localizacion in (";
+        if (isset($localizaciones)){
+            $condiciones .= " and Datos_generales_mayoristas.cod_localizacion in (";
             foreach ($localizaciones as $localizacion){
                 if ($contador == 0){
                     $condiciones .= $localizacion;
@@ -328,7 +335,8 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
                 }
                 $contador++;
             }
-        $condiciones .= ")";
+            $condiciones .= ")";
+        }
         return $condiciones;
     }
     
