@@ -12,6 +12,7 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\DatosGeneralesMayoristas;
 use app\models\DatosOrigen;
+use app\models\DatosSupermercados;
 use app\models\Producto;
 use app\models\Origen;
 use app\models\Presentacion;
@@ -55,6 +56,62 @@ class PreciosController extends Controller
         ];
     }
 
+    public function actionSupermercados()
+    {
+        // Construimos los modelos que vamos a necesitar.
+        $supermercadosModel = new DatosSupermercados();
+        $productModel = new Producto();
+        $origenModel = new Origen();
+        $localizacionModel = new Localizacion();
+        
+        
+        // Leemos el contenido de las tablas. 
+        $listaProductos = $productModel -> leerTodos();
+        $listaOrigenes = $origenModel -> leerTodos();
+        $listaLocalizaciones = $localizacionModel -> leerTodos();
+        $listaYears = $supermercadosModel -> leerYears();
+        
+        $contadorYears = count($listaYears);
+        $listaSemanas = $supermercadosModel -> leerSemanas($listaYears[$contadorYears-2]['year']);
+        
+        // Leemos la petición POST/GET
+        $request = yii::$app->request;
+        // En base a si recibimos parámetros GET/POST mandamos unos datos a la vista o mandamos otros.
+        if (count($request->queryParams) != 0){
+            $productos = $request->get('productos');
+            $origen = $request->get('origen');
+            $localizacion = $request->get('localizacion');
+            $fechaInicial = $request->get('fechaInicial');
+            $fechaFinal = $request->get('fechaFinal');
+            $tipoConsulta = $request->get('opcionesConsulta');
+            $semanas = $request->get('semanas');
+            // Establecemos la consulta de datos con los parametros recibidos.            
+            $resultado = $supermercadosModel ->leerDatos($productos, $origen, $localizacion, $fechaInicial, $fechaFinal, $tipoConsulta, $semanas);
+            
+            
+            return $this->render('supermercados', [
+                'listaProductos' => $listaProductos,
+                'listaOrigenes' => $listaOrigenes,
+                'listaLocalizaciones' => $listaLocalizaciones,
+                'listaYears' => $listaYears,
+                'productos' => $productos,
+                'origen' => $origen,
+                'localizacion' => $localizacion,
+                'tabla' => $resultado,
+                'listaSemanas' => $listaSemanas
+            ]);
+        }else{
+            return $this->render('supermercados', [
+                'listaProductos' => $listaProductos,
+                'listaOrigenes' => $listaOrigenes,
+                'listaLocalizaciones' => $listaLocalizaciones,
+                'listaYears' => $listaYears,
+                'listaSemanas' => $listaSemanas
+            ]);
+        }
+        
+    }
+    
     public function actionMayoristas()
     {
         
@@ -141,7 +198,7 @@ class PreciosController extends Controller
             $resultado = $origenModel ->leerDatos($productos, $fechaInicial, $fechaFinal, $tipoConsulta, $semanas);
             
             
-            return $this->render('origen', [
+            return $this->render('supermercados', [
                 'listaProductos' => $listaProductos,
                 'listaYears' => $listaYears,
                 'productos' => $productos,
@@ -151,17 +208,12 @@ class PreciosController extends Controller
                 'listaSemanas' => $listaSemanas
             ]);
         }else{
-            return $this->render('origen', [
+            return $this->render('supermercados', [
                 'listaProductos' => $listaProductos,
                 'listaYears' => $listaYears,
                 'listaSemanas' => $listaSemanas
         ]);
         }
-        
-    }
-    
-    public function actionSupermercados()
-    {
         
     }
     
