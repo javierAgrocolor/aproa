@@ -8,6 +8,51 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div >
     <h1><?= Html::encode($this->title) ?></h1>
+    
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawVisualization);
+ 
+
+      function drawVisualization() {
+        // Some raw data (not necessarily accurate)
+        var data = google.visualization.arrayToDataTable([
+         ['Producto', 'Toneladas (CASI+La Unión+Costa+Agroponiente+Femago)', 'Precio ponderado (CASI, La Unión): Euro/kilo'],
+         <?php 
+         $con = 1;
+         foreach ($tablaGraficoppt as $row) {
+             if($con == 1){
+                 $con=2;
+                 echo "['".$row['Producto']."',".$row['Suma'];                 
+             }else{
+                 $con=1;
+                 echo ",".$row['Suma']."],";                 
+             }
+                                
+         }
+         ?>
+         
+         ['',  0,            0]
+      ]);
+        //var data = google.visualization.arrayToDataTable([array]);
+
+    var options = {
+      title : 'Monthly Coffee Production by Country',
+      vAxis: {title: 'Cups'},
+      hAxis: {title: 'Producto'},
+      seriesType: 'bars',
+      colors: ["red", "#454545"],
+      series: {0: {type: 'line'}}
+    };
+
+    var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+  }
+    </script>
+    
+    <div id="chart_div" style="width: 1100px; height: 500px;"></div>
+    
     <div class="row marginbotton">
         <div class="col-md-2 col-md-offset-5">
     <form id="filtroPreciosponderados">

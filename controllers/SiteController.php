@@ -126,8 +126,9 @@ class SiteController extends Controller {
         $resultado3 = $alhondigasppModels->costa($fecha_actual);
         $resultado4 = $alhondigasppModels->femago($fecha_actual);
         $resultado5 = $alhondigasppModels->agroponiente($fecha_actual);
+        $grafico1 = $alhondigasppModels->graficoPpt($fecha_actual);
         return $this->render('preciosponderados', ['tablaLaunion' => $resultado, 'tablaCasi' => $resultado2, 'tablaCosta' => $resultado3
-                    , 'tablaFemago' => $resultado4, 'tablaAgroponiente' => $resultado5]);
+                    , 'tablaFemago' => $resultado4, 'tablaAgroponiente' => $resultado5,'tablaGraficoppt'=>$grafico1]);
     }
 
     public function actionBuscar() {
