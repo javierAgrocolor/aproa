@@ -51,6 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
   }
     </script>
     
+    <!-- Estilo puesto en línea del div. Esto hay que cambiarlo al archivo .css -->
     <div id="chart_div" style="width: 1100px; height: 500px;"></div>
     
     <div class="row marginbotton">

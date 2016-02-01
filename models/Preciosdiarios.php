@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\Query;
 
 /**
  * This is the model class for table "preciosdiarios".
@@ -80,4 +81,46 @@ class Preciosdiarios extends \yii\db\ActiveRecord
             'corte15' => 'Corte15',
         ];
     }
+    
+    public function leerProductos(){
+        $query = new Query();
+        $query -> select('*')
+                -> from('productos')
+                -> innerJoin('grupo_producto', 'grupo_producto.id = productos.grupo')
+                -> orderBy('grupo');
+        $rows = $query -> all(Preciosdiarios::getDb());
+        return $rows;
+    }
+    
+    public function leerAlhondigas(){
+        $query = new Query();
+        $query -> select('*')
+                -> from('alhondigas')
+                -> orderBy('enlace');
+        $rows = $query -> all(Preciosdiarios::getDb());
+        return $rows;
+    }
+    
+    public function leerUltimaAlhondiga($today){
+        $query = new Query();
+        $query -> select('alhondiga')
+                -> from('preciosdiarios')
+                -> where("fecha = '".$today."'")
+                -> orderBy('id', 'DESC')
+                -> limit(1);
+        $rows = $query -> all(Preciosdiarios::getDb());
+        return $rows;
+    }
+    
+    public function leerUltimaPizarra($today, $ultimaAlhondiga){
+        $query = new Query();
+        $query -> select('*')
+                -> from('preciosdiarios')
+                -> innerJoin('productos', 'productos.codigo = preciosdiarios.idproducto')
+                -> where("fecha = '".$today."'")
+                -> andWhere("alhondiga = '".$ultimaAlhondiga[0]['alhondiga']."'");
+        $rows = $query -> all(Preciosdiarios::getDb());
+        return $rows;
+    }
+    
 }

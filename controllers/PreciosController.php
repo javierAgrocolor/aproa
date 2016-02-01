@@ -13,6 +13,7 @@ use app\models\ContactForm;
 use app\models\DatosGeneralesMayoristas;
 use app\models\DatosOrigen;
 use app\models\DatosSupermercados;
+use app\models\Preciosdiarios;
 use app\models\Producto;
 use app\models\Origen;
 use app\models\Presentacion;
@@ -198,7 +199,7 @@ class PreciosController extends Controller
             $resultado = $origenModel ->leerDatos($productos, $fechaInicial, $fechaFinal, $tipoConsulta, $semanas);
             
             
-            return $this->render('supermercados', [
+            return $this->render('origen', [
                 'listaProductos' => $listaProductos,
                 'listaYears' => $listaYears,
                 'productos' => $productos,
@@ -208,12 +209,48 @@ class PreciosController extends Controller
                 'listaSemanas' => $listaSemanas
             ]);
         }else{
-            return $this->render('supermercados', [
+            return $this->render('origen', [
                 'listaProductos' => $listaProductos,
                 'listaYears' => $listaYears,
                 'listaSemanas' => $listaSemanas
-        ]);
+            ]);
         }
+        
+    }
+    
+    public function actionPizarraprecios(){
+        
+        //Construimos los modelos que vamos a necesitar.
+        $pizarraModel = new Preciosdiarios();
+        
+        // Leemos el contenido de las tablas.
+        $listaProductos = $pizarraModel -> leerProductos();
+        $listaAlhondigas = $pizarraModel -> leerAlhondigas();
+        
+        
+        
+        $today = date('Y-m-d');
+        $today = '2015-11-27';
+        $ultimaAlhondiga = $pizarraModel -> leerUltimaAlhondiga($today);
+        if (count($ultimaAlhondiga)>0){
+            $ultimapizarra = $pizarraModel -> leerUltimaPizarra($today, $ultimaAlhondiga);
+        }else{
+            $ultimapizarra = "No existen registros para el día de hoy.";
+        }
+        
+        $request = yii::$app->request;
+        //En base a si recibimos parametros GET/POST mandamos unos datos a la vista o mandamos otros.
+        if (count($request->queryParams) != 0){
+            
+        }else{
+            
+        }
+        
+        return $this -> render('pizarra', [
+            'listaProductos' => $listaProductos,
+            'listaAlhondigas' => $listaAlhondigas,
+            'ultimaPizarra' => $ultimapizarra
+        ]);
         
     }
     
@@ -276,5 +313,4 @@ class PreciosController extends Controller
             
         }
     }
-
 }

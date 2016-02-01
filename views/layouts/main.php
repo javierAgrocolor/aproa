@@ -43,7 +43,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'APROA - Prevención y Gestión de Crisis',
+        'brandLabel' => 'APROA',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -59,6 +59,7 @@ AppAsset::register($this);
             ['label' => 'Mayoristas', 'url' => ['/precios/mayoristas']],
             ['label' => 'Supermercados', 'url' => ['/precios/supermercados']],
             ['label' => 'Precios Ponderados', 'url' => ['/site/preciosponderados']],
+            ['label' => 'Pizarra', 'url' => ['/precios/pizarraprecios']],
             Yii::$app->user->isGuest ?
                 ['label' => 'Login', 'url' => ['/site/login']] :
                 [
