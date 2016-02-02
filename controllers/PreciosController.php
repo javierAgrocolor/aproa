@@ -238,6 +238,20 @@ class PreciosController extends Controller
             $ultimapizarra = "No existen registros para el día de hoy.";
         }
         
+        $listaPizarras = $pizarraModel -> leerPizarras($today, $listaAlhondigas);
+        $mediasGlobales = $pizarraModel -> leerMediasGlobales($today);
+        
+        $listaMedias = array();
+        $contador = 0;
+        
+        foreach ($mediasGlobales as $row){
+            $media = $this -> calcularMedia($row);
+            $mediasGlobales[$contador]['media'] = $media;
+            $contador++;
+        }
+        
+        
+        
         $request = yii::$app->request;
         //En base a si recibimos parametros GET/POST mandamos unos datos a la vista o mandamos otros.
         if (count($request->queryParams) != 0){
@@ -249,10 +263,35 @@ class PreciosController extends Controller
         return $this -> render('pizarra', [
             'listaProductos' => $listaProductos,
             'listaAlhondigas' => $listaAlhondigas,
-            'ultimaPizarra' => $ultimapizarra
+            'ultimaPizarra' => $ultimapizarra,
+            'listaPizarras' => $listaPizarras,
+            'fecha' => $today,
+            'mediasGlobales' => $mediasGlobales
         ]);
         
     }
+    
+    public function calcularMedia($row){
+        $sumaFila = 0;
+        $contador = 0;
+        $arrayMedias = array();
+        
+        for ($j = 1; $j < 16; $j++){
+            if ($row['corte'.$j] != 0.000){
+                $sumaFila += $row['corte'.$j];
+                $contador++;
+            }
+        }
+        
+        if ($contador != 0){
+            $mediaFila = $sumaFila/$contador;
+            return $mediaFila;
+        }else{
+            return 0;
+        }
+        
+    }
+    
     
     public function actionLeersemanas(){
         

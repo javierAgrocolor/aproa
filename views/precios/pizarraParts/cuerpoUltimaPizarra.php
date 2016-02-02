@@ -15,7 +15,7 @@
     ?>
     <tr>
     <?php
-        echo "<td>".$row['producto']."</td>";
+        echo "<td>".$row['nombre']."</td>";
         echo "<td>PUTA MEDIA</td>";
         echo "<td>".$row['corte1']."</td>";
         echo "<td>".$row['corte2']."</td>";
@@ -34,6 +34,7 @@
         echo "<td>".$row['corte15']."</td>";
     ?>
     </tr>
+    <?php
     }
     
     ?>
