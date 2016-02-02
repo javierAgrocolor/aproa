@@ -23,7 +23,7 @@ $(document).ready(function () {
     jQuery(function ($) {
         // consider adding an id to your table,
         // just incase a second table ever enters the picture..?
-        var items = $("table tbody tr");
+        var items = $("#content tbody tr");
 
         var numItems = items.length;
         var perPage = 10;

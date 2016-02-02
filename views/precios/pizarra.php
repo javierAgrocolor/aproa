@@ -10,7 +10,7 @@
 
 <div class="row-fluid">
     <div class="col-lg-12">
-        <h3><?php echo date('Y-m-d'); ?></h3>
+        <h3><?php echo $fecha; ?></h3>
         <ul class="nav nav-tabs">
             <li role="tablero" class="active">
                 <a href="#pizarras" role="tab" data-toggle="tab">Pizarras</a>
@@ -40,7 +40,9 @@
                 ?>
             </div>
             <div role="tabpanel" class="tab-pane" id="mediaGlobal">
-                pruebaMedias
+                <?php
+                    require "aproa/views/precios/pizarraParts/tabMedias.php";
+                ?>
             </div>
             <div role="tabpanel" class="tab-pane" id="precioProducto">
                 pruebaPreciosProducto
