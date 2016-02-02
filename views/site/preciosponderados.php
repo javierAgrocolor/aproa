@@ -8,194 +8,214 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div >
     <h1><?= Html::encode($this->title) ?></h1>
-    
-    <!-- GRAFICO PRECIOS Y TONELADAS -->
-    <?php if (isset($tablaGraficoppt[0]['Producto'])) {?>
+</div>
+<!-- GRAFICO PRECIOS Y TONELADAS -->
+<?php if (isset($tablaGraficoppt[0]['Producto'])) { ?>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
-      google.load("visualization", "1", {packages:["corechart"]});
-      google.setOnLoadCallback(drawVisualization);
+        google.load("visualization", "1", {packages: ["corechart"]});
+        google.setOnLoadCallback(drawVisualization);
 
 
         function drawVisualization() {
             // Some raw data (not necessarily accurate)
             var data = google.visualization.arrayToDataTable([
-                
-<?php
-echo "['Producto', 'Precio ponderado (CASI, La Unión): Euro/kilo', 'Toneladas (CASI+La Unión+Costa+Agroponiente+Femago)']";
-$con = 1;
-foreach ($tablaGraficoppt as $grafico) {
-    if ($con == 1) {
-        $con = 2;
-        echo ",['" . $grafico['Producto'] . "'," . $grafico['Suma'];
-    } else {
-        $con = 1;
-        echo "," . $grafico['Suma'] . "]";
+    <?php
+    echo "['Producto', 'Precio ponderado (CASI, La Unión): Euro/kilo', 'Toneladas (CASI+La Unión+Costa+Agroponiente+Femago)']";
+    $con = 1;
+    foreach ($tablaGraficoppt as $grafico) {
+        if ($con == 1) {
+            $con = 2;
+            echo ",['" . $grafico['Producto'] . "'," . $grafico['Suma'];
+        } else {
+            $con = 1;
+            echo "," . $grafico['Suma'] . "]";
+        }
     }
-}
-?>                
+    ?>
             ]);
             var view = new google.visualization.DataView(data);
-view.setColumns([0, 1, {
-    calc: "stringify",
-    sourceColumn: 1,
-    type: "string",
-    role: "annotation"
-}, 2, {
-    calc: "stringify",
-    sourceColumn: 2,
-    type: "string",
-    role: "annotation"
-}]);
+            view.setColumns([0, 1, {
+                    calc: "stringify",
+                    sourceColumn: 1,
+                    type: "string",
+                    role: "annotation"
+                }, 2, {
+                    calc: "stringify",
+                    sourceColumn: 2,
+                    type: "string",
+                    role: "annotation"
+                }]);
 
-   var options = {
-legend: { position: 'top' },
-      title : 'Dia:  <?php echo $tablaGraficoppt[0]['Fecha']; ?>',
-      vAxis: {0: {format: '#', title: 'tons'}, 1: {format: '#', title: 'tons'}},
-      hAxis: {title: ''},
-      colors: ["red", "#0285B5"],
-      series: {
-            0:{ type: "line", targetAxisIndex: 1 },
-            1: { type: "bars", targetAxisIndex: 0}
-        }      
-    };
-
-
+            var options = {
+                legend: {position: 'top'},
+                title: 'Dia:  <?php echo $tablaGraficoppt[0]['Fecha']; ?>',
+                vAxis: {0: {format: '#', title: 'tons'}, 1: {format: '#', title: 'tons'}},
+                hAxis: {title: ''},
+                colors: ["red", "#0285B5"],
+                series: {
+                    0: {type: "line", targetAxisIndex: 1},
+                    1: {type: "bars", targetAxisIndex: 0}
+                }
+            };
 
 
 
-    var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
-    chart.draw(view, options);
-  }
+
+
+            var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+            chart.draw(view, options);
+        }
     </script>
-    <div id="chart_div" style="width: 1100px; height: 400px;"></div>
-    <?php  } else {
-                            ?>
-                        <p align="center">Aun no se han generado precios para este día.</p>
-                        <?php
-                    }
-                    ?>
+
+<?php }
+?>
 <!-- FIN GRAFICO PRECIOS Y TONELADAS -->
 
 <!-- GRAFICO EVOLUCION -->
 
-<?php if (isset($tablaGraficoevolucion[0]['Producto'])) {?>
+<?php if (isset($tablaGraficoevolucion[0]['Producto'])) { ?>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
-      google.load("visualization", "1", {packages:["corechart"]});
-      google.setOnLoadCallback(drawVisualization);
+        google.load("visualization", "1", {packages: ["corechart"]});
+        google.setOnLoadCallback(drawVisualization);
 
 
         function drawVisualization() {
             // Some raw data (not necessarily accurate)
             var data = google.visualization.arrayToDataTable([
-                
-<?php
-echo "['Producto', 'Precio: Euro/kg', 'Cantidad: Toneladas']";
-$con2 = 1;
-foreach ($tablaGraficoevolucion as $grafico) {
-    if ($con2 == 1) {
-        $con2 = 2;
-        echo ",['" . $grafico['Fecha'] . "'," . $grafico['Pond_Suma'];
-    } else {
-        $con2 = 1;
-        echo "," . $grafico['Pond_Suma'] . "]";
+    <?php
+    echo "['Producto', 'Precio: Euro/kg', 'Cantidad: Toneladas']";
+    $con2 = 1;
+    foreach ($tablaGraficoevolucion as $grafico) {
+        if ($con2 == 1) {
+            $con2 = 2;
+            if ($grafico['Fecha'] < 60) {
+                echo ",['" . $grafico['Fecha'] . "'," . $grafico['Precio'];
+            } else {
+                echo ",['" . $grafico['Fecha'] . "'," . $grafico['Pond_Suma'];
+            }
+        } else {
+            $con2 = 1;
+            echo "," . $grafico['Pond_Suma'] . "]";
+        }
     }
-}
-?>                
+    ?>
             ]);
             var view = new google.visualization.DataView(data);
-var options = {
-      title : 'Evolución de Precios y Toneladas para toda campaña: <?php echo $tablaGraficoevolucion[0]['Producto']; ?>, <?php echo $tablaGraficoevolucion[0]['Empresa']; ?>',
-      legend: { position: 'top' },
-      vAxis: {0: {format: '#'}, 1: {format: '#'}},
-      hAxis: {title: 'Tiempo'},
-      
-      series: {
-            0:{ type: "line", color: 'red', targetAxisIndex: 0 },
-            1: { type: "bars", color: 'orange', targetAxisIndex: 1}
-        }      
+            var options = {
+                title: 'Evolución de Precios y Toneladas para toda campaña: <?php echo $tablaGraficoevolucion[0]['Producto']; ?>, <?php echo $tablaGraficoevolucion[0]['Empresa']; ?>',
+                legend: {position: 'top'},
+                vAxis: {0: {format: '#'}, 1: {format: '#'}},
+                hAxis: {title: 'Semana'},
+                backgroundColor: '#ffffff',
+                series: {
+                    0: {type: "line", color: 'red', targetAxisIndex: 0},
+                    1: {type: "bars", color: 'orange', targetAxisIndex: 1}
+                }
 
-	
-};
-    var chart = new google.visualization.ComboChart(document.getElementById('chart_div2'));
-    chart.draw(view, options);
-  }
+
+            };
+            var chart = new google.visualization.ComboChart(document.getElementById('chart_div2'));
+            chart.draw(view, options);
+        }
     </script>
-    <?php
-    }?>
+<?php }
+?>
 
 <!-- FIN GRAFICO EVOLUCION -->
 
-    <div class="row marginbotton">
-        <div class="col-md-2 col-md-offset-5">
-            <form id="filtroPreciosponderados">
-
-                <label>Fecha</label>
-                <input id="datetimepicker2" name="datetimepicker2" type="text" class="form-control" />    
-                <input class="btn btn-primary col-md-12" type="submit">
-
-            </form>
-        </div>
-    </div>
-    
-     <div class="row marginbotton">                   
+<!-- FORMULARIO EVOLUCION-->
+<div class="spam12 contenedores">
+    <div class="row marginbotton col-md-10 col-md-offset-1">                   
         <form id="filtroGraficaevolucion">
-        <div class="col-xs-2">
-        <label>Empresa</label>
-        <select id="empresas" name="empresas" class="form-control">
-            <option id='null' value='' selected='selected'></option>
-            <option value="LA UNION">LA UNION</option>
-            <option value="CASI">CASI</option>
-            
-        </select>
-        </div>
-        <div class="col-xs-2">
-        <label>Producto</label>
-        <select id="productos" name="productos" class="form-control">
-            <option value="Pepino Almeria">Pepino Almeria</option>
-            <option value="Berenjena Larga">Berenjena Larga</option>
-            
-        </select>
-        </div>
-        <div class="col-xs-2">
-        <label>Semanas - Dias</label>
-        <select id="tipo" name="sd" class="form-control">            
-            <option value="1">Semanas</option>
-            <option value="2">Dias</option>
-            
-        </select>       
-        
-        </div>
-        <div class="col-xs-2">
-        <label>Fecha Final</label>
-        <input id="datetimepicker-2" name="datetimepicker-2" type="text" class="form-control" />
-          
-        </div>
-        <div class="row-fluid">
-            <div class="col-lg-12">
-                <br>
-        <input class="btn btn-primary" type="submit">
-        
+            <div class="col-xs-3">
+                <label>Empresa</label>
+                <select id="empresas" name="empresas" class="form-control">            
+                    <option value="LA UNION">LA UNION</option>
+                    <option value="CASI">CASI</option>
+
+                </select>
             </div>
-        </div>
-    </form>
-     </div>
-    <br>
-    
-<?php if (isset($tablaGraficoevolucion[0]['Producto'])) {
-    echo '<div id="chart_div2" style="width: 1100px; height: 400px;"></div>';
-} else {
-                            ?>
-                        <p align="center">Aun no se han generado precios para este día.</p>
-                        <?php
-                    }
-                    ?>
+            <div class="col-xs-3">
+                <label>Producto</label>
+                <select id="productos" name="productos" class="form-control">
+                    <option value="Berenjena Larga">Berenjena Larga</option>
+                    <option value="Calabacin Fino">Calabacin Fino</option>
+                    <option value="P. Calif. Amarillo">P. Calif. Amarillo</option>
+                    <option value="P. Calif. Rojo">P. Calif. Rojo</option>
+                    <option value="P. Calif. Verde">P. Calif. Verde</option>
+                    <option value="Pepino Almeria">Pepino Almeria</option>
+                    <option value="Tomate Daniela 1a">Tomate Daniela 1a</option>
+                    <option value="Tomate Liso">Tomate Liso</option>
+                    <option value="Tomate Pera">Tomate Pera</option>
+                    <option value="Tomate Rama G">Tomate Rama G</option>
+                    <option value="Tomate Rama M">Tomate Rama M</option>
+                    <option value="Tomate Suelto G">Tomate Suelto G</option>
+                    <option value="Tomate Suelto M">Tomate Suelto M</option>
+                </select>
+            </div>
+            <div class="col-xs-3">
+                <label>Semanas - Dias</label>
+                <select id="tipo" name="sd" class="form-control">            
+                    <option value="1">Semanas</option>
+                    <option value="2">Dias</option>
 
+                </select>       
 
-    <!--<code><?= __FILE__ ?></code>-->
+            </div>
+            <div class="col-xs-3">
+                <label>Fecha Final</label>
+                <input id="datetimepicker-2" name="datetimepicker-2" type="text" class="form-control" />
+
+            </div>
+            <div class="row-fluid">
+                <div class="col-lg-12">
+                    <br>
+                    <input class="btn btn-primary" type="submit">
+
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-12">
+    <?php
+    if (isset($tablaGraficoevolucion[0]['Producto'])) {
+        echo '<div id="chart_div2" style="width: 1100px; height: 400px;"></div>';
+    } else {
+        ?>
+        <p align="center">No hay datos para los valores introducidos.</p>
+        <?php
+    }
+    ?>
+    </div>
 </div>
 
+    <!--<code><?= __FILE__ ?></code>-->
+
+<div class="contenedores">
+<p align="center"><strong>PRECIOS PONDERADOS Y TONELADAS COMERCIALIZADAS POR ALHÓNDIGAS:</strong></p>
+<div class="row marginbotton">
+    <div class="col-md-2 col-md-offset-5">
+        <form id="filtroPreciosponderados">            
+            <input id="datetimepicker2" name="datetimepicker2" type="text" class="form-control" />    
+            <input class="btn btn-primary col-md-12" type="submit">
+        </form>
+    </div>
+</div>
+
+<div class="col-md-12">
+<?php
+if (isset($tablaGraficoppt[0]['Producto'])) {
+    echo '<div id="chart_div" style="width: 1100px; height: 400px;"></div>';
+} else {
+    ?>
+    <p align="center">Aun no se han generado precios para este día.</p>
+    <?php
+}
+?>
+</div>
+</div>
 <!-- CONSULTAS DESPLEGABLES-->
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
     <div class="panel panel-default">
