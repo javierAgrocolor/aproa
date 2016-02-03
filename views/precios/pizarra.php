@@ -46,7 +46,7 @@
             </div>
             <div role="tabpanel" class="tab-pane" id="precioProducto">
                 <?php
-                    //require "aproa/views/precios/pizarraParts/tabProducto.php";
+                    require "aproa/views/precios/pizarraParts/tabProducto.php";
                 ?>
             </div>
             <div role="tabpanel" class="tab-pane" id="precioSemana">

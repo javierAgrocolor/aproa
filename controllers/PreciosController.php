@@ -241,10 +241,26 @@ class PreciosController extends Controller
         $mediasGlobales = $this -> calcularMediasArray($mediasGlobales);
         // Pizarra de precio por producto.
         $listaPizarrasProducto = $listaPizarras;
+        $listaPizarrasAuxiliar = array();
+        // Media final de pizarra de precio por producto. Para esto hacemos una consulta nueva que nos saque las medias por alhondigas.
+        $filaMedias = $pizarraModel -> extraerMediasPorCorte($today);
+        $aux = 0;
+        
         foreach ($listaPizarrasProducto as $pizarraProducto){
+            $arrayMedias = 0;
+            $contador = 0;
             if (is_array($pizarraProducto)){
                 $pizarraProducto = $this ->calcularMediasArray($pizarraProducto);
+                foreach($pizarraProducto as $media){
+                    $arrayMedias += $media['media'];
+                    $contador++;
+                }
+                $mediaCalculada = $arrayMedias/$contador;
+                $filaMedias[$aux]['media'] = $mediaCalculada;
+                array_push($pizarraProducto, $filaMedias[$aux]);
+                $aux++;
             }
+            array_push($listaPizarrasAuxiliar, $pizarraProducto);
         }
         
         
@@ -263,7 +279,8 @@ class PreciosController extends Controller
             'listaPizarras' => $listaPizarras,
             'fecha' => $today,
             'mediasGlobales' => $mediasGlobales,
-            'listaPizarrasProducto' => $listaPizarrasProducto
+            'listaPizarrasProducto' => $listaPizarrasAuxiliar,
+            'filaMedias' => $filaMedias
         ]);
         
     }

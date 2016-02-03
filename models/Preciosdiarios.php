@@ -155,5 +155,16 @@ class Preciosdiarios extends \yii\db\ActiveRecord
         return $rows;
     }
     
+    public function extraerMediasPorCorte($today){
+        $query = new Query();
+        $query -> select(['"Media de los productos" as nombre,alhondiga, Round(avg(corte1), 3) as corte1, Round(avg(corte2), 3) as corte2, Round(avg(corte3), 3) as corte3, Round(avg(corte4), 3) as corte4, Round(avg(corte5), 3) as corte5, Round(avg(corte6), 3) as corte6, Round(avg(corte7), 3) as corte7, Round(avg(corte8), 3) as corte8, Round(avg(corte9), 3) as corte9, Round(avg(corte10), 3) as corte10, Round(avg(corte11), 3) as corte11, Round(avg(corte12), 3) as corte12, Round(avg(corte13), 3) as corte13, Round(avg(corte14), 3) as corte14, Round(avg(corte15), 3) as corte15'])
+                -> from ('preciosdiarios')
+                -> where ("fecha = '".$today."'")
+                -> orderBy ('alhondiga')
+                -> groupBy ("alhondiga");
+        $rows = $query -> all(Preciosdiarios::getDb());
+        return $rows;
+    }
+    
     
 }
