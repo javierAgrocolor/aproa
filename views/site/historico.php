@@ -3,34 +3,40 @@
 
 use yii\helpers\Html;
 
-$this->title = 'Histórico';
+$this->title = 'Histórico Informes';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div>
-    <h1><?= Html::encode($this->title) ?></h1>
+    <p class="titulosPaginaPrincipal"><?= Html::encode($this->title) ?></p>
 
-    <div id="pagination"></div>
-    <table id="content">
-        <tbody>       
-
-            <?php
-            foreach ($tablaHistorico as $row) {
-                //exit($row);
-                echo "<tr><td><a target='_blank' href='/aproa/web/index.php/site/abrirpdf?informes=" . $row['boletin'] . "'>" . $row['tipo'] . " (" . $row['fecha'] . ")</a>
+    <!-- Paginacion -->
+    <div class="col-md-12">
+        <div class="spam12 contenedoresPaginacion">
+            <table id="content" class="marginbotton">
+                <tbody>       
+                    <?php
+                    foreach ($tablaHistorico as $row) {
+                        //exit($row);
+                        echo "<tr><td class='titulos2'><a target='_blank' href='/aproa/web/index.php/site/abrirpdf?informes=" . $row['boletin'] . "'>" . $row['tipo'] . "</a> (" . $row['fecha'] . ")
                       </td></tr>";
-            }
-            ?>     
+                    }
+                    ?>     
+                </tbody>
+            </table>
+            <div id="pagination"></div>        
+        </div>
+    </div>
 
-        </tbody>
-    </table>
-    <!--<script src="js/jquery-1.10.2.min.js"></script>
-    <script src="js/jquery.simplePagination.js"></script>-->
+<!--<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/jquery.simplePagination.js"></script>-->
+    
+    <!-- Funcion de paginación -->
     <script>
         jQuery(function ($) {
             var items = $("#content tbody tr");
             var numItems = items.length;
             var perPage = 10;
-            // only show the first 2 (or "first per_page") items initially
+            // Muestra los valores de 10 en 10
             items.slice(perPage).hide();
             // now setup pagination
             $("#pagination").pagination({
@@ -48,5 +54,10 @@ $this->params['breadcrumbs'][] = $this->title;
         });
     </script>
 
-
+    <div class="row">
+        <!-- Publi APK -->
+        <div class="span12">
+            <img src="/aproa/images/apkdescarga.png" class="img-responsive center-block">
+        </div>
+    </div>
 </div>

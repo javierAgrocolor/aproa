@@ -14,14 +14,9 @@ $this->title = 'APROA - Gestión de Crisis';
     </div>-->
 
     <div class="body-content">
-        <div class="row-fluid">
-            <!-- Cabecera -->
-            <div class="span12">
-                <img src="/aproa/images/cabecera.png" class="img-responsive center-block">
-            </div>            
-        </div>
-        <div class="row h6">
-            <!-- Pizarras -->
+        
+        <!-- Imagenes de enlace a Pizarras, origen... -->
+        <div class="row h6">            
             <div class="col-lg-6">
                 <a href="/aproa/web/index.php/site/preciosponderados"><img src="/aproa/images/pizarra.png" class="img-responsive center-block"></a>
             </div>
@@ -29,14 +24,16 @@ $this->title = 'APROA - Gestión de Crisis';
                 <img src="/aproa/images/pizarra.png" class="img-responsive center-block">
             </div>
         </div>
-        <div class="row">
-            <!-- Informes -->
+        
+        <!-- Informes -->
+        <div class="row">            
             <div class="span12">
                 <h3 class="titulosPaginaPrincipal">Informes</h3>
             </div>              
         </div>
-        <div class="row ">
-            <!-- Botones informes-->
+        
+        <!-- Botones informes-->
+        <div class="row ">            
             <div class="col-lg-3">
                 <a target="_blank" href="/aproa/web/index.php/site/buscar?informes=Calidad-Total_Hortalizas"><img src="/aproa/images/boton1.jpg" class="img-responsive center-block imgInformes"></a>            
                 <ul class="nav nav-pills">
@@ -239,55 +236,24 @@ $this->title = 'APROA - Gestión de Crisis';
                 <a href="/aproa/web/index.php/site/buscar?informes=Otros"><img src="/aproa/images/boton16.jpg" class="img-responsive center-block imgInformes"></a>
             </div>
         </div>
-
-        <div class="row">
-            <!-- Correo -->
+        
+        <!-- Correo -->
+        <div class="row">            
             <div class="span12">
                 <h3 class="titulosPaginaPrincipal">Correo Diario</h3>
             </div>              
         </div>
-        <!--<div class="row">
-            !-- Ultimos informes --
-            <p>Ultimos informes...</p>
-        </div>-->
-        <div class="row">
-            <!-- Publi APK -->
+        <div class="spam12 contenedores">
+            <div class="col-md-12">
+                <p class="titulos2">Aun no se han generado correos para este día.</p>
+            </div>            
+        </div>
+        
+        <!-- Publi APK -->
+        <div class="row">            
             <div class="span12">
                 <img src="/aproa/images/apkdescarga.png" class="img-responsive center-block">
             </div>
-        </div>
-        <!--<div class="row-fluid">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/"><img src="../images/1.jpg"></a></p>
-            </div>
-        </div>-->
-
+        </div>      
     </div>
 </div>

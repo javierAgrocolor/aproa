@@ -89,6 +89,15 @@ class AlhondigasPreciosPonderados extends \yii\db\ActiveRecord {
         ];
     }
 
+    /**
+     * Extrae los datos de la tabla alhondigas segun los parametros introducidos.
+     * @param type $productos
+     * @param type $empresas
+     * @param type $tipo
+     * @param type $fechaini
+     * @param type $fechafin
+     * @return type
+     */
     public function leerDatos($productos, $empresas, $tipo, $fechaini, $fechafin) {
 
         $condiciones = "1=1";
@@ -144,6 +153,11 @@ class AlhondigasPreciosPonderados extends \yii\db\ActiveRecord {
         return $rows;
     }
 
+    /**
+     * Extrae los valores para dicha empresa en una fecha.
+     * @param type $fecha_actual
+     * @return type
+     */
     public function laUnion($fecha_actual) {
         $query = new \yii\db\Query();
         //$fecha_actual = date('Y-m-d');
@@ -156,6 +170,11 @@ class AlhondigasPreciosPonderados extends \yii\db\ActiveRecord {
         return $rows;
     }
 
+    /**
+     * Extrae los valores para dicha empresa en una fecha.
+     * @param type $fecha_actual
+     * @return type
+     */
     public function casi($fecha_actual) {
         $query = new \yii\db\Query();
         //$fecha_actual = date('Y-m-d');
@@ -168,6 +187,11 @@ class AlhondigasPreciosPonderados extends \yii\db\ActiveRecord {
         return $rows;
     }
 
+    /**
+     * Extrae los valores para dicha empresa en una fecha.
+     * @param type $fecha_actual
+     * @return type
+     */
     public function costa($fecha_actual) {
         $query = new \yii\db\Query();
         //$fecha_actual = date('Y-m-d');
@@ -180,6 +204,11 @@ class AlhondigasPreciosPonderados extends \yii\db\ActiveRecord {
         return $rows;
     }
 
+    /**
+     * Extrae los valores para dicha empresa en una fecha.
+     * @param type $fecha_actual
+     * @return type
+     */
     public function femago($fecha_actual) {
         $query = new \yii\db\Query();
         //$fecha_actual = date('Y-m-d');
@@ -192,6 +221,11 @@ class AlhondigasPreciosPonderados extends \yii\db\ActiveRecord {
         return $rows;
     }
 
+    /**
+     * Extrae los valores para dicha empresa en una fecha.
+     * @param type $fecha_actual
+     * @return type
+     */
     public function agroponiente($fecha_actual) {
         $query = new \yii\db\Query();
         //$fecha_actual = date('Y-m-d');
@@ -204,6 +238,11 @@ class AlhondigasPreciosPonderados extends \yii\db\ActiveRecord {
         return $rows;
     }
 
+    /**
+     * Extrae los valores para el grafico diario de empresas segun una fecha.
+     * @param type $fecha_actual
+     * @return type
+     */
     public function graficoPpt($fecha_actual) {
         $query = new \yii\db\Query();
         //$fecha_actual = date('Y-m-d');
@@ -215,6 +254,17 @@ class AlhondigasPreciosPonderados extends \yii\db\ActiveRecord {
         return $rows;
     }
 
+    /**
+     * Extrae los valores para el grafico de evolucion de precios y toneladas
+     * desde el inicio de la temporada hasta la fecha actual o fecha introducida.
+     * Obtiene los valores por semanas o por dias, segun parametro sd.
+     * 
+     * @param type $productos Producto del cual se quiere extraer la informacion.
+     * @param type $empresas Empresa de la cual se quiere extraer la informacion.
+     * @param type $sd Extraer datos en semanas o dias.
+     * @param type $fechafin 
+     * @return type
+     */
     public function graficoEvolucion($productos, $empresas, $sd, $fechafin) {
         $query = new \yii\db\Query();
         /* $query->select('Fecha,Producto,sum(Pond_Suma) as Suma')
