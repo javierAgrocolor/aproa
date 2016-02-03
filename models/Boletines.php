@@ -48,6 +48,11 @@ class Boletines extends \yii\db\ActiveRecord
         ];
     }
     
+    /**
+     * Busca el ultimo nombre de PDF segun el tipo indicado.
+     * @param type $tipo
+     * @return type
+     */
     public function buscarPdf($tipo){
         $query = new \yii\db\Query(); 
         
@@ -60,6 +65,10 @@ class Boletines extends \yii\db\ActiveRecord
         return $rows;
     }
     
+    /**
+     * Extrae la lista completa de nombres de los PDF.
+     * @return type
+     */
     public function buscarHistorico(){
         $query = new \yii\db\Query(); 
         
@@ -71,6 +80,11 @@ class Boletines extends \yii\db\ActiveRecord
         return $rows;
     }
     
+    /**
+     * Extrae la lista completa de nombres de PDF de la categoria Otros
+     * (Todos los que no tienen ninguna categoria)
+     * @return type
+     */
     public function buscarOtros(){
         $query = new \yii\db\Query(); 
         $prueba = 'Origen%';

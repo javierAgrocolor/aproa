@@ -15,8 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <script type="text/javascript">
         google.load("visualization", "1", {packages: ["corechart"]});
         google.setOnLoadCallback(drawVisualization);
-
-
+        
         function drawVisualization() {
             // Some raw data (not necessarily accurate)
             var data = google.visualization.arrayToDataTable([
@@ -58,28 +57,20 @@ $this->params['breadcrumbs'][] = $this->title;
                     1: {type: "bars", targetAxisIndex: 0}
                 }
             };
-
-
-
-
-
             var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
             chart.draw(view, options);
         }
     </script>
-
 <?php }
 ?>
 <!-- FIN GRAFICO PRECIOS Y TONELADAS -->
 
 <!-- GRAFICO EVOLUCION -->
-
 <?php if (isset($tablaGraficoevolucion[0]['Producto'])) { ?>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
         google.load("visualization", "1", {packages: ["corechart"]});
         google.setOnLoadCallback(drawVisualization);
-
 
         function drawVisualization() {
             // Some raw data (not necessarily accurate)
@@ -113,8 +104,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     0: {type: "line", color: '#cd010d', targetAxisIndex: 0},
                     1: {type: "bars", color: '#FF8300', targetAxisIndex: 1}
                 }
-
-
             };
             var chart = new google.visualization.ComboChart(document.getElementById('chart_div2'));
             chart.draw(view, options);
@@ -122,7 +111,6 @@ $this->params['breadcrumbs'][] = $this->title;
     </script>
 <?php }
 ?>
-
 <!-- FIN GRAFICO EVOLUCION -->
 
 <!-- FORMULARIO EVOLUCION-->
@@ -135,7 +123,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 <select id="empresas" name="empresas" class="form-control">            
                     <option value="LA UNION">LA UNION</option>
                     <option value="CASI">CASI</option>
-
                 </select>
             </div>
             <div class="col-xs-3">
@@ -161,24 +148,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 <select id="tipo" name="sd" class="form-control">   
                     <option value="2">Dias</option>
                     <option value="1">Semanas</option>            
-                </select>       
-
+                </select>      
             </div>
             <div class="col-xs-3">
                 <label>Fecha Final</label>
                 <input id="datetimepicker-2" name="datetimepicker-2" type="text" class="form-control" />
-
             </div>
             </div>
             <div class="row-fluid">
-                <div class="col-md-2 col-md-offset-5">
-                    
+                <div class="col-md-2 col-md-offset-5">                    
                     <input class="btn btn-primary col-md-12 marginbotton" type="submit">
-
                 </div>
             </div>
-        </form>
-    
+        </form>    
     <div class="col-md-12">
     <?php
     if (isset($tablaGraficoevolucion[0]['Producto'])) {
@@ -190,10 +172,10 @@ $this->params['breadcrumbs'][] = $this->title;
     }
     ?>
     </div>
-</div>
+</div>    
 
-    <!--<code><?= __FILE__ ?></code>-->
-
+<!-- FORMULARIO PRECIOS PONDERADOS Y TONELADAS 
+    Carga el grafico y las tablas segun la fecha de la busqueda-->
 <div class="spam12 contenedores">
     <p class="titulos2">PRECIOS PONDERADOS Y TONELADAS COMERCIALIZADAS POR ALHÓNDIGAS</p>
 <div class="row marginbotton">
@@ -205,7 +187,6 @@ $this->params['breadcrumbs'][] = $this->title;
         </form>
     </div>
 </div>
-
 <div class="col-md-12">
 <?php
 if (isset($tablaGraficoppt[0]['Producto'])) {
@@ -218,12 +199,13 @@ if (isset($tablaGraficoppt[0]['Producto'])) {
 ?>
 </div>
 </div>
-<!-- CONSULTAS DESPLEGABLES-->
+
+<!-- TABLAS DE RESULTADO DE PRECIOS PONDERADOS Y TONELADAS -->
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
     <div class="panel panelTabla">
         <div class="panel-heading panelTitulo" role="tab" id="heading1">
-            <h4 role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="true" aria-controls="collapse1" class="panel-title"> 
-                RESUMEN                
+            <h4 role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="true" aria-controls="collapse1" class="panel-title titulosPanel"> 
+                Resumen            
             </h4>
         </div>
         <div id="collapse1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading1">
@@ -234,8 +216,8 @@ if (isset($tablaGraficoppt[0]['Producto'])) {
     </div>
     <div class="panel panelTabla">
         <div class="panel-heading panelTitulo" role="tab" id="heading2">
-            <h4 role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="false" aria-controls="collapse2" class="panel-title">
-                LA UNION
+            <h4 role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="false" aria-controls="collapse2" class="panel-title titulosPanel">
+                La Union
             </h4>
         </div>
         <div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
@@ -317,8 +299,8 @@ if (isset($tablaGraficoppt[0]['Producto'])) {
     </div>
     <div class="panel panelTabla">
         <div class="panel-heading panelTitulo" role="tab" id="heading3">
-            <h4 role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="false" aria-controls="collapse3" class="panel-title">
-                CASI
+            <h4 role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="false" aria-controls="collapse3" class="panel-title titulosPanel">
+                Casi
             </h4>
         </div>
         <div id="collapse3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading3">
@@ -399,8 +381,8 @@ if (isset($tablaGraficoppt[0]['Producto'])) {
     </div>
     <div class="panel panelTabla">
         <div class="panel-heading panelTitulo" role="tab" id="heading4">
-            <h4 role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false" aria-controls="collapse4" class="panel-title">
-                COSTA
+            <h4 role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false" aria-controls="collapse4" class="panel-title titulosPanel">
+                Costa de Almería
             </h4>
         </div>
         <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4">
@@ -450,8 +432,8 @@ if (isset($tablaGraficoppt[0]['Producto'])) {
     </div>
     <div class="panel panelTabla">
         <div class="panel-heading panelTitulo" role="tab" id="heading5">
-            <h4 role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse5" aria-expanded="false" aria-controls="collapse5" class="panel-title">
-                FEMAGO
+            <h4 role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse5" aria-expanded="false" aria-controls="collapse5" class="panel-title titulosPanel">
+                Femago
             </h4>
         </div>
         <div id="collapse5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading5">
@@ -501,8 +483,8 @@ if (isset($tablaGraficoppt[0]['Producto'])) {
     </div>
     <div class="panel panelTabla">
         <div class="panel-heading panelTitulo" role="tab" id="heading6">
-            <h4 role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse6" aria-expanded="false" aria-controls="collapse6" class="panel-title">
-                AGROPONIENTE
+            <h4 role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse6" aria-expanded="false" aria-controls="collapse6" class="panel-title titulosPanel">
+                Agroponiente
             </h4>
         </div>
         <div id="collapse6" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading6">
@@ -551,4 +533,4 @@ if (isset($tablaGraficoppt[0]['Producto'])) {
         </div>
     </div>
 </div>
-<!-- FIN CONSULTAS DESPLEGABLES-->
+<!-- FIN RESULTADOS TABLAS PP Y TONELADAS-->

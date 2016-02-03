@@ -96,12 +96,23 @@ class SiteController extends Controller {
         return $this->render('about');
     }
 
+    /**
+     * Se encarga de gestion de datos para las diferentes graficas y tablas 
+     * de precios ponderados y toneladas, consultando los valores del dia actual
+     * o segun parametros introducidos por los diferentes formularios que corresponden.
+     * 
+     * @return type 
+     */
     public function actionPreciosponderados() {
+        //Iniciamos instancia con el modelo
         $alhondigasppModels = new AlhondigasPreciosPonderados();
-        //$alhondigasppModels2 = new AlhondigasPreciosPonderados();
+        
         // Leemos la petición POST/GET
         $request = yii::$app->request;
         //$fecha_actual2 = date('Y-m-d');
+        
+        //Si recibe pararemos busca datos segun los mismos, 
+        //En caso de no recibir busca segun la fecha actual
         if (count($request->queryParams) != 0) {
             $fecha_actual = $request->get('datetimepicker2');
             $empresas = $request->get('empresas');
@@ -131,22 +142,16 @@ class SiteController extends Controller {
             return $this->render('preciosponderados', ['tablaLaunion' => $resultado, 'tablaCasi' => $resultado2, 'tablaCosta' => $resultado3
                         , 'tablaFemago' => $resultado4, 'tablaAgroponiente' => $resultado5, 'tablaGraficoppt' => $grafico1]);
         }
-        /*
-          if (count($request->queryParams) != 0){
-          $empresas = $request->get('empresas');
-          $productos = $request->get('productos');
-          $tipo = $request->get('tipo');
-          $fechaini = $request->get('datetimepicker2');
-          $fechafin = $request->get('datetimepicker-2');
-
-          $resultado = $alhondigasppModels ->leerDatos($productos,$empresas,$tipo,$fechaini,$fechafin);
-
-          return $this->render('preciosponderados',['tabla'=>$resultado]);
-          }else{
-          //return $this->render('preciosponderados');
-          } */
     }
 
+    /**
+     * Busca el pdf en cuestien de la categoria indicada.
+     * En casa de que la categoria de Historico u Otros,
+     * extrae el listado de los distintos enlaces y los manda
+     * a una pagina nueva para generar dicho contenido en modo de paginacion.
+     * En caso de obtener un unico archivo lo manda para que se abra en el navegador.
+     * @return type
+     */
     public function actionBuscar() {
         $boletinesModels = new Boletines();
 
@@ -169,6 +174,10 @@ class SiteController extends Controller {
         }
     }
 
+    /**
+     * Abre un pdf segun la ruta indicada.
+     * @return type
+     */
     public function actionAbrirpdf() {
         $request = yii::$app->request;
         if (count($request->queryParams) != 0) {

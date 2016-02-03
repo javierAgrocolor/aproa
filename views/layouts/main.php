@@ -53,8 +53,8 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
+           /* ['label' => 'About', 'url' => ['/site/about']],
+            ['label' => 'Contact', 'url' => ['/site/contact']],*/
             ['label' => 'Origen', 'url' => ['/precios/origen']],
             ['label' => 'Mayoristas', 'url' => ['/precios/mayoristas']],
             ['label' => 'Supermercados', 'url' => ['/precios/supermercados']],
@@ -73,6 +73,12 @@ AppAsset::register($this);
     ?>
 
     <div class="container contenidoPrincipal">
+        <div class="row-fluid">
+            <!-- Cabecera -->
+            <div class="span12">
+                <img src="/aproa/images/cabecera.png" class="img-responsive center-block">
+            </div>            
+        </div>
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
