@@ -231,25 +231,21 @@ class PreciosController extends Controller
         
         $today = date('Y-m-d');
         $today = '2015-11-27';
-        $ultimaAlhondiga = $pizarraModel -> leerUltimaAlhondiga($today);
-        if (count($ultimaAlhondiga)>0){
-            $ultimapizarra = $pizarraModel -> leerUltimaPizarra($today, $ultimaAlhondiga);
-        }else{
-            $ultimapizarra = "No existen registros para el día de hoy.";
-        }
         
+        // Pizarra General.
+        $ultimaPizarra = $this -> leerDatosUltima($today);
         $listaPizarras = $pizarraModel -> leerPizarras($today, $listaAlhondigas);
+        
+        // Pizarra Media Global.
         $mediasGlobales = $pizarraModel -> leerMediasGlobales($today);
-        
-        $listaMedias = array();
-        $contador = 0;
-        
-        foreach ($mediasGlobales as $row){
-            $media = $this -> calcularMedia($row);
-            $mediasGlobales[$contador]['media'] = $media;
-            $contador++;
+        $mediasGlobales = $this -> calcularMediasArray($mediasGlobales);
+        // Pizarra de precio por producto.
+        $listaPizarrasProducto = $listaPizarras;
+        foreach ($listaPizarrasProducto as $pizarraProducto){
+            if (is_array($pizarraProducto)){
+                $pizarraProducto = $this ->calcularMediasArray($pizarraProducto);
+            }
         }
-        
         
         
         $request = yii::$app->request;
@@ -263,19 +259,43 @@ class PreciosController extends Controller
         return $this -> render('pizarra', [
             'listaProductos' => $listaProductos,
             'listaAlhondigas' => $listaAlhondigas,
-            'ultimaPizarra' => $ultimapizarra,
+            'ultimaPizarra' => $ultimaPizarra,
             'listaPizarras' => $listaPizarras,
             'fecha' => $today,
-            'mediasGlobales' => $mediasGlobales
+            'mediasGlobales' => $mediasGlobales,
+            'listaPizarrasProducto' => $listaPizarrasProducto
         ]);
         
     }
     
-    public function calcularMedia($row){
+    public function calcularMediasArray($listaPrecios){
+        $contador = 0;
+        foreach ((array)$listaPrecios as $row){
+            $media = $this -> calcularMediaCortes($row);
+            $listaPrecios[$contador]['media'] = $media;
+            $contador++;
+        }
+        
+        return $listaPrecios;
+    }
+    
+    
+    public function leerDatosUltima($today){
+        $pizarraModel = new Preciosdiarios();
+        $ultimaAlhondiga = $pizarraModel -> leerUltimaAlhondiga($today);
+        if (count($ultimaAlhondiga)>0){
+            $ultimapizarra = $pizarraModel -> leerUltimaPizarra($today, $ultimaAlhondiga);
+        }else{
+            $ultimapizarra = "No existen registros para el día de hoy.";
+        }
+        
+        return $ultimapizarra;
+    }
+    
+    public function calcularMediaCortes($row){
         $sumaFila = 0;
         $contador = 0;
         $arrayMedias = array();
-        
         for ($j = 1; $j < 16; $j++){
             if ($row['corte'.$j] != 0.000){
                 $sumaFila += $row['corte'.$j];

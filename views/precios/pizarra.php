@@ -45,7 +45,9 @@
                 ?>
             </div>
             <div role="tabpanel" class="tab-pane" id="precioProducto">
-                pruebaPreciosProducto
+                <?php
+                    //require "aproa/views/precios/pizarraParts/tabProducto.php";
+                ?>
             </div>
             <div role="tabpanel" class="tab-pane" id="precioSemana">
                 pruebaPrecioSemana
