@@ -103,6 +103,10 @@ $this->params['breadcrumbs'][] = $this->title;
             $i = 0;
             $aux = 0;
                 for($x=0; $x < count($listaSemanas); $x++){
+                    if (strlen($listaSemanas[$x]['week']) < 2){
+                        $listaSemanas[$x]['week'] = '0'.$listaSemanas[$x]['week'];
+                    }
+                    
                     $yearValue = substr($listaSemanas[$x]['fechaCorta'], 6, 4);
                     if ($aux == 0){
                         $option = "<option id='".$x."' value=".$listaSemanas[$x]['week']."-".$yearValue."'>".$listaSemanas[$x]['week'].".- ".$listaSemanas[$x]['fechaCorta'];
