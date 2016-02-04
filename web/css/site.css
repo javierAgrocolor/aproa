@@ -1,7 +1,11 @@
 html,
 body {
     height: 100%;
-    background-color: #59aac7;
+    background-color: #95a5ad;
+}
+
+#topmenu{
+    //background: #ffffff
 }
 
 .contenidoPrincipal{
@@ -94,8 +98,12 @@ body {
     margin-bottom: 10px;   
 }
 
-.marginbotton50{
-    margin-bottom: 50px;
+.marginbotton30{
+    margin-bottom: 30px;
+}
+
+.margintop{
+    margin-top: 10px;
 }
 
 .titulos2{
@@ -124,26 +132,7 @@ body {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#ba0202', GradientType=1 );
     color: #ffffff;        
 }
-.panelTitulo2{
-    background-color: #6a90ab;
-    color: #ffffff;    
-}
-.panelTitulo3{
-    background-color: #8d5e73;
-    color: #ffffff;    
-}
-.panelTitulo4{
-    background-color: #a83749;
-    color: #ffffff;    
-}
-.panelTitulo5{
-    background-color: #c2101e;
-    color: #ffffff;    
-}
-.panelTitulo6{
-    background-color: #cc030f;
-    color: #ffffff;    
-}
+
 
 //CSS Pagination
 
