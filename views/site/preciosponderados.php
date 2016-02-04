@@ -259,10 +259,10 @@ if (isset($tablaGraficoppt[0]['Producto'])) {
                             foreach ($tablaLaunion as $row) {
                                 if($contr !=1){
                                     $contr = 1;
-                                    echo "<tr class='trrow danger'>";
+                                    echo "<tr class='danger'>";
                                 }else{
                                     $contr = 2;
-                                    echo "<tr class='trrow'>";
+                                    echo "<tr>";
                                 }
                                 
                     echo "<td>" . $row['Producto'] . "</td>                    
@@ -342,10 +342,10 @@ if (isset($tablaGraficoppt[0]['Producto'])) {
                             foreach ($tablaCasi as $row) {
                                 if($contr !=1){
                                     $contr = 1;
-                                    echo "<tr class='trrow danger'>";
+                                    echo "<tr class='danger'>";
                                 }else{
                                     $contr = 2;
-                                    echo "<tr class='trrow'>";
+                                    echo "<tr>";
                                 }
                                 
                     echo "<td>" . $row['Producto'] . "</td>                    
@@ -408,10 +408,10 @@ if (isset($tablaGraficoppt[0]['Producto'])) {
                             foreach ($tablaCosta as $row) {
                                 if($contr !=1){
                                     $contr = 1;
-                                    echo "<tr class='trrow danger'>";
+                                    echo "<tr class='danger'>";
                                 }else{
                                     $contr = 2;
-                                    echo "<tr class='trrow'>";
+                                    echo "<tr>";
                                 }
                                 
                     echo "<td>" . $row['Producto'] . "</td>                    
@@ -459,10 +459,10 @@ if (isset($tablaGraficoppt[0]['Producto'])) {
                             foreach ($tablaFemago as $row) {
                                 if($contr !=1){
                                     $contr = 1;
-                                    echo "<tr class='trrow danger'>";
+                                    echo "<tr class='danger'>";
                                 }else{
                                     $contr = 2;
-                                    echo "<tr class='trrow'>";
+                                    echo "<tr>";
                                 }
                                 
                     echo "<td>" . $row['Producto'] . "</td>                    
@@ -510,10 +510,10 @@ if (isset($tablaGraficoppt[0]['Producto'])) {
                             foreach ($tablaAgroponiente as $row) {
                                 if($contr !=1){
                                     $contr = 1;
-                                    echo "<tr class='trrow danger'>";
+                                    echo "<tr class='danger'>";
                                 }else{
                                     $contr = 2;
-                                    echo "<tr class='trrow'>";
+                                    echo "<tr>";
                                 }
                                 
                     echo "<td>" . $row['Producto'] . "</td>                    

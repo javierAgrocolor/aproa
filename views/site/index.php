@@ -16,12 +16,26 @@ $this->title = 'APROA - Gestión de Crisis';
     <div class="body-content">
         
         <!-- Imagenes de enlace a Pizarras, origen... -->
-        <div class="row h6">            
-            <div class="col-lg-6">
-                <a href="/aproa/web/index.php/site/preciosponderados"><img src="/aproa/images/pizarra.png" class="img-responsive center-block"></a>
+        
+        <div class="spam12 marginbotton">  
+            <div class="row-fluid">
+            <div class="col-xs-6">
+                <a href="/aproa/web/index.php/site/preciosponderados"><img src="/aproa/images/pizarra1.png" class="img-responsive"></a>
             </div>
-            <div class="col-lg-6">
-                <img src="/aproa/images/pizarra.png" class="img-responsive center-block">
+            <div class="col-xs-6">
+                <img src="/aproa/images/pizarra2.png" class="img-responsive">
+            </div>
+            </div>
+            <div class="row-fluid">
+            <div class="col-md-4  marginbotton30 margintop">
+                <img src="/aproa/images/pizarra3.png" class="img-responsive center-block"></a>
+            </div>
+            <div class="col-md-4 marginbotton30 margintop">
+                <img src="/aproa/images/pizarra4.png" class="img-responsive center-block">
+            </div>
+            <div class="col-md-4 marginbotton30 margintop">
+                <img src="/aproa/images/pizarra5.png" class="img-responsive center-block">
+            </div>
             </div>
         </div>
         
