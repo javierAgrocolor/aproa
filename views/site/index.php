@@ -264,7 +264,7 @@ $this->title = 'APROA - Gestión de Crisis';
         </div>
         
         <!-- Publi APK -->
-        <div class="row">            
+        <div class="row marginbotton30">            
             <div class="span12">
                 <img src="/aproa/images/apkdescarga.png" class="img-responsive center-block">
             </div>

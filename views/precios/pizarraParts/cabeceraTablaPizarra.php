@@ -9,27 +9,24 @@
 ?>
 
 <table class="table table-striped">
-    <thead>
-        <tr>
-            <th>LOGO EMPRESA</th>
-        </tr>
+    <thead>        
         <tr>
             <th><?php echo date('Y-m-d'); ?></th>
             <th>Media</th>
-            <th>1</th>
-            <th>2</th>
-            <th>3</th>
-            <th>4</th>
-            <th>5</th>
-            <th>6</th>
-            <th>7</th>
-            <th>8</th>
-            <th>9</th>
-            <th>10</th>
-            <th>11</th>
-            <th>12</th>
-            <th>13</th>
-            <th>14</th>
-            <th>15</th>
+            <th>C1</th>
+            <th>C2</th>
+            <th>C3</th>
+            <th>C4</th>
+            <th>C5</th>
+            <th>C6</th>
+            <th>C7</th>
+            <th>C8</th>
+            <th>C9</th>
+            <th>C10</th>
+            <th>C11</th>
+            <th>C12</th>
+            <th>C13</th>
+            <th>C14</th>
+            <th>C15</th>
         </tr>
     </thead>

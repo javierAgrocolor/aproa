@@ -87,7 +87,7 @@ AppAsset::register($this);
     </div>
 </div>
 
-<footer class="footer">
+<footer class="footer mifooter">
     <div class="container">
         <p class="pull-left"><strong>&copy; <img src="/aproa/images/aproafooter.png" > <?= date('Y') ?></strong></p>
         <p class="pull-right"><strong>Subvencionado a través del Programa operativo parcial de APROA: Medidas de Prevención y Gestión de Crisis.</strong></p>

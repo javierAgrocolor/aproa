@@ -533,4 +533,5 @@ if (isset($tablaGraficoppt[0]['Producto'])) {
         </div>
     </div>
 </div>
+<div class="marginbotton30"></div>
 <!-- FIN RESULTADOS TABLAS PP Y TONELADAS-->

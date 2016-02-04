@@ -12,21 +12,21 @@
         <tr>
             <th>Productos</th>
             <th>Media</th>
-            <th>Corte 1</th>
-            <th>Corte 2</th>
-            <th>Corte 3</th>
-            <th>Corte 4</th>
-            <th>Corte 5</th>
-            <th>Corte 6</th>
-            <th>Corte 7</th>
-            <th>Corte 8</th>
-            <th>Corte 9</th>
-            <th>Corte 10</th>
-            <th>Corte 11</th>
-            <th>Corte 12</th>
-            <th>Corte 13</th>
-            <th>Corte 14</th>
-            <th>Corte 15</th>
+            <th>C1</th>
+            <th>C2</th>
+            <th>C3</th>
+            <th>C4</th>
+            <th>C5</th>
+            <th>C6</th>
+            <th>C7</th>
+            <th>C8</th>
+            <th>C9</th>
+            <th>C10</th>
+            <th>C11</th>
+            <th>C12</th>
+            <th>C13</th>
+            <th>C14</th>
+            <th>C15</th>
         </tr>
     </thead>
     <tbody>

@@ -21,8 +21,8 @@ foreach ($listaAlhondigas as $alhondiga){
         <div class="panel-body">
             <?php
             if (is_array($listaPizarrasProducto[$y])){
-                require("aproa/views/precios/pizarraParts/cabeceraTablaPizarra.php");
-                require("aproa/views/precios/pizarraParts/cuerpoTablaProducto.php");
+                require($_SERVER['DOCUMENT_ROOT'].'/aproa/views/precios/pizarraParts/cabeceraTablaPizarra.php');
+                require($_SERVER['DOCUMENT_ROOT'].'/aproa/views/precios/pizarraParts/cuerpoTablaProducto.php');
             }else{
                 echo "No existen aún registros para el día de hoy.";
             }

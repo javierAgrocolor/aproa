@@ -5,13 +5,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+use yii\helpers\Html;
 
+$this->title = 'Pizarra de Precios';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-
+<div class="row-fluid marginbotton30">
+    <p class="titulosPaginaPrincipal">Pizarra de Precios: <?php echo $fecha; ?></p>
+</div>
 <div class="row-fluid">
-    <div class="col-lg-12">
-        <h3><?php echo $fecha; ?></h3>
-        <ul class="nav nav-tabs">
+    <div class="col-lg-12">        
+        <ul class="nav nav-tabs" id="navprecios">
             <li role="tablero" class="active">
                 <a href="#pizarras" role="tab" data-toggle="tab">Pizarras</a>
             </li>
@@ -36,17 +40,17 @@
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="pizarras">
                 <?php
-                    require "aproa/views/precios/pizarraParts/tabPizarra.php";
+                    require($_SERVER['DOCUMENT_ROOT'].'/aproa/views/precios/pizarraParts/tabPizarra.php');
                 ?>
             </div>
             <div role="tabpanel" class="tab-pane" id="mediaGlobal">
                 <?php
-                    require "aproa/views/precios/pizarraParts/tabMedias.php";
+                    require($_SERVER['DOCUMENT_ROOT'].'/aproa/views/precios/pizarraParts/tabMedias.php');
                 ?>
             </div>
             <div role="tabpanel" class="tab-pane" id="precioProducto">
                 <?php
-                    require "aproa/views/precios/pizarraParts/tabProducto.php";
+                    require($_SERVER['DOCUMENT_ROOT'].'/aproa/views/precios/pizarraParts/tabProducto.php');
                 ?>
             </div>
             <div role="tabpanel" class="tab-pane" id="precioSemana">
@@ -59,5 +63,5 @@
                 pruebaPrecioComision
             </div>
         </div>
-    </div>
+    </div>    
 </div>
