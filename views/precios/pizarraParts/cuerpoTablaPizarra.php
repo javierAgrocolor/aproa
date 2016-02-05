@@ -17,7 +17,7 @@ foreach ($listaPizarras[$y] as $row) {
         echo "<tr>";
     }
     echo "<td>" . $row['nombre'] . "</td>";
-    echo "<td>PUTA MEDIA</td>";
+    echo "<td>0.375</td>";
     echo "<td>" . $row['corte1'] . "</td>";
     echo "<td>" . $row['corte2'] . "</td>";
     echo "<td>" . $row['corte3'] . "</td>";

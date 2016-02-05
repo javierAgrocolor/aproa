@@ -5,7 +5,7 @@ body {
 }
 
 #topmenu{
-    //background: #ffffff
+    /*background: #ffffff*/
 }
 
 .contenidoPrincipal{
@@ -26,6 +26,48 @@ body {
     -moz-border-radius: 35px 0px 35px 0px;
     -webkit-border-radius: 35px 0px 35px 0px;
     border: 2px solid #000000;
+}
+
+.contenedoresTable{
+    
+    background: #ffffff;
+    margin: 0 0 25px;
+    overflow: hidden;
+    padding: 10px;
+    border-radius: 35px 0px 35px 0px;
+    -moz-border-radius: 35px 0px 35px 0px;
+    -webkit-border-radius: 35px 0px 35px 0px;
+    border: 2px solid #000000;
+}
+
+.bordebotton{
+    
+    background: #ffffff;
+    margin: 0 0 25px;
+    overflow: hidden;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    border-radius: 35px 0px 35px 0px;
+    -moz-border-radius: 35px 0px 35px 0px;
+    -webkit-border-radius: 35px 0px 35px 0px;
+    border-bottom: 2px solid #000000;
+    /*border-top: 2px solid #000000;*/
+}
+
+.bordetop{
+    
+    background: #ffffff;
+    margin: 0 0 25px;
+    overflow: hidden;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    border-radius: 35px 0px 35px 0px;
+    -moz-border-radius: 35px 0px 35px 0px;
+    -webkit-border-radius: 35px 0px 35px 0px;
+    /*border-bottom: 2px solid #000000;*/
+    border-top: 2px solid #000000;
 }
 
 .contenedoresPaginacion{
@@ -133,9 +175,15 @@ body {
     color: #ffffff;        
 }
 
-//CSS NAVTABS
+.formcaja{
+    line-height:1.42857143;
+border: 1px solid #ccc;
+border-radius:4px;
+}
+
+/*CSS NAVTABS*/
 .nav-tabs{
-    background-color:#000 !important;
+    /*background-color:#000 !important;*/
 }
 
 .nav-tabs > li > a{
@@ -145,8 +193,8 @@ body {
 }
 .nav-tabs > li > a:hover{
     background-color: #c0c0c0 !important;
-    //border: medium none;
-    //border-radius: 0;
+    /*border: medium none;
+    //border-radius: 0;*/
     color:#fff;
 }
 .nav-tabs > li.active > a,
@@ -154,10 +202,10 @@ body {
 .nav-tabs > li.active > a:hover{
     background-color: #707070 !important;
     color: #fff;
-    //border: 1px solid #000 !important;
+    /*border: 1px solid #000 !important;*/
 }
 
-//CSS Pagination
+/*CSS Pagination*/
 ul.simple-pagination {
     list-style: none;
 }
@@ -230,9 +278,9 @@ ul.simple-pagination {
     cursor: default;
 }
 
-//Fin CSS Pagination
+/*Fin CSS Pagination*/
 
-//CSS Menu desplegables para botones de informes de la pagina inical
+/*CSS Menu desplegables para botones de informes de la pagina inical*/
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
     background-image:none !important;
 }
@@ -282,7 +330,7 @@ ul.simple-pagination {
     top: 11px;
     left: -6px;
 }
-// Fin css menu desplegable
+/* Fin css menu desplegable*/
 .wrap {
     min-height: 100%;
     height: auto;

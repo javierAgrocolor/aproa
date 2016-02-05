@@ -76,7 +76,7 @@ AppAsset::register($this);
     <div class="container contenidoPrincipal">
         <div class="row-fluid">
             <!-- Cabecera -->
-            <div class="span12">
+            <div class="span12 marginbotton">
                 <img src="/aproa/images/cabecera.png" class="img-responsive center-block">
             </div>            
         </div>
