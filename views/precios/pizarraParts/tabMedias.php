@@ -6,8 +6,8 @@
  * and open the template in the editor.
  */
 ?>
-
-<table class="table table-striped">
+<div class="spam12 contenedoresTable margintop">
+<table class="table">
     <thead>
         <tr>
             <th>Productos</th>
@@ -31,14 +31,28 @@
     </thead>
     <tbody>
         <?php 
+        $contr = 1;
             foreach ($mediasGlobales as $productoGlobal){
-                echo "<tr>";
+                if ($contr != 1) {
+                            $contr = 1;
+                            echo "<tr class='danger'>";
                 echo "<td>".$productoGlobal['nombre']."</td>";
                 echo "<td>".round($productoGlobal['media'],3)."</td>";
                 for ($i = 1; $i < 16; $i++){
                     echo "<td>".$productoGlobal['corte'.$i]."</td>";
                 }
+                        } else {
+                            $contr = 2;
+                            echo "<tr>";
+                echo "<td>".$productoGlobal['nombre']."</td>";
+                echo "<td>".round($productoGlobal['media'],3)."</td>";
+                for ($i = 1; $i < 16; $i++){
+                    echo "<td>".$productoGlobal['corte'.$i]."</td>";
+                }
+                        }
+                
             }
         ?>
     </tbody>
 </table>
+</div>
