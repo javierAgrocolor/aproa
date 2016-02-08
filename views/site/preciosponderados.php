@@ -98,7 +98,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 title: 'Producto: <?php echo $tablaGraficoevolucion[0]['Producto']; ?>, <?php echo $tablaGraficoevolucion[0]['Empresa']; ?>',
                 legend: {position: 'top'},
                 vAxis: {0: {format: '#'}, 1: {format: '#'}},
-                hAxis: {title: 'Semana'},
+                hAxis: {title: ''},
                 backgroundColor: '#ffffff',
                 series: {
                     0: {type: "line", color: '#cd010d', targetAxisIndex: 0},

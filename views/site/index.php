@@ -254,12 +254,12 @@ $this->title = 'APROA - Gestión de Crisis';
         <!-- Correo -->
         <div class="row">            
             <div class="span12">
-                <h3 class="titulosPaginaPrincipal">Correo Diario</h3>
+                <h3 class="titulosPaginaPrincipal">Boletín Diario</h3>
             </div>              
         </div>
         <div class="spam12 contenedores">
             <div class="col-md-12">
-                <p class="titulos2">Aun no se han generado correos para este día.</p>
+                <p class="titulos2">Aun no se han generado boletines para este día.</p>
             </div>            
         </div>
         
