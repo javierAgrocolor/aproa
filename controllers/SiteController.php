@@ -173,6 +173,14 @@ class SiteController extends Controller {
             }
         }
     }
+    
+    public function actionBoletines(){
+        $request = yii::$app->request;
+        if (count($request->queryParams) != 0) {
+           $diano = $request->get('diano');
+           return $this->render('boletindiario',['diano'=>$diano]);            
+        }
+    }
 
     /**
      * Abre un pdf segun la ruta indicada.

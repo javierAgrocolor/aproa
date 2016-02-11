@@ -19,11 +19,11 @@ $this->title = 'APROA - Gestión de Crisis';
         
         <div class="spam12 marginbotton">  
             <div class="row-fluid">
-            <div class="col-xs-6">
+            <div class="col-md-6">
                 <a href="/aproa/web/index.php/site/preciosponderados"><img src="/aproa/images/pizarra1.png" class="img-responsive"></a>
             </div>
-            <div class="col-xs-6">
-                <img src="/aproa/images/pizarra2.png" class="img-responsive">
+            <div class="col-md-6">
+                <a href="/aproa/views/precios/pizarra"><img src="/aproa/images/pizarra2.png" class="img-responsive"></a>
             </div>
             </div>
             <div class="row-fluid">
@@ -47,8 +47,9 @@ $this->title = 'APROA - Gestión de Crisis';
         </div>
         
         <!-- Botones informes-->
-        <div class="row ">            
-            <div class="col-lg-3">
+        <div class="row ">    
+            <div class="spam12">
+            <div class="col-md-3">
                 <a target="_blank" href="/aproa/web/index.php/site/buscar?informes=Calidad-Total_Hortalizas"><img src="/aproa/images/boton1.jpg" class="img-responsive center-block imgInformes"></a>            
                 <ul class="nav nav-pills">
                     <li class="dropdown">
@@ -87,7 +88,7 @@ $this->title = 'APROA - Gestión de Crisis';
                 <a target="_blank" href="/aproa/web/index.php/site/buscar?informes=Prevision_de_Cultivos"><img src="/aproa/images/boton3.jpg" class="img-responsive center-block imgInformes"></a>
                 <a target="_blank" href="/aproa/web/index.php/site/buscar?informes=Exportación Anual%"><img src="/aproa/images/boton4.jpg" class="img-responsive center-block imgInformes"></a>
             </div>
-            <div class="col-lg-3">
+            <div class="col-md-3">
                 <a target="_blank" href="/aproa/web/index.php/site/buscar?informes=Comercializacion-Aproa_semanal"><img src="/aproa/images/boton5.jpg" class="img-responsive center-block imgInformes"></a>
                 <ul class="nav nav-pills">
                     <li class="dropdown">
@@ -104,7 +105,7 @@ $this->title = 'APROA - Gestión de Crisis';
                 <a target="_blank" href="/aproa/web/index.php/site/buscar?informes=Clima"><img src="/aproa/images/boton7.jpg" class="img-responsive center-block imgInformes"></a>
                 <a target="_blank" href="/aproa/web/index.php/site/buscar?informes=Supermercados"><img src="/aproa/images/boton8.jpg" class="img-responsive center-block imgInformes"></a>
             </div>
-            <div class="col-lg-3">                
+            <div class="col-md-3">                
                 <ul class="nav nav-pills">
                     <li class="dropdown">
                         <img src="/aproa/images/boton9.jpg"  data-toggle="dropdown" class="dropdown-toggle img-responsive imgInformes">
@@ -232,7 +233,7 @@ $this->title = 'APROA - Gestión de Crisis';
                     </li>
                 </ul>
             </div>
-            <div class="col-lg-3">
+            <div class="col-md-3">
                 <a target="_blank" href="/aproa/web/index.php/site/buscar?informes=Seguimiento_de_Campaña"><img src="/aproa/images/boton13.jpg" class="img-responsive center-block imgInformes"></a>
                 <ul class="nav nav-pills">
                     <li class="dropdown">
@@ -250,6 +251,7 @@ $this->title = 'APROA - Gestión de Crisis';
                 <a href="/aproa/web/index.php/site/buscar?informes=Otros"><img src="/aproa/images/boton16.jpg" class="img-responsive center-block imgInformes"></a>
             </div>
         </div>
+        </div>
         
         <!-- Correo -->
         <div class="row">            
@@ -258,8 +260,23 @@ $this->title = 'APROA - Gestión de Crisis';
             </div>              
         </div>
         <div class="spam12 contenedores">
-            <div class="col-md-12">
-                <p class="titulos2">Aun no se han generado boletines para este día.</p>
+            <div class="col-md-10 col-md-offset-1">
+                <!--<p class="titulos2">Aun no se han generado boletines para este día.</p>-->
+                <?php
+                $hoy=date('z')+1;
+                if(file_exists('../correos/img/'.$hoy.'1.jpg')&& file_exists('../correos/img/'.$hoy.'2.jpg') && file_exists('../correos/img/'.$hoy.'3.jpg')){
+		
+		echo"<a href='/aproa/web/index.php/site/boletines?diano=$hoy' target='_blank'><img src='/aproa/correos/img/".$hoy."1.jpg' class='img-responsive center-block'/></a>";
+			
+		echo"<a href='/aproa/web/index.php/site/boletines?diano=$hoy' target='_blank'><img src='/aproa/correos/img/".$hoy."2.jpg' class='img-responsive center-block'/></a>";
+		
+		echo"<a href='/aproa/web/index.php/site/boletines?diano=$hoy' target='_new'><img src='/aproa/correos/img/".$hoy."3.jpg' class='img-responsive center-block'/></a>";
+		
+	}else{
+		echo"<a class='titulos2' href='/aproa/web/index.php/site/boletines?diano=$hoy' target='_new'>El boletín de ".date("d/m/y")." aun no está disponible. Pulse aquí para visualizar otros boletines.</a>";
+	}
+                ?>
+                              
             </div>            
         </div>
         
