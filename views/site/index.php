@@ -264,13 +264,13 @@ $this->title = 'APROA - Gestión de Crisis';
                 <!--<p class="titulos2">Aun no se han generado boletines para este día.</p>-->
                 <?php
                 $hoy=date('z')+1;
-                if(file_exists('../correos/img/'.$hoy.'1.jpg')&& file_exists('../correos/img/'.$hoy.'2.jpg') && file_exists('../correos/img/'.$hoy.'3.jpg')){
+                if(file_exists('../correos/img2/2016-'.$hoy.'-1.jpg')&& file_exists('../correos/img2/2016-'.$hoy.'-2.jpg') && file_exists('../correos/img2/2016-'.$hoy.'-3.jpg')){
 		
-		echo"<a href='/aproa/web/index.php/site/boletines?diano=$hoy' target='_blank'><img src='/aproa/correos/img/".$hoy."1.jpg' class='img-responsive center-block'/></a>";
+		echo"<a href='/aproa/web/index.php/site/boletines?diano=$hoy' target='_blank'><img src='/aproa/correos/img2/2016-".$hoy."-1.jpg' class='img-responsive center-block'/></a>";
 			
-		echo"<a href='/aproa/web/index.php/site/boletines?diano=$hoy' target='_blank'><img src='/aproa/correos/img/".$hoy."2.jpg' class='img-responsive center-block'/></a>";
+		echo"<a href='/aproa/web/index.php/site/boletines?diano=$hoy' target='_blank'><img src='/aproa/correos/img2/2016-".$hoy."-2.jpg' class='img-responsive center-block'/></a>";
 		
-		echo"<a href='/aproa/web/index.php/site/boletines?diano=$hoy' target='_new'><img src='/aproa/correos/img/".$hoy."3.jpg' class='img-responsive center-block'/></a>";
+		echo"<a href='/aproa/web/index.php/site/boletines?diano=$hoy' target='_new'><img src='/aproa/correos/img2/2016-".$hoy."-3.jpg' class='img-responsive center-block'/></a>";
 		
 	}else{
 		echo"<a class='titulos2' href='/aproa/web/index.php/site/boletines?diano=$hoy' target='_new'>El boletín de ".date("d/m/y")." aun no está disponible. Pulse aquí para visualizar otros boletines.</a>";

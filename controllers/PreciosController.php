@@ -59,6 +59,7 @@ class PreciosController extends Controller
 
     public function actionSupermercados()
     {
+        if (!\Yii::$app->user->isGuest) {
         // Construimos los modelos que vamos a necesitar.
         $supermercadosModel = new DatosSupermercados();
         $productModel = new Producto();
@@ -110,12 +111,14 @@ class PreciosController extends Controller
                 'listaSemanas' => $listaSemanas
             ]);
         }
-        
+       }else{
+        return $this->goHome();
+    } 
     }
     
     public function actionMayoristas()
     {
-        
+        if (!\Yii::$app->user->isGuest) {
         //Construimos los modelos que vamos a necesitar.
         $productModel = new Producto();
         $origenModel = new Origen();
@@ -168,10 +171,14 @@ class PreciosController extends Controller
                 'listaSemanas' => $listaSemanas
         ]);
         }
+        }else{
+        return $this->goHome();
+    }
     }
     
     public function actionOrigen()
     {
+        if (!\Yii::$app->user->isGuest) {
         //Construimos los modelos que vamos a necesitar.
         $productModel = new Producto();
         $origenModel = new DatosOrigen();
@@ -215,11 +222,13 @@ class PreciosController extends Controller
                 'listaSemanas' => $listaSemanas
             ]);
         }
-        
+        }else{
+        return $this->goHome();
+    }
     }
     
     public function actionPizarraprecios(){
-        
+        if (!\Yii::$app->user->isGuest) {
         //Construimos los modelos que vamos a necesitar.
         $pizarraModel = new Preciosdiarios();
         
@@ -282,7 +291,9 @@ class PreciosController extends Controller
             'listaPizarrasProducto' => $listaPizarrasAuxiliar,
             'filaMedias' => $filaMedias
         ]);
-        
+        }else{
+        return $this->goHome();
+    }
     }
     
     public function calcularMediasArray($listaPrecios){
@@ -343,7 +354,7 @@ class PreciosController extends Controller
     }
     
     public function actionLeersemanas2(){
-        
+        if (!\Yii::$app->user->isGuest) {
         //Construimos los modelos que vamos a necesitar.
         $productModel = new Producto();
         $datosOrigenModel = new DatosOrigen();
@@ -388,5 +399,9 @@ class PreciosController extends Controller
                 ]);
             
         }
+        }else{
+        return $this->goHome();
     }
+    }
+    
 }

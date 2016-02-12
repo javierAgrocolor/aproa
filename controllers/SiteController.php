@@ -10,6 +10,7 @@ use app\models\AlhondigasPreciosPonderados;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Boletines;
+use app\models\Accesos;
 
 class SiteController extends Controller {
 
@@ -47,7 +48,7 @@ class SiteController extends Controller {
         ];
     }
 
-    public function actionIndex() {
+    public function actionIndex() {        
         //return $this->render('index');
         if (!\Yii::$app->user->isGuest) {
             return $this->render('index');
@@ -55,6 +56,11 @@ class SiteController extends Controller {
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            $accesos = new Accesos();
+            $accesos->usuario = Yii::$app->user->identity->usuario;
+            $accesos->fecha = date('Y-m-d H:i:s');
+            $accesos->ip = $this->getRealIP();
+            $accesos->save();
             return $this->render('index');
         }
         return $this->render('login', ['model' => $model,]);
@@ -104,43 +110,46 @@ class SiteController extends Controller {
      * @return type 
      */
     public function actionPreciosponderados() {
-        //Iniciamos instancia con el modelo
-        $alhondigasppModels = new AlhondigasPreciosPonderados();
-        
-        // Leemos la petición POST/GET
-        $request = yii::$app->request;
-        //$fecha_actual2 = date('Y-m-d');
-        
-        //Si recibe pararemos busca datos segun los mismos, 
-        //En caso de no recibir busca segun la fecha actual
-        if (count($request->queryParams) != 0) {
-            $fecha_actual = $request->get('datetimepicker2');
-            $empresas = $request->get('empresas');
-            $productos = $request->get('productos');
-            $sd = $request->get('sd');
-            $fechafin = $request->get('datetimepicker-2');
+        if (!\Yii::$app->user->isGuest) {
+            //Iniciamos instancia con el modelo
+            $alhondigasppModels = new AlhondigasPreciosPonderados();
 
-            $resultado = $alhondigasppModels->laUnion($fecha_actual);
-            $resultado2 = $alhondigasppModels->casi($fecha_actual);
-            $resultado3 = $alhondigasppModels->costa($fecha_actual);
-            $resultado4 = $alhondigasppModels->femago($fecha_actual);
-            $resultado5 = $alhondigasppModels->agroponiente($fecha_actual);
-            $grafico1 = $alhondigasppModels->graficoPpt($fecha_actual);
-            $grafico2 = $alhondigasppModels->graficoEvolucion($productos, $empresas, $sd, $fechafin);
-            return $this->render('preciosponderados', ['tablaLaunion' => $resultado, 'tablaCasi' => $resultado2, 'tablaCosta' => $resultado3
-                        , 'tablaFemago' => $resultado4, 'tablaAgroponiente' => $resultado5, 'tablaGraficoppt' => $grafico1, 'tablaGraficoevolucion' => $grafico2]);
+            // Leemos la petición POST/GET
+            $request = yii::$app->request;
+            //$fecha_actual2 = date('Y-m-d');
+            //Si recibe pararemos busca datos segun los mismos, 
+            //En caso de no recibir busca segun la fecha actual
+            if (count($request->queryParams) != 0) {
+                $fecha_actual = $request->get('datetimepicker2');
+                $empresas = $request->get('empresas');
+                $productos = $request->get('productos');
+                $sd = $request->get('sd');
+                $fechafin = $request->get('datetimepicker-2');
+
+                $resultado = $alhondigasppModels->laUnion($fecha_actual);
+                $resultado2 = $alhondigasppModels->casi($fecha_actual);
+                $resultado3 = $alhondigasppModels->costa($fecha_actual);
+                $resultado4 = $alhondigasppModels->femago($fecha_actual);
+                $resultado5 = $alhondigasppModels->agroponiente($fecha_actual);
+                $grafico1 = $alhondigasppModels->graficoPpt($fecha_actual);
+                $grafico2 = $alhondigasppModels->graficoEvolucion($productos, $empresas, $sd, $fechafin);
+                return $this->render('preciosponderados', ['tablaLaunion' => $resultado, 'tablaCasi' => $resultado2, 'tablaCosta' => $resultado3
+                            , 'tablaFemago' => $resultado4, 'tablaAgroponiente' => $resultado5, 'tablaGraficoppt' => $grafico1, 'tablaGraficoevolucion' => $grafico2]);
+            } else {
+                $fecha_actual = date('Y-m-d');
+
+                $resultado = $alhondigasppModels->laUnion($fecha_actual);
+                $resultado2 = $alhondigasppModels->casi($fecha_actual);
+                $resultado3 = $alhondigasppModels->costa($fecha_actual);
+                $resultado4 = $alhondigasppModels->femago($fecha_actual);
+                $resultado5 = $alhondigasppModels->agroponiente($fecha_actual);
+                $grafico1 = $alhondigasppModels->graficoPpt($fecha_actual);
+
+                return $this->render('preciosponderados', ['tablaLaunion' => $resultado, 'tablaCasi' => $resultado2, 'tablaCosta' => $resultado3
+                            , 'tablaFemago' => $resultado4, 'tablaAgroponiente' => $resultado5, 'tablaGraficoppt' => $grafico1]);
+            }
         } else {
-            $fecha_actual = date('Y-m-d');
-
-            $resultado = $alhondigasppModels->laUnion($fecha_actual);
-            $resultado2 = $alhondigasppModels->casi($fecha_actual);
-            $resultado3 = $alhondigasppModels->costa($fecha_actual);
-            $resultado4 = $alhondigasppModels->femago($fecha_actual);
-            $resultado5 = $alhondigasppModels->agroponiente($fecha_actual);
-            $grafico1 = $alhondigasppModels->graficoPpt($fecha_actual);
-
-            return $this->render('preciosponderados', ['tablaLaunion' => $resultado, 'tablaCasi' => $resultado2, 'tablaCosta' => $resultado3
-                        , 'tablaFemago' => $resultado4, 'tablaAgroponiente' => $resultado5, 'tablaGraficoppt' => $grafico1]);
+            return $this->goHome();
         }
     }
 
@@ -153,32 +162,40 @@ class SiteController extends Controller {
      * @return type
      */
     public function actionBuscar() {
-        $boletinesModels = new Boletines();
+        if (!\Yii::$app->user->isGuest) {
+            $boletinesModels = new Boletines();
 
-        $request = yii::$app->request;
-        if (count($request->queryParams) != 0) {
-            $tipo = $request->get('informes');
-            if ($tipo != 'Historico' && $tipo != 'Otros') {
-                $filename = $boletinesModels->buscarPdf($tipo);
-                //exit($filename[0]['Boletin']);           
-                return $this->redirect('/aproa/pdf/' . $filename[0]['Boletin'] . '.pdf');
-            } else {
-                if ($tipo != 'Otros') {
-                    $historico = $boletinesModels->buscarHistorico();
-                    return $this->render('historico', ['tablaHistorico' => $historico]);
+            $request = yii::$app->request;
+            if (count($request->queryParams) != 0) {
+                $tipo = $request->get('informes');
+                if ($tipo != 'Historico' && $tipo != 'Otros') {
+                    $filename = $boletinesModels->buscarPdf($tipo);
+                    //exit($filename[0]['Boletin']);           
+                    return $this->redirect('/aproa/pdf/' . $filename[0]['Boletin'] . '.pdf');
                 } else {
-                    $otros = $boletinesModels->buscarOtros();
-                    return $this->render('otros', ['tablaOtros' => $otros]);
+                    if ($tipo != 'Otros') {
+                        $historico = $boletinesModels->buscarHistorico();
+                        return $this->render('historico', ['tablaHistorico' => $historico]);
+                    } else {
+                        $otros = $boletinesModels->buscarOtros();
+                        return $this->render('otros', ['tablaOtros' => $otros]);
+                    }
                 }
             }
+        } else {
+            return $this->goHome();
         }
     }
-    
-    public function actionBoletines(){
-        $request = yii::$app->request;
-        if (count($request->queryParams) != 0) {
-           $diano = $request->get('diano');
-           return $this->render('boletindiario',['diano'=>$diano]);            
+
+    public function actionBoletines() {
+        if (!\Yii::$app->user->isGuest) {
+            $request = yii::$app->request;
+            if (count($request->queryParams) != 0) {
+                $diano = $request->get('diano');
+                return $this->render('boletindiario', ['diano' => $diano]);
+            }
+        } else {
+            return $this->goHome();
         }
     }
 
@@ -187,11 +204,25 @@ class SiteController extends Controller {
      * @return type
      */
     public function actionAbrirpdf() {
-        $request = yii::$app->request;
-        if (count($request->queryParams) != 0) {
-            $pdf = $request->get('informes');
-            return $this->redirect('/aproa/pdf/' . $pdf . '.pdf');
+        if (!\Yii::$app->user->isGuest) {
+            $request = yii::$app->request;
+            if (count($request->queryParams) != 0) {
+                $pdf = $request->get('informes');
+                return $this->redirect('/aproa/pdf/' . $pdf . '.pdf');
+            }
+        } else {
+            return $this->goHome();
         }
+    }
+
+    public function getRealIP() {
+        if (!empty($_SERVER['HTTP_CLIENT_IP']))
+            return $_SERVER['HTTP_CLIENT_IP'];
+
+        if (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
+            return $_SERVER['HTTP_X_FORWARDED_FOR'];
+
+        return $_SERVER['REMOTE_ADDR'];
     }
 
 }

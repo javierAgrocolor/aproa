@@ -37,8 +37,8 @@ $anterior = $diano-1;
             <?php
             //echo $diano;
             for($x=1;$x<15;$x++){
-            if(file_exists('../correos/img/'.$diano.''.$x.'.jpg')){
-                echo"<img src='/aproa/correos/img/".$diano."".$x.".jpg' class='img-responsive center-block'/>";
+            if(file_exists('../correos/img2/2016-'.$diano.'-'.$x.'.jpg')){
+                echo"<img src='/aproa/correos/img2/2016-".$diano."-".$x.".jpg' class='img-responsive center-block'/>";
             }
             }
             ?>
