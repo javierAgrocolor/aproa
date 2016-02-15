@@ -40,6 +40,7 @@ AppAsset::register($this);
     <script src="../../js/funciones.js" type="text/javascript"></script>
     <script src="../../js/jquery.simplePagination.js" type="text/javascript"></script>
     <?php $this->registerJsFile(Yii::$app->request->baseUrl.'/assets/pluginDropdown/chosen.jquery.js',['depends' => [\yii\web\JqueryAsset::className()]]); ?>
+    <link rel="shortcut icon" href="/aproa/images/favicon.ico" type="image/x-icon" />
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -68,7 +69,7 @@ AppAsset::register($this);
             Yii::$app->user->isGuest ?
                 ['label' => 'Login', 'url' => ['/site/login']] :
                 [
-                    'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
+                    'label' => 'Logout (' . Yii::$app->user->identity->usuario . ')',
                     'url' => ['/site/logout'],
                     'linkOptions' => ['data-method' => 'post']
                 ],
