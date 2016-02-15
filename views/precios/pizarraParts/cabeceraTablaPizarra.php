@@ -13,20 +13,20 @@
         <tr>
             <th><?php echo date('Y-m-d'); ?></th>
             <th>Media</th>
-            <th>C1</th>
-            <th>C2</th>
-            <th>C3</th>
-            <th>C4</th>
-            <th>C5</th>
-            <th>C6</th>
-            <th>C7</th>
-            <th>C8</th>
-            <th>C9</th>
-            <th>C10</th>
-            <th>C11</th>
-            <th>C12</th>
-            <th>C13</th>
-            <th>C14</th>
-            <th>C15</th>
+            <th class="corteCabecera1">C1</th>
+            <th class="corteCabecera2">C2</th>
+            <th class="corteCabecera3">C3</th>
+            <th class="corteCabecera4">C4</th>
+            <th class="corteCabecera5">C5</th>
+            <th class="corteCabecera6">C6</th>
+            <th class="corteCabecera7">C7</th>
+            <th class="corteCabecera8">C8</th>
+            <th class="corteCabecera9">C9</th>
+            <th class="corteCabecera10">C10</th>
+            <th class="corteCabecera11">C11</th>
+            <th class="corteCabecera12">C12</th>
+            <th class="corteCabecera13">C13</th>
+            <th class="corteCabecera14">C14</th>
+            <th class="corteCabecera15">C15</th>
         </tr>
     </thead>

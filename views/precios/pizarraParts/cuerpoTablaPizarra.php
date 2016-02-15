@@ -18,21 +18,21 @@ foreach ($listaPizarras[$y] as $row) {
     }
     echo "<td>" . $row['nombre'] . "</td>";
     echo "<td>0.375</td>";
-    echo "<td>" . $row['corte1'] . "</td>";
-    echo "<td>" . $row['corte2'] . "</td>";
-    echo "<td>" . $row['corte3'] . "</td>";
-    echo "<td>" . $row['corte4'] . "</td>";
-    echo "<td>" . $row['corte5'] . "</td>";
-    echo "<td>" . $row['corte6'] . "</td>";
-    echo "<td>" . $row['corte7'] . "</td>";
-    echo "<td>" . $row['corte8'] . "</td>";
-    echo "<td>" . $row['corte9'] . "</td>";
-    echo "<td>" . $row['corte10'] . "</td>";
-    echo "<td>" . $row['corte11'] . "</td>";
-    echo "<td>" . $row['corte12'] . "</td>";
-    echo "<td>" . $row['corte13'] . "</td>";
-    echo "<td>" . $row['corte14'] . "</td>";
-    echo "<td>" . $row['corte15'] . "</td>";
+    echo "<td class='corte1'>" . $row['corte1'] . "</td>";
+    echo "<td class='corte2'>" . $row['corte2'] . "</td>";
+    echo "<td class='corte3'>" . $row['corte3'] . "</td>";
+    echo "<td class='corte4'>" . $row['corte4'] . "</td>";
+    echo "<td class='corte5'>" . $row['corte5'] . "</td>";
+    echo "<td class='corte6'>" . $row['corte6'] . "</td>";
+    echo "<td class='corte7'>" . $row['corte7'] . "</td>";
+    echo "<td class='corte8'>" . $row['corte8'] . "</td>";
+    echo "<td class='corte9'>" . $row['corte9'] . "</td>";
+    echo "<td class='corte10'>" . $row['corte10'] . "</td>";
+    echo "<td class='corte11'>" . $row['corte11'] . "</td>";
+    echo "<td class='corte12'>" . $row['corte12'] . "</td>";
+    echo "<td class='corte13'>" . $row['corte13'] . "</td>";
+    echo "<td class='corte14'>" . $row['corte14'] . "</td>";
+    echo "<td class='corte15'>" . $row['corte15'] . "</td>";
     ?>
     </tr>
         <?php

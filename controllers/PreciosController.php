@@ -267,6 +267,29 @@ class PreciosController extends Controller
         $request = yii::$app->request;
         //En base a si recibimos parametros GET/POST mandamos unos datos a la vista o mandamos otros.
         if (count($request->queryParams) != 0){
+            $fechaInicial = $request -> get('fechaInicial');
+            $fechaFinal = $request -> get('fechaFinal');
+            $productos = $request->get('productos');
+            $alhondigas = $request -> get('alhondigas');
+            $corteInicial = $request -> get('corteInicial');
+            $corteFinal = $request -> get('corteFinal');
+            
+            $cabeceraTabla = 
+            $resultado = $pizarraModel ->leerPreciosPorSemana($fechaInicial, $fechaFinal, $productos, $alhondigas, $corteInicial, $corteFinal);
+            exit(print_r($resultado));
+            return $this -> render('pizarra', [
+                'listaProductos' => $listaProductos,
+                'listaAlhondigas' => $listaAlhondigas,
+                'ultimaPizarra' => $ultimaPizarra,
+                'listaPizarras' => $listaPizarras,
+                'fecha' => $today,
+                'mediasGlobales' => $mediasGlobales,
+                'listaPizarrasProducto' => $listaPizarrasAuxiliar,
+                'filaMedias' => $filaMedias,
+                'fechaInicial' => $fechaInicial,
+                'fechaFinal' => $fechaFinal,
+                'tablaSemanal' => $resultado
+            ]);
             
         }else{
             
@@ -335,8 +358,6 @@ class PreciosController extends Controller
         $mayoristasModel = new DatosGeneralesMayoristas();
         $request = yii::$app->request;
         $year = $request->POST('id');
-        /*print_r($year);
-        exit();*/
         $rows = $mayoristasModel ->leerSemanas($year);
         $rows = json_encode($rows);
         return $rows;
@@ -350,6 +371,7 @@ class PreciosController extends Controller
         $localizacionModel = new Localizacion();
         $mayoristasModel = new DatosGeneralesMayoristas();
         $origenModel = new Origen();
+        $supermercadosModel = new DatosSupermercados();
         // Leemos el contenido de las tablas.
         $listaProductos = $productModel->leerTodos();
         $listaOrigenes = $origenModel->leerTodos();

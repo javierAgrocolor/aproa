@@ -205,12 +205,50 @@ if (isset($tablaGraficoppt[0]['Producto'])) {
     <div class="panel panelTabla">
         <div class="panel-heading panelTitulo" role="tab" id="heading1">
             <h4 role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="true" aria-controls="collapse1" class="panel-title titulosPanel"> 
-                Resumen            
+                Resumen    
             </h4>
         </div>
         <div id="collapse1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading1">
             <div class="panel-body">
-                //Falta rellenar
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>FECHA</th>
+                            <th colspan="2">TOTAL</th>
+                            <th colspan="2">CASI</th>
+                            <th colspan="2">LA UNIÓN</th>
+                            <th colspan="2">AGROPONIENTE</th>
+                            <th colspan="2">FEMAGO</th>
+                            <th colspan="2">COSTA DE ALMERÍA</th>
+                        </tr>
+                        <tr>
+                            <th>Producto</th>
+                            <th>PR. POND.</th>
+                            <th>SUM. TONS</th>
+                            <th>PRECIO</th>
+                            <th>TONS</th>
+                            <th>PRECIO</th>
+                            <th>TONS</th>
+                            <th>PRECIO</th>
+                            <th>TONS</th>
+                            <th>PRECIO</th>
+                            <th>TONS</th>
+                            <th>PRECIO</th>
+                            <th>TONS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php 
+                            for($i = 1; $i < 14; $i++){
+                                echo "<tr id='fila".$i."'>";
+                                for($g = 1; $g <14; $g++){
+                                    echo "<td class='columna".$g."'></td>";
+                                }
+                                echo "</tr>";
+                            }
+                        ?>
+                    </tbody>
+                </table>   
             </div>
         </div>
     </div>
@@ -228,7 +266,7 @@ if (isset($tablaGraficoppt[0]['Producto'])) {
                     <img src="/aproa/images/<?php echo $tablaLaunion[0]['Empresa']; ?>.jpg" class="img-responsive center-block">
                     <p><strong>Fecha: <?php echo $tablaLaunion[0]['Fecha']; ?></strong></p>
 
-                    <table class="table">
+                    <table class="table laUnion">
                         <thead>
                             <tr>
                                 <th>Producto</th>                                
@@ -259,15 +297,15 @@ if (isset($tablaGraficoppt[0]['Producto'])) {
                             foreach ($tablaLaunion as $row) {
                                 if($contr !=1){
                                     $contr = 1;
-                                    echo "<tr class='danger'>";
+                                    echo "<tr class='danger toneladas'>";
                                 }else{
                                     $contr = 2;
-                                    echo "<tr>";
+                                    echo "<tr class='precios'>";
                                 }
                                 
-                    echo "<td>" . $row['Producto'] . "</td>                    
+                    echo "<td class='columnaProducto'>" . $row['Producto'] . "</td>                    
                     <td>" . $row['Tipo'] . "</td>
-                    <td>" . $row['Pond_Suma'] . "</td>
+                    <td class='columnaPP'>" . $row['Pond_Suma'] . "</td>
                     <td>" . $row['Media'] . "</td>
                     <td>" . $row['C1'] . "</td>
                     <td>" . $row['C2'] . "</td>
@@ -311,7 +349,7 @@ if (isset($tablaGraficoppt[0]['Producto'])) {
                     <img src="/aproa/images/<?php echo $tablaCasi[0]['Empresa']; ?>.jpg" class="img-responsive center-block">
                     <p><strong>Fecha: <?php echo $tablaCasi[0]['Fecha']; ?></strong></p>
 
-                    <table class="table">
+                    <table class="table casi">
                         <thead>
                             <tr>
                                 <th>Producto</th>                                
@@ -329,10 +367,10 @@ if (isset($tablaGraficoppt[0]['Producto'])) {
                                 <th>C9</th>
                                 <th>C10</th>    
                                 <th>C11</th>    
-                                <th>C12</th>    
-                                <th>C13</th>    
+                                <th>C12</th>
+                                <th>C13</th>
                                 <th>C14</th>
-                                <th>C15</th>    
+                                <th>C15</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -342,15 +380,15 @@ if (isset($tablaGraficoppt[0]['Producto'])) {
                             foreach ($tablaCasi as $row) {
                                 if($contr !=1){
                                     $contr = 1;
-                                    echo "<tr class='danger'>";
+                                    echo "<tr class='danger toneladas'>";
                                 }else{
                                     $contr = 2;
-                                    echo "<tr>";
+                                    echo "<tr class='precios'>";
                                 }
                                 
-                    echo "<td>" . $row['Producto'] . "</td>                    
+                    echo "<td class='columnaProducto'>" . $row['Producto'] . "</td>                    
                     <td>" . $row['Tipo'] . "</td>
-                    <td>" . $row['Pond_Suma'] . "</td>
+                    <td class='columnaPP'>" . $row['Pond_Suma'] . "</td>
                     <td>" . $row['Media'] . "</td>
                     <td>" . $row['C1'] . "</td>
                     <td>" . $row['C2'] . "</td>
@@ -393,7 +431,7 @@ if (isset($tablaGraficoppt[0]['Producto'])) {
                     <img src="/aproa/images/<?php echo $tablaCosta[0]['Empresa']; ?>.jpg" class="img-responsive center-block">
                     <p><strong>Fecha: <?php echo $tablaCosta[0]['Fecha']; ?></strong></p>
 
-                    <table class="table">
+                    <table class="table costa">
                         <thead>
                             <tr>
                                 <th>Producto</th>                                
@@ -408,15 +446,15 @@ if (isset($tablaGraficoppt[0]['Producto'])) {
                             foreach ($tablaCosta as $row) {
                                 if($contr !=1){
                                     $contr = 1;
-                                    echo "<tr class='danger'>";
+                                    echo "<tr class='danger toneladas'>";
                                 }else{
                                     $contr = 2;
-                                    echo "<tr>";
+                                    echo "<tr class='precios'>";
                                 }
                                 
                     echo "<td>" . $row['Producto'] . "</td>                    
                     <td>" . $row['Tipo'] . "</td>
-                    <td>" . $row['Pond_Suma'] . "</td>
+                    <td class='columnaPP'>" . $row['Pond_Suma'] . "</td>
                     </tr>";
                             }
                         } else {
@@ -444,7 +482,7 @@ if (isset($tablaGraficoppt[0]['Producto'])) {
                     <img src="/aproa/images/<?php echo $tablaFemago[0]['Empresa']; ?>.jpg" class="img-responsive center-block">
                     <p><strong>Fecha: <?php echo $tablaFemago[0]['Fecha']; ?></strong></p>
 
-                    <table class="table">
+                    <table class="table femago">
                         <thead>
                             <tr>
                                 <th>Producto</th>                                
@@ -459,15 +497,15 @@ if (isset($tablaGraficoppt[0]['Producto'])) {
                             foreach ($tablaFemago as $row) {
                                 if($contr !=1){
                                     $contr = 1;
-                                    echo "<tr class='danger'>";
+                                    echo "<tr class='danger toneladas'>";
                                 }else{
                                     $contr = 2;
-                                    echo "<tr>";
+                                    echo "<tr class='precios'>";
                                 }
                                 
                     echo "<td>" . $row['Producto'] . "</td>                    
                     <td>" . $row['Tipo'] . "</td>
-                    <td>" . $row['Pond_Suma'] . "</td>
+                    <td class='columnaPP'>" . $row['Pond_Suma'] . "</td>
                     </tr>";
                             }
                         } else {
@@ -495,7 +533,7 @@ if (isset($tablaGraficoppt[0]['Producto'])) {
                     <img src="/aproa/images/<?php echo $tablaAgroponiente[0]['Empresa']; ?>.jpg" class="img-responsive center-block">
                     <p><strong>Fecha: <?php echo $tablaAgroponiente[0]['Fecha']; ?></strong></p>
 
-                    <table class="table">
+                    <table class="table agroponiente">
                         <thead>
                             <tr>
                                 <th>Producto</th>                                
@@ -510,15 +548,15 @@ if (isset($tablaGraficoppt[0]['Producto'])) {
                             foreach ($tablaAgroponiente as $row) {
                                 if($contr !=1){
                                     $contr = 1;
-                                    echo "<tr class='danger'>";
+                                    echo "<tr class='danger toneladas'>";
                                 }else{
                                     $contr = 2;
-                                    echo "<tr>";
+                                    echo "<tr class='precios'>";
                                 }
                                 
                     echo "<td>" . $row['Producto'] . "</td>                    
                     <td>" . $row['Tipo'] . "</td>
-                    <td>" . $row['Pond_Suma'] . "</td>                    
+                    <td class='columnaPP'>" . $row['Pond_Suma'] . "</td>                    
                     </tr>";
                             }
                         } else {
@@ -534,4 +572,5 @@ if (isset($tablaGraficoppt[0]['Producto'])) {
     </div>
 </div>
 <div class="marginbotton30"></div>
+<script type="text/javascript" src="../../js/tablaResumen.js"></script>
 <!-- FIN RESULTADOS TABLAS PP Y TONELADAS-->

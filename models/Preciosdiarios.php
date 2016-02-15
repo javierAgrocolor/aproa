@@ -84,9 +84,10 @@ class Preciosdiarios extends \yii\db\ActiveRecord
     
     public function leerProductos(){
         $query = new Query();
-        $query -> select('*')
-                -> from('productos')
-                -> innerJoin('grupo_producto', 'grupo_producto.id = productos.grupo')
+        $query -> select('preciosdiarios.nombre, preciosdiarios.idProducto, productos.grupo')
+                ->distinct('nombre')
+                -> from('preciosdiarios')
+                -> innerJoin("productos", "productos.codigo = preciosdiarios.idproducto")
                 -> orderBy('grupo');
         $rows = $query -> all(Preciosdiarios::getDb());
         return $rows;
@@ -166,5 +167,82 @@ class Preciosdiarios extends \yii\db\ActiveRecord
         return $rows;
     }
     
+    public function leerPreciosPorSemana($fechaInicial, $fechaFinal, $productos, $alhondigas, $corteInicial, $corteFinal){
+        $condiciones = $this ->generarCondiciones($fechaInicial, $fechaFinal, $productos, $alhondigas);
+        
+        if (isset($corteInicial)&&isset($corteFinal)){
+            $seleccion = $this -> generarCondCortes($corteInicial, $corteFinal);
+        }
+        
+        $query = new Query();
+        $query -> select([$seleccion])
+                -> from ('preciosdiarios')
+                -> where($condiciones)
+                -> groupBy("WEEK(fecha), nombre, alhondiga")
+                -> orderBy("alhondiga, week(fecha), nombre");
+        $rows = $query -> all(Preciosdiarios::getDb());
+        return $rows;
+    }
+    
+    
+    public function generarCondiciones($fechaInicial, $fechaFinal, $productos, $alhondigas){
+        $condiciones = "preciosdiarios.fechaInicial = '".$fechaInicial."' and preciosdiarios.fechaFinal = ".$fechaFinal."";
+        
+        if (isset($productos)){
+            $condiciones = $this -> generarCondProductos($productos, $condiciones);
+        }
+        
+        if (isset($alhondigas)){
+            $condiciones = $this -> generarCondAlhondigas($alhondigas, $condiciones);
+        }
+        
+        $condiciones .= "and corte1 != 0 and corte2 != 0 and corte3 != 0 and corte4 != 0 and corte5 != 0 and corte6 != 0 and corte7 != 0 and corte8 != 0 and corte9 != 0 and corte10 != 0 and corte11 != 0 and corte12 != 0 and corte13 != 0 and corte14 != 0 and corte 15 != 0";
+    }
+    
+    public function generarCondProductos($productos, $condiciones){
+        $contador = 0;
+        if(isset($productos)){
+            $condiciones .= " and preciosdiarios.idproducto in (";
+            foreach($productos as $producto){
+                if ($contador == 0){
+                    $condiciones .= $producto;
+                }else{
+                    $condiciones .= ",".$producto;
+                }
+                    $contador++;
+            }
+            $condiciones .= ")";
+        }
+        return $condiciones;
+    }
+    
+    public function generarCondAlhondigas($alhondigas, $condiciones){
+        $contador = 0;
+        if(isset($alhondigas)){
+            $condiciones .= " and preciosdiarios.alhondiga in (";
+            foreach($alhondigas as $alhondiga){
+                if ($contador == 0){
+                    $condiciones .= $alhondiga;
+                }else{
+                    $condiciones .= ",".$alhondiga;
+                }
+                    $contador++;
+            }
+            $condiciones .= ")";
+        }
+        return $condiciones;
+    }
+    
+    public function generarCondCortes($corteInicial, $corteFinal){
+        $seleccion = "(avg(corte".$corteInicial.")";
+        $contador = 1;
+        for($corteInicial+1; $corteInicial <= $corteFinal; $corteInicial++){
+            $seleccion .= "+ avg(corte".($corteInicial+1).")";
+            $contador++;
+        }
+        $seleccion .= ")/".$contador." as mediaCortes, nombre, WEEK(fecha), alhondiga";
+        
+        return $seleccion;
+    }
     
 }

@@ -451,3 +451,9 @@ select#yearsMayoristas, select#semanas, #semanas_chosen {
 .inputOculto {
     display: none;
 }
+
+.chosen-container { width: 100% !important; }
+
+.productosFiltro {
+    margin-top: 10px;
+}

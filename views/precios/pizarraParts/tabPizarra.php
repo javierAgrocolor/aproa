@@ -8,6 +8,14 @@
 
 ?>
 
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#enlaceTabCortes').click(function(){
+            $('#modalCortes').modal('toggle');
+        })
+    })
+</script>
+
 <div class="panel-group margintop" id="accordion" role="tablist" aria-multiselectable="true">
     <div class="panel panelTabla">
         <div class="panel-heading panelTitulo" role="tab" id="heading1">
@@ -30,6 +38,7 @@
         </div>
         </div>
     </div>
+
 
 <?php
 $y = 0;

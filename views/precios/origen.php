@@ -74,7 +74,7 @@ if (isset($year)) {
 
             <label>
                 <input type="radio" name="opcionesConsulta" id="consultaNormal" value="consultaNormal" />
-                Consulta Normal.
+                Consulta General.
             </label>
             <label>
                 <input type="radio" name="opcionesConsulta" id="consultaMedias" value="consultaMedias"/>

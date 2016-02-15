@@ -17,6 +17,10 @@ $(document).ready(function () {
         }
     });
 
+    $('#confirmarModalSemanas').click(function(){
+       $('#filtrosModalSemanas').submit(); 
+    });
+    
     //PAGINATION!!!!!
 
     // mind the slight change below, personal idea of best practices
@@ -141,6 +145,7 @@ $(document).ready(function () {
         $('#formYears').submit();
     }
 
+    
 });
 
 
