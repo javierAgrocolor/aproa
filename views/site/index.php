@@ -23,18 +23,18 @@ $this->title = 'APROA - Gestión de Crisis';
                 <a href="/aproa/web/index.php/site/preciosponderados"><img src="/aproa/images/pizarra1.png" class="img-responsive"></a>
             </div>
             <div class="col-md-6">
-                <a href="/aproa/views/precios/pizarra"><img src="/aproa/images/pizarra2.png" class="img-responsive"></a>
+                <a href="/aproa/web/index.php/precios/pizarraprecios"><img src="/aproa/images/pizarra2.png" class="img-responsive"></a>
             </div>
             </div>
             <div class="row-fluid">
             <div class="col-md-4  marginbotton30 margintop">
-                <img src="/aproa/images/pizarra3.png" class="img-responsive center-block"></a>
+                <a href="/aproa/web/index.php/precios/origen"><img src="/aproa/images/pizarra3.png" class="img-responsive center-block"></a>
             </div>
             <div class="col-md-4 marginbotton30 margintop">
-                <img src="/aproa/images/pizarra4.png" class="img-responsive center-block">
+                <a href="/aproa/web/index.php/precios/mayoristas"><img src="/aproa/images/pizarra4.png" class="img-responsive center-block"></a>
             </div>
             <div class="col-md-4 marginbotton30 margintop">
-                <img src="/aproa/images/pizarra5.png" class="img-responsive center-block">
+                <a href="/aproa/web/index.php/precios/supermercados"><img src="/aproa/images/pizarra5.png" class="img-responsive center-block"></a>
             </div>
             </div>
         </div>

@@ -161,6 +161,7 @@ if (isset($tabla)) {
     if (isset($tabla[0]['preciomedio'])) {
         ?>
         <div class="spam12 contenedoresTable">
+            <div class="table-responsive">
             <table class="table">
                 <thead>
                     <tr>
@@ -198,11 +199,13 @@ if (isset($tabla)) {
                     ?>
                 </tbody>
             </table>
+            </div>
         </div>
         <?php
     } else {
         ?>
         <div class="spam12 contenedoresTable">
+            <div class="table-responsive">
             <table class="table">
                 <thead>
                     <tr>
@@ -227,6 +230,6 @@ if (isset($tabla)) {
                         
                     }
                     echo "</tbody>
-        </table></div>";
+        </table></div></div>";
                 }
             }
