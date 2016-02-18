@@ -282,10 +282,11 @@ class PreciosController extends Controller
             $alhondigas = $request -> get('alhondigas');
             $corteInicial = $request -> get('corteInicial');
             $corteFinal = $request -> get('corteFinal');
-            
-            $cabeceraTabla = 
+            $listaProductosCabecera = $pizarraModel -> leerProductosCabecera($productos);
+            $listaAlhondigasCabecera = $pizarraModel -> leerAlhondigasCabecera($alhondigas);
             $resultado = $pizarraModel ->leerPreciosPorSemana($fechaInicial, $fechaFinal, $productos, $alhondigas, $corteInicial, $corteFinal);
-            exit(print_r($resultado));
+            $tablaSemana = $this -> construirTabla($listaAlhondigasCabecera, $listaProductosCabecera, $resultado);
+            
             return $this -> render('pizarra', [
                 'listaProductos' => $listaProductos,
                 'listaAlhondigas' => $listaAlhondigas,
@@ -297,7 +298,10 @@ class PreciosController extends Controller
                 'filaMedias' => $filaMedias,
                 'fechaInicial' => $fechaInicial,
                 'fechaFinal' => $fechaFinal,
-                'tablaSemanal' => $resultado
+                'resultado' => $resultado,
+                'listaProductosCabecera' => $listaProductosCabecera,
+                'listaAlhondigasCabecera' => $listaAlhondigasCabecera,
+                'tablaSemana' => $tablaSemana
             ]);
             
         }else{
@@ -315,9 +319,72 @@ class PreciosController extends Controller
             'filaMedias' => $filaMedias
         ]);
         }else{
-        return $this->goHome();
+            return $this->goHome();
+        }
     }
+    
+    public function construirTabla($listaAlhondigas, $listaProductos, $resultadoConsulta){
+        $tabla = array();
+        $contadorTabla = 0;
+        
+        
+        while($contadorTabla < count($resultadoConsulta)-1){
+            $fila = array();
+            array_push($fila, $resultadoConsulta[$contadorTabla]['semana']);
+            foreach ($listaAlhondigas as $alhondiga){
+                foreach($listaProductos as $producto){
+                    if($contadorTabla < count($resultadoConsulta)-1){
+                        if(($producto['idProducto'] == $resultadoConsulta[$contadorTabla]['idProducto']) && (trim($alhondiga['alhondiga']) == trim($resultadoConsulta[$contadorTabla]['alhondiga']))){
+                            $media = $this -> calcularMediaFila($resultadoConsulta[$contadorTabla]);
+                            $contadorTabla++;
+                            array_push($fila, $media);
+                        }else{
+                            $media = 0;
+                            array_push($fila, $media);
+                        }
+                    }else{
+                        $media = 0;
+                        array_push($fila, $media);
+                    }
+                }
+            }
+            array_push($tabla, $fila);
+            /*if($contadorTabla > 16 ){
+                exit(print_r($listaAlhondigas));
+            }*/
+        }
+        //exit(print_r($tabla));
+        //exit(print_r($resultadoConsulta));
+        //exit(print_r($tabla));
+        return $tabla;
+        
     }
+    
+    public function calcularMediaFila($producto){
+        
+        $contador = 0;
+        $suma = 0;
+        for($i = 1; $i < count($producto)-3; $i++){
+            //exit(print_r(gettype($producto['corte'.$i])));
+            $numero = $producto['corte'.$i];
+            if(round($numero, 3) != 0){
+                $suma += $producto['corte'.$i];
+                $contador++;
+            }
+        }
+        
+        $suma = $suma*10000;
+        $contador = $contador*10000;
+        
+        if ($contador != 0){
+            $media = $suma/$contador;
+        }else{
+            $media = 0;
+        }
+        
+        return $media;
+    }
+    
     
     public function calcularMediasArray($listaPrecios){
         $contador = 0;

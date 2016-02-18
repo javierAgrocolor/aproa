@@ -144,6 +144,13 @@ $(document).ready(function () {
 
         $('#formYears').submit();
     }
+    
+    function defaultTabSemanas(){
+        $(document).ready(function(){
+            $('#pizarras').removeClass('active');
+            $('#precioSemana').addClass('active');
+        });
+    }
 
     
 });

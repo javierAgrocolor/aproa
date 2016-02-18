@@ -93,6 +93,72 @@ class Preciosdiarios extends \yii\db\ActiveRecord
         return $rows;
     }
     
+    public function leerProductosCabecera($productos){
+        $condiciones = $this ->generarCondicionesProductosCabecera($productos);
+        $query = new Query();
+        $query -> select('preciosdiarios.nombre, preciosdiarios.idProducto')
+                -> distinct('nombre')
+                -> from ('preciosdiarios')
+                -> innerJoin("productos", "productos.codigo = preciosdiarios.idproducto")
+                -> where ($condiciones)
+                -> orderBy('nombre');
+        $rows = $query -> all(Preciosdiarios::getDb());
+        return $rows;
+    }
+    
+    public function generarCondicionesProductosCabecera($productos){
+        if (isset($productos)){
+            $condiciones = "idProducto in (";
+            $contador = 0;
+            foreach($productos as $producto){
+                if ($contador == 0){
+                    $condiciones .= $producto;
+                    $contador++;
+                }else{
+                    $condiciones .= ",".$producto;
+                }
+            }
+            $condiciones .= ")";
+        }else{
+            $condiciones = "1=1";
+        }
+        
+        return $condiciones;
+    }
+    
+    public function leerAlhondigasCabecera($alhondigas){
+        $condiciones = $this -> generarCondicionesAlhondigasCabecera($alhondigas);
+        $query = new Query();
+        $query -> select('preciosdiarios.alhondiga')
+                -> distinct('alhondiga')
+                -> from ('preciosdiarios')
+                -> where($condiciones)
+                -> orderBy('alhondiga');
+        $rows = $query -> all(Preciosdiarios::getDb());
+        return $rows;
+    }
+    
+    public function generarCondicionesAlhondigasCabecera($alhondigas){
+        if(isset($alhondigas)){
+            $condiciones = "alhondiga in ('";
+            $contador = 0;
+            foreach($alhondigas as $alhondiga){
+                if ($contador == 0){
+                    $condiciones .= $alhondiga."'";
+                    $contador++;
+                }else{
+                    $condiciones .= ", '".$alhondiga."'";
+                }
+            }
+            $condiciones .= ")";
+        }else{
+            $condiciones = "1=1";
+        }
+        
+        return $condiciones;
+    }
+    
+    
     public function leerAlhondigas(){
         $query = new Query();
         $query -> select('*')
@@ -168,7 +234,7 @@ class Preciosdiarios extends \yii\db\ActiveRecord
     }
     
     public function leerPreciosPorSemana($fechaInicial, $fechaFinal, $productos, $alhondigas, $corteInicial, $corteFinal){
-        $condiciones = $this ->generarCondiciones($fechaInicial, $fechaFinal, $productos, $alhondigas);
+        $condiciones = $this -> generarCondiciones($fechaInicial, $fechaFinal, $productos, $alhondigas);
         
         if (isset($corteInicial)&&isset($corteFinal)){
             $seleccion = $this -> generarCondCortes($corteInicial, $corteFinal);
@@ -179,15 +245,14 @@ class Preciosdiarios extends \yii\db\ActiveRecord
                 -> from ('preciosdiarios')
                 -> where($condiciones)
                 -> groupBy("WEEK(fecha), nombre, alhondiga")
-                -> orderBy("alhondiga, week(fecha), nombre");
+                -> orderBy("week(fecha), alhondiga, nombre");
         $rows = $query -> all(Preciosdiarios::getDb());
         return $rows;
     }
     
     
     public function generarCondiciones($fechaInicial, $fechaFinal, $productos, $alhondigas){
-        $condiciones = "preciosdiarios.fechaInicial = '".$fechaInicial."' and preciosdiarios.fechaFinal = ".$fechaFinal."";
-        
+        $condiciones = "preciosdiarios.fecha >= '".$fechaInicial."' and preciosdiarios.fecha <= '".$fechaFinal."'";
         if (isset($productos)){
             $condiciones = $this -> generarCondProductos($productos, $condiciones);
         }
@@ -195,8 +260,8 @@ class Preciosdiarios extends \yii\db\ActiveRecord
         if (isset($alhondigas)){
             $condiciones = $this -> generarCondAlhondigas($alhondigas, $condiciones);
         }
-        
-        $condiciones .= "and corte1 != 0 and corte2 != 0 and corte3 != 0 and corte4 != 0 and corte5 != 0 and corte6 != 0 and corte7 != 0 and corte8 != 0 and corte9 != 0 and corte10 != 0 and corte11 != 0 and corte12 != 0 and corte13 != 0 and corte14 != 0 and corte 15 != 0";
+        return $condiciones;
+        // ¿Por qué coño puse esto? $condiciones .= "and corte1 != 0 and corte2 != 0 and corte3 != 0 and corte4 != 0 and corte5 != 0 and corte6 != 0 and corte7 != 0 and corte8 != 0 and corte9 != 0 and corte10 != 0 and corte11 != 0 and corte12 != 0 and corte13 != 0 and corte14 != 0 and corte 15 != 0";
     }
     
     public function generarCondProductos($productos, $condiciones){
@@ -219,12 +284,12 @@ class Preciosdiarios extends \yii\db\ActiveRecord
     public function generarCondAlhondigas($alhondigas, $condiciones){
         $contador = 0;
         if(isset($alhondigas)){
-            $condiciones .= " and preciosdiarios.alhondiga in (";
+            $condiciones .= " and preciosdiarios.alhondiga in ('";
             foreach($alhondigas as $alhondiga){
                 if ($contador == 0){
-                    $condiciones .= $alhondiga;
+                    $condiciones .= $alhondiga."'";
                 }else{
-                    $condiciones .= ",".$alhondiga;
+                    $condiciones .= ", '".$alhondiga."'";
                 }
                     $contador++;
             }
@@ -234,13 +299,13 @@ class Preciosdiarios extends \yii\db\ActiveRecord
     }
     
     public function generarCondCortes($corteInicial, $corteFinal){
-        $seleccion = "(avg(corte".$corteInicial.")";
+        $seleccion = " avg(corte".$corteInicial.") as corte".$corteInicial;
         $contador = 1;
         for($corteInicial+1; $corteInicial <= $corteFinal; $corteInicial++){
-            $seleccion .= "+ avg(corte".($corteInicial+1).")";
+            $seleccion .= ", avg(corte".($corteInicial+1).") as corte".$corteInicial;
             $contador++;
         }
-        $seleccion .= ")/".$contador." as mediaCortes, nombre, WEEK(fecha), alhondiga";
+        $seleccion .= " , nombre, idProducto, WEEK(fecha) as semana, alhondiga";
         
         return $seleccion;
     }

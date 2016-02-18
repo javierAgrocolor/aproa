@@ -9,6 +9,18 @@
 <?php
 $contr = 1;
 foreach ($listaPizarras[$y] as $row) {
+    
+    $contador = 0;
+    $suma = 0;
+    for ($i = 1; $i < 16; $i++){
+        if ($row['corte'.$i] != 0){
+            $suma += $row['corte'.$i];
+            $contador++;
+        }
+    }
+    $media = $suma/$contador;
+    $media = round($media, 2);
+    
     if ($contr != 1) {
         $contr = 1;
         echo "<tr class='danger'>";
@@ -17,7 +29,7 @@ foreach ($listaPizarras[$y] as $row) {
         echo "<tr>";
     }
     echo "<td>" . $row['nombre'] . "</td>";
-    echo "<td>0.375</td>";
+    echo "<td>" .$media. "</td>";
     echo "<td class='corte1'>" . $row['corte1'] . "</td>";
     echo "<td class='corte2'>" . $row['corte2'] . "</td>";
     echo "<td class='corte3'>" . $row['corte3'] . "</td>";

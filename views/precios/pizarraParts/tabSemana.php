@@ -6,6 +6,17 @@
  * and open the template in the editor.
  */
 
+if (isset($tablaSemana)){
+?>
+    <script>
+        $('#pizarras').removeClass('active');
+        $('.pizarra').removeClass('active');
+        $('#precioSemana').addClass('active');
+        $('.semana').addClass('active');
+    </script>
+<?php
+}
+
 ?>
 
 <button type="button btn-sm" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalSemana">
@@ -23,9 +34,9 @@
           <form action="pizarraprecios" method="get" id="filtrosModalSemanas">
               <div class="fechasFiltroSemanas">
                 <label>Fecha Inicial</label>
-                <input id="datetimepicker1" name="fechaInicial" type="text" class="form-control" />
+                <input id="datetimepicker2" name="fechaInicial" type="text" class="form-control" />
                 <label>Fecha Final</label>
-                <input id="datetimepicker-1" name="fechaFinal" type="text" class="form-control" />
+                <input id="datetimepicker-2" name="fechaFinal" type="text" class="form-control" />
               </div>
               <div class="productosFiltro">
                   <label>Productos</label><br>
@@ -74,3 +85,36 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+
+<div class="spam12 contenedoresTable margintop scrollLateral">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <?php
+                    if (isset($listaAlhondigasCabecera)){
+                        echo "<th id='tituloSemana'>Semana</th>";
+                        foreach ($listaAlhondigasCabecera as $alhondiga){
+                            foreach($listaProductosCabecera as $producto){
+                                echo "<th id='".$producto['idProducto']."'>".$producto['nombre']."</th>";
+                            }
+                        }
+                    }
+                ?>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            if(isset($tablaSemana)){
+                foreach($tablaSemana as $row){
+                    echo "<tr>";
+                    foreach ($row as $celda){
+                        echo "<td>".round($celda, 2)."</td>";
+                    }
+                    echo "</tr>";
+                }
+            }
+            ?>
+        </tbody>
+    </table>
+</div>

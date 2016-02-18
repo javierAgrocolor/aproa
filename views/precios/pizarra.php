@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="row-fluid">
     <div class="col-lg-12">        
         <ul class="nav nav-tabs" id="navprecios">
-            <li role="tablero" class="active">
+            <li role="tablero" class="pizarra active">
                 <a id="enlaceTabPizarras" href="#pizarras" role="tab" data-toggle="tab">Pizarras</a>
             </li>
             <li role="tablero">
@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <li role="tablero">
                 <a href="#precioProducto" role="tab" data-toggle="tab">Precios por Producto</a>
             </li>
-            <li role="tablero">
+            <li role="tablero" class="semana">
                 <a href="#precioSemana" role="tab" data-toggle="tab">Precios por Semana</a>
             </li>
             <li role="tablero">

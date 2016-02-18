@@ -10,6 +10,17 @@
 <?php
 $contr = 1;
 foreach ($ultimaPizarra as $row) {
+    $contador = 0;
+    $suma = 0;
+    for ($i = 1; $i < 16; $i++){
+        if ($row['corte'.$i] != 0){
+            $suma += $row['corte'.$i];
+            $contador++;
+        }
+    }
+    $media = $suma/$contador;
+    $media = round($media, 2);
+    
     if ($contr != 1) {
         $contr = 1;
         echo "<tr class='danger'>";
@@ -18,7 +29,7 @@ foreach ($ultimaPizarra as $row) {
         echo "<tr>";
     }
     echo "<td>" . $row['nombre'] . "</td>";
-    echo "<td>0.00</td>";
+    echo "<td>" . $media . "</td>";
     echo "<td>" . $row['corte1'] . "</td>";
     echo "<td>" . $row['corte2'] . "</td>";
     echo "<td>" . $row['corte3'] . "</td>";

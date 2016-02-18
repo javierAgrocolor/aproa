@@ -465,3 +465,7 @@ select#yearsMayoristas, select#semanas, #semanas_chosen {
 .productosFiltro {
     margin-top: 10px;
 }
+
+.scrollLateral {
+    overflow-x: scroll;
+}
