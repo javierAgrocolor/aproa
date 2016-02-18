@@ -14,7 +14,7 @@ $anterior = $diano-1;
 
     <!-- Paginacion -->
     <div class="col-md-12">
-        <div class="spam12 contenedores">
+        <div class="span12 contenedores">
             <div class="col-md-12">
             <div class="col-md-1 col-md-offset-4">
             <?php 

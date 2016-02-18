@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <!-- Paginacion -->
     <div class="col-md-12">
-        <div class="spam12 contenedoresPaginacion">
+        <div class="span12 contenedoresPaginacion">
             <table id="content" class="marginbotton">
                 <tbody>    
                     <?php

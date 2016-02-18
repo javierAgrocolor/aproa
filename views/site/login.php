@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p class="titulosPaginaPrincipal"><?= Html::encode($this->title) ?></p>
     </div>
     <div class="col-md-12">
-        <div class="spam12 contenedorlogin">
+        <div class="span12 contenedorlogin">
     <p>Por favor, rellene los siguientes campos para iniciar sesión:</p>
 
     <?php $form = ActiveForm::begin([

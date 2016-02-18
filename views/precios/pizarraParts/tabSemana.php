@@ -87,7 +87,7 @@ if (isset($tablaSemana)){
 </div><!-- /.modal -->
 
 
-<div class="spam12 contenedoresTable margintop scrollLateral">
+<div class="span12 contenedoresTable margintop scrollLateral">
     <table class="table table-striped">
         <thead>
             <tr>

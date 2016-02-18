@@ -114,7 +114,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <!-- FIN GRAFICO EVOLUCION -->
 
 <!-- FORMULARIO EVOLUCION-->
-<div class="spam12 contenedores">
+<div class="span12 contenedores">
     <p class="titulos2">EVOLUCIÓN DE PRECIOS Y TONELADAS PARA TODA LA CAMPAÑA</p>
     <div class="row marginbotton col-md-10 col-md-offset-1">                   
         <form id="filtroGraficaevolucion">
@@ -179,7 +179,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <!-- FORMULARIO PRECIOS PONDERADOS Y TONELADAS 
     Carga el grafico y las tablas segun la fecha de la busqueda-->
-<div class="spam12 contenedores">
+<div class="span12 contenedores">
     <p class="titulos2">PRECIOS PONDERADOS Y TONELADAS COMERCIALIZADAS POR ALHÓNDIGAS</p>
     <div class="row marginbotton">
         <div class="col-md-2 col-md-offset-5">
