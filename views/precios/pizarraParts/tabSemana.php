@@ -4,7 +4,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 if (isset($tablaSemana)) {
     ?>
     <script>
@@ -12,6 +11,15 @@ if (isset($tablaSemana)) {
         $('.pizarra').removeClass('active');
         $('#precioSemana').addClass('active');
         $('.semana').addClass('active');
+
+        $(document).ready(function () {
+            $contadorProductos = $('#filaCabeceraProductos th').length;
+            $contadorAlhondigas = $('#filaCabeceraAlhondigas th').length;
+            $colspan = ($contadorProductos - 1) / ($contadorAlhondigas - 1);
+
+            $('.alhondigas').attr('colspan', $colspan);
+        });
+
     </script>
     <?php
 }
@@ -47,39 +55,39 @@ if (isset($tablaSemana)) {
                     <div class="productosFiltro">
                         <label>Productos</label><br>
                         <select id="productos" name="productos[]" multiple class="form-control chosen-select-width anchoMulti">
-<?php
-foreach ($listaProductos as $especieOption) {
-    echo "<option id='" . $especieOption['idProducto'] . "' value='" . $especieOption['idProducto'] . "'>" . $especieOption['nombre'] . "</option>";
-}
-?>
+                            <?php
+                            foreach ($listaProductos as $especieOption) {
+                                echo "<option id='" . $especieOption['idProducto'] . "' value='" . $especieOption['idProducto'] . "'>" . $especieOption['nombre'] . "</option>";
+                            }
+                            ?>
                         </select>
                     </div>
                     <div class="alhondigasFiltro">
                         <label>Alhondigas</label><br>
                         <select id="alhondigas" name="alhondigas[]" multiple class="form-control chosen-select-width anchoMulti">
-<?php
-foreach ($listaAlhondigas as $alhondiga) {
-    echo "<option id='" . $alhondiga['enlace'] . "' value='" . $alhondiga['enlace'] . "'>" . $alhondiga['nombre'] . "</option>";
-}
-?>
+                            <?php
+                            foreach ($listaAlhondigas as $alhondiga) {
+                                echo "<option id='" . $alhondiga['enlace'] . "' value='" . $alhondiga['enlace'] . "'>" . $alhondiga['nombre'] . "</option>";
+                            }
+                            ?>
                         </select>
                     </div>
                     <div class="corteFiltro">
                         <label>Corte Inicial</label>
                         <select id="corteInicial" name="corteInicial" class="form-control">
-<?php
-for ($i = 0; $i < 15; $i++) {
-    echo "<option id='" . ($i + 1) . "' value='" . ($i + 1) . "'>" . ($i + 1) . "</option>";
-}
-?>
+                            <?php
+                            for ($i = 0; $i < 15; $i++) {
+                                echo "<option id='" . ($i + 1) . "' value='" . ($i + 1) . "'>" . ($i + 1) . "</option>";
+                            }
+                            ?>
                         </select>
                         <label>Corte Final</label>
                         <select id="corteFinal" name="corteFinal" class="form-control">
-<?php
-for ($i = 0; $i < 15; $i++) {
-    echo "<option id='" . ($i + 1) . "' value='" . ($i + 1) . "'>" . ($i + 1) . "</option>";
-}
-?>
+                            <?php
+                            for ($i = 0; $i < 15; $i++) {
+                                echo "<option id='" . ($i + 1) . "' value='" . ($i + 1) . "'>" . ($i + 1) . "</option>";
+                            }
+                            ?>
                         </select>
                     </div>
                 </form>
@@ -95,41 +103,51 @@ for ($i = 0; $i < 15; $i++) {
 
 <div class="span12 contenedoresTable margintop">
     <div class="table-responsive">
-        <table class="table">
-            <thead>
-                <tr>
-<?php
-if (isset($listaAlhondigasCabecera)) {
-    echo "<th id='tituloSemana'>Semana</th>";
-    foreach ($listaAlhondigasCabecera as $alhondiga) {
-        foreach ($listaProductosCabecera as $producto) {
-            echo "<th id='" . $producto['idProducto'] . "'>" . $producto['nombre'] . "</th>";
-        }
-    }
-}
-?>
-                </tr>
-            </thead>
-            <tbody>
-<?php
-if (isset($tablaSemana)) {
-    $contr = 1;
-    foreach ($tablaSemana as $row) {
-        if ($contr != 1) {
-            $contr = 1;
-            echo "<tr class='danger'>";
-        } else {
-            $contr = 2;
-            echo "<tr>";
-        }
-        foreach ($row as $celda) {
-            echo "<td>" . round($celda, 2) . "</td>";
-        }
-        echo "</tr>";
-    }
-}
-?>
-            </tbody>
-        </table>
+    <table class="table">
+        <thead>
+            <tr id="filaCabeceraAlhondigas">
+                <?php
+                if (isset($listaAlhondigasCabecera)) {
+                    echo "<th id='columnaSemana'></th>";
+                    foreach ($listaAlhondigasCabecera as $alhondiga) {
+                        echo "<th id='" . $alhondiga['alhondiga'] . "' class='alhondigas'>" . $alhondiga['alhondiga'] . "</th>";
+                    }
+                }
+                ?>
+            </tr>
+            <tr id="filaCabeceraProductos">
+                <?php
+                if (isset($listaAlhondigasCabecera)) {
+                    echo "<th id='tituloSemana'>Semana</th>";
+                    foreach ($listaAlhondigasCabecera as $alhondiga) {
+                        foreach ($listaProductosCabecera as $producto) {
+                            echo "<th id='" . $producto['idProducto'] . "'>" . $producto['nombre'] . "</th>";
+                        }
+                    }
+                }
+                ?>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            if (isset($tablaSemana)) {
+                $contr = 1;
+                foreach ($tablaSemana as $row) {
+                    if ($contr != 1) {
+                        $contr = 1;
+                        echo "<tr class='danger'>";
+                    } else {
+                        $contr = 2;
+                        echo "<tr>";
+                    }
+                    foreach ($row as $celda) {
+                        echo "<td>" . round($celda, 2) . "</td>";
+                    }
+                    echo "</tr>";
+                }
+            }
+            ?>
+        </tbody>
+    </table>
     </div>
 </div>

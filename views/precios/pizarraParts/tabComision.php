@@ -85,7 +85,9 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-    <div class="panel-group margintop" id="accordion4" role="tablist" aria-multiselectable="true"> 
+
+     <div class="panel-group margintop" id="accordion4" role="tablist" aria-multiselectable="true">
+
 <?php 
 $y = 0;
 foreach ($listaAlhondigas as $alhondiga){
