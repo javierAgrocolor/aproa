@@ -18,6 +18,14 @@ if (isset($tablaSemana)){
 }
 
 ?>
+    
+<script>
+    $(document).ready(function(){
+        $('#enlaceTabSemanas').click(function(){
+            $('#modalSemana').modal('show');
+        });
+    });
+</script>
 
 <button type="button btn-sm" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalSemana">
   Filtros

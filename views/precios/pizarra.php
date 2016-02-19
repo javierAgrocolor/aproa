@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <a href="#precioProducto" role="tab" data-toggle="tab">Precios por Producto</a>
             </li>
             <li role="tablero" class="semana">
-                <a href="#precioSemana" role="tab" data-toggle="tab">Precios por Semana</a>
+                <a id="enlaceTabSemanas" href="#precioSemana" role="tab" data-toggle="tab">Precios por Semana</a>
             </li>
             <li role="tablero">
                 <a id="enlaceTabCortes" href="#precioCortes" role="tab" data-toggle="tab">Precio por Cortes</a>
@@ -69,5 +69,5 @@ $this->params['breadcrumbs'][] = $this->title;
                 ?>
             </div>
         </div>
-    </div>    
+    </div>
 </div>

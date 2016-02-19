@@ -10,7 +10,6 @@ body {
 
 #topmenu{
     background: #454444;
-    //border-color: #c0c0c0;
     
 }
 
@@ -472,4 +471,16 @@ select#yearsMayoristas, select#semanas, #semanas_chosen {
 
 .scrollLateral {
     overflow-x: scroll;
+}
+
+.tituloFecha {
+    display: inline;
+}
+
+.flotarIzquierda {
+    float: left;
+}
+
+.flotarDerecha {
+    float: right;
 }

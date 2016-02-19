@@ -100,7 +100,9 @@ class PreciosController extends Controller
                 'origen' => $origen,
                 'localizacion' => $localizacion,
                 'tabla' => $resultado,
-                'listaSemanas' => $listaSemanas
+                'listaSemanas' => $listaSemanas,
+                'fechaInicial' => $fechaInicial,
+                'fechaFinal' => $fechaFinal
             ]);
         }else{
             return $this->render('supermercados', [
@@ -160,7 +162,9 @@ class PreciosController extends Controller
                 'origen' => $origen,
                 'localizacion' => $localizacion,
                 'tabla' => $resultado,
-                'listaSemanas' => $listaSemanas
+                'listaSemanas' => $listaSemanas,
+                'fechaInicial' => $fechaInicial,
+                'fechaFinal' => $fechaFinal
         ]);
         }else{
             return $this->render('mayoristas', [
@@ -213,7 +217,9 @@ class PreciosController extends Controller
                 'origen' => $origen,
                 'localizacion' => $localizacion,
                 'tabla' => $resultado,
-                'listaSemanas' => $listaSemanas
+                'listaSemanas' => $listaSemanas,
+                'fechaInicial' => $fechaInicial,
+                'fechaFinal' => $fechaFinal
             ]);
         }else{
             return $this->render('origen', [
@@ -258,12 +264,24 @@ class PreciosController extends Controller
         foreach ($listaPizarrasProducto as $pizarraProducto){
             $arrayMedias = 0;
             $contador = 0;
+            $arrayMediasAnterior = 0;
             if (is_array($pizarraProducto)){
                 $pizarraProducto = $this ->calcularMediasArray($pizarraProducto);
                 foreach($pizarraProducto as $media){
+                    $arrayMediasAnterior = $arrayMedias;
                     $arrayMedias += $media['media'];
-                    $contador++;
+                    
+                    $arrayMedias *= 10000;
+                    $arrayMediasAnterior *= 10000;
+                    
+                    if(intval($arrayMedias) > intval($arrayMediasAnterior)){
+                        $contador++;
+                    }else{
+                        //
+                    }
+                    $arrayMedias /= 10000;
                 }
+                
                 $mediaCalculada = $arrayMedias/$contador;
                 $filaMedias[$aux]['media'] = $mediaCalculada;
                 array_push($pizarraProducto, $filaMedias[$aux]);

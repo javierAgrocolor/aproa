@@ -224,7 +224,7 @@ class Preciosdiarios extends \yii\db\ActiveRecord
     
     public function extraerMediasPorCorte($today){
         $query = new Query();
-        $query -> select(['"Media de los productos" as nombre,alhondiga, Round(avg(corte1), 3) as corte1, Round(avg(corte2), 3) as corte2, Round(avg(corte3), 3) as corte3, Round(avg(corte4), 3) as corte4, Round(avg(corte5), 3) as corte5, Round(avg(corte6), 3) as corte6, Round(avg(corte7), 3) as corte7, Round(avg(corte8), 3) as corte8, Round(avg(corte9), 3) as corte9, Round(avg(corte10), 3) as corte10, Round(avg(corte11), 3) as corte11, Round(avg(corte12), 3) as corte12, Round(avg(corte13), 3) as corte13, Round(avg(corte14), 3) as corte14, Round(avg(corte15), 3) as corte15'])
+        $query -> select(['"Media de los productos" as nombre,alhondiga, Round(avg(nullif(corte1, 0)), 2) as corte1, Round(avg(nullif(corte2, 0)), 2) as corte2, Round(avg(nullif(corte3, 0)), 2) as corte3, Round(avg(nullif(corte4, 0)), 2) as corte4, Round(avg(nullif(corte5, 0)), 2) as corte5, Round(avg(nullif(corte6, 0)), 2) as corte6, Round(avg(nullif(corte7, 0)), 2) as corte7, Round(avg(nullif(corte8, 0)), 2) as corte8, Round(avg(nullif(corte9, 0)), 2) as corte9, Round(avg(nullif(corte10,0)), 2) as corte10, Round(avg(nullif(corte11,0)), 2) as corte11, Round(avg(nullif(corte12, 0)), 2) as corte12, Round(avg(nullif(corte13, 0)), 2) as corte13, Round(avg(nullif(corte14,0)), 2) as corte14, Round(avg(nullif(corte15, 0)), 2) as corte15'])
                 -> from ('preciosdiarios')
                 -> where ("fecha = '".$today."'")
                 -> orderBy ('alhondiga')

@@ -12,7 +12,10 @@
     $(document).ready(function(){
         $('#enlaceTabCortes').click(function(){
             $('#modalCortes').modal('toggle');
-        })
+        });
+        
+        
+        
     })
 </script>
 

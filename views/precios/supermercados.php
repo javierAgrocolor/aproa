@@ -174,6 +174,12 @@ if (isset($year)) {
 if (isset($tabla)) {
     if (isset($tabla[0]['preciomedio'])) {
         ?>
+        <div>
+            <?php
+            if(isset($fechaInicial)){ echo "<h3 class='tituloFecha flotarIzquierda'>Fecha Inicial: ".$fechaInicial."</h3>"; }
+            if(isset($fechaFinal)){ echo "<h3 class='tituloFecha flotarDerecha'>Fecha Final: ".$fechaFinal."</h3>";}
+            ?>
+        </div>
         <div class="spam12 contenedoresTable">
             <div class="table-responsive">
             <table class="table">
@@ -246,7 +252,4 @@ if (isset($tabla)) {
         </table></div></div>";
                 }
             }
-    
-
             
-
