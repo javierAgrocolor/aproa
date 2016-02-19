@@ -11,7 +11,7 @@ $this->title = 'Pizarra de Precios';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row-fluid marginbotton30">
-    <p class="titulosPaginaPrincipal">Pizarra de Precios: <?php echo date('Y-m-d'); ?></p>
+    <p class="titulosPaginaPrincipal">Pizarra de Precios: <?php echo $fecha; ?></p>
 </div>
 <div class="row-fluid">
     <div class="col-lg-12">        
