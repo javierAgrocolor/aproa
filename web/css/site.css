@@ -484,3 +484,7 @@ select#yearsMayoristas, select#semanas, #semanas_chosen {
 .flotarDerecha {
     float: right;
 }
+
+.alhondigas {
+    text-align: center;
+}
