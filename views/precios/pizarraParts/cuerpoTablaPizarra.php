@@ -52,3 +52,4 @@ foreach ($listaPizarras[$y] as $row) {
     ?>
 </tbody>
 </table>
+</div>

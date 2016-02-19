@@ -85,7 +85,7 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-     
+    <div class="panel-group margintop" id="accordion4" role="tablist" aria-multiselectable="true"> 
 <?php 
 $y = 0;
 foreach ($listaAlhondigas as $alhondiga){
@@ -93,7 +93,7 @@ foreach ($listaAlhondigas as $alhondiga){
 
     <div class="panel panelTabla">
         <div class="panel-heading panelTitulo" role="tab" id="<?php echo $alhondiga['ebbdd']; ?>">
-            <?php echo "<h4 class='panel-title titulosPanel' role='button' data-toggle='collapse' data-parent='#accordion' href='#collapse".$alhondiga['ebbdd']."3' aria-expanded='true' aria-controls='collapse".$alhondiga['ebbdd']."'>".$alhondiga['nombre']."</h4>"; ?> 
+            <?php echo "<h4 class='panel-title titulosPanel' role='button' data-toggle='collapse' data-parent='#accordion4' href='#collapse".$alhondiga['ebbdd']."3' aria-expanded='true' aria-controls='collapse".$alhondiga['ebbdd']."'>".$alhondiga['nombre']."</h4>"; ?> 
         </div>
     
     <div id='collapse<?php echo $alhondiga['ebbdd']; ?>3' class="panel-collapse collapse" role='tabpanel' aria-labelledby='<?php echo $alhondiga["ebbdd"]; ?>'>
@@ -114,3 +114,4 @@ foreach ($listaAlhondigas as $alhondiga){
 
 <?php
 }?>
+    </div>
