@@ -17,7 +17,7 @@ if (isset($tablaSemana)){
         $(document).ready(function(){
             $contadorProductos = $('#filaCabeceraProductos th').length;
             $contadorAlhondigas = $('#filaCabeceraAlhondigas th').length;
-            $colspan = ($contadorProductos-1)/($contadorAlhondigas-1)
+            $colspan = ($contadorProductos-1)/($contadorAlhondigas-1);
             
             $('.alhondigas').attr('colspan', $colspan);            
         });
