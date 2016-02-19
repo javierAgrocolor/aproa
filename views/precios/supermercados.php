@@ -50,7 +50,7 @@ if (isset($year)) {
     <p class="titulosPaginaPrincipal"><?= Html::encode($this->title) ?></p>
 </div>      
 
-<div class="spam12 bordetop">
+<div class="span12 bordetop">
 </div>
 <form action="leersemanas2" id="formYears"><input class="inputOculto" name="tipoConsultaSemanas" value="supermercados" /></form>
 <form action="supermercados" id="filtroProducto">
@@ -168,7 +168,7 @@ if (isset($year)) {
         </div>
     </div>
 </form>
-<div class="spam12 bordebotton">
+<div class="span12 bordebotton">
 </div>
 <?php
 if (isset($tabla)) {
@@ -224,7 +224,7 @@ if (isset($tabla)) {
         <?php
     } else {
         ?>
-        <div class="spam12 contenedoresTable">
+        <div class="span12 contenedoresTable">
             <div class="table-responsive">
             <table class="table">
                 <thead>

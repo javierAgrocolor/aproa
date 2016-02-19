@@ -17,7 +17,7 @@ $this->title = 'APROA - Gestión de Crisis';
         
         <!-- Imagenes de enlace a Pizarras, origen... -->
         
-        <div class="spam12 marginbotton">  
+        <div class="span12 marginbotton">  
             <div class="row-fluid">
             <div class="col-md-6">
                 <a href="/aproa/web/index.php/site/preciosponderados"><img src="/aproa/images/pizarra1.png" class="img-responsive"></a>
@@ -48,7 +48,7 @@ $this->title = 'APROA - Gestión de Crisis';
         
         <!-- Botones informes-->
         <div class="row ">    
-            <div class="spam12">
+            <div class="span12">
             <div class="col-md-3">
                 <a target="_blank" href="/aproa/web/index.php/site/buscar?informes=Calidad-Total_Hortalizas"><img src="/aproa/images/boton1.jpg" class="img-responsive center-block imgInformes"></a>            
                 <ul class="nav nav-pills">
@@ -259,7 +259,7 @@ $this->title = 'APROA - Gestión de Crisis';
                 <h3 class="titulosPaginaPrincipal">Boletín Diario</h3>
             </div>              
         </div>
-        <div class="spam12 contenedores">
+        <div class="span12 contenedores">
             <div class="col-md-10 col-md-offset-1">
                 <!--<p class="titulos2">Aun no se han generado boletines para este día.</p>-->
                 <?php

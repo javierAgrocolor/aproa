@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 ?>
-<div class="spam12 contenedoresTable margintop">
+<div class="span12 contenedoresTable margintop">
 <table class="table">
     <thead>
         <tr>
