@@ -13,6 +13,15 @@ if (isset($tablaSemana)){
         $('.pizarra').removeClass('active');
         $('#precioSemana').addClass('active');
         $('.semana').addClass('active');
+        
+        $(document).ready(function(){
+            $contadorProductos = $('#filaCabeceraProductos th').length;
+            $contadorAlhondigas = $('#filaCabeceraAlhondigas th').length;
+            $colspan = ($contadorProductos-1)/($contadorAlhondigas-1)
+            
+            $('.alhondigas').attr('colspan', $colspan);            
+        });
+        
     </script>
 <?php
 }
@@ -98,7 +107,17 @@ if (isset($tablaSemana)){
 <div class="span12 contenedoresTable margintop scrollLateral">
     <table class="table table-striped">
         <thead>
-            <tr>
+            <tr id="filaCabeceraAlhondigas">
+                <?php
+                    if (isset($listaAlhondigasCabecera)){
+                        echo "<th id='columnaSemana'></th>";
+                        foreach($listaAlhondigasCabecera as $alhondiga){
+                            echo "<th id='".$alhondiga['alhondiga']."' class='alhondigas'>".$alhondiga['alhondiga']."</th>";
+                        }
+                    }
+                ?>
+            </tr>
+            <tr id="filaCabeceraProductos">
                 <?php
                     if (isset($listaAlhondigasCabecera)){
                         echo "<th id='tituloSemana'>Semana</th>";

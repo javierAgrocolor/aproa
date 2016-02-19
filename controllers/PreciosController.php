@@ -246,6 +246,8 @@ class PreciosController extends Controller
         
         $today = date('Y-m-d');
         $today = '2015-11-27';
+        $yesterday = date('Y-m-d', strtotime(' -1 day'));
+        $yesterday = '2015-11-26';
         
         // Pizarra General.
         $ultimaPizarra = $this -> leerDatosUltima($today);
@@ -254,6 +256,10 @@ class PreciosController extends Controller
         // Pizarra Media Global.
         $mediasGlobales = $pizarraModel -> leerMediasGlobales($today);
         $mediasGlobales = $this -> calcularMediasArray($mediasGlobales);
+        
+        $mediasAnteriores = $pizarraModel ->leerMediasGlobales($yesterday);
+        $mediasAnteriores = $this ->calcularMediasArray($mediasAnteriores);
+        exit(print_r($mediasAnteriores));
         // Pizarra de precio por producto.
         $listaPizarrasProducto = $listaPizarras;
         $listaPizarrasAuxiliar = array();
@@ -319,7 +325,8 @@ class PreciosController extends Controller
                 'resultado' => $resultado,
                 'listaProductosCabecera' => $listaProductosCabecera,
                 'listaAlhondigasCabecera' => $listaAlhondigasCabecera,
-                'tablaSemana' => $tablaSemana
+                'tablaSemana' => $tablaSemana,
+                'mediasAnteriores' => $mediasAnteriores
             ]);
             
         }else{
@@ -334,7 +341,8 @@ class PreciosController extends Controller
             'fecha' => $today,
             'mediasGlobales' => $mediasGlobales,
             'listaPizarrasProducto' => $listaPizarrasAuxiliar,
-            'filaMedias' => $filaMedias
+            'filaMedias' => $filaMedias,
+            'mediasAnteriores' => $mediasAnteriores
         ]);
         }else{
             return $this->goHome();

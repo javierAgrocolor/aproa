@@ -32,12 +32,13 @@
     <tbody>
         <?php 
         $contr = 1;
+        $contador = 0;
             foreach ($mediasGlobales as $productoGlobal){
                 if ($contr != 1) {
                             $contr = 1;
                             echo "<tr class='danger'>";
                 echo "<td>".$productoGlobal['nombre']."</td>";
-                echo "<td>".round($productoGlobal['media'],3)."</td>";
+                echo "<td>".round($productoGlobal['media'],3)."------".$mediasAnteriores[$contador]['media']."</td>";
                 for ($i = 1; $i < 16; $i++){
                     echo "<td>".$productoGlobal['corte'.$i]."</td>";
                 }
@@ -45,12 +46,13 @@
                             $contr = 2;
                             echo "<tr>";
                 echo "<td>".$productoGlobal['nombre']."</td>";
-                echo "<td>".round($productoGlobal['media'],3)."</td>";
+                echo "<td>".round($productoGlobal['media'],3)."------".$mediasAnteriores[$contador]['media']."</td>";
                 for ($i = 1; $i < 16; $i++){
                     echo "<td>".$productoGlobal['corte'.$i]."</td>";
                 }
                         }
                 
+                        $contador++;
             }
         ?>
     </tbody>
