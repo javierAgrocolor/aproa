@@ -52,3 +52,4 @@ foreach ($ultimaPizarra as $row) {
     ?>
 </tbody>
 </table>
+</div>

@@ -7,6 +7,7 @@
  */
 ?>
 <div class="span12 contenedoresTable margintop">
+    <div class="table-responsive">
 <table class="table">
     <thead>
         <tr>
@@ -57,4 +58,5 @@
         ?>
     </tbody>
 </table>
+    </div>
 </div>

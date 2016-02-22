@@ -2,6 +2,7 @@
 
 
 // estoy mirando esta mierda a ver que le pasa.
+
 namespace app\controllers;
 
 use Yii;
@@ -43,7 +44,7 @@ class PreciosController extends Controller
             ],
         ];
     }
-
+    
     public function actions()
     {
         return [
@@ -56,7 +57,7 @@ class PreciosController extends Controller
             ],
         ];
     }
-
+    
     public function actionSupermercados()
     {
         if (!\Yii::$app->user->isGuest) {
@@ -229,8 +230,8 @@ class PreciosController extends Controller
             ]);
         }
         }else{
-            return $this->goHome();
-        }
+        return $this->goHome();
+    }
     }
     
     public function actionPizarraprecios(){
@@ -258,12 +259,9 @@ class PreciosController extends Controller
         $mediasGlobales = $this -> calcularMediasArray($mediasGlobales);
         
         $mediasAnteriores = $pizarraModel ->leerMediasGlobales($yesterday);
-        $mediasAnteriores = $this ->calcularMediasArray($mediasAnteriores);
-        
-        // Calculamos la columna con los datos de la media anterior.
-        $columnaMediaAnterior = $this ->calcularColumnaMedias($mediasGlobales, $mediasAnteriores);
-        
-        //exit(print_r($mediasAnteriores));
+        $mediasAnteriores = $this ->calcularMediasArray($mediasAnteriores);        
+
+        //
         // Pizarra de precio por producto.
         $listaPizarrasProducto = $listaPizarras;
         $listaPizarrasAuxiliar = array();
@@ -330,7 +328,7 @@ class PreciosController extends Controller
                 'listaProductosCabecera' => $listaProductosCabecera,
                 'listaAlhondigasCabecera' => $listaAlhondigasCabecera,
                 'tablaSemana' => $tablaSemana,
-                'mediasAnteriores' => $columnaMediaAnterior
+                'mediasAnteriores' => $mediasAnteriores
             ]);
             
         }else{
@@ -346,31 +344,14 @@ class PreciosController extends Controller
             'mediasGlobales' => $mediasGlobales,
             'listaPizarrasProducto' => $listaPizarrasAuxiliar,
             'filaMedias' => $filaMedias,
-            'mediasAnteriores' => $columnaMediaAnterior
+            'mediasAnteriores' => $mediasAnteriores
         ]);
         }else{
             return $this->goHome();
         }
     }
     
-    public function calcularColumnaMedias($mediasGlobales, $mediasAnteriores){
-        $fila = array();
-        $aux = false;
-        foreach ($mediasGlobales as $mediaHoy){
-            foreach ($mediasAnteriores as $mediaAyer){
-                if ($mediaHoy['nombre'] == $mediaAyer['nombre']){
-                    array_push($fila, round($mediaAyer['media'], 2));
-                    $aux = true;
-                }
-            }
-            if($aux != true){
-                array_push($fila, "NA");
-            }
-            $aux = false;
-        }
-        return $fila;
-    }
-    
+    //
     public function construirTabla($listaAlhondigas, $listaProductos, $resultadoConsulta){
         $tabla = array();
         $contadorTabla = 0;
@@ -503,7 +484,7 @@ class PreciosController extends Controller
         $listaOrigenes = $origenModel->leerTodos();
         $listaLocalizaciones = $localizacionModel -> leerTodos();
         $listaYears = $mayoristasModel -> leerYears();
-
+        
         $request = yii::$app->request;
         $year = $request->get('year');
         $tipoConsultaSemanas = $request ->get('tipoConsultaSemanas');

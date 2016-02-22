@@ -180,7 +180,7 @@ if (isset($tabla)) {
             if(isset($fechaFinal)){ echo "<h3 class='tituloFecha flotarDerecha'>Fecha Final: ".$fechaFinal."</h3>";}
             ?>
         </div>
-        <div class="spam12 contenedoresTable">
+        <div class="span12 contenedoresTable">
             <div class="table-responsive">
             <table class="table">
                 <thead>
