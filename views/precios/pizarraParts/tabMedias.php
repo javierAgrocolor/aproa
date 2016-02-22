@@ -53,7 +53,7 @@
                 }
                         }
                 
-                        $contador++;
+                $contador++;
             }
         ?>
     </tbody>

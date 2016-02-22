@@ -19,7 +19,11 @@ if (isset($tablaSemana)) {
 
             $('.alhondigas').attr('colspan', $colspan);
         });
-
+        
+        $('#filtrosModalSemanas').submit(function(){
+            alert("glglgl");
+        });
+        
     </script>
     <?php
 }
@@ -33,7 +37,7 @@ if (isset($tablaSemana)) {
     });
 </script>
 
-<button type="button btn-sm" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalSemana">
+<button id="botonFiltros" type="button btn-sm" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalSemana">
     Filtros
 </button>
 
@@ -48,9 +52,9 @@ if (isset($tablaSemana)) {
                 <form action="pizarraprecios" method="get" id="filtrosModalSemanas">
                     <div class="fechasFiltroSemanas">
                         <label>Fecha Inicial</label>
-                        <input id="datetimepicker2" name="fechaInicial" type="text" class="form-control" />
+                        <input id="datetimepicker2"  name="fechaInicial" type="text" class="form-control datetimepickers" />
                         <label>Fecha Final</label>
-                        <input id="datetimepicker-2" name="fechaFinal" type="text" class="form-control" />
+                        <input id="datetimepicker-2" name="fechaFinal" type="text" class="form-control datetimepickers" />
                     </div>
                     <div class="productosFiltro">
                         <label>Productos</label><br>

@@ -60,7 +60,7 @@ if (isset($year)) {
             <select id="productos" name="productos[]" multiple class="form-control chosen-select-width">
                 <?php
                 foreach ($listaProductos as $especieOption) {
-                    echo "<option id='" . $especieOption->codigo_producto . "' value='" . $especieOption->codigo_producto . "'>" . $especieOption->producto . "</option>";
+                    echo "<option id='" . $especieOption['cod_producto'] . "' value='" . $especieOption['cod_producto'] . "'>" . $especieOption['producto'] . "</option>";
                 }
                 ?>
             </select>
@@ -80,7 +80,7 @@ if (isset($year)) {
             <select id="localizacion" name="localizacion[]" multiple class="form-control chosen-select-width">
                 <?php
                 foreach ($listaLocalizaciones as $localizacionOption) {
-                    echo "<option id='" . $localizacionOption->codigo_localizacion . "' value='" . $localizacionOption->codigo_localizacion . "'>" . $localizacionOption->Localizacion . "</option>";
+                    echo "<option id='" . $localizacionOption['cod_localizacion'] . "' value='" . $localizacionOption['cod_localizacion'] . "'>" . $localizacionOption['Localizacion'] . "</option>";
                 }
                 ?>
             </select>
