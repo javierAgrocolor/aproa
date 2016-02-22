@@ -229,8 +229,8 @@ class PreciosController extends Controller
             ]);
         }
         }else{
-        return $this->goHome();
-    }
+            return $this->goHome();
+        }
     }
     
     public function actionPizarraprecios(){
@@ -259,7 +259,11 @@ class PreciosController extends Controller
         
         $mediasAnteriores = $pizarraModel ->leerMediasGlobales($yesterday);
         $mediasAnteriores = $this ->calcularMediasArray($mediasAnteriores);
-        exit(print_r($mediasAnteriores));
+        
+        // Calculamos la columna con los datos de la media anterior.
+        $columnaMediaAnterior = $this ->calcularColumnaMedias($mediasGlobales, $mediasAnteriores);
+        
+        //exit(print_r($mediasAnteriores));
         // Pizarra de precio por producto.
         $listaPizarrasProducto = $listaPizarras;
         $listaPizarrasAuxiliar = array();
@@ -326,7 +330,7 @@ class PreciosController extends Controller
                 'listaProductosCabecera' => $listaProductosCabecera,
                 'listaAlhondigasCabecera' => $listaAlhondigasCabecera,
                 'tablaSemana' => $tablaSemana,
-                'mediasAnteriores' => $mediasAnteriores
+                'mediasAnteriores' => $columnaMediaAnterior
             ]);
             
         }else{
@@ -342,11 +346,29 @@ class PreciosController extends Controller
             'mediasGlobales' => $mediasGlobales,
             'listaPizarrasProducto' => $listaPizarrasAuxiliar,
             'filaMedias' => $filaMedias,
-            'mediasAnteriores' => $mediasAnteriores
+            'mediasAnteriores' => $columnaMediaAnterior
         ]);
         }else{
             return $this->goHome();
         }
+    }
+    
+    public function calcularColumnaMedias($mediasGlobales, $mediasAnteriores){
+        $fila = array();
+        $aux = false;
+        foreach ($mediasGlobales as $mediaHoy){
+            foreach ($mediasAnteriores as $mediaAyer){
+                if ($mediaHoy['nombre'] == $mediaAyer['nombre']){
+                    array_push($fila, round($mediaAyer['media'], 2));
+                    $aux = true;
+                }
+            }
+            if($aux != true){
+                array_push($fila, "NA");
+            }
+            $aux = false;
+        }
+        return $fila;
     }
     
     public function construirTabla($listaAlhondigas, $listaProductos, $resultadoConsulta){
