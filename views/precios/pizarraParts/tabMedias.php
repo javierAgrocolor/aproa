@@ -39,7 +39,7 @@
                             $contr = 1;
                             echo "<tr class='danger'>";
                 echo "<td>".$productoGlobal['nombre']."</td>";
-                echo "<td>".round($productoGlobal['media'],2)."------".$mediasAnteriores[$contador]."</td>";
+                echo "<td>".round($productoGlobal['media'],2)."------".$mediasAnteriores[$contador]['media']."</td>";
                 for ($i = 1; $i < 16; $i++){
                     echo "<td>".$productoGlobal['corte'.$i]."</td>";
                 }
@@ -47,7 +47,7 @@
                             $contr = 2;
                             echo "<tr>";
                 echo "<td>".$productoGlobal['nombre']."</td>";
-                echo "<td>".round($productoGlobal['media'],2)."------".$mediasAnteriores[$contador]."</td>";
+                echo "<td>".round($productoGlobal['media'],2)."------".$mediasAnteriores[$contador]['media']."</td>";
                 for ($i = 1; $i < 16; $i++){
                     echo "<td>".$productoGlobal['corte'.$i]."</td>";
                 }
