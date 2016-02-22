@@ -1,10 +1,6 @@
 <?php
-
-
 // estoy mirando esta mierda a ver que le pasa.
-
 namespace app\controllers;
-
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -19,7 +15,6 @@ use app\models\Producto;
 use app\models\Origen;
 use app\models\Presentacion;
 use app\models\Localizacion;
-
 class PreciosController extends Controller
 {   
     public function behaviors()
@@ -44,7 +39,6 @@ class PreciosController extends Controller
             ],
         ];
     }
-    
     public function actions()
     {
         return [
@@ -57,7 +51,6 @@ class PreciosController extends Controller
             ],
         ];
     }
-    
     public function actionSupermercados()
     {
         if (!\Yii::$app->user->isGuest) {
@@ -259,9 +252,8 @@ class PreciosController extends Controller
         $mediasGlobales = $this -> calcularMediasArray($mediasGlobales);
         
         $mediasAnteriores = $pizarraModel ->leerMediasGlobales($yesterday);
-        $mediasAnteriores = $this ->calcularMediasArray($mediasAnteriores);        
-
-        //
+        $mediasAnteriores = $this ->calcularMediasArray($mediasAnteriores);
+        //exit(print_r($mediasAnteriores));
         // Pizarra de precio por producto.
         $listaPizarrasProducto = $listaPizarras;
         $listaPizarrasAuxiliar = array();
@@ -351,7 +343,6 @@ class PreciosController extends Controller
         }
     }
     
-    //
     public function construirTabla($listaAlhondigas, $listaProductos, $resultadoConsulta){
         $tabla = array();
         $contadorTabla = 0;
@@ -484,7 +475,6 @@ class PreciosController extends Controller
         $listaOrigenes = $origenModel->leerTodos();
         $listaLocalizaciones = $localizacionModel -> leerTodos();
         $listaYears = $mayoristasModel -> leerYears();
-        
         $request = yii::$app->request;
         $year = $request->get('year');
         $tipoConsultaSemanas = $request ->get('tipoConsultaSemanas');
