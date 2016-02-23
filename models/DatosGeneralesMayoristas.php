@@ -393,6 +393,7 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
     public function leerProductos(){
         $query = new \yii\db\Query();
         $query -> select('producto.producto, Datos_generales_mayoristas.cod_producto')
+                -> from('Datos_generales_mayoristas')
                 -> innerJoin('Producto', 'Producto.codigo_producto = Datos_generales_mayoristas.cod_producto')
                 -> where('Datos_generales_mayoristas.cod_producto in (12,13,401,14,37,31,45,20,18,49,73,19,48,30,32,7,6,5,11,10,9,8,16,53,17,15,4,41,3,22,2,1)')
                 -> orderBy('producto.producto');
