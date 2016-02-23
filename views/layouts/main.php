@@ -24,9 +24,9 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
-    <!--<script src="../../../vendor/bower/jquery/dist/jquery.js"></script>-->
-    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="../../../vendor/bower/jquery/dist/jquery.js"></script>
+    <!--<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>-->
     <script src="../../assets/pluginDropdown/docsupport/prism.js"></script>
     <link href="../../assets/pluginDropdown/docsupport/prism.css" type="text/css" rel="stylesheet" />
     <script src="../../assets/pluginDropdown/chosen.jquery.js"></script>
