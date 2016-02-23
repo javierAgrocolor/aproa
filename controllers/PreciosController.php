@@ -478,7 +478,6 @@ class PreciosController extends Controller
         $request = yii::$app->request;
         $year = $request->get('year');
         $tipoConsultaSemanas = $request ->get('tipoConsultaSemanas');
-        
         if ($tipoConsultaSemanas == 'origen'){
             $listaProductos = $datosOrigenModel ->leerProductos();
             $listaSemanas = $datosOrigenModel -> leerSemanas($year);
@@ -495,21 +494,30 @@ class PreciosController extends Controller
                 $listaProductos = $mayoristasModel -> leerProductos();
                 $listaLocalizaciones = $mayoristasModel -> leerLocalizaciones();
                 $listaSemanas = $mayoristasModel -> leerSemanas($year);
+                return $this->render('mayoristas', [
+                    'listaProductos' => $listaProductos,
+                    'listaOrigenes' => $listaOrigenes,
+                    'listaLocalizaciones' => $listaLocalizaciones,
+                    'listaYears' => $listaYears,
+                    'listaSemanas' => $listaSemanas,
+                    'year' => $year
+                ]);
             }else{
                 if ($tipoConsultaSemanas == 'supermercados'){
                     $listaProductos = $supermercadosModel -> leerProductos();
                     $listaLocalizaciones = $supermercadosModel -> leerLocalizaciones();
                     $listaSemanas = $supermercadosModel -> leerSemanas($year);
+                    return $this->render('supermercados', [
+                        'listaProductos' => $listaProductos,
+                        'listaOrigenes' => $listaOrigenes,
+                        'listaLocalizaciones' => $listaLocalizaciones,
+                        'listaYears' => $listaYears,
+                        'listaSemanas' => $listaSemanas,
+                        'year' => $year
+                    ]);
                 }
             }
-            return $this->render('mayoristas', [
-                'listaProductos' => $listaProductos,
-                'listaOrigenes' => $listaOrigenes,
-                'listaLocalizaciones' => $listaLocalizaciones,
-                'listaYears' => $listaYears,
-                'listaSemanas' => $listaSemanas,
-                'year' => $year
-                ]);
+            
             
         }
         }else{
