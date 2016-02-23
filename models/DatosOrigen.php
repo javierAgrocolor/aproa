@@ -282,7 +282,8 @@ class DatosOrigen extends \yii\db\ActiveRecord
                 -> innerJoin('Localizacion', 'Localizacion.codigo_localizacion = Datos_origen.cod_localizacion')
                 -> innerJoin('Producto', 'Producto.codigo_producto = Datos_origen.cod_producto')
                 ->where($condiciones)
-                ->groupBy(['Producto', 'Localizacion', 'Origen', 'DATEPART(week, Datos_origen.fecha)']);
+                ->groupBy(['Producto', 'Localizacion', 'Origen', 'DATEPART(week, Datos_origen.fecha)'])
+                ->orderBy('Semana');
         $rows = $query -> all(DatosGeneralesMayoristas::getDb());
         return $rows;
     }
