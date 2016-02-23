@@ -117,7 +117,7 @@ class PreciosController extends Controller
     {
         if (!\Yii::$app->user->isGuest) {
         //Construimos los modelos que vamos a necesitar.
-        $productModel = new Producto();
+        //$productModel = new Producto();
         $origenModel = new Origen();
         $localizacionModel = new Localizacion();
         $mayoristasModel = new DatosGeneralesMayoristas();
@@ -125,7 +125,7 @@ class PreciosController extends Controller
         //$listaProductos = $productModel->leerTodos();
         $listaProductos = $mayoristasModel -> leerProductos();
         $listaOrigenes = $origenModel->leerTodos();
-        $listaLocalizaciones = $localizacionModel -> leerTodos();
+        $listaLocalizaciones = $mayoristasModel -> leerLocalizaciones();
         $listaYears = $mayoristasModel -> leerYears();
         
         $contadorYears = count($listaYears);

@@ -83,7 +83,7 @@ if (isset($year)) {
         <select id="localizacion" name="localizacion[]" multiple class="form-control chosen-select-width">
             <?php
             foreach ($listaLocalizaciones as $localizacionOption) {
-                echo "<option id='" . $localizacionOption->codigo_localizacion . "' value='" . $localizacionOption->codigo_localizacion . "'>" . $localizacionOption->Localizacion . "</option>";
+                echo "<option id='" . $localizacionOption['cod_localizacion'] . "' value='" . $localizacionOption['cod_localizacion'] . "'>" . $localizacionOption['Localizacion'] . "</option>";
             }
             ?>
         </select>
