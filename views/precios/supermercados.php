@@ -249,7 +249,7 @@ if (isset($tabla)) {
         <?php if (isset($tabla[0]['Semana'])) { ?>
             <div class="row-fluid margintop">
                 <div class="col-lg-12">        
-                    <ul class="nav nav-tabs" id="navOrigen">
+                    <ul class="nav nav-tabs" id="navSupermercados">
                         <li role="tablero" class="pizarra active">
                             <a href="#resultado" role="tab" data-toggle="tab">Resultado</a>
                         </li>
