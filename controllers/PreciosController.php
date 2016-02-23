@@ -189,7 +189,6 @@ class PreciosController extends Controller
         
         $contadorYears = count($listaYears);
         $listaSemanas = $origenModel ->leerSemanas($listaYears[$contadorYears-2]['year']);
-        
         // Leemos la petición POST/GET
         $request = yii::$app->request;
         
@@ -473,7 +472,7 @@ class PreciosController extends Controller
         $origenModel = new Origen();
         $supermercadosModel = new DatosSupermercados();
         // Leemos el contenido de las tablas.
-        $listaProductos = $productModel->leerTodos();
+        $listaProductos = $datosOrigenModel ->leerProductos();
         $listaOrigenes = $origenModel->leerTodos();
         $listaLocalizaciones = $localizacionModel -> leerTodos();
         $listaYears = $mayoristasModel -> leerYears();
