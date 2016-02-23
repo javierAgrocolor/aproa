@@ -174,12 +174,26 @@ if (isset($year)) {
 if (isset($tabla)) {
     if (isset($tabla[0]['preciomedio'])) {
         ?>
-        <div>
+        
             <?php
-            if(isset($fechaInicial)){ echo "<h3 class='tituloFecha flotarIzquierda'>Fecha Inicial: ".$fechaInicial."</h3>"; }
-            if(isset($fechaFinal)){ echo "<h3 class='tituloFecha flotarDerecha'>Fecha Final: ".$fechaFinal."</h3>";}
+            if(!isset($tabla[0]['Semana'])) {
+                echo "<div class='row'>";
+                echo "<div class='span12'>";   
+                
+                if(isset($fechaInicial)){ 
+                    echo "<div class='col-md-4'>";
+                    echo "<h4 class='marginleft30'>Fecha Inicial: ".$fechaInicial." </h4>"; 
+                    echo "</div>";
+                }
+                if(isset($fechaFinal)){ 
+                    echo "<div class='col-md-4'>";
+                    echo "<h4> Fecha Final: ".$fechaFinal."</h4>";
+                    echo "</div>";
+                }
+                echo "</div></div>";
+            }            
             ?>
-        </div>
+        
         <div class="span12 contenedoresTable">
             <div class="table-responsive">
             <table class="table">

@@ -298,7 +298,8 @@ class DatosSupermercados extends \yii\db\ActiveRecord
                 -> innerJoin('Localizacion', 'Localizacion.codigo_localizacion = Datos_Supermercados.cod_localizacion')
                 -> innerJoin('Producto', 'Producto.codigo_producto = Datos_Supermercados.cod_producto')
                 ->where($condiciones)
-                ->groupBy(['Producto', 'Localizacion', 'Origen', 'DATEPART(week, Datos_Supermercados.fecha)']);
+                ->groupBy(['Producto', 'Localizacion', 'Origen', 'DATEPART(week, Datos_Supermercados.fecha)'])
+                ->orderBy('Semana');
         $rows = $query -> all(DatosSupermercados::getDb());
         return $rows;
     }
