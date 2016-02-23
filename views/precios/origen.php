@@ -12,8 +12,77 @@ use yii\helpers\Html;
 $this->title = 'Precios Origen';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<?php
+//RESULTADO
+if (isset($tabla)) {
+    if (isset($tabla[0]['preciomedio'])) {
+        ?>
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="text/javascript">
+            google.load("visualization", "1", {packages: ["corechart"]});
+            google.setOnLoadCallback(drawVisualization);
 
 
+            function drawVisualization() {
+                // Some raw data (not necessarily accurate)        
+                var data = google.visualization.arrayToDataTable([
+        <?php
+        if (isset($productos)) {
+            $pro = array();
+            $cong = 1;
+            foreach ($productos as $p) {
+                $pro[$cong] = $p;
+                $cong++;
+            }
+            $cong--;
+        }
+        ?>
+
+                ['Semanas'
+        <?php
+        if (isset($productos)) {
+            for ($i = 1; $i <= $cong; $i++) {
+                echo ",document.getElementById('" . $pro[$i] . "')";
+            }
+            echo "],";
+            $cong2 = 1;
+            foreach ($tabla as $pr) {
+                if ($cong2 > $cong) {
+                    $cong2 = 1;
+                    echo ",";
+                }
+                if ($cong2 == 1) {
+                    echo "[" . $pr['Semana'] . "," . $pr['preciomedio'] . "";
+                    if ($cong2 == $cong) {
+                        echo "]";
+                    }
+                    $cong2++;
+                } else {
+                    echo "," . $pr['preciomedio'] . "";
+                    if ($cong2 == $cong) {
+                        echo "]";
+                    }
+                    $cong2++;
+                }
+            }
+        }
+        ?>
+                ]);
+                        var options = {
+                            title: 'Medias Semanales',
+                            vAxis: {title: 'Precio Medio'},
+                            hAxis: {title: 'Semanas'},
+                            seriesType: 'line',
+                            series: {}
+                        };
+
+                var chart = new google.visualization.ComboChart(document.getElementById('chart_div_origen'));
+                chart.draw(data, options);
+            }
+        </script>
+    <?php }
+}
+?>
 <script type="text/javascript">
     $(document).ready(function () {
         /*$('#anadirProducto').click(function(){
@@ -52,7 +121,7 @@ if (isset($year)) {
 <div >
     <p class="titulosPaginaPrincipal"><?= Html::encode($this->title) ?></p>
 </div>
-<div class="span12 bordetop">
+<div class="span12 bordetop">         
 </div>
 <form action="leersemanas2" id="formYears"><input class="inputOculto" name="tipoConsultaSemanas" value="origen" /></form>
 <form action="origen" id="filtroProducto">
@@ -156,80 +225,115 @@ if (isset($year)) {
 </form>
 <div class="span12 bordebotton">
 </div>
-<?php
-if (isset($tabla)) {
-    if (isset($tabla[0]['preciomedio'])) {
-        ?>
-        <div class="span12 contenedoresTable">
-            <div class="table-responsive">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Producto</th>
-                        <th>Localización</th>
-                        <th>Origen</th>
-                        <th>Precio Medio</th>
-                        <?php
-                        if (isset($tabla[0]['Semana'])) {
-                            echo "<th>Semana</th>";
-                        }
+<div class="row-fluid margintop">
+    <div class="col-lg-12">        
+        <ul class="nav nav-tabs" id="navOrigen">
+            <li role="tablero" class="pizarra active">
+                <a href="#resultado" role="tab" data-toggle="tab">Resultado</a>
+            </li>
+            <li role="tablero" class="pizarra">
+                <a href="#graficaOrigen" role="tab" data-toggle="tab">Grafica</a>
+            </li>            
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="resultado">
+                <?php
+                //RESULTADO
+                if (isset($tabla)) {
+                    if (isset($tabla[0]['preciomedio'])) {
                         ?>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $contr = 1;
-                    foreach ($tabla as $row) {
-                        if ($contr != 1) {
-                            $contr = 1;
-                            echo "<tr class='danger'><td>" . $row['producto'] . "</td><td>" . $row['Localizacion'] . "</td><td>" . $row['origen'] . "</td><td>" . round($row['preciomedio'], 2) . "</td>";
-                            if (isset($tabla[0]['Semana'])) {
-                                echo "<td>" . $row['Semana'] . "</td>";
-                            }
-                            echo "</tr>";
-                        } else {
-                            $contr = 2;
-                            echo "<tr><td>" . $row['producto'] . "</td><td>" . $row['Localizacion'] . "</td><td>" . $row['origen'] . "</td><td>" . round($row['preciomedio'], 2) . "</td>";
-                            if (isset($tabla[0]['Semana'])) {
-                                echo "<td>" . $row['Semana'] . "</td>";
-                            }
-                            echo "</tr>";
-                        }
+                        <div class="span12 contenedoresTable margintop">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Producto</th>
+                                            <th>Localización</th>
+                                            <th>Origen</th>
+                                            <th>Precio Medio</th>
+                                            <?php
+                                            if (isset($tabla[0]['Semana'])) {
+                                                echo "<th>Semana</th>";
+                                            }
+                                            ?>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $contr = 1;
+                                        foreach ($tabla as $row) {
+                                            if ($contr != 1) {
+                                                $contr = 1;
+                                                echo "<tr class='danger'><td>" . $row['producto'] . "</td><td>" . $row['Localizacion'] . "</td><td>" . $row['origen'] . "</td><td>" . round($row['preciomedio'], 2) . "</td>";
+                                                if (isset($tabla[0]['Semana'])) {
+                                                    echo "<td>" . $row['Semana'] . "</td>";
+                                                }
+                                                echo "</tr>";
+                                            } else {
+                                                $contr = 2;
+                                                echo "<tr><td>" . $row['producto'] . "</td><td>" . $row['Localizacion'] . "</td><td>" . $row['origen'] . "</td><td>" . round($row['preciomedio'], 2) . "</td>";
+                                                if (isset($tabla[0]['Semana'])) {
+                                                    echo "<td>" . $row['Semana'] . "</td>";
+                                                }
+                                                echo "</tr>";
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <?php
+                    } else {
+                        ?>
+                        <div class="span12 contenedoresTable margintop">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Producto</th>
+                                            <th>Localizacion</th>
+                                            <th>Origen</th>
+                                            <th>Precio</th>
+                                            <th>Fecha</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $contr = 1;
+                                        foreach ($tabla as $row) {
+                                            if ($contr != 1) {
+                                                $contr = 1;
+                                                echo "<tr class='danger'><td>" . $row['producto'] . "</td><td>" . $row['Localizacion'] . "</td><td>" . $row['origen'] . "</td><td>" . round($row['precio'], 2) . "</td><td>" . $row['fecha'] . "</td></tr>";
+                                            } else {
+                                                $contr = 2;
+                                                echo "<tr><td>" . $row['producto'] . "</td><td>" . $row['Localizacion'] . "</td><td>" . $row['origen'] . "</td><td>" . round($row['precio'], 2) . "</td><td>" . $row['fecha'] . "</td></tr>";
+                                            }
+                                        }
+                                        ?></tbody></table></div></div>
+                        <?php
                     }
-                    ?>
-                </tbody>
-            </table>
-            </div>
-        </div>
-        <?php
-    } else {
-        ?>
-        <div class="span12 contenedoresTable">
-            <div class="table-responsive">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Producto</th>
-                        <th>Localizacion</th>
-                        <th>Origen</th>
-                        <th>Precio</th>
-                        <th>Fecha</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $contr = 1;
-                    foreach ($tabla as $row) {
-                        if ($contr != 1) {
-                            $contr = 1;
-                            echo "<tr class='danger'><td>" . $row['producto'] . "</td><td>" . $row['Localizacion'] . "</td><td>" . $row['origen'] . "</td><td>" . round($row['precio'], 2) . "</td><td>" . $row['fecha'] . "</td></tr>";
-                        } else {
-                            $contr = 2;
-                            echo "<tr><td>" . $row['producto'] . "</td><td>" . $row['Localizacion'] . "</td><td>" . $row['origen'] . "</td><td>" . round($row['precio'], 2) . "</td><td>" . $row['fecha'] . "</td></tr>";
-                        }
-                        
-                    }
-                    echo "</tbody>
-        </table></div></div>";
                 }
-            }
+                ?>
+            </div>
+            <div role="tabpanel" id="graficaOrigen">
+                <div class="span12 contenedoresTable margintop">
+                            <div class="table-responsive">
+                                <table class="table">
+                <?php
+                if (isset($tabla)) {
+                    if (isset($tabla[0]['preciomedio']) && isset($productos)) {
+                        echo '<div id="chart_div_origen" style="width: 1000px; height: 500px;"></div>';
+                    } else {
+                        echo "<p class='margintop' align='center'>No se puede mostrar la gráfica, ha introducido demasiados valores o hay datos insuficientes.</p>";
+                    }
+                }
+                ?>    
+                                </table></div></div>
+            </div>  
+
+        </div>
+    </div>
+</div>

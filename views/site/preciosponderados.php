@@ -193,7 +193,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="col-md-12">
         <?php
         if (isset($tablaGraficoppt[0]['Producto'])) {
+            echo '<div class="table-responsive">';
+            echo '<table class="table">';
             echo '<div id="chart_div" style="width: 1100px; height: 400px;"></div>';
+            echo '</table></div>';
         } else {
             ?>
             <p align="center">Aun no se han generado precios para este día.</p>
@@ -214,77 +217,77 @@ $this->params['breadcrumbs'][] = $this->title;
         <div id="collapse1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading1">
             <div class="panel-body">
                 <div class="table-responsive">
-                <?php
-                if (isset($tablaGraficoppt[0]['Producto'])) {
-                    ?>      
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Fecha:  <?php echo $tablaGraficoppt[0]['Fecha']; ?></th>
-                                <th colspan="2">TOTAL</th>
-                                <th colspan="2"><img src="/aproa/images/casiresumen.jpg" class="img-responsive center-block"></th>
-                                <th colspan="2"><img src="/aproa/images/launionresumen.jpg" class="img-responsive center-block"></th>
-                                <th colspan="2"><img src="/aproa/images/agroponienteresumen.jpg" class="img-responsive center-block"></th>
-                                <th colspan="2"><img src="/aproa/images/femagoresumen.jpg" class="img-responsive center-block"></th>
-                                <th colspan="2"><img src="/aproa/images/costaresumen.jpg" class="img-responsive center-block"></th>
-                            </tr>
-                            <tr class="trresumen">
-                                <th>Producto</th>
-                                <th>PR. POND.</th>
-                                <th>SUM. TONS</th>
-                                <th>PRECIO</th>
-                                <th>TONS</th>
-                                <th>PRECIO</th>
-                                <th>TONS</th>
-                                <th>PRECIO</th>
-                                <th>TONS</th>
-                                <th>PRECIO</th>
-                                <th>TONS</th>
-                                <th>PRECIO</th>
-                                <th>TONS</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $contr = 1;
-                            for ($i = 1; $i < 14; $i++) {
-                                if ($contr != 1) {
+                    <?php
+                    if (isset($tablaGraficoppt[0]['Producto'])) {
+                        ?>      
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Fecha:  <?php echo $tablaGraficoppt[0]['Fecha']; ?></th>
+                                    <th colspan="2">TOTAL</th>
+                                    <th colspan="2"><img src="/aproa/images/casiresumen.jpg" class="img-responsive center-block"></th>
+                                    <th colspan="2"><img src="/aproa/images/launionresumen.jpg" class="img-responsive center-block"></th>
+                                    <th colspan="2"><img src="/aproa/images/agroponienteresumen.jpg" class="img-responsive center-block"></th>
+                                    <th colspan="2"><img src="/aproa/images/femagoresumen.jpg" class="img-responsive center-block"></th>
+                                    <th colspan="2"><img src="/aproa/images/costaresumen.jpg" class="img-responsive center-block"></th>
+                                </tr>
+                                <tr class="trresumen">
+                                    <th>Producto</th>
+                                    <th>PR. POND.</th>
+                                    <th>SUM. TONS</th>
+                                    <th>PRECIO</th>
+                                    <th>TONS</th>
+                                    <th>PRECIO</th>
+                                    <th>TONS</th>
+                                    <th>PRECIO</th>
+                                    <th>TONS</th>
+                                    <th>PRECIO</th>
+                                    <th>TONS</th>
+                                    <th>PRECIO</th>
+                                    <th>TONS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $contr = 1;
+                                for ($i = 1; $i < 14; $i++) {
+                                    if ($contr != 1) {
                                         $contr = 1;
                                         echo "<tr id='fila" . $i . "' class='danger'>";
                                     } else {
                                         $contr = 2;
                                         echo "<tr id='fila" . $i . "'>";
                                     }
-                                //echo "<tr id='fila" . $i . "'>";
-                                for ($g = 1; $g < 14; $g++) {
-                                    echo "<td class='columna" . $g . "'></td>";
+                                    //echo "<tr id='fila" . $i . "'>";
+                                    for ($g = 1; $g < 14; $g++) {
+                                        echo "<td class='columna" . $g . "'></td>";
+                                    }
+                                    echo "</tr>";
                                 }
-                                echo "</tr>";
-                            }
-                            ?>
-                        
-                    <?php
-                    } else {
+                                ?>
+
+                                <?php
+                            } else {
+                                ?>
+                            <p align="center">Aun no se han generado precios para este día.</p>
+                            <?php
+                        }
                         ?>
-                        <p align="center">Aun no se han generado precios para este día.</p>
-                        <?php
-                    }
-                    ?>
                         </tbody>
                     </table>  
                 </div>
-                </div>
             </div>
         </div>
-        <div class="panel panelTabla">
-            <div class="panel-heading panelTitulo" role="tab" id="heading2">
-                <h4 role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="false" aria-controls="collapse2" class="panel-title titulosPanel">
-                    La Union
-                </h4>
-            </div>
-            <div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
-                <div class="panel-body">
-                    <div class="table-responsive">
+    </div>
+    <div class="panel panelTabla">
+        <div class="panel-heading panelTitulo" role="tab" id="heading2">
+            <h4 role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="false" aria-controls="collapse2" class="panel-title titulosPanel">
+                La Union
+            </h4>
+        </div>
+        <div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
+            <div class="panel-body">
+                <div class="table-responsive">
                     <?php
                     if (isset($tablaLaunion[0]['Producto'])) {
                         ?>
@@ -357,19 +360,19 @@ $this->params['breadcrumbs'][] = $this->title;
                         ?>
                         </tbody>
                     </table>
-                    </div>
                 </div>
             </div>
         </div>
-        <div class="panel panelTabla">
-            <div class="panel-heading panelTitulo" role="tab" id="heading3">
-                <h4 role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="false" aria-controls="collapse3" class="panel-title titulosPanel">
-                    Casi
-                </h4>
-            </div>
-            <div id="collapse3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading3">
-                <div class="panel-body">
-                    <div class="table-responsive">
+    </div>
+    <div class="panel panelTabla">
+        <div class="panel-heading panelTitulo" role="tab" id="heading3">
+            <h4 role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="false" aria-controls="collapse3" class="panel-title titulosPanel">
+                Casi
+            </h4>
+        </div>
+        <div id="collapse3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading3">
+            <div class="panel-body">
+                <div class="table-responsive">
                     <?php
                     if (isset($tablaCasi[0]['Producto'])) {
                         ?>
@@ -441,19 +444,19 @@ $this->params['breadcrumbs'][] = $this->title;
                         ?>
                         </tbody>
                     </table>
-                    </div>
                 </div>
             </div>
         </div>
-        <div class="panel panelTabla">
-            <div class="panel-heading panelTitulo" role="tab" id="heading4">
-                <h4 role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false" aria-controls="collapse4" class="panel-title titulosPanel">
-                    Costa de Almería
-                </h4>
-            </div>
-            <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4">
-                <div class="panel-body">
-                    <div class="table-responsive">
+    </div>
+    <div class="panel panelTabla">
+        <div class="panel-heading panelTitulo" role="tab" id="heading4">
+            <h4 role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false" aria-controls="collapse4" class="panel-title titulosPanel">
+                Costa de Almería
+            </h4>
+        </div>
+        <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4">
+            <div class="panel-body">
+                <div class="table-responsive">
                     <?php
                     if (isset($tablaCosta[0]['Producto'])) {
                         ?>
@@ -495,18 +498,18 @@ $this->params['breadcrumbs'][] = $this->title;
                         </tbody>
                     </table>    
                 </div>
-                </div>
             </div>
         </div>
-        <div class="panel panelTabla">
-            <div class="panel-heading panelTitulo" role="tab" id="heading5">
-                <h4 role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse5" aria-expanded="false" aria-controls="collapse5" class="panel-title titulosPanel">
-                    Femago
-                </h4>
-            </div>
-            <div id="collapse5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading5">
-                <div class="panel-body">
-                    <div class="table-responsive">
+    </div>
+    <div class="panel panelTabla">
+        <div class="panel-heading panelTitulo" role="tab" id="heading5">
+            <h4 role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse5" aria-expanded="false" aria-controls="collapse5" class="panel-title titulosPanel">
+                Femago
+            </h4>
+        </div>
+        <div id="collapse5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading5">
+            <div class="panel-body">
+                <div class="table-responsive">
                     <?php
                     if (isset($tablaFemago[0]['Producto'])) {
                         ?>
@@ -547,19 +550,19 @@ $this->params['breadcrumbs'][] = $this->title;
                         ?>
                         </tbody>
                     </table>    
-                    </div>
                 </div>
             </div>
         </div>
-        <div class="panel panelTabla">
-            <div class="panel-heading panelTitulo" role="tab" id="heading6">
-                <h4 role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse6" aria-expanded="false" aria-controls="collapse6" class="panel-title titulosPanel">
-                    Agroponiente
-                </h4>
-            </div>
-            <div id="collapse6" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading6">
-                <div class="panel-body">
-                    <div class="table-responsive">
+    </div>
+    <div class="panel panelTabla">
+        <div class="panel-heading panelTitulo" role="tab" id="heading6">
+            <h4 role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse6" aria-expanded="false" aria-controls="collapse6" class="panel-title titulosPanel">
+                Agroponiente
+            </h4>
+        </div>
+        <div id="collapse6" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading6">
+            <div class="panel-body">
+                <div class="table-responsive">
                     <?php
                     if (isset($tablaAgroponiente[0]['Producto'])) {
                         ?>
@@ -598,9 +601,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             <?php
                         }
                         ?>
-                    </tbody>
-                </table>   
-                    </div>
+                        </tbody>
+                    </table>   
+                </div>
             </div>
         </div>
     </div>
