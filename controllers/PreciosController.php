@@ -1,5 +1,4 @@
 <?php
-// estoy mirando esta mierda a ver que le pasa.
 namespace app\controllers;
 use Yii;
 use yii\filters\AccessControl;
@@ -67,7 +66,13 @@ class PreciosController extends Controller
         $listaOrigenes = $origenModel -> leerTodos();
         $listaLocalizaciones = $supermercadosModel ->leerLocalizaciones();
         $listaYears = $supermercadosModel -> leerYears();
-        //exit(print_r($listaProductos));
+        $ultimaFecha = $supermercadosModel -> leerUltimaFecha();
+        
+        
+        $contadorYears = count($listaYears);
+        if($ultimaFecha[0]['fecha'] > 7){
+            $listaYears[$contadorYears]['year'] = substr($ultimaFecha[0]['fecha'], 0, 4)+1;
+        }
         $contadorYears = count($listaYears);
         $listaSemanas = $supermercadosModel -> leerSemanas($listaYears[$contadorYears-2]['year']);
         
@@ -127,6 +132,12 @@ class PreciosController extends Controller
         $listaOrigenes = $origenModel->leerTodos();
         $listaLocalizaciones = $mayoristasModel -> leerLocalizaciones();
         $listaYears = $mayoristasModel -> leerYears();
+        $ultimaFecha = $mayoristasModel ->leerUltimaFecha();
+        
+        $contadorYears = count($listaYears);
+        if($ultimaFecha[0]['fecha'] > 7){
+            $listaYears[$contadorYears]['year'] = substr($ultimaFecha[0]['fecha'], 0, 4)+1;
+        }
         
         $contadorYears = count($listaYears);
         $listaSemanas = $mayoristasModel ->leerSemanas($listaYears[$contadorYears-2]['year']);
@@ -186,6 +197,13 @@ class PreciosController extends Controller
         // Leemos el contenido de las tablas.
         $listaProductos = $origenModel -> leerProductos();
         $listaYears = $origenModel -> leerYears();
+        $ultimaFecha = $origenModel ->leerUltimaFecha();
+        
+        $contadorYears = count($listaYears);
+        
+        if($ultimaFecha[0]['fecha'] > 7){
+            $listaYears[$contadorYears]['year'] = substr($ultimaFecha[0]['fecha'], 0, 4)+1;
+        }
         
         $contadorYears = count($listaYears);
         $listaSemanas = $origenModel ->leerSemanas($listaYears[$contadorYears-2]['year']);
