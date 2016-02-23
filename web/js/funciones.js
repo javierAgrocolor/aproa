@@ -18,7 +18,11 @@ $(document).ready(function () {
     });
 
     $('#confirmarModalSemanas').click(function(){
-       $('#filtrosModalSemanas').submit(); 
+        if ($('.datetimepickers').val() !== ""){
+            $('#filtrosModalSemanas').submit();
+        }else{
+            alert("Debe seleccionar al menos una fecha inicial y una fecha final.");
+        }   
     });
     
     //PAGINATION!!!!!

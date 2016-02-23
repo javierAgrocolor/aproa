@@ -488,3 +488,11 @@ select#yearsMayoristas, select#semanas, #semanas_chosen {
 .alhondigas {
     text-align: center;
 }
+
+#botonFiltros {
+    display: none;
+}
+
+.flechas {
+    width: 20px;
+}

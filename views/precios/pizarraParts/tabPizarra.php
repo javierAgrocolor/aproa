@@ -13,10 +13,7 @@
         $('#enlaceTabCortes').click(function(){
             $('#modalCortes').modal('toggle');
         });
-        
-        
-        
-    })
+    });
 </script>
 
 <div class="panel-group margintop" id="accordion" role="tablist" aria-multiselectable="true">
@@ -55,21 +52,21 @@ foreach ($listaAlhondigas as $alhondiga){
             
         </div>
     
-    <div id='collapse<?php echo $alhondiga['ebbdd']; ?>' class="panel-collapse collapse" role='tabpanel' aria-labelledby='<?php echo $alhondiga["ebbdd"]; ?>'>
-        <div class="panel-body">            
-            <?php
-            if (is_array($listaPizarras[$y])){
-                echo "<img src='/aproa/images/".$alhondiga['ebbdd'].".jpg' class='img-responsive center-block'>";
-                require($_SERVER['DOCUMENT_ROOT'].'/aproa/views/precios/pizarraParts/cabeceraTablaPizarra.php');
-                require($_SERVER['DOCUMENT_ROOT'].'/aproa/views/precios/pizarraParts/cuerpoTablaPizarra.php');
-            }else{
-                echo "<p align='center'>No existen aún registros para el día de hoy.</p>";
-            }
-            $y++;
-            ?>
+        <div id='collapse<?php echo $alhondiga['ebbdd']; ?>' class="panel-collapse collapse" role='tabpanel' aria-labelledby='<?php echo $alhondiga["ebbdd"]; ?>'>
+            <div class="panel-body">            
+                <?php
+                if (is_array($listaPizarras[$y])){
+                    echo "<img src='/aproa/images/".$alhondiga['ebbdd'].".jpg' class='img-responsive center-block'>";
+                    require($_SERVER['DOCUMENT_ROOT'].'/aproa/views/precios/pizarraParts/cabeceraTablaPizarra.php');
+                    require($_SERVER['DOCUMENT_ROOT'].'/aproa/views/precios/pizarraParts/cuerpoTablaPizarra.php');
+                }else{
+                    echo "<p align='center'>No existen aún registros para el día de hoy.</p>";
+                }
+                $y++;
+                ?>
+            </div>
         </div>
     </div>
-    </div>         
 
 <?php
 }?>

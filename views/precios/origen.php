@@ -131,7 +131,7 @@ if (isset($year)) {
             <select id="productos" name="productos[]" multiple class="form-control chosen-select-width">
                 <?php
                 foreach ($listaProductos as $especieOption) {
-                    echo "<option id='" . $especieOption->codigo_producto . "' value='" . $especieOption->codigo_producto . "'>" . $especieOption->producto . "</option>";
+                    echo "<option id='" . $especieOption['cod_producto'] . "' value='" . $especieOption['cod_producto'] . "'>" . $especieOption['producto'] . "</option>";
                 }
                 ?>
             </select>

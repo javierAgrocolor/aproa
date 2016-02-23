@@ -339,4 +339,27 @@ class DatosSupermercados extends \yii\db\ActiveRecord
         return $rows;
     }
     
+    public function leerProductos(){
+        $query = new \yii\db\Query();
+        $query -> select('producto.producto, Datos_Supermercados.cod_producto')
+                -> distinct('Datos_Supermercados.cod_producto')
+                -> from('Datos_Supermercados')
+                -> innerJoin('Producto', 'Producto.codigo_producto = Datos_Supermercados.cod_producto')
+                -> where('Producto.codigo_producto in (12,13,401,14,37,31,45,20,18,49,73,19,48,30,32,33,28,7,6,5,11,10,9,8,16,53,17,15,41,3,22,2,1,40,4,25,46,26,24)')
+                -> orderBy('producto.producto');
+        $rows = $query -> all(DatosSupermercados::getDb());
+        return $rows;
+    }
+    
+    public function leerLocalizaciones(){
+        $query = new \yii\db\Query();
+        $query -> select('Localizacion.Localizacion, Datos_Supermercados.cod_localizacion')
+                -> distinct('Datos_Supermercados.cod_localizacion')
+                -> from('Datos_Supermercados')
+                -> innerJoin('Localizacion', 'Localizacion.codigo_localizacion = Datos_Supermercados.cod_localizacion')
+                -> where('Localizacion.codigo_localizacion in (7,8,9,10,11,15,16,19,28,30,31,32,34,35,41,45,48,49,51,52,53,57,63,70,73,74,75,79,84)')
+                -> orderBy('Localizacion.Localizacion');
+        $rows = $query -> all(DatosSupermercados::getDb());
+        return $rows;
+    }
 }

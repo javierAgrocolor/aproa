@@ -288,4 +288,16 @@ class DatosOrigen extends \yii\db\ActiveRecord
         return $rows;
     }
     
+    public function leerProductos(){
+        $query = new \yii\db\Query();
+        $query -> select('producto.producto, Datos_origen.cod_producto')
+                -> distinct('producto.producto')
+                -> from ('Datos_origen')
+                -> innerJoin('producto', 'producto.codigo_producto = Datos_origen.cod_producto')
+                -> where('producto.codigo_producto in (34,36,35,13,39,14,37,45,20,19,42,30,32,33,7,6,5,11,10,9,8,4,26,24,3,22,2,1)')
+                -> orderBy('producto.producto');
+        $rows = $query -> all(DatosOrigen::getDb());
+        return $rows;
+    }
+    
 }

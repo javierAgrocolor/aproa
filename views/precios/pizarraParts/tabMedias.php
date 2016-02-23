@@ -13,6 +13,7 @@
         <tr>
             <th>Productos</th>
             <th>Media</th>
+            <th></th>
             <th>C1</th>
             <th>C2</th>
             <th>C3</th>
@@ -35,11 +36,19 @@
         $contr = 1;
         $contador = 0;
             foreach ($mediasGlobales as $productoGlobal){
+                $mediaActualCalculada = $productoGlobal['media']*10000;
+                $mediaAnteriorCalculada = $mediasAnteriores[$contador]['media']*10000;
                 if ($contr != 1) {
                             $contr = 1;
                             echo "<tr class='danger'>";
                 echo "<td>".$productoGlobal['nombre']."</td>";
-                echo "<td>".round($productoGlobal['media'],3)."------".$mediasAnteriores[$contador]['media']."</td>";
+                echo "<td>".round($productoGlobal['media'],2)."</td>";
+                
+                if ($mediaActualCalculada > $mediaAnteriorCalculada){
+                    echo "<td><img class='flechas' src='/aproa/images/flechaVerde.png' title='Precio Anterior: ".round($mediasAnteriores[$contador]['media'], 2)."' /></td>";
+                }else{
+                    echo "<td><img class='flechas' src='/aproa/images/flechaRoja.png' title='Precio Anterior: ".round($mediasAnteriores[$contador]['media'], 2)."' /></td>";
+                }
                 for ($i = 1; $i < 16; $i++){
                     echo "<td>".$productoGlobal['corte'.$i]."</td>";
                 }
@@ -47,13 +56,19 @@
                             $contr = 2;
                             echo "<tr>";
                 echo "<td>".$productoGlobal['nombre']."</td>";
-                echo "<td>".round($productoGlobal['media'],3)."------".$mediasAnteriores[$contador]['media']."</td>";
+                echo "<td>".round($productoGlobal['media'],2)."</td>";
+                if ($mediaActualCalculada > $mediaAnteriorCalculada ){
+                    echo "<td><img class='flechas' src='/aproa/images/flechaVerde.png' title='Precio Anterior: ".round($mediasAnteriores[$contador]['media'], 2)."' /></td>";
+                }else{
+                    echo "<td><img class='flechas' src='/aproa/images/flechaRoja.png' title='Precio Anterior: ".round($mediasAnteriores[$contador]['media'], 2)."' /></td>";
+                }
+                
                 for ($i = 1; $i < 16; $i++){
                     echo "<td>".$productoGlobal['corte'.$i]."</td>";
                 }
                         }
                 
-                        $contador++;
+                $contador++;
             }
         ?>
     </tbody>

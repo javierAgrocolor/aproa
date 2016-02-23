@@ -62,11 +62,12 @@ class PreciosController extends Controller
         
         
         // Leemos el contenido de las tablas. 
-        $listaProductos = $productModel -> leerTodos();
+        //$listaProductos = $productModel -> leerTodos();
+        $listaProductos = $supermercadosModel -> leerProductos();
         $listaOrigenes = $origenModel -> leerTodos();
-        $listaLocalizaciones = $localizacionModel -> leerTodos();
+        $listaLocalizaciones = $supermercadosModel ->leerLocalizaciones();
         $listaYears = $supermercadosModel -> leerYears();
-        
+        //exit(print_r($listaProductos));
         $contadorYears = count($listaYears);
         $listaSemanas = $supermercadosModel -> leerSemanas($listaYears[$contadorYears-2]['year']);
         
@@ -121,7 +122,8 @@ class PreciosController extends Controller
         $localizacionModel = new Localizacion();
         $mayoristasModel = new DatosGeneralesMayoristas();
         // Leemos el contenido de las tablas.
-        $listaProductos = $productModel->leerTodos();
+        //$listaProductos = $productModel->leerTodos();
+        $listaProductos = $mayoristasModel -> leerProductos();
         $listaOrigenes = $origenModel->leerTodos();
         $listaLocalizaciones = $localizacionModel -> leerTodos();
         $listaYears = $mayoristasModel -> leerYears();
@@ -182,7 +184,7 @@ class PreciosController extends Controller
         $origenModel = new DatosOrigen();
         
         // Leemos el contenido de las tablas.
-        $listaProductos = $productModel ->leerTodos();
+        $listaProductos = $origenModel -> leerProductos();
         $listaYears = $origenModel -> leerYears();
         
         $contadorYears = count($listaYears);
