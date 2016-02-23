@@ -151,6 +151,17 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
         return $rows;
     }
     
+    public function leerUltimaFecha(){
+        $query = new \yii\db\Query();
+        $query -> select ('fecha')
+                -> distinct ('fecha')
+                -> from ('Datos_generales_mayoristas')
+                -> orderBy('fecha desc')
+                -> limit(1);
+        $rows = $query ->all(DatosGeneralesMayoristas::getDb());
+        return $rows;
+    }
+    
     /**
      * Devuelve las fechas distintas y las semanas a las que corresponden según la campaña proporcionada.
      * @param type Año Inicial

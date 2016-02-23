@@ -120,6 +120,17 @@ class DatosSupermercados extends \yii\db\ActiveRecord
         return $rows;
     }
     
+    public function leerUltimaFecha(){
+        $query = new \yii\db\Query();
+        $query -> select ('fecha')
+                -> distinct ('fecha')
+                -> from ('Datos_Supermercados')
+                -> orderBy('fecha desc')
+                -> limit(1);
+        $rows = $query -> all(DatosSupermercados::getDb());
+        return $rows;
+    }
+    
     
     /**
      * Genera un String con las condiciones de los filtros del where si es que los hay.

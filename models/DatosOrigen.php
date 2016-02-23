@@ -102,6 +102,17 @@ class DatosOrigen extends \yii\db\ActiveRecord
         return $rows;
     }
     
+    public function leerUltimaFecha(){
+        $query = new \yii\db\Query();
+        $query -> select ('fecha')
+                -> distinct ('fecha')
+                -> from ('Datos_origen')
+                -> orderBy('fecha desc')
+                -> limit(1);
+        $rows = $query -> all(DatosOrigen::getDb());
+        return $rows;
+    }
+    
     /**
      * Devuelve los datos filtrados por productos o devuelve las medias del precio de lo filtrado por productos. 
      * @return Array

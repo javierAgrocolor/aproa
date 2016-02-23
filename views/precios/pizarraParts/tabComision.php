@@ -38,7 +38,7 @@
                $resultado = $cuellos - $descuentoNumerico;
                $resultado = Math.round($resultado*100)/100;
                $(this).html($resultado);
-           })
+           });
            
            
         });
@@ -47,7 +47,7 @@
             for($i = 1; $i < 16; $i++){
                 $('.corte'+$i).show();
             }
-        })
+        });
         
     });
 </script>
