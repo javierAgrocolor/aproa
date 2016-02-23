@@ -472,15 +472,15 @@ class PreciosController extends Controller
         $origenModel = new Origen();
         $supermercadosModel = new DatosSupermercados();
         // Leemos el contenido de las tablas.
-        $listaProductos = $datosOrigenModel ->leerProductos();
+        
         $listaOrigenes = $origenModel->leerTodos();
-        $listaLocalizaciones = $localizacionModel -> leerTodos();
         $listaYears = $mayoristasModel -> leerYears();
         $request = yii::$app->request;
         $year = $request->get('year');
         $tipoConsultaSemanas = $request ->get('tipoConsultaSemanas');
         
         if ($tipoConsultaSemanas == 'origen'){
+            $listaProductos = $datosOrigenModel ->leerProductos();
             $listaSemanas = $datosOrigenModel -> leerSemanas($year);
             
             return $this -> render ('origen', [
@@ -492,9 +492,13 @@ class PreciosController extends Controller
             
         }else{
             if ($tipoConsultaSemanas == 'mayoristas'){
+                $listaProductos = $mayoristasModel -> leerProductos();
+                $listaLocalizaciones = $mayoristasModel -> leerLocalizaciones();
                 $listaSemanas = $mayoristasModel -> leerSemanas($year);
             }else{
                 if ($tipoConsultaSemanas == 'supermercados'){
+                    $listaProductos = $supermercadosModel -> leerProductos();
+                    $listaLocalizaciones = $supermercadosModel -> leerLocalizaciones();
                     $listaSemanas = $supermercadosModel -> leerSemanas($year);
                 }
             }
