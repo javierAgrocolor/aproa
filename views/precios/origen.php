@@ -12,6 +12,14 @@ use yii\helpers\Html;
 $this->title = 'Precios Origen';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<script type="text/javascript">// <![CDATA[
+   window.onload = function()
+    {
+        document.getElementById('enlaceGrafico').click();
+         setTimeout("document.getElementById('enlaceResultado').click()",1);
+    }
+// ]]></script>
+
 <?php
 //RESULTADO
 if (isset($tabla)) {
@@ -237,10 +245,10 @@ if (isset($tabla)) {
                 <div class="col-lg-12">        
                     <ul class="nav nav-tabs" id="navOrigen">
                         <li role="tablero" class="pizarra active">
-                            <a href="#resultado" role="tab" data-toggle="tab">Resultado</a>
+                            <a id="enlaceResultado" href="#resultado" role="tab" data-toggle="tab">Resultado</a>
                         </li>
                         <li role="tablero" class="pizarra">
-                            <a href="#graficaOrigen" role="tab" data-toggle="tab">Grafica</a>
+                            <a id="enlaceGrafico" href="#graficaOrigen" role="tab" data-toggle="tab">Grafica</a>
                         </li>            
                     </ul>
                     <!-- Tab panes -->
