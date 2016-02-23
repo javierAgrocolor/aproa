@@ -492,3 +492,7 @@ select#yearsMayoristas, select#semanas, #semanas_chosen {
 #botonFiltros {
     display: none;
 }
+
+.flechas {
+    width: 20px;
+}
