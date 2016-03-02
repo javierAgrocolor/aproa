@@ -70,7 +70,8 @@ class PreciosController extends Controller
         
         
         $contadorYears = count($listaYears);
-        if($ultimaFecha[0]['fecha'] > 7){
+        
+        if(substr($ultimaFecha[0]['fecha'], 5, 2) > 7){
             $listaYears[$contadorYears]['year'] = substr($ultimaFecha[0]['fecha'], 0, 4)+1;
         }
         $contadorYears = count($listaYears);
@@ -135,7 +136,7 @@ class PreciosController extends Controller
         $ultimaFecha = $mayoristasModel ->leerUltimaFecha();
         
         $contadorYears = count($listaYears);
-        if($ultimaFecha[0]['fecha'] > 7){
+        if(substr($ultimaFecha[0]['fecha'], 5, 2) > 7){
             $listaYears[$contadorYears]['year'] = substr($ultimaFecha[0]['fecha'], 0, 4)+1;
         }
         
@@ -200,8 +201,7 @@ class PreciosController extends Controller
         $ultimaFecha = $origenModel ->leerUltimaFecha();
         
         $contadorYears = count($listaYears);
-        
-        if($ultimaFecha[0]['fecha'] > 7){
+        if(substr($ultimaFecha[0]['fecha'], 5, 2) > 7){
             $listaYears[$contadorYears]['year'] = substr($ultimaFecha[0]['fecha'], 0, 4)+1;
         }
         
