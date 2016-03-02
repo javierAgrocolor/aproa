@@ -40,32 +40,32 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="pizarras">
                 <?php
-                    require($_SERVER['DOCUMENT_ROOT'].'/aproa/views/precios/pizarraParts/tabPizarra.php');
+                    require($_SERVER['DOCUMENT_ROOT'].'/../views/precios/pizarraParts/tabPizarra.php');
                 ?>
             </div>
             <div role="tabpanel" class="tab-pane" id="mediaGlobal">
                 <?php
-                    require($_SERVER['DOCUMENT_ROOT'].'/aproa/views/precios/pizarraParts/tabMedias.php');
+                    require($_SERVER['DOCUMENT_ROOT'].'/../views/precios/pizarraParts/tabMedias.php');
                 ?>
             </div>
             <div role="tabpanel" class="tab-pane" id="precioProducto">
                 <?php
-                    require($_SERVER['DOCUMENT_ROOT'].'/aproa/views/precios/pizarraParts/tabProducto.php');
+                    require($_SERVER['DOCUMENT_ROOT'].'/../views/precios/pizarraParts/tabProducto.php');
                 ?>
             </div>
             <div role="tabpanel" class="tab-pane" id="precioSemana">
                 <?php
-                    require($_SERVER['DOCUMENT_ROOT'].'/aproa/views/precios/pizarraParts/tabSemana.php');
+                    require($_SERVER['DOCUMENT_ROOT'].'/../views/precios/pizarraParts/tabSemana.php');
                 ?>
             </div>
             <div role="tabpanel" class="tab-pane" id="precioCortes">
                 <?php
-                    require($_SERVER['DOCUMENT_ROOT'].'/aproa/views/precios/pizarraParts/tabCortes.php');
+                    require($_SERVER['DOCUMENT_ROOT'].'/../views/precios/pizarraParts/tabCortes.php');
                 ?>
             </div>
             <div role="tabpanel" class="tab-pane" id="preciosComision">
                 <?php
-                    require($_SERVER['DOCUMENT_ROOT'].'/aproa/views/precios/pizarraParts/tabComision.php');
+                    require($_SERVER['DOCUMENT_ROOT'].'/../views/precios/pizarraParts/tabComision.php');
                 ?>
             </div>
         </div>

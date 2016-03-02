@@ -23,9 +23,9 @@ foreach ($listaAlhondigas as $alhondiga){
         <div class="panel-body">
             <?php
             if (is_array($listaPizarrasProducto[$y])){
-                echo "<img src='/aproa/images/".$alhondiga['ebbdd'].".jpg' class='img-responsive center-block'>";
-                require($_SERVER['DOCUMENT_ROOT'].'/aproa/views/precios/pizarraParts/cabeceraTablaPizarra.php');
-                require($_SERVER['DOCUMENT_ROOT'].'/aproa/views/precios/pizarraParts/cuerpoTablaProducto.php');
+                echo "<img src='/images/".$alhondiga['ebbdd'].".jpg' class='img-responsive center-block'>";
+                require($_SERVER['DOCUMENT_ROOT'].'/../views/precios/pizarraParts/cabeceraTablaPizarra.php');
+                require($_SERVER['DOCUMENT_ROOT'].'/../views/precios/pizarraParts/cuerpoTablaProducto.php');
             }else{
                 echo "<p align='center'>No existen aún registros para el día de hoy.</p>";
             }

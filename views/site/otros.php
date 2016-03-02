@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php
                     foreach ($tablaOtros as $row) {
                         //exit($row);
-                        echo "<tr><td class='titulos2'><a target='_blank' href='/aproa/web/index.php/site/abrirpdf?informes=" . $row['boletin'] . "'>" . $row['tipo'] . "</a> (" . $row['fecha'] . ")
+                        echo "<tr><td class='titulos2'><a target='_blank' href='abrirpdf?informes=" . $row['boletin'] . "'>" . $row['tipo'] . "</a> (" . $row['fecha'] . ")
                       </td></tr>";
                     }
                     ?>     

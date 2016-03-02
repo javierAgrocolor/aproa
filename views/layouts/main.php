@@ -24,7 +24,7 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
-    <script src="../../../vendor/bower/jquery/dist/jquery.js"></script>
+    <script src="/js/jquery.js"></script>
     <!--<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>-->
     <script src="../../assets/pluginDropdown/docsupport/prism.js"></script>
@@ -58,7 +58,7 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
+            ['label' => 'Home', 'url' => Yii::$app->homeUrl],
            /* ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],*/
             ['label' => 'Origen', 'url' => ['/precios/origen']],
@@ -82,7 +82,7 @@ AppAsset::register($this);
         <div class="row-fluid">
             <!-- Cabecera -->
             <div class="span12 marginbotton">
-                <img src="/aproa/images/cabecera.png" class="img-responsive center-block">
+                <img src="/images/cabecera.png" class="img-responsive center-block">
             </div>            
         </div>
         <?= Breadcrumbs::widget([
@@ -94,7 +94,7 @@ AppAsset::register($this);
 
 <footer class="footer mifooter">
     <div class="container">
-        <p class="pull-left"><strong>&copy; <img src="/aproa/images/aproafooter.png" > <?= date('Y') ?></strong></p>
+        <p class="pull-left"><strong>&copy; <img src="/images/aproafooter.png" > <?= date('Y') ?></strong></p>
         <p class="pull-right"><strong>Subvencionado a través del Programa operativo parcial de APROA: Medidas de Prevención y Gestión de Crisis.</strong></p>
        <!-- <p class="pull-right"><?= Yii::powered() ?></p>-->
     </div>

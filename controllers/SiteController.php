@@ -171,7 +171,7 @@ class SiteController extends Controller {
                 if ($tipo != 'Historico' && $tipo != 'Otros') {
                     $filename = $boletinesModels->buscarPdf($tipo);
                     //exit($filename[0]['Boletin']);           
-                    return $this->redirect('/aproa/pdf/' . $filename[0]['Boletin'] . '.pdf');
+                    return $this->redirect('/pdf/' . $filename[0]['Boletin'] . '.pdf');
                 } else {
                     if ($tipo != 'Otros') {
                         $historico = $boletinesModels->buscarHistorico();
@@ -208,7 +208,7 @@ class SiteController extends Controller {
             $request = yii::$app->request;
             if (count($request->queryParams) != 0) {
                 $pdf = $request->get('informes');
-                return $this->redirect('/aproa/pdf/' . $pdf . '.pdf');
+                return $this->redirect('/pdf/' . $pdf . '.pdf');
             }
         } else {
             return $this->goHome();
