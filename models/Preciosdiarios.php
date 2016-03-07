@@ -310,4 +310,19 @@ class Preciosdiarios extends \yii\db\ActiveRecord
         return $seleccion;
     }
     
+    public function leerDiaAnterior($fecha){
+	    
+	$condicion = "fecha < '".$fecha."'";    
+	$query = new Query();
+        $query -> select('fecha')
+		-> distinct('fecha')
+		-> from ('preciosdiarios')
+		-> where ($condicion)
+		-> orderBy ('fecha DESC')
+		-> limit (1);
+        $rows = $query -> all(Preciosdiarios::getDb());
+        return $rows;    
+    }
+    
+    
 }

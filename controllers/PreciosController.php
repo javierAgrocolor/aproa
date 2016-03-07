@@ -261,9 +261,8 @@ class PreciosController extends Controller
         
         
         $today = date('Y-m-d');
-        $today = "2015-11-27";
-        $yesterday = date('Y-m-d', strtotime(' -1 day'));
-        $yesterday = "2015-11-26";
+        $yesterday = $pizarraModel -> leerDiaAnterior($today);
+	$yesterday = $yesterday[0]['fecha'];
         
         // Pizarra General.
         $ultimaPizarra = $this -> leerDatosUltima($today);
@@ -409,10 +408,12 @@ class PreciosController extends Controller
         $suma = 0;
         for($i = 1; $i < count($producto)-3; $i++){
             //exit(print_r(gettype($producto['corte'.$i])));
-            $numero = $producto['corte'.$i];
-            if(round($numero, 3) != 0){
-                $suma += $producto['corte'.$i];
-                $contador++;
+            if(isset($producto['corte'.$i])){
+                $numero = $producto['corte'.$i];
+                if(round($numero, 3) != 0){
+                    $suma += $producto['corte'.$i];
+                    $contador++;
+                }
             }
         }
         
