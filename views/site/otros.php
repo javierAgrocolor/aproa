@@ -18,9 +18,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     foreach ($tablaOtros as $row) {
                         //exit($row);
                         echo "<tr><td class='titulos2'><a target='_blank' href='abrirpdf?informes=" . $row['boletin'] . "'>" . $row['tipo'] . "</a> (" . $row['fecha'] . ")
-                      </td></tr>";
+                        </td></tr>";
                     }
-                    ?>     
+                    ?>
                 </tbody>
             </table>
             <div id="pagination"></div>

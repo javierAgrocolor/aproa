@@ -65,6 +65,7 @@ class PreciosController extends Controller
         $listaProductos = $supermercadosModel -> leerProductos();
         $listaOrigenes = $origenModel -> leerTodos();
         $listaLocalizaciones = $supermercadosModel ->leerLocalizaciones();
+        $listaPresentaciones = $supermercadosModel -> leerPresentaciones();
         $listaYears = $supermercadosModel -> leerYears();
         $ultimaFecha = $supermercadosModel -> leerUltimaFecha();
         
@@ -88,14 +89,15 @@ class PreciosController extends Controller
             $fechaFinal = $request->get('fechaFinal');
             $tipoConsulta = $request->get('opcionesConsulta');
             $semanas = $request->get('semanas');
+            $presentaciones = $request->get('presentaciones');
             // Establecemos la consulta de datos con los parametros recibidos.            
-            $resultado = $supermercadosModel ->leerDatos($productos, $origen, $localizacion, $fechaInicial, $fechaFinal, $tipoConsulta, $semanas);
-            
+            $resultado = $supermercadosModel ->leerDatos($productos, $origen, $localizacion, $fechaInicial, $fechaFinal, $tipoConsulta, $semanas, $presentaciones);
             
             return $this->render('supermercados', [
                 'listaProductos' => $listaProductos,
                 'listaOrigenes' => $listaOrigenes,
                 'listaLocalizaciones' => $listaLocalizaciones,
+                'listaPresentaciones' => $listaPresentaciones,
                 'listaYears' => $listaYears,
                 'productos' => $productos,
                 'origen' => $origen,
@@ -110,6 +112,7 @@ class PreciosController extends Controller
                 'listaProductos' => $listaProductos,
                 'listaOrigenes' => $listaOrigenes,
                 'listaLocalizaciones' => $listaLocalizaciones,
+                'listaPresentaciones' => $listaPresentaciones,
                 'listaYears' => $listaYears,
                 'listaSemanas' => $listaSemanas
             ]);
@@ -258,9 +261,9 @@ class PreciosController extends Controller
         
         
         $today = date('Y-m-d');
-        $today = '2015-11-27';
+        $today = "2015-11-27";
         $yesterday = date('Y-m-d', strtotime(' -1 day'));
-        $yesterday = '2015-11-26';
+        $yesterday = "2015-11-26";
         
         // Pizarra General.
         $ultimaPizarra = $this -> leerDatosUltima($today);
@@ -309,7 +312,8 @@ class PreciosController extends Controller
             array_push($listaPizarrasAuxiliar, $pizarraProducto);
         }
         
-        
+        $date = new \DateTime($today);
+        $today = $date;
         $request = yii::$app->request;
         //En base a si recibimos parametros GET/POST mandamos unos datos a la vista o mandamos otros.
         if (count($request->queryParams) != 0){

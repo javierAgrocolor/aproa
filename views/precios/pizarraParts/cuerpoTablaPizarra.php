@@ -16,6 +16,8 @@ foreach ($listaPizarras[$y] as $row) {
         if ($row['corte'.$i] != 0){
             $suma += $row['corte'.$i];
             $contador++;
+        }else{
+            $row['corte'.$i] = "-";
         }
     }
     $media = $suma/$contador;
@@ -29,7 +31,7 @@ foreach ($listaPizarras[$y] as $row) {
         echo "<tr>";
     }
     echo "<td>" . $row['nombre'] . "</td>";
-    echo "<td>" .$media. "</td>";
+    echo "<td>" . sprintf("%.2f", $media) . "</td>";
     echo "<td class='corte1'>" . $row['corte1'] . "</td>";
     echo "<td class='corte2'>" . $row['corte2'] . "</td>";
     echo "<td class='corte3'>" . $row['corte3'] . "</td>";

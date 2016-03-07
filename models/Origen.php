@@ -86,6 +86,6 @@ class Origen extends \yii\db\ActiveRecord
      * @return Array 
      */
     public function leerTodos(){
-        return Origen::find()->orderBy("origen")->all();
+        return Origen::find()-> where('id not in (19,26,27,28,29,31,92)')->orderBy("origen")->all();
     }
 }

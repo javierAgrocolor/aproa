@@ -16,6 +16,8 @@ foreach ($ultimaPizarra as $row) {
         if ($row['corte'.$i] != 0){
             $suma += $row['corte'.$i];
             $contador++;
+        }else{
+            $row['corte'.$i] = "-";
         }
     }
     $media = $suma/$contador;
@@ -29,7 +31,7 @@ foreach ($ultimaPizarra as $row) {
         echo "<tr>";
     }
     echo "<td>" . $row['nombre'] . "</td>";
-    echo "<td>" . $media . "</td>";
+    echo "<td>" . sprintf("%.2f", $media) . "</td>";
     echo "<td>" . $row['corte1'] . "</td>";
     echo "<td>" . $row['corte2'] . "</td>";
     echo "<td>" . $row['corte3'] . "</td>";
