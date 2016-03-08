@@ -159,7 +159,7 @@ if (isset($year)) {
             </select>
         </div>
         <div class="col-lg-5 col-lg-offset-1 margintop">
-            <label>Localización</label>
+            <label>Mercados Mayoristas</label>
             <select id="localizacion" name="localizacion[]" multiple class="form-control chosen-select-width">
                 <?php
                 foreach ($listaLocalizaciones as $localizacionOption) {
@@ -365,12 +365,14 @@ if (isset($tabla)) {
                                 <?php
                                 $contr = 1;
                                 foreach ($tabla as $row) {
+                                    $date = new DateTime($row['fecha']);
+                                    $row['fecha'] = $date;
                                     if ($contr != 1) {
                                         $contr = 1;
-                                        echo "<tr class='danger'><td>" . $row['producto'] . "</td><td>" . $row['Localizacion'] . "</td><td>" . $row['origen'] . "</td><td>" . substr($row['precio'], 0, 5) . "</td><td>" . $row['fecha'] . "</td></tr>";
+                                        echo "<tr class='danger'><td>" . $row['producto'] . "</td><td>" . $row['Localizacion'] . "</td><td>" . $row['origen'] . "</td><td>" . sprintf("%.2f", round($row['precio'], 2)) . "</td><td>" . $row['fecha'] -> format('d-m-Y') . "</td></tr>";
                                     } else {
                                         $contr = 2;
-                                        echo "<tr><td>" . $row['producto'] . "</td><td>" . $row['Localizacion'] . "</td><td>" . $row['origen'] . "</td><td>" . substr($row['precio'], 0, 5) . "</td><td>" . $row['fecha'] . "</td></tr>";
+                                        echo "<tr><td>" . $row['producto'] . "</td><td>" . $row['Localizacion'] . "</td><td>" . $row['origen'] . "</td><td>" . sprintf("%.2f", round($row['precio'], 2)) . "</td><td>" . $row['fecha'] -> format('d-m-Y') . "</td></tr>";
                                     }
                                 }
                                 echo "</tbody>

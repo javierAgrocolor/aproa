@@ -20,7 +20,12 @@
     <div class="panel panelTabla">
         <div class="panel-heading panelTitulo" role="tab" id="heading1">
             <h4 role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="true" aria-controls="collapse1" class="panel-title titulosPanel"> 
-                Última Pizarra - <?php echo $ultimaPizarra[0]['alhondiga']; ?>
+                Última Pizarra - 
+                <?php 
+			if(is_array($ultimaPizarra)){
+				echo $ultimaPizarra[0]['alhondiga'];
+			}
+		?>
                 </h4>
         </div>
         <div id="collapse1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading1">

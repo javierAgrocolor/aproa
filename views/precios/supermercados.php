@@ -156,11 +156,21 @@ if (isset($year)) {
             </select>
         </div>
         <div class="col-lg-5 col-lg-offset-1 margintop">
-            <label>Localización</label>
+            <label>Supermercados</label>
             <select id="localizacion" name="localizacion[]" multiple class="form-control chosen-select-width">
                 <?php
                 foreach ($listaLocalizaciones as $localizacionOption) {
                     echo "<option id='" . $localizacionOption['cod_localizacion'] . "' value='" . $localizacionOption['cod_localizacion'] . "'>" . $localizacionOption['Localizacion'] . "</option>";
+                }
+                ?>
+            </select>
+        </div>
+        <div class="col-lg-5 margintop">
+            <label>Presentación</label>
+            <select id="presentacion" name="presentacion[]" multiple class="form-control chosen-select-width">
+                <?php
+                foreach ($listaPresentaciones as $presentacionOption) {
+                    echo "<option id='" . $presentacionOption['cod_presentacion'] . "' value='" . $presentacionOption['cod_presentacion'] . "'>" . $presentacionOption['presentacion'] . "</option>";
                 }
                 ?>
             </select>
@@ -297,6 +307,7 @@ if (isset($tabla)) {
                         <th>Producto</th>
                         <th>Localización</th>
                         <th>Origen</th>
+                        <th>Presentación</th>
                         <th>Precio Medio</th>
                         <?php
                         if (isset($tabla[0]['Semana'])) {
@@ -311,14 +322,14 @@ if (isset($tabla)) {
                     foreach ($tabla as $row) {
                         if ($contr != 1) {
                             $contr = 1;
-                            echo "<tr class='danger'><td>" . $row['producto'] . "</td><td>" . $row['Localizacion'] . "</td><td>" . $row['origen'] . "</td><td>" . substr($row['preciomedio'], 0, 5) . "</td>";
+                            echo "<tr class='danger'><td>" . $row['producto'] . "</td><td>" . $row['Localizacion'] . "</td><td>" . $row['origen'] . "</td><td>" .$row['presentacion']. "</td><td>" . substr($row['preciomedio'], 0, 5) . "</td>";
                             if (isset($tabla[0]['Semana'])) {
                                 echo "<td>" . $row['Semana'] . "</td>";
                             }
                             echo "</tr>";
                         } else {
                             $contr = 2;
-                            echo "<tr><td>" . $row['producto'] . "</td><td>" . $row['Localizacion'] . "</td><td>" . $row['origen'] . "</td><td>" . substr($row['preciomedio'], 0, 5) . "</td>";
+                            echo "<tr><td>" . $row['producto'] . "</td><td>" . $row['Localizacion'] . "</td><td>" . $row['origen'] . "</td><td>" .$row['presentacion']. "</td><td>". substr($row['preciomedio'], 0, 5) . "</td>";
                             if (isset($tabla[0]['Semana'])) {
                                 echo "<td>" . $row['Semana'] . "</td>";
                             }
@@ -364,6 +375,7 @@ if (isset($tabla)) {
                         <th>Producto</th>
                         <th>Localizacion</th>
                         <th>Origen</th>
+                        <th>Presentación</th>
                         <th>Precio</th>
                         <th>Fecha</th>
                     </tr>
@@ -372,12 +384,14 @@ if (isset($tabla)) {
                     <?php
                     $contr = 1;
                     foreach ($tabla as $row) {
+                        $date = new DateTime($row['fecha']);
+                        $row['fecha'] = $date;
                         if ($contr != 1) {
                             $contr = 1;
-                            echo "<tr class='danger'><td>" . $row['producto'] . "</td><td>" . $row['Localizacion'] . "</td><td>" . $row['origen'] . "</td><td>" . substr($row['precio'], 0, 5) . "</td><td>" . $row['fecha'] . "</td></tr>";
+                            echo "<tr class='danger'><td>" . $row['producto'] . "</td><td>" . $row['Localizacion'] . "</td><td>" . $row['origen'] . "</td><td>" .$row['presentacion']. "</td><td>" . sprintf("%.2f",round($row['precio'], 2)) . "</td><td>" . $row['fecha'] -> format('d-m-Y') . "</td></tr>";
                         } else {
                             $contr = 2;
-                            echo "<tr><td>" . $row['producto'] . "</td><td>" . $row['Localizacion'] . "</td><td>" . $row['origen'] . "</td><td>" . substr($row['precio'], 0, 5) . "</td><td>" . $row['fecha'] . "</td></tr>";
+                            echo "<tr><td>" . $row['producto'] . "</td><td>" . $row['Localizacion'] . "</td><td>" . $row['origen'] . "</td><td>"  . $row['presentacion'] . "</td><td>" . sprintf("%.2f",round($row['precio'], 2)) . "</td><td>" . $row['fecha'] -> format('d-m-Y') . "</td></tr>";
                         }                        
                     }
                     echo "</tbody>

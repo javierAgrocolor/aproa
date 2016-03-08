@@ -11,7 +11,7 @@
 <table class="table">
     <thead>        
         <tr>
-            <th><?php echo date('Y-m-d'); ?></th>
+            <th><?php echo $fecha-> format('d-m-Y');; ?></th>
             <th>Media</th>
             <th class="corteCabecera1">C1</th>
             <th class="corteCabecera2">C2</th>

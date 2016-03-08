@@ -341,12 +341,14 @@ if (isset($tabla)) {
                                 <?php
                                 $contr = 1;
                                 foreach ($tabla as $row) {
+                                    $date = new DateTime($row['fecha']);
+                                    $row['fecha'] = $date;
                                     if ($contr != 1) {
                                         $contr = 1;
-                                        echo "<tr class='danger'><td>" . $row['producto'] . "</td><td>" . $row['Localizacion'] . "</td><td>" . $row['origen'] . "</td><td>" . round($row['precio'], 2) . "</td><td>" . $row['fecha'] . "</td></tr>";
+                                        echo "<tr class='danger'><td>" . $row['producto'] . "</td><td>" . $row['Localizacion'] . "</td><td>" . $row['origen'] . "</td><td>" . sprintf("%.2f", round($row['precio'], 2)) . "</td><td>" . $row['fecha'] -> format('d-m-Y') . "</td></tr>";
                                     } else {
                                         $contr = 2;
-                                        echo "<tr><td>" . $row['producto'] . "</td><td>" . $row['Localizacion'] . "</td><td>" . $row['origen'] . "</td><td>" . round($row['precio'], 2) . "</td><td>" . $row['fecha'] . "</td></tr>";
+                                        echo "<tr><td>" . $row['producto'] . "</td><td>" . $row['Localizacion'] . "</td><td>" . $row['origen'] . "</td><td>" . sprintf("%.2f", round($row['precio'], 2)) . "</td><td>" . $row['fecha'] -> format('d-m-Y') . "</td></tr>";
                                     }
                                 }
                                 ?></tbody></table></div></div>
