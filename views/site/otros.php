@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			echo ")
                       </td></tr>";
                     }
-                    ?>
+                    ?>     
                 </tbody>
             </table>
             <div id="pagination"></div>
