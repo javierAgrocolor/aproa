@@ -168,12 +168,17 @@ class SiteController extends Controller {
             $request = yii::$app->request;
             if (count($request->queryParams) != 0) {
                 $tipo = $request->get('informes');
-                if ($tipo != 'Historico' && $tipo != 'Otros') {
+                if ($tipo != 'Historico' && $tipo != 'Otros' && $tipo!='Cuotasmercado') {
                     $filename = $boletinesModels->buscarPdf($tipo);
-                    //exit($filename[0]['Boletin']);           
-                    return $this->redirect('/pdf/' . $filename[0]['Boletin'] . '.pdf');
+                    //exit($filename[0]['Boletin']);  
+			$ruta = '/pdf/'.$filename[0]['Boletin'].'.pdf';
+			//exit($ruta);
+                    return $this->redirect($ruta);
                 } else {
-                    if ($tipo != 'Otros') {
+                    if ($tipo != 'Otros' && $tipo != 'Historico') {
+                        $cuotasmercado = $boletinesModels->buscarCuotasmercado();
+                        return $this->render('cuotasmercado', ['tablaCuotasmercado' => $cuotasmercado]);
+                    }else if ($tipo != 'Otros') {
                         $historico = $boletinesModels->buscarHistorico();
                         return $this->render('historico', ['tablaHistorico' => $historico]);
                     } else {

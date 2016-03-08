@@ -48,7 +48,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
             var options = {
                 legend: {position: 'top'},
-                title: 'Dia:  <?php echo $tablaGraficoppt[0]['Fecha']; ?>',
+                title: 'Dia:  <?php 
+		$time=strtotime($tablaGraficoppt[0]['Fecha']); 
+		echo $time = date('d-m-Y',$time); 
+		?>',
                 vAxis: {0: {format: '#', title: 'tons'}, 1: {format: '#', title: 'tons'}},
                 hAxis: {title: ''},
                 colors: ["#cd010d", "#FF8300"],
@@ -84,7 +87,10 @@ $this->params['breadcrumbs'][] = $this->title;
             if ($grafico['Fecha'] < 60) {
                 echo ",['" . $grafico['Fecha'] . "'," . $grafico['Precio'];
             } else {
-                echo ",['" . $grafico['Fecha'] . "'," . $grafico['Pond_Suma'];
+                echo ",['";
+		$time=strtotime($grafico['Fecha']); 
+		echo $time = date('d-m-Y',$time); 
+		echo "'," . $grafico['Pond_Suma'];
             }
         } else {
             $con2 = 1;
@@ -118,14 +124,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <p class="titulos2">EVOLUCIÓN DE PRECIOS Y TONELADAS PARA TODA LA CAMPAÑA</p>
     <div class="row marginbotton col-md-10 col-md-offset-1">                   
         <form id="filtroGraficaevolucion">
-            <div class="col-xs-3">
+            <div class="col-lg-3">
                 <label>Empresa</label>
                 <select id="empresas" name="empresas" class="form-control">            
                     <option value="LA UNION">LA UNION</option>
                     <option value="CASI">CASI</option>
                 </select>
             </div>
-            <div class="col-xs-3">
+            <div class="col-lg-3">
                 <label>Producto</label>
                 <select id="productos" name="productos" class="form-control">
                     <option value="Berenjena Larga">Berenjena Larga</option>
@@ -143,14 +149,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     <option value="Tomate Suelto M">Tomate Suelto M</option>
                 </select>
             </div>
-            <div class="col-xs-3">
+            <div class="col-lg-3">
                 <label>Semanas - Dias</label>
                 <select id="tipo" name="sd" class="form-control">   
                     <option value="2">Dias</option>
                     <option value="1">Semanas</option>            
                 </select>      
             </div>
-            <div class="col-xs-3">
+            <div class="col-lg-3">
                 <label>Fecha Final</label>
                 <input id="datetimepicker-2" name="datetimepicker-2" type="text" class="form-control" />
             </div>
@@ -181,7 +187,7 @@ $this->params['breadcrumbs'][] = $this->title;
     Carga el grafico y las tablas segun la fecha de la busqueda-->
 <div class="span12 contenedores">
     <p class="titulos2">PRECIOS PONDERADOS Y TONELADAS COMERCIALIZADAS POR ALHÓNDIGAS</p>
-    <div class="row marginbotton">
+    <div class="row marginbotton col-md-10 col-md-offset-1">
         <div class="col-md-2 col-md-offset-5">
             <form id="filtroPreciosponderados">   
                 <label>Fecha</label>
@@ -223,13 +229,14 @@ $this->params['breadcrumbs'][] = $this->title;
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Fecha:  <?php echo $tablaGraficoppt[0]['Fecha']; ?></th>
+                                    <th>Fecha:  <?php $time=strtotime($tablaGraficoppt[0]['Fecha']); 
+						 echo $time = date('d-m-Y',$time);?></th>
                                     <th colspan="2">TOTAL</th>
-                                    <th colspan="2"><img src="/aproa/images/casiresumen.jpg" class="img-responsive center-block"></th>
-                                    <th colspan="2"><img src="/aproa/images/launionresumen.jpg" class="img-responsive center-block"></th>
-                                    <th colspan="2"><img src="/aproa/images/agroponienteresumen.jpg" class="img-responsive center-block"></th>
-                                    <th colspan="2"><img src="/aproa/images/femagoresumen.jpg" class="img-responsive center-block"></th>
-                                    <th colspan="2"><img src="/aproa/images/costaresumen.jpg" class="img-responsive center-block"></th>
+                                    <th colspan="2"><img src="/images/casiresumen.jpg" class="img-responsive center-block"></th>
+                                    <th colspan="2"><img src="/images/launionresumen.jpg" class="img-responsive center-block"></th>
+                                    <th colspan="2"><img src="/images/agroponienteresumen.jpg" class="img-responsive center-block"></th>
+                                    <th colspan="2"><img src="/images/femagoresumen.jpg" class="img-responsive center-block"></th>
+                                    <th colspan="2"><img src="/images/costaresumen.jpg" class="img-responsive center-block"></th>
                                 </tr>
                                 <tr class="trresumen">
                                     <th>Producto</th>
@@ -291,8 +298,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php
                     if (isset($tablaLaunion[0]['Producto'])) {
                         ?>
-                        <img src="/aproa/images/<?php echo $tablaLaunion[0]['Empresa']; ?>.jpg" class="img-responsive center-block">
-                        <p><strong>Fecha: <?php echo $tablaLaunion[0]['Fecha']; ?></strong></p>
+                        <img src="/images/<?php echo $tablaLaunion[0]['Empresa']; ?>.jpg" class="img-responsive center-block">
+                        <p><strong>Fecha: <?php 
+			$time=strtotime($tablaLaunion[0]['Fecha']); 
+			echo $time = date('d-m-Y',$time);
+			?></strong></p>
 
                         <table class="table laUnion">
                             <thead>
@@ -376,8 +386,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php
                     if (isset($tablaCasi[0]['Producto'])) {
                         ?>
-                        <img src="/aproa/images/<?php echo $tablaCasi[0]['Empresa']; ?>.jpg" class="img-responsive center-block">
-                        <p><strong>Fecha: <?php echo $tablaCasi[0]['Fecha']; ?></strong></p>
+                        <img src="/images/<?php echo $tablaCasi[0]['Empresa']; ?>.jpg" class="img-responsive center-block">
+                        <p><strong>Fecha: <?php 
+			$time=strtotime($tablaCasi[0]['Fecha']); 
+			echo $time = date('d-m-Y',$time);
+			?></strong></p>
 
                         <table class="table casi">
                             <thead>
@@ -460,8 +473,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php
                     if (isset($tablaCosta[0]['Producto'])) {
                         ?>
-                        <img src="/aproa/images/<?php echo $tablaCosta[0]['Empresa']; ?>.jpg" class="img-responsive center-block">
-                        <p><strong>Fecha: <?php echo $tablaCosta[0]['Fecha']; ?></strong></p>
+                        <img src="/images/<?php echo $tablaCosta[0]['Empresa']; ?>.jpg" class="img-responsive center-block">
+                        <p><strong>Fecha: <?php 
+			$time=strtotime($tablaCosta[0]['Fecha']); 
+			echo $time = date('d-m-Y',$time);
+			 ?></strong></p>
 
                         <table class="table costa">
                             <thead>
@@ -513,8 +529,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php
                     if (isset($tablaFemago[0]['Producto'])) {
                         ?>
-                        <img src="/aproa/images/<?php echo $tablaFemago[0]['Empresa']; ?>.jpg" class="img-responsive center-block">
-                        <p><strong>Fecha: <?php echo $tablaFemago[0]['Fecha']; ?></strong></p>
+                        <img src="/images/<?php echo $tablaFemago[0]['Empresa']; ?>.jpg" class="img-responsive center-block">
+                        <p><strong>Fecha: <?php 
+			$time=strtotime($tablaFemago[0]['Fecha']); 
+			echo $time = date('d-m-Y',$time);
+			 ?></strong></p>
 
                         <table class="table femago">
                             <thead>
@@ -566,8 +585,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php
                     if (isset($tablaAgroponiente[0]['Producto'])) {
                         ?>
-                        <img src="/aproa/images/<?php echo $tablaAgroponiente[0]['Empresa']; ?>.jpg" class="img-responsive center-block">
-                        <p><strong>Fecha: <?php echo $tablaAgroponiente[0]['Fecha']; ?></strong></p>
+                        <img src="/images/<?php echo $tablaAgroponiente[0]['Empresa']; ?>.jpg" class="img-responsive center-block">
+                        <p><strong>Fecha: <?php 
+			$time=strtotime($tablaAgroponiente[0]['Fecha']); 
+			echo $time = date('d-m-Y',$time);
+			?></strong></p>
 
                         <table class="table agroponiente">
                             <thead>

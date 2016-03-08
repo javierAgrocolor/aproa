@@ -80,6 +80,18 @@ class Boletines extends \yii\db\ActiveRecord
         return $rows;
     }
     
+    public function buscarCuotasmercado(){
+        $query = new \yii\db\Query(); 
+        
+        $query->select('*')
+                ->from('boletines')    
+		->where('Tipo LIKE :tipo',array(':tipo'=>'Exportación Anual%'))               		
+                ->orderBy('Fecha DESC');
+                //->limit(30);
+        $rows = $query->all(Boletines::getDb());
+        return $rows;
+    }
+    
     /**
      * Extrae la lista completa de nombres de PDF de la categoria Otros
      * (Todos los que no tienen ninguna categoria)

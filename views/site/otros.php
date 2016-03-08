@@ -17,7 +17,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php
                     foreach ($tablaOtros as $row) {
                         //exit($row);
-                        echo "<tr><td class='titulos2'><a target='_blank' href='abrirpdf?informes=" . $row['boletin'] . "'>" . $row['tipo'] . "</a> (" . $row['fecha'] . ")
+                        echo "<tr><td class='titulos2'><a target='_blank' href='abrirpdf?informes=" . $row['boletin'] . "'>" . $row['tipo'] . "</a> (";
+			$time=strtotime($row['fecha']); 
+			echo $time = date('d-m-Y',$time);
+			echo ")
                       </td></tr>";
                     }
                     ?>     
@@ -55,7 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
         <!-- Publi APK -->
         <div class="span12">
-            <img src="/aproa/images/apkdescarga.png" class="img-responsive center-block">
+            <img src="/images/apkdescarga.png" class="img-responsive center-block">
         </div>
     </div>
 </div>
