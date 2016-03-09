@@ -42,37 +42,69 @@
                             $contr = 1;
                             echo "<tr class='danger'>";
                 echo "<td>".$productoGlobal['nombre']."</td>";
-                echo "<td>". sprintf("%.2f", round($productoGlobal['media'],2))."</td>";
-                
-                if ($mediaActualCalculada > $mediaAnteriorCalculada){
-                    echo "<td><img class='flechas' src='/images/flechaVerde.png' title='Precio Anterior: ".round($mediasAnteriores[$contador]['media'], 2)."' /></td>";
-                }else{
-                    if($mediaActualCalculada == $mediaAnteriorCalculada){
-                        echo "<td><img class='flechas' src='/images/igual.png' title='Precio Anterior: ".round($mediasAnteriores[$contador]['media'], 2)."' /></td>";
+                    if($productoGlobal['media'] != 0){
+                        echo "<td>". sprintf("%.2f", round($productoGlobal['media'],2))."</td>";
                     }else{
-                        echo "<td><img class='flechas' src='/images/flechaRoja.png' title='Precio Anterior: ".round($mediasAnteriores[$contador]['media'], 2)."' /></td>";
+                        echo "<td> - </td>";
                     }
+                
+                if($productoGlobal['nombre'] == $mediasAnteriores[$contador]['nombre']){
+                    if ($mediaActualCalculada > $mediaAnteriorCalculada){
+                        echo "<td><img class='flechas' src='/images/flechaVerde.png' title='Precio Anterior: ".round($mediasAnteriores[$contador]['media'], 2)."' /></td>";
+                    }else{
+                        if($mediaActualCalculada == $mediaAnteriorCalculada){
+                            echo "<td><img class='flechas' src='/images/igual.png' title='Precio Anterior: ".round($mediasAnteriores[$contador]['media'], 2)."' /></td>";
+                        }else{
+                            echo "<td><img class='flechas' src='/images/flechaRoja.png' title='Precio Anterior: ".round($mediasAnteriores[$contador]['media'], 2)."' /></td>";
+                        }
+                    }
+                    $contador++;
+                }else{
+                    echo "<td></td>";
                 }
+                
                 for ($i = 1; $i < 16; $i++){
-                    echo "<td>".$productoGlobal['corte'.$i]."</td>";
+                    if($productoGlobal['corte'.$i] != 0){
+                        echo "<td>".$productoGlobal['corte'.$i]."</td>";
+                    }else{
+                        echo "<td> - </td>";
+                    }
+                    
                 }
                         } else {
                             $contr = 2;
                             echo "<tr>";
                 echo "<td>".$productoGlobal['nombre']."</td>";
-                echo "<td>".sprintf("%.2f", round($productoGlobal['media'],2))."</td>";
-                if ($mediaActualCalculada > $mediaAnteriorCalculada ){
-                    echo "<td><img class='flechas' src='/images/flechaVerde.png' title='Precio Anterior: ".round($mediasAnteriores[$contador]['media'], 2)."' /></td>";
+                    if($productoGlobal['media'] != 0){
+                        echo "<td>".sprintf("%.2f", round($productoGlobal['media'],2))."</td>";
+                    }else{
+                        echo "<td> - </td>";
+                    }
+                
+                if($productoGlobal['nombre'] == $mediaAnteriorCalculada[$contador]['nombre']){
+                    if ($mediaActualCalculada > $mediaAnteriorCalculada ){
+                        echo "<td><img class='flechas' src='/images/flechaVerde.png' title='Precio Anterior: ".round($mediasAnteriores[$contador]['media'], 2)."' /></td>";
+                    }else{
+                        if($mediaActualCalculada == $mediaAnteriorCalculada){
+                            echo "<td><img class='flechas' src='/images/igual.png' title='Precio Anterior: '".round($mediasAnteriores[$contador]['media'], 2)."' /></td>";
+                        }else{
+                            echo "<td><img class='flechas' src='/images/flechaRoja.png' title='Precio Anterior: ".round($mediasAnteriores[$contador]['media'], 2)."' /></td>";
+                        }
+                    }
+                    $contador++;
                 }else{
-                    echo "<td><img class='flechas' src='/images/flechaRoja.png' title='Precio Anterior: ".round($mediasAnteriores[$contador]['media'], 2)."' /></td>";
+                    echo "<td></td>";
                 }
+                
                 
                 for ($i = 1; $i < 16; $i++){
-                    echo "<td>".$productoGlobal['corte'.$i]."</td>";
+                    if($productoGlobal['corte'.$i] != 0){
+                        echo "<td>".$productoGlobal['corte'.$i]."</td>";
+                    }else{
+                        echo "<td> - </td>";
+                    }
                 }
                         }
-                
-                $contador++;
             }
         ?>
     </tbody>

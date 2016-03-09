@@ -145,7 +145,11 @@ if (isset($tablaSemana)) {
                         echo "<tr>";
                     }
                     foreach ($row as $celda) {
-                        echo "<td>" . sprintf("%.2f", round($celda, 2)) . "</td>";
+                        if($celda != 0){
+                            echo "<td>" . sprintf("%.2f", round($celda, 2)) . "</td>";
+                        }else{
+                            echo "<td> - </td>";
+                        }
                     }
                     echo "</tr>";
                 }

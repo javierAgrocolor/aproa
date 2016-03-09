@@ -258,12 +258,16 @@ class PreciosController extends Controller
         $listaProductos = $pizarraModel -> leerProductos();
         $listaAlhondigas = $pizarraModel -> leerAlhondigas();
         
+        $request = yii::$app->request;
+        if(count($request -> get('fechaPizarra')) != 0){
+            $today = $request -> get('fechaPizarra');
+        }else{
+            $today = date('Y-m-d');
+        }
         
-        
-        $today = date('Y-m-d');
+        //$today = '2015-11-27';
         $yesterday = $pizarraModel -> leerDiaAnterior($today);
 	$yesterday = $yesterday[0]['fecha'];
-        
         // Pizarra General.
         $ultimaPizarra = $this -> leerDatosUltima($today);
         $listaPizarras = $pizarraModel -> leerPizarras($today, $listaAlhondigas);
@@ -313,9 +317,9 @@ class PreciosController extends Controller
         
         $date = new \DateTime($today);
         $today = $date;
-        $request = yii::$app->request;
+        //exit(print_r($ayer));
         //En base a si recibimos parametros GET/POST mandamos unos datos a la vista o mandamos otros.
-        if (count($request->queryParams) != 0){
+        if (count($request->queryParams) > 1 ){
             $fechaInicial = $request -> get('fechaInicial');
             $fechaFinal = $request -> get('fechaFinal');
             $productos = $request->get('productos');

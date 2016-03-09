@@ -128,7 +128,14 @@ body {
     font-family:arial, helvetica, sans-serif;
     line-height:1;
     margin-bottom: 10px;
-    margin-left: 30px;     
+    margin-left: 30px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#contenedorTituloPizarras{
+    margin-top: 15px;
+    margin-bottom: 20px;
 }
 
 .titulosPanel{    

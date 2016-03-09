@@ -278,14 +278,14 @@ if (isset($tabla)) {
                                         foreach ($tabla as $row) {
                                             if ($contr != 1) {
                                                 $contr = 1;
-                                                echo "<tr class='danger'><td>" . $row['producto'] . "</td><td>" . $row['Localizacion'] . "</td><td>" . $row['origen'] . "</td><td>" . round($row['preciomedio'], 2) . "</td>";
+                                                echo "<tr class='danger'><td>" . $row['producto'] . "</td><td>" . $row['Localizacion'] . "</td><td>" . $row['origen'] . "</td><td>" . sprintf("%.2f", round($row['preciomedio'], 2)) . "</td>";
                                                 if (isset($tabla[0]['Semana'])) {
                                                     echo "<td>" . $row['Semana'] . "</td>";
                                                 }
                                                 echo "</tr>";
                                             } else {
                                                 $contr = 2;
-                                                echo "<tr><td>" . $row['producto'] . "</td><td>" . $row['Localizacion'] . "</td><td>" . $row['origen'] . "</td><td>" . round($row['preciomedio'], 2) . "</td>";
+                                                echo "<tr><td>" . $row['producto'] . "</td><td>" . $row['Localizacion'] . "</td><td>" . $row['origen'] . "</td><td>" . sprintf("%.2f", round($row['preciomedio'], 2)) . "</td>";
                                                 if (isset($tabla[0]['Semana'])) {
                                                     echo "<td>" . $row['Semana'] . "</td>";
                                                 }

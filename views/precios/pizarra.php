@@ -6,15 +6,39 @@
  * and open the template in the editor.
  */
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 $this->title = 'Pizarra de Precios';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row-fluid marginbotton30">
-    <p class="titulosPaginaPrincipal">Pizarra de Precios: <?php echo $fecha-> format('d-m-Y'); ?></p>
+    <div class="col-lg-1">
+        <label>Fecha de Pizarra:</label>
+    </div>
+    <div class='col-lg-11'>
+        <form action='pizarraprecios'>
+            <div class="col-lg-4">
+                <input id="datetimepicker2" name="fechaPizarra" type="text" class="form-control" />
+            </div>
+            <div class='col-lg-2'>
+                <input class="btn btn-primary col-md-12 marginbotton" type="submit" value="Ver fecha" />
+            </div>
+        </form>
+    </div>
+    <div class="col-lg-12" id="contenedorTituloPizarras">
+        <div class="col-lg-1">
+            <?php echo "<a id='flechaIzquierda' href='".Url::home()."/precios/pizarraprecios/?fechaPizarra=".$fecha -> sub(new \DateInterval('P1D'))-> format('Y-m-d')."' value='".$fecha -> format('Y-m-d')."'><img src='/images/flechaIzquierda.png' /></a>"; ?>
+        </div>
+        <div class="col-lg-10">
+            <p class="titulosPaginaPrincipal">Pizarra de Precios: <?php echo $fecha-> add(new \DateInterval('P1D')) -> format('d-m-Y'); ?></p>
+        </div>
+        <div class='col-lg-1'>
+            <?php echo "<a id='flechaDerecha' href='".Url::home()."/precios/pizarraprecios/?fechaPizarra=". $fecha -> add(new \DateInterval('P1D'))-> format('Y-m-d')."' value='".$fecha -> format('Y-m-d')."'><img src='/images/flechaDerecha.png' /></a>"; ?>
+        </div>
+    </div>
 </div>
 <div class="row-fluid">
-    <div class="col-lg-12">        
+    <div class="col-lg-12">
         <ul class="nav nav-tabs" id="navprecios">
             <li role="tablero" class="pizarra active">
                 <a id="enlaceTabPizarras" href="#pizarras" role="tab" data-toggle="tab">Pizarras</a>

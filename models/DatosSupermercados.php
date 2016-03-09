@@ -341,7 +341,7 @@ class DatosSupermercados extends \yii\db\ActiveRecord
                 -> innerJoin('Origen', 'Origen.codigo_origen = Datos_Supermercados.cod_origen')
                 -> innerJoin('Localizacion', 'Localizacion.codigo_localizacion = Datos_Supermercados.cod_localizacion')
                 -> innerJoin('Producto', 'Producto.codigo_producto = Datos_Supermercados.cod_producto')
-                -> innerJoin('presentacion', 'presentacion.presentacion = Datos_Supermercados.cod_presentacion')
+                -> innerJoin('presentacion', 'presentacion.codigo = Datos_Supermercados.cod_presentacion')
                 ->where($condiciones)
                 ->groupBy(['Producto', 'Localizacion', 'Origen', 'presentacion','DATEPART(week, Datos_Supermercados.fecha)'])
                 ->orderBy('Semana');
@@ -364,7 +364,8 @@ class DatosSupermercados extends \yii\db\ActiveRecord
                 ->innerJoin('Producto', 'Producto.codigo_producto = Datos_Supermercados.cod_producto')
                 ->innerJoin('presentacion', 'presentacion.codigo = Datos_Supermercados.cod_presentacion')
                 ->where($condiciones)
-                ->groupBy(['Producto', 'Localizacion', 'Origen', 'presentacion']);
+                ->groupBy(['Producto', 'Localizacion', 'Origen', 'presentacion'])
+                ->orderBy('producto');
         $rows = $query->all(DatosSupermercados::getDb());
         return $rows;
     }
@@ -382,7 +383,8 @@ class DatosSupermercados extends \yii\db\ActiveRecord
                 ->innerJoin('Localizacion', 'Localizacion.codigo_localizacion = Datos_Supermercados.cod_localizacion')
                 ->innerJoin('Producto', 'Producto.codigo_producto = Datos_Supermercados.cod_producto')
                 ->innerJoin('presentacion', 'presentacion.codigo = Datos_Supermercados.cod_presentacion')
-                ->where($condiciones);
+                ->where($condiciones)
+                ->orderBy('producto, fecha');
         $rows = $query->all(DatosSupermercados::getDb());
         return $rows;
     }

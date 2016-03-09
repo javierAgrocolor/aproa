@@ -213,7 +213,8 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
                 ->innerJoin('Localizacion', 'Localizacion.codigo_localizacion = Datos_generales_mayoristas.cod_localizacion')
                 ->innerJoin('Producto', 'Producto.codigo_producto = Datos_generales_mayoristas.cod_producto')
                 ->where($condiciones)
-                ->groupBy(['Producto', 'Localizacion', 'Origen']);
+                ->groupBy(['Producto', 'Localizacion', 'Origen'])
+                ->orderBy('producto');
         $rows = $query->all(DatosGeneralesMayoristas::getDb());
         return $rows;
     }
@@ -397,7 +398,8 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
                 ->innerJoin('Origen', 'Origen.codigo_origen = Datos_generales_mayoristas.cod_origen')
                 ->innerJoin('Localizacion', 'Localizacion.codigo_localizacion = Datos_generales_mayoristas.cod_localizacion')
                 ->innerJoin('Producto', 'Producto.codigo_producto = Datos_generales_mayoristas.cod_producto')
-                ->where($condiciones);
+                ->where($condiciones)
+                ->orderBy('producto, fecha');
         $rows = $query->all(DatosGeneralesMayoristas::getDb());
         return $rows;
     }

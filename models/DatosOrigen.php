@@ -257,7 +257,8 @@ class DatosOrigen extends \yii\db\ActiveRecord
                 ->innerJoin('Origen', 'Origen.codigo_origen = Datos_origen.cod_origen')
                 ->innerJoin('Localizacion', 'Localizacion.codigo_localizacion = Datos_origen.cod_localizacion')
                 ->innerJoin('Producto', 'Producto.codigo_producto = Datos_origen.cod_producto')
-                ->where($condiciones);
+                ->where($condiciones)
+                ->orderBy('producto, fecha');
         $rows = $query->all(DatosOrigen::getDb());
         return $rows;
     }
@@ -276,7 +277,8 @@ class DatosOrigen extends \yii\db\ActiveRecord
                 ->innerJoin('Localizacion', 'Localizacion.codigo_localizacion = Datos_origen.cod_localizacion')
                 ->innerJoin('Producto', 'Producto.codigo_producto = Datos_origen.cod_producto')
                 ->where($condiciones)
-                ->groupBy(['Producto', 'Localizacion', 'Origen']);
+                ->groupBy(['Producto', 'Localizacion', 'Origen'])
+                ->orderBy('producto');
         $rows = $query->all(DatosOrigen::getDb());
         return $rows;
     }

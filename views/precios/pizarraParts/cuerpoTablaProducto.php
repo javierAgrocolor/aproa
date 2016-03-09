@@ -21,22 +21,14 @@
     }
        
             echo "<td>".$row['nombre']."</td>";
-            echo "<td>".round($row['media'], 3)."</td>";
-            echo "<td>".$row['corte1']."</td>";
-            echo "<td>".$row['corte2']."</td>";
-            echo "<td>".$row['corte3']."</td>";
-            echo "<td>".$row['corte4']."</td>";
-            echo "<td>".$row['corte5']."</td>";
-            echo "<td>".$row['corte6']."</td>";
-            echo "<td>".$row['corte7']."</td>";
-            echo "<td>".$row['corte8']."</td>";
-            echo "<td>".$row['corte9']."</td>";
-            echo "<td>".$row['corte10']."</td>";
-            echo "<td>".$row['corte11']."</td>";
-            echo "<td>".$row['corte12']."</td>";
-            echo "<td>".$row['corte13']."</td>";
-            echo "<td>".$row['corte14']."</td>";
-            echo "<td>".$row['corte15']."</td>";
+            echo "<td>".sprintf("%.2f", round($row['media'], 2))."</td>";
+            for($x = 1; $x < 16; $x++){
+                if($row['corte'.$x] != 0){
+                    echo "<td>".$row['corte'.$x]."</td>";
+                }else{
+                    echo "<td> - </td>";
+                }
+            }
         ?>
         </tr>
           

@@ -305,7 +305,7 @@ if (isset($tabla)) {
                 <thead>
                     <tr>
                         <th>Producto</th>
-                        <th>Localización</th>
+                        <th>Supermercado</th>
                         <th>Origen</th>
                         <th>Presentación</th>
                         <th>Precio Medio</th>
@@ -322,14 +322,14 @@ if (isset($tabla)) {
                     foreach ($tabla as $row) {
                         if ($contr != 1) {
                             $contr = 1;
-                            echo "<tr class='danger'><td>" . $row['producto'] . "</td><td>" . $row['Localizacion'] . "</td><td>" . $row['origen'] . "</td><td>" .$row['presentacion']. "</td><td>" . substr($row['preciomedio'], 0, 5) . "</td>";
+                            echo "<tr class='danger'><td>" . $row['producto'] . "</td><td>" . $row['Localizacion'] . "</td><td>" . $row['origen'] . "</td><td>" .$row['presentacion']. "</td><td>" . sprintf("%.2f", round($row['preciomedio'], 2)) . "</td>";
                             if (isset($tabla[0]['Semana'])) {
                                 echo "<td>" . $row['Semana'] . "</td>";
                             }
                             echo "</tr>";
                         } else {
                             $contr = 2;
-                            echo "<tr><td>" . $row['producto'] . "</td><td>" . $row['Localizacion'] . "</td><td>" . $row['origen'] . "</td><td>" .$row['presentacion']. "</td><td>". substr($row['preciomedio'], 0, 5) . "</td>";
+                            echo "<tr><td>" . $row['producto'] . "</td><td>" . $row['Localizacion'] . "</td><td>" . $row['origen'] . "</td><td>" .$row['presentacion']. "</td><td>". sprintf("%.2f", round($row['preciomedio'], 2)) . "</td>";
                             if (isset($tabla[0]['Semana'])) {
                                 echo "<td>" . $row['Semana'] . "</td>";
                             }
@@ -373,7 +373,7 @@ if (isset($tabla)) {
                 <thead>
                     <tr>
                         <th>Producto</th>
-                        <th>Localizacion</th>
+                        <th>Supermercado</th>
                         <th>Origen</th>
                         <th>Presentación</th>
                         <th>Precio</th>
