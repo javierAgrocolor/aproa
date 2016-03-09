@@ -309,7 +309,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <tr>
                                     <th>Producto</th>                                
                                     <th>Tipo</th>
-                                    <th>Suma Pond</th>
+                                    <th>Precio Pond</th>
                                     <th>Media</th>
                                     <th>C1</th>
                                     <th>C2</th>
@@ -397,7 +397,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <tr>
                                     <th>Producto</th>                                
                                     <th>Tipo</th>
-                                    <th>Suma Pond</th>
+                                    <th>Precio Pond</th>
                                     <th>Media</th>
                                     <th>C1</th>
                                     <th>C2</th>
@@ -484,7 +484,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <tr>
                                     <th>Producto</th>                                
                                     <th>Tipo</th>
-                                    <th>Suma Pond</th>
+                                    <th>Volumen Comercializado</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -540,7 +540,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <tr>
                                     <th>Producto</th>                                
                                     <th>Tipo</th>
-                                    <th>Suma Pond</th>
+                                    <th>Volumen Comercializado</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -596,7 +596,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <tr>
                                     <th>Producto</th>                                
                                     <th>Tipo</th>
-                                    <th>Suma Pond</th>
+                                    <th>Volumen Comercializado</th>
                                 </tr>
                             </thead>
                             <tbody>

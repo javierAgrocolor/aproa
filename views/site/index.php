@@ -57,8 +57,7 @@ $this->title = 'APROA - Gestión de Crisis';
                         <ul class="dropdown-menu menuDesplegable" id="menu1">
                             <li>
                                 <a href="#">España <span class=" menu-ico-collapse"><i class="glyphicon glyphicon-chevron-right"></i></span></a>
-                                <ul class="dropdown-menu sub-menu">
-                                    <li><a target="_blank" href="index.php/site/buscar?informes=Exportacion-Spain-Total_Hortalizas">Total hortalizas</a></li>
+                                <ul class="dropdown-menu sub-menu">                                    
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Exportacion-Spain-Sandia">Sandia</a></li>
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Exportacion-Spain-Melon">Melon</a></li>                                    
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Exportacion-Spain-Pimiento">Pimiento</a></li>
@@ -70,8 +69,7 @@ $this->title = 'APROA - Gestión de Crisis';
                             </li>
                             <li>
                                 <a href="#">Union Europea <span class=" menu-ico-collapse"><i class="glyphicon glyphicon-chevron-right"></i></span></a>
-                                <ul class="dropdown-menu sub-menu">
-                                    <li><a target="_blank" href="index.php/site/buscar?informes=Exportacion-UE-Total_Hortalizas">Total hortalizas</a></li>
+                                <ul class="dropdown-menu sub-menu">                                    
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Exportacion-UE-Sandia">Sandia</a></li>
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Exportacion-UE-Melon">Melon</a></li>                                    
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Exportacion-UE-Pimiento">Pimiento</a></li>
@@ -117,9 +115,9 @@ $this->title = 'APROA - Gestión de Crisis';
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Spain-Sandia">Sandia</a></li>
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Spain-Melon">Melon</a></li>                                    
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Spain-Pimiento">Pimiento</a></li>
-                                    <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Spain-Pepino">Pepino</a></li>
+                                    <!--<li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Spain-Pepino">Pepino</a></li>
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Spain-Calabacin">Calabacin</a></li>
-                                    <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Spain-Berenjena">Berenjena</a></li>
+                                    <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Spain-Berenjena">Berenjena</a></li>-->
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Spain-Tomate">Tomate</a></li>
                                 </ul>
                             </li>

@@ -20,12 +20,35 @@ a:active {
 </style>
 
 <?php
+if(isset($_GET['token'])){
+$token=$_GET['token'];	
+}else{
+$token=null;		
+}
 
-$token=$_GET['token'];
+if(isset($_GET['diano'])){
 $diano=$_GET['diano'];
+}else{
+$diano=null;	
+}
+	
+if(isset($_GET['flag'])){
 $flag=$_GET['flag'];
+}else{
+$flag=null;	
+}	
+
+if(isset($_GET['fecha'])){
 $fecha=$_GET['fecha'];
+}else{
+$fecha=null;	
+}	
+	
+if(isset($_GET['admin'])){
 $admin=$_GET['admin'];
+}else{
+$admin=null;
+}	
 
 if(isset($fecha))
 {
@@ -95,6 +118,7 @@ $adminParam = $admin == 1? '&admin=1':'';
 
 <head>
 	<title>Gestion de crisis APROA - Correo diario <?= date("d-m-Y",$fecha) ?> </title>
+	<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
 </head>
 <body style="background-color:#FFFFFF;">
 <form action="cdiario2.php">
@@ -112,14 +136,13 @@ echo"
 	<hr>
 	<table border=0 width=100%>
 	<tr>
-	<td align='left'><a href='cdiario2.php?diano=".codanterior()."&token=$token&flag=1".$adminParam."'>Día anterior</a></td>
-	<td align='right'><a href='cdiario2.php?diano=".codsiguiente()."&token=$token&flag=1".$adminParam."'>Día siguiente</a></td>
+	<td align='left'><a href='cdiario2.php?diano=".codanterior()."&token=$token&flag=1".$adminParam."'><img src='/images/anterior.png' class='img-responsive'/></a></td>
+	<td align='center'><a href='index.php'>Volver a la Web de Aproa</a></td>
+	<td align='right'><a href='cdiario2.php?diano=".codsiguiente()."&token=$token&flag=1".$adminParam."'><img src='/images/siguiente.png' class='img-responsive'/></a></td>
 	</tr>
 	</table>
 	<hr>
-	<center>
-	<a href='http://www.aproa.eu/crisis'>::.. Volver a la Web de Aproa</a>
-	</center>
+	
 	";
 
 if(file_exists('./boletines_correos/img2/'.$diano.'-1.jpg') && file_exists('./boletines_correos/img2/'.$diano.'-2.jpg') && file_exists('./boletines_correos/img2/'.$diano.'-3.jpg')){
@@ -153,10 +176,10 @@ if(file_exists('./boletines_correos/img2/'.$diano.'-1.jpg') && file_exists('./bo
 							
 		}		
 	}else{
-		echo "Su token de acceso ha expirado o no tiene permiso para acceder a la página solicitada.";
+		echo "<p align='center'>Su token de acceso ha expirado o no tiene permiso para acceder a la p&aacute;gina solicitada.</p>";
 	}
 }else{
-	echo "No existen datos para el correo diario para la fecha indicada";			
+	echo "<p align='center'>No existen datos para el correo diario para la fecha indicada.</p>";			
 }
 ?>
 </body>
