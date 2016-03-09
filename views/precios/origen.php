@@ -79,7 +79,9 @@ if (isset($tabla)) {
                 var options = {
                     title: 'Medias Semanales',
                     vAxis: {title: 'Precio Medio'},
-                    hAxis: {title: 'Semanas'},
+                    hAxis: {format: '#',title: 'Semanas'},
+                    
+                    pointSize: 6,
                     seriesType: 'line',
                     series: {}
                 };

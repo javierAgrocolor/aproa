@@ -3,7 +3,7 @@
 
 use yii\helpers\Html;
 
-$this->title = 'Histórico Informes';
+$this->title = 'Cuotas Mercado UE';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div>
@@ -15,11 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
             <table id="content" class="marginbotton">
                 <tbody>       
                     <?php
-                    foreach ($tablaHistorico as $row) {
+                    foreach ($tablaCuotasmercado as $row) {
                         //exit($row);
                         echo "<tr><td class='titulos2'><a target='_blank' href='abrirpdf?informes=" . $row['boletin'] . "'>" . $row['tipo'] . "</a> (";
 			$time=strtotime($row['fecha']); 
-			echo $time = date('d-m-Y',$time);	
+			echo $time = date('d-m-Y',$time);
 			echo ")
                       </td></tr>";
                     }

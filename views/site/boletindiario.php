@@ -37,7 +37,7 @@ $anterior = $diano-1;
             <?php
             //echo $diano;
             for($x=1;$x<15;$x++){
-            if(file_exists('/boletines_correos/img2/2016-'.$diano.'-'.$x.'.jpg')){
+            if(file_exists('./boletines_correos/img2/2016-'.$diano.'-'.$x.'.jpg')){
                 echo"<img src='/boletines_correos/img2/2016-".$diano."-".$x.".jpg' class='img-responsive center-block'/>";
             }
             }

@@ -57,8 +57,7 @@ $this->title = 'APROA - Gestión de Crisis';
                         <ul class="dropdown-menu menuDesplegable" id="menu1">
                             <li>
                                 <a href="#">España <span class=" menu-ico-collapse"><i class="glyphicon glyphicon-chevron-right"></i></span></a>
-                                <ul class="dropdown-menu sub-menu">
-                                    <li><a target="_blank" href="index.php/site/buscar?informes=Exportacion-Spain-Total_Hortalizas">Total hortalizas</a></li>
+                                <ul class="dropdown-menu sub-menu">                                    
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Exportacion-Spain-Sandia">Sandia</a></li>
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Exportacion-Spain-Melon">Melon</a></li>                                    
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Exportacion-Spain-Pimiento">Pimiento</a></li>
@@ -70,8 +69,7 @@ $this->title = 'APROA - Gestión de Crisis';
                             </li>
                             <li>
                                 <a href="#">Union Europea <span class=" menu-ico-collapse"><i class="glyphicon glyphicon-chevron-right"></i></span></a>
-                                <ul class="dropdown-menu sub-menu">
-                                    <li><a target="_blank" href="index.php/site/buscar?informes=Exportacion-UE-Total_Hortalizas">Total hortalizas</a></li>
+                                <ul class="dropdown-menu sub-menu">                                    
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Exportacion-UE-Sandia">Sandia</a></li>
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Exportacion-UE-Melon">Melon</a></li>                                    
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Exportacion-UE-Pimiento">Pimiento</a></li>
@@ -86,7 +84,7 @@ $this->title = 'APROA - Gestión de Crisis';
                 </ul>
 
                 <a target="_blank" href="index.php/site/buscar?informes=Prevision_de_Cultivos"><img src="/images/boton3.jpg" class="img-responsive center-block imgInformes"></a>
-                <a target="_blank" href="index.php/site/buscar?informes=Exportación Anual%"><img src="/images/boton4.jpg" class="img-responsive center-block imgInformes"></a>
+                <a target="_blank" href="index.php/site/buscar?informes=Cuotasmercado"><img src="/images/boton4.jpg" class="img-responsive center-block imgInformes"></a>
             </div>
             <div class="col-md-3">
                 <a target="_blank" href="index.php/site/buscar?informes=Comercializacion-Aproa_semanal"><img src="/images/boton5.jpg" class="img-responsive center-block imgInformes"></a>
@@ -117,9 +115,9 @@ $this->title = 'APROA - Gestión de Crisis';
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Spain-Sandia">Sandia</a></li>
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Spain-Melon">Melon</a></li>                                    
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Spain-Pimiento">Pimiento</a></li>
-                                    <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Spain-Pepino">Pepino</a></li>
+                                    <!--<li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Spain-Pepino">Pepino</a></li>
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Spain-Calabacin">Calabacin</a></li>
-                                    <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Spain-Berenjena">Berenjena</a></li>
+                                    <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Spain-Berenjena">Berenjena</a></li>-->
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Spain-Tomate">Tomate</a></li>
                                 </ul>
                             </li>
@@ -175,7 +173,7 @@ $this->title = 'APROA - Gestión de Crisis';
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Polonia-Tomate">Tomate</a></li>
                                 </ul>
                             </li>
-                            <li>
+                            <!--<li>
                                 <a href="#">Otros UE <span class=" menu-ico-collapse"><i class="glyphicon glyphicon-chevron-down"></i></span></a>
                                 <ul class="dropdown-menu sub-menu">                                    
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Otros-Tomate">Total hortalizas</a></li>
@@ -187,7 +185,7 @@ $this->title = 'APROA - Gestión de Crisis';
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Otros-Berenjena">Berenjena</a></li>
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Otros-Tomate">Tomate</a></li>
                                 </ul>
-                            </li>
+                            </li>-->
                         </ul>
                     </li>
                 </ul>
@@ -234,7 +232,7 @@ $this->title = 'APROA - Gestión de Crisis';
                 </ul>
             </div>
             <div class="col-md-3">
-                <a target="_blank" href="buscar?informes=Seguimiento_de_Campaña"><img src="/images/boton13.jpg" class="img-responsive center-block imgInformes"></a>
+                <a target="_blank" href="index.php/site/buscar?informes=Seguimiento_de_Campaña"><img src="/images/boton13.jpg" class="img-responsive center-block imgInformes"></a>
                 <ul class="nav nav-pills">
                     <li class="dropdown">
                         <img src="/images/boton14.jpg"  data-toggle="dropdown" class="dropdown-toggle img-responsive imgInformes">
@@ -264,16 +262,16 @@ $this->title = 'APROA - Gestión de Crisis';
                 <!--<p class="titulos2">Aun no se han generado boletines para este día.</p>-->
                 <?php
                 $hoy=date('z')+1;
-                if(file_exists('/boletines_correos/img2/2016-'.$hoy.'-1.jpg')&& file_exists('/boletines_correos/img2/2016-'.$hoy.'-2.jpg') && file_exists('/boletines_correos/img2/2016-'.$hoy.'-3.jpg')){
+                if(file_exists('./boletines_correos/img2/2016-'.$hoy.'-1.jpg')&& file_exists('./boletines_correos/img2/2016-'.$hoy.'-2.jpg') && file_exists('./boletines_correos/img2/2016-'.$hoy.'-3.jpg')){
 		
-		echo"<a href='boletines?diano=$hoy' target='_blank'><img src='/boletines_correos/img2/2016-".$hoy."-1.jpg' class='img-responsive center-block'/></a>";
+		echo"<a href='index.php/site/boletines?diano=$hoy' target='_blank'><img src='/boletines_correos/img2/2016-".$hoy."-1.jpg' class='img-responsive center-block'/></a>";
 			
-		echo"<a href='boletines?diano=$hoy' target='_blank'><img src='/boletines_correos/img2/2016-".$hoy."-2.jpg' class='img-responsive center-block'/></a>";
+		echo"<a href='index.php/site/boletines?diano=$hoy' target='_blank'><img src='/boletines_correos/img2/2016-".$hoy."-2.jpg' class='img-responsive center-block'/></a>";
 		
-		echo"<a href='boletines?diano=$hoy' target='_new'><img src='/boletines_correos/img2/2016-".$hoy."-3.jpg' class='img-responsive center-block'/></a>";
+		echo"<a href='index.php/site/boletines?diano=$hoy' target='_new'><img src='/boletines_correos/img2/2016-".$hoy."-3.jpg' class='img-responsive center-block'/></a>";
 		
 	}else{
-		echo"<a class='titulos2' href='boletines?diano=$hoy' target='_new'>El boletín de ".date("d/m/y")." aun no está disponible. Pulse aquí para visualizar otros boletines.</a>";
+		echo"<a class='titulos2' href='index.php/site/boletines?diano=$hoy' target='_new'>El boletín de ".date("d/m/y")." aun no está disponible. Pulse aquí para visualizar otros boletines.</a>";
 	}
                 ?>
                               
