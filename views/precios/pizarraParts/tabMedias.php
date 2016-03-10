@@ -37,7 +37,19 @@
         $contador = 0;
             foreach ($mediasGlobales as $productoGlobal){
                 $mediaActualCalculada = $productoGlobal['media']*10000;
-                $mediaAnteriorCalculada = $mediasAnteriores[$contador]['media']*10000;
+                
+
+                if($contador < count($mediasAnteriores)-1){
+                    if(strcmp($productoGlobal['nombre'], $mediasAnteriores[$contador]['nombre']) > 0){
+                        while(strcmp($productoGlobal['nombre'], $mediasAnteriores[$contador]['nombre']) > 0 && $contador < count($mediasAnteriores)){
+                            $contador++;
+                        }
+                    }
+                }
+		if($contador < count($mediasAnteriores)-1){
+			$mediaAnteriorCalculada = $mediasAnteriores[$contador]['media']*10000;	
+		}
+		
                 if ($contr != 1) {
                             $contr = 1;
                             echo "<tr class='danger'>";
@@ -58,7 +70,9 @@
                             echo "<td><img class='flechas' src='/images/flechaRoja.png' title='Precio Anterior: ".round($mediasAnteriores[$contador]['media'], 2)."' /></td>";
                         }
                     }
-                    $contador++;
+                    if($contador < count($mediasAnteriores)-1){
+                        $contador++;
+                    }
                 }else{
                     echo "<td></td>";
                 }
@@ -80,18 +94,19 @@
                     }else{
                         echo "<td> - </td>";
                     }
-                
-                if($productoGlobal['nombre'] == $mediaAnteriorCalculada[$contador]['nombre']){
+                if($productoGlobal['nombre'] == $mediasAnteriores[$contador]['nombre']){
                     if ($mediaActualCalculada > $mediaAnteriorCalculada ){
                         echo "<td><img class='flechas' src='/images/flechaVerde.png' title='Precio Anterior: ".round($mediasAnteriores[$contador]['media'], 2)."' /></td>";
                     }else{
                         if($mediaActualCalculada == $mediaAnteriorCalculada){
-                            echo "<td><img class='flechas' src='/images/igual.png' title='Precio Anterior: '".round($mediasAnteriores[$contador]['media'], 2)."' /></td>";
+                            echo "<td><img class='flechas' src='/images/igual.png' title='Precio Anterior: ".round($mediasAnteriores[$contador]['media'], 2)."' /></td>";
                         }else{
                             echo "<td><img class='flechas' src='/images/flechaRoja.png' title='Precio Anterior: ".round($mediasAnteriores[$contador]['media'], 2)."' /></td>";
                         }
                     }
-                    $contador++;
+                    if($contador < count($mediasAnteriores)-1){
+                        $contador++;
+                    }
                 }else{
                     echo "<td></td>";
                 }
