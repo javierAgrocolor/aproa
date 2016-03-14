@@ -395,13 +395,7 @@ class PreciosController extends Controller
                 }
             }
             array_push($tabla, $fila);
-            /*if($contadorTabla > 16 ){
-                exit(print_r($listaAlhondigas));
-            }*/
         }
-        //exit(print_r($tabla));
-        //exit(print_r($resultadoConsulta));
-        //exit(print_r($tabla));
         return $tabla;
         
     }
