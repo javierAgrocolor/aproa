@@ -17,11 +17,11 @@ if (isset($tablaSemana)) {
             $colspan = ($contadorProductos - 1) / ($contadorAlhondigas - 1);
             $('.alhondigas').attr('colspan', $colspan);
         });
-        
-        $('#filtrosModalSemanas').submit(function(){
+
+        $('#filtrosModalSemanas').submit(function () {
             alert("glglgl");
         });
-        
+
     </script>
     <?php
 }
@@ -105,61 +105,118 @@ if (isset($tablaSemana)) {
 
 <div class="span12 contenedoresTable margintop">
     <div class="table-responsive">
-    <table class="table">
-        <thead>
-            <tr id="filaCabeceraAlhondigas">
-                <?php
-                if (isset($listaAlhondigasCabecera)) {
-                    echo "<th id='columnaSemana'></th>";
-                    foreach ($listaAlhondigasCabecera as $alhondiga) {
-                        echo "<th id='" . $alhondiga['alhondiga'] . "' class='alhondigas'>" . $alhondiga['alhondiga'] . "</th>";
-                    }
-                }
-                ?>
-            </tr>
-            <tr id="filaCabeceraProductos">
-                <?php
-                if (isset($listaAlhondigasCabecera)) {
-                    echo "<th id='tituloSemana'>Semana</th>";
-                    foreach ($listaAlhondigasCabecera as $alhondiga) {
-                        foreach ($listaProductosCabecera as $producto) {
-                            echo "<th id='" . $producto['idProducto'] . "'>" . $producto['nombre'] . "</th>";
-                        }
-                    }
-                }
-                ?>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            if (isset($tablaSemana)) {
-                $contr = 1;
-                foreach ($tablaSemana as $row) {
-                    if ($contr != 1) {
-                        $contr = 1;
-                        echo "<tr class='danger'>";
-                    } else {
-                        $contr = 2;
-                        echo "<tr>";
-                    }
-                    $contador = 0;
-                    foreach ($row as $celda) {
-                        if($celda != 0){
-                            if($contador == 0){
-                                echo "<td>" . $celda . "</td>";
-                                $contador = 1;
-                            }else{
-                                echo "<td>" . sprintf("%.2f", round($celda, 2)) . "</td>";
+        <table class="table">
+            <thead>
+                <tr id="filaCabeceraAlhondigas">
+                    <?php
+                    if (isset($listaAlhondigasCabecera)) {
+                        echo "<th id='columnaSemana'></th>";
+                        $conta = 1;
+                        $alhondigastotal = 0;
+                        foreach ($listaAlhondigasCabecera as $alhondiga) {
+                            $alhondigastotal++;
+                            if ($conta != 2) {
+                                $conta = 2;
+                                echo "<th id='" . $alhondiga['alhondiga'] . "' class='alhondigas danger'>" . $alhondiga['alhondiga'] . "</th>";
+                            } else {
+                                $conta = 1;
+                                echo "<th id='" . $alhondiga['alhondiga'] . "' class='alhondigas'>" . $alhondiga['alhondiga'] . "</th>";
                             }
-                        }else{
-                            echo "<td> - </td>";
                         }
                     }
-                    echo "</tr>";
+                    ?>
+                </tr>
+                <tr id="filaCabeceraProductos">
+                    <?php
+                    if (isset($listaAlhondigasCabecera)) {
+                        echo "<th id='tituloSemana'>Semana</th>";
+                        $conta = 1;
+                        $productostotal = 0;
+                        foreach ($listaAlhondigasCabecera as $alhondiga) {
+                            if ($conta != 1) {
+                                $conta = 1;
+                            } else {
+                                $conta = 2;
+                            }
+                            foreach ($listaProductosCabecera as $producto) {
+                                $productostotal++;
+                                if ($conta != 1) {
+                                    echo "<th class='danger' id='" . $producto['idProducto'] . "'>" . $producto['nombre'] . "</th>";
+                                } else {
+                                    echo "<th id='" . $producto['idProducto'] . "'>" . $producto['nombre'] . "</th>";
+                                }
+                            }
+                        }
+                    }
+                    ?>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                if (isset($tablaSemana)) {
+                    $contr = 1;
+                    $productoAlhondiga = $productostotal / $alhondigastotal;
+                    $contaPA = 0;
+                    $contaPintar = 0;
+                    $contaFila = 0;
+                    foreach ($tablaSemana as $row) {
+                        echo "<tr>";
+                        $contador = 0;
+                        foreach ($row as $celda) {
+                            if ($contaFila == 1) {
+                                $contaPintar = 0;
+                            } else if ($contaPA == $productoAlhondiga) {
+                                $contaPA = 0;
+                                if ($contaPintar != 1) {
+                                    $contaPintar = 1;
+                                } else {
+                                    $contaPintar = 0;
+                                }
+                            }
+                                        
+                            if ($celda != 0) {
+                                if ($contador == 0) {
+                                    if ($contaFila == 0) {
+                                        $contaPA--;
+                                        echo "<td>" . $celda . "</td>";
+                                    } else if ($contaPintar != 1) {
+                                        echo "<td class='danger'>" . $celda . "</td>";
+                                    } else {
+                                        echo "<td>" . $celda . "</td>";
+                                    }
+                                    $contador = 1;
+                                } else {
+                                    if ($contaFila == 0) {
+                                        $contaPA--;
+                                        echo "<td>" . sprintf("%.2f", round($celda, 2)) . "</td>";
+                                    } else if ($contaPintar != 1) {
+                                        echo "<td class='danger'>" . sprintf("%.2f", round($celda, 2)) . "</td>";
+                                    } else {
+                                        echo "<td>" . sprintf("%.2f", round($celda, 2)) . "</td>";
+                                    }
+                                }
+                            } else {
+                                if ($contaFila == 0) {
+                                    $contaPA--;
+                                    echo "<td> - </td>";
+                                } else if ($contaPintar != 1) {
+                                    echo "<td class='danger'> - </td>";
+                                } else {
+                                    echo "<td> - </td>";
+                                }
+                            }
+                            
+                            $contaPA++;
+                            $contaFila++;
+                            if ($contaFila > $productostotal) {
+                                $contaFila = 0;
+                            }
+                        }
+                        echo "</tr>";
+                    }
                 }
-            }
-            ?>
-        </tbody>
-    </table>
+                ?>
+            </tbody>
+        </table>
     </div>
 </div>
