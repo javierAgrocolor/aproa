@@ -169,6 +169,26 @@ AppAsset::register($this);
         
         jQuery.datetimepicker.setLocale('es');
 
+        jQuery('.datetimepicker-2').datetimepicker({
+         i18n:{
+          de:{
+           months:[
+            'Enero','Febrero','Marzo','Abril',
+            'Mayo','Junio','Julio','Agosto',
+            'Septiembre','Octubre','Noviembre','Diciembre',
+           ],
+           dayOfWeek:[
+            "So.", "Mo", "Di", "Mi", 
+            "Do", "Fr", "Sa.",
+           ]
+          }
+         },
+         timepicker:false,
+         format:'Y-m-d'
+        });
+        
+        jQuery.datetimepicker.setLocale('es');
+
         jQuery('#datetimepicker-2').datetimepicker({
          i18n:{
           de:{

@@ -52,9 +52,9 @@ if (isset($tablaSemana)) {
                 <form action="pizarraprecios" method="get" id="filtrosModalSemanas">
                     <div class="fechasFiltroSemanas">
                         <label>Fecha Inicial</label>
-                        <input id="datetimepicker2"  name="fechaInicial" type="text" class="form-control datetimepickers" />
+                        <input id="datetimepicker2"  name="fechaInicial" type="text" class="form-control datetimepickers datetimepicker-2" />
                         <label>Fecha Final</label>
-                        <input id="datetimepicker-2" name="fechaFinal" type="text" class="form-control datetimepickers" />
+                        <input id="datetimepicker-2" name="fechaFinal" type="text" class="form-control datetimepickers datetimepicker-2" />
                     </div>
                     <div class="productosFiltro">
                         <label>Productos</label><br>
