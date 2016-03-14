@@ -147,6 +147,7 @@ if (isset($tablaSemana)) {
                         if($celda != 0){
                             if($contador == 0){
                                 echo "<td>" . $celda . "</td>";
+                                $contador = 1;
                             }else{
                                 echo "<td>" . sprintf("%.2f", round($celda, 2)) . "</td>";
                             }
