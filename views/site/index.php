@@ -124,7 +124,7 @@ $this->title = 'APROA - Gestión de Crisis';
                             <li>
                                 <a href="#">Francia <span class=" menu-ico-collapse"><i class="glyphicon glyphicon-chevron-down"></i></span></a>
                                 <ul class="dropdown-menu sub-menu">
-                                    <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Francia-Total_Hortalizas">Total hortalizas</a></li>
+                                   <!-- <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Francia-Total_Hortalizas">Total hortalizas</a></li>-->
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Francia-Sandia">Sandia</a></li>
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Francia-Melon">Melon</a></li>                                    
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Francia-Pimiento">Pimiento</a></li>
@@ -137,7 +137,7 @@ $this->title = 'APROA - Gestión de Crisis';
                             <li>
                                 <a href="#">Reino Unido <span class=" menu-ico-collapse"><i class="glyphicon glyphicon-chevron-down"></i></span></a>
                                 <ul class="dropdown-menu sub-menu">
-                                    <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-UK-Total_Hortalizas">Total hortalizas</a></li>
+                                  <!--  <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-UK-Total_Hortalizas">Total hortalizas</a></li>-->
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-UK-Sandia">Sandia</a></li>
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-UK-Melon">Melon</a></li>                                    
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-UK-Pimiento">Pimiento</a></li>
@@ -150,7 +150,7 @@ $this->title = 'APROA - Gestión de Crisis';
                             <li>
                                 <a href="#">Alemania <span class=" menu-ico-collapse"><i class="glyphicon glyphicon-chevron-down"></i></span></a>
                                 <ul class="dropdown-menu sub-menu">
-                                    <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Alemania-Total_Hortalizas">Total hortalizas</a></li>
+                                  <!--  <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Alemania-Total_Hortalizas">Total hortalizas</a></li>-->
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Alemania-Sandia">Sandia</a></li>
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Alemania-Melon">Melon</a></li>                                    
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Alemania-Pimiento">Pimiento</a></li>
@@ -163,7 +163,7 @@ $this->title = 'APROA - Gestión de Crisis';
                             <li>
                                 <a href="#">Polonia <span class=" menu-ico-collapse"><i class="glyphicon glyphicon-chevron-down"></i></span></a>
                                 <ul class="dropdown-menu sub-menu">
-                                    <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Polonia-Total_Hortalizas">Total hortalizas</a></li>
+                                   <!-- <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Polonia-Total_Hortalizas">Total hortalizas</a></li>-->
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Polonia-Sandia">Sandia</a></li>
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Polonia-Melon">Melon</a></li>                                    
                                     <li><a target="_blank" href="index.php/site/buscar?informes=Consumo-Polonia-Pimiento">Pimiento</a></li>
