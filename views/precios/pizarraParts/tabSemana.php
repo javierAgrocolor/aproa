@@ -178,9 +178,8 @@ if (isset($tablaSemana)) {
                                 if ($contador == 0) {
                                     if ($contaFila == 0) {
                                         $contaPA--;
-                                        $celda2 = $celda;
-                                        $celda2++;
-                                        echo "<td>" . $celda2 . "</td>";
+                                        $celda = $celda+1;
+                                        echo "<td>" . $celda . "</td>";
                                     } else if ($contaPintar != 1) {
                                         echo "<td class='danger'>" . $celda . "</td>";
                                     } else {
@@ -200,7 +199,9 @@ if (isset($tablaSemana)) {
                             } else {
                                 if ($contaFila == 0) {
                                     $contaPA--;
-                                    echo "<td> - </td>";
+                                    $celda = $celda+1;
+                                    echo "<td>".$celda."</td>";
+                                    $contador=1;
                                 } else if ($contaPintar != 1) {
                                     echo "<td class='danger'> - </td>";
                                 } else {
