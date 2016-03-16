@@ -298,11 +298,11 @@ class Preciosdiarios extends \yii\db\ActiveRecord
     }
     
     public function generarCondCortes($corteInicial, $corteFinal){
-        $seleccion = " avg(corte".$corteInicial.") as corte".$corteInicial;
+        $seleccion = " avg(nullif(corte".$corteInicial.",0)) as corte".$corteInicial;
         $contador = 1;
         $corteInicial = $corteInicial +1;
         for($corteInicial; $corteInicial <= $corteFinal; $corteInicial++){
-            $seleccion .= ", avg(corte".($corteInicial).") as corte".$corteInicial;
+            $seleccion .= ", avg(nullif(corte".($corteInicial).",0)) as corte".$corteInicial;
             $contador++;
         }
         $seleccion .= " , nombre, idProducto, WEEK(fecha) as semana, alhondiga";

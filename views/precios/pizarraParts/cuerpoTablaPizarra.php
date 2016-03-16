@@ -20,8 +20,12 @@ foreach ($listaPizarras[$y] as $row) {
             $row['corte'.$i] = "-";
         }
     }
-    $media = $suma/$contador;
-    $media = round($media, 2);
+    if($contador = 0){
+        $media = 0;
+    }else{
+        $media = $suma/$contador;
+        $media = round($media, 2);
+    }
     
     if ($contr != 1) {
         $contr = 1;
