@@ -78,7 +78,8 @@ if (isset($tabla)) {
                 var options = {
                     title: 'Medias Semanales',
                     vAxis: {title: 'Precio Medio'},
-                    hAxis: {title: 'Semanas'},
+                    hAxis: {format:'#',title: 'Semanas'},
+		    pointSize: 6,
                     seriesType: 'line',
                     series: {}
                 };
@@ -155,6 +156,8 @@ if (isset($year)) {
                 ?>
             </select>
         </div>
+	</div>
+	<div class="row marginbotton30">
         <div class="col-lg-5 col-lg-offset-1 margintop">
             <label>Supermercados</label>
             <select id="localizacion" name="localizacion[]" multiple class="form-control chosen-select-width">
@@ -348,6 +351,7 @@ if (isset($tabla)) {
                             <div class="span12 contenedoresTable margintop">
                                 <div class="table-responsive">
                                     <table class="table">
+					<p class='margintop' align='center'> Para una correcta representación de los datos en el gráfico,debería: Seleccionar entre 1-5 productos, un único origen y un unico supermercado.</p>
                                         <?php
                                         if (isset($tabla)) {
                                             if (isset($tabla[0]['preciomedio']) && isset($productos)) {

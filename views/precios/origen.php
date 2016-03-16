@@ -79,9 +79,8 @@ if (isset($tabla)) {
                 var options = {
                     title: 'Medias Semanales',
                     vAxis: {title: 'Precio Medio'},
-                    hAxis: {format: '#',title: 'Semanas'},
-                    
-                    pointSize: 6,
+                    hAxis: {format:'#',title: 'Semanas'},
+		    pointSize: 6,
                     seriesType: 'line',
                     series: {}
                 };
@@ -306,6 +305,7 @@ if (isset($tabla)) {
                             <div class="span12 contenedoresTable margintop">
                                 <div class="table-responsive">
                                     <table class="table">
+				    <p class='margintop' align='center'> Para una correcta representación de los datos en el gráfico,debería: Seleccionar entre 1-5 productos.</p>
                                         <?php
                                         if (isset($tabla)) {
                                             if (isset($tabla[0]['preciomedio']) && isset($productos)) {
