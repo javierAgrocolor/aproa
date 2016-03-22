@@ -89,7 +89,7 @@ class DatosSupermercados extends \yii\db\ActiveRecord
      * @param Array $origen Contiene los códigos de los origenes a filtrar.
      * @param Array $localizacion Contiene los códigos de las localizaciones a filtrar.
      */
-    public function leerDatos($productos, $origenes, $localizaciones, $fechaInicial, $fechaFinal, $tipoConsulta, $semanas, $presentaciones){
+    public function leerDatos($productos, $origenes, $localizaciones, $fechaInicial, $fechaFinal, $tipoConsulta, $semanas, $presentaciones, $anio){
         
         if ($tipoConsulta == "consultaMedias"){
             $condiciones = $this -> generarCondiciones($productos, $origenes, $localizaciones, $fechaInicial, $fechaFinal, $presentaciones);
@@ -101,7 +101,7 @@ class DatosSupermercados extends \yii\db\ActiveRecord
         }
         
         if ($tipoConsulta == "consultaSemanal"){
-            $condiciones = $this -> generarCondicionesSemanales($productos, $origenes, $localizaciones, $semanas, $presentaciones);
+            $condiciones = $this -> generarCondicionesSemanales($productos, $origenes, $localizaciones, $semanas, $presentaciones, $anio);
             $rows = $this -> consultarMediasSemanales($condiciones);
         }
         return $rows;
@@ -178,7 +178,7 @@ class DatosSupermercados extends \yii\db\ActiveRecord
      * @param Array $semanas
      * @param Array $presentaciones
      */
-    public function generarCondicionesSemanales($productos, $origenes, $localizaciones, $semanas, $presentaciones){
+    public function generarCondicionesSemanales($productos, $origenes, $localizaciones, $semanas, $presentaciones, $anio){
         $condiciones = "Datos_supermercados.cod_categoria = 1";
         
         if ($productos[0] !== ""){
@@ -199,6 +199,16 @@ class DatosSupermercados extends \yii\db\ActiveRecord
         
         if ($semanas[0] !== ""){
             $condiciones = $this -> generarCondSemanas($semanas, $condiciones);
+        }
+        
+        $nextYear = $anio +1;
+
+        if ($anio != ""){
+            $condiciones .= " and Datos_Supermercados.fecha >= '01-08-".$anio."'";
+        }
+
+        if ($anio != ""){
+            $condiciones .= " and Datos_Supermercados.fecha <= '31-07-".$nextYear."'";
         }
         
         return $condiciones;
@@ -336,15 +346,15 @@ class DatosSupermercados extends \yii\db\ActiveRecord
      */
     public function consultarMediasSemanales($condiciones){
         $query = new \yii\db\Query();
-        $query -> select(['producto.producto, Localizacion.Localizacion, origen.origen, Round(avg(precio),3) as preciomedio, DATEPART(week, Datos_Supermercados.fecha) as Semana, presentacion.presentacion'])
+        $query -> select(['producto.producto, Localizacion.Localizacion, origen.origen, Round(avg(precio),3) as preciomedio, DATEPART(week, Datos_Supermercados.fecha) as Semana, presentacion.presentacion', 'DATEPART(year, Datos_Supermercados.fecha) as anio'])
                 -> from('Datos_Supermercados')
                 -> innerJoin('Origen', 'Origen.codigo_origen = Datos_Supermercados.cod_origen')
                 -> innerJoin('Localizacion', 'Localizacion.codigo_localizacion = Datos_Supermercados.cod_localizacion')
                 -> innerJoin('Producto', 'Producto.codigo_producto = Datos_Supermercados.cod_producto')
                 -> innerJoin('presentacion', 'presentacion.codigo = Datos_Supermercados.cod_presentacion')
                 ->where($condiciones)
-                ->groupBy(['Producto', 'Localizacion', 'Origen', 'presentacion','DATEPART(week, Datos_Supermercados.fecha)'])
-                ->orderBy('Semana');
+                ->groupBy(['Producto', 'Localizacion', 'Origen', 'presentacion','DATEPART(week, Datos_Supermercados.fecha)', 'DATEPART(year, Datos_Supermercados.fecha)'])
+                ->orderBy('anio','Semana');
         $rows = $query -> all(DatosSupermercados::getDb());
         return $rows;
     }

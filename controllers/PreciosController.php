@@ -90,8 +90,9 @@ class PreciosController extends Controller
             $tipoConsulta = $request->get('opcionesConsulta');
             $semanas = $request->get('semanas');
             $presentaciones = $request->get('presentaciones');
+            $anio = $request -> get('anio');
             // Establecemos la consulta de datos con los parametros recibidos.            
-            $resultado = $supermercadosModel ->leerDatos($productos, $origen, $localizacion, $fechaInicial, $fechaFinal, $tipoConsulta, $semanas, $presentaciones);
+            $resultado = $supermercadosModel ->leerDatos($productos, $origen, $localizacion, $fechaInicial, $fechaFinal, $tipoConsulta, $semanas, $presentaciones, $anio);
             
             return $this->render('supermercados', [
                 'listaProductos' => $listaProductos,
@@ -160,9 +161,9 @@ class PreciosController extends Controller
             $fechaFinal = $request->get('fechaFinal');
             $tipoConsulta = $request->get('opcionesConsulta');
             $semanas = $request->get('semanas');
+            $anio = $request -> get('anio');
             // Establecemos la consulta de datos con los parametros recibidos.            
-            $resultado = $mayoristasModel ->leerDatos($productos, $origen, $localizacion, $fechaInicial, $fechaFinal, $tipoConsulta, $semanas);
-            
+            $resultado = $mayoristasModel ->leerDatos($productos, $origen, $localizacion, $fechaInicial, $fechaFinal, $tipoConsulta, $semanas, $anio);
             
             return $this->render('mayoristas', [
                 'listaProductos' => $listaProductos,
@@ -212,7 +213,6 @@ class PreciosController extends Controller
         $listaSemanas = $origenModel ->leerSemanas($listaYears[$contadorYears-2]['year']);
         // Leemos la petición POST/GET
         $request = yii::$app->request;
-        
         // En base a si recibimos parámetros GET/POST mandamos unos datos a la vista o mandamos otros.
         if (count($request->queryParams) != 0){
             $productos = $request->get('productos');
@@ -222,9 +222,9 @@ class PreciosController extends Controller
             $fechaFinal = $request->get('fechaFinal');
             $tipoConsulta = $request->get('opcionesConsulta');
             $semanas = $request->get('semanas');
+            $anio = $request -> get('anio');
             // Establecemos la consulta de datos con los parametros recibidos.
-            $resultado = $origenModel ->leerDatos($productos, $fechaInicial, $fechaFinal, $tipoConsulta, $semanas);
-            
+            $resultado = $origenModel ->leerDatos($productos, $fechaInicial, $fechaFinal, $tipoConsulta, $semanas, $anio);
             
             return $this->render('origen', [
                 'listaProductos' => $listaProductos,
@@ -235,7 +235,8 @@ class PreciosController extends Controller
                 'tabla' => $resultado,
                 'listaSemanas' => $listaSemanas,
                 'fechaInicial' => $fechaInicial,
-                'fechaFinal' => $fechaFinal
+                'fechaFinal' => $fechaFinal,
+                'anio' => $anio
             ]);
         }else{
             return $this->render('origen', [
@@ -528,12 +529,14 @@ class PreciosController extends Controller
                     $listaProductos = $supermercadosModel -> leerProductos();
                     $listaLocalizaciones = $supermercadosModel -> leerLocalizaciones();
                     $listaSemanas = $supermercadosModel -> leerSemanas($year);
+                    $listaPresentaciones = $supermercadosModel ->leerPresentaciones();
                     return $this->render('supermercados', [
                         'listaProductos' => $listaProductos,
                         'listaOrigenes' => $listaOrigenes,
                         'listaLocalizaciones' => $listaLocalizaciones,
                         'listaYears' => $listaYears,
                         'listaSemanas' => $listaSemanas,
+                        'listaPresentaciones' => $listaPresentaciones,
                         'year' => $year
                     ]);
                 }

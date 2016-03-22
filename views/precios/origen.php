@@ -110,6 +110,8 @@ if (isset($tabla)) {
             $('select#yearsMayoristas, select#semanas, #semanas_chosen, .etiquetaOculta').css('visibility', 'hidden');
             $('div#fechas').css('display', 'initial');
         });
+        
+        $('#campoOculto').attr("value", $('#yearsMayoristas option:selected').val());
 
     });
 </script>
@@ -123,6 +125,7 @@ if (isset($year)) {
             $("input[value='consultaSemanal']").attr('checked', 'checked');
             $('select#yearsMayoristas, select#semanas, #semanas_chosen, .etiquetaOculta').css('visibility', 'visible');
             $('div#fechas').css('display', 'none');
+            $('#campoOculto').attr("value", $('#yearsMayoristas option:selected').val());
         });
     </script>
     <?php
@@ -206,7 +209,7 @@ if (isset($year)) {
 
                         $yearValue = substr($listaSemanas[$x]['fechaCorta'], 6, 4);
                         if ($aux == 0) {
-                            $option = "<option id='" . $x . "' value=" . $listaSemanas[$x]['week'] . "-" . $yearValue . "'>" . $listaSemanas[$x]['week'] . ".- " . $listaSemanas[$x]['fechaCorta'];
+                            $option = "<option id='" . $x . "' value=" . $listaSemanas[$x]['week'] . "-" . $yearValue . "' >" . $listaSemanas[$x]['week'] . ".- " . $listaSemanas[$x]['fechaCorta'];
                             $aux = 1;
                         }
 
@@ -221,6 +224,7 @@ if (isset($year)) {
                     echo $option;
                     ?>
                 </select>
+                <input id="campoOculto" type="text" name="anio" style="visibility: hidden" value="" />
             </div> 
             <!--<label>Calcular Medias</label>
             <input id="media" type="checkbox" name="media" />-->

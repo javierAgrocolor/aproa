@@ -116,7 +116,7 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
      * @param Array $origen Contiene los códigos de los origenes a filtrar.
      * @param Array $localizacion Contiene los códigos de las localizaciones a filtrar.
      */
-    public function leerDatos($productos, $origenes, $localizaciones, $fechaInicial, $fechaFinal, $tipoConsulta, $semanas){
+    public function leerDatos($productos, $origenes, $localizaciones, $fechaInicial, $fechaFinal, $tipoConsulta, $semanas, $anio){
         
         if ($tipoConsulta == "consultaMedias"){
             $condiciones = $this -> generarCondiciones($productos, $origenes, $localizaciones, $fechaInicial, $fechaFinal);
@@ -128,7 +128,7 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
         }
         
         if ($tipoConsulta == "consultaSemanal"){
-            $condiciones = $this -> generarCondicionesSemanales($productos, $origenes, $localizaciones, $semanas);
+            $condiciones = $this -> generarCondicionesSemanales($productos, $origenes, $localizaciones, $semanas, $anio);
             $rows = $this -> consultarMediasSemanales($condiciones);
         }
         return $rows;
@@ -187,14 +187,14 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
      */
     public function consultarMediasSemanales($condiciones){
         $query = new \yii\db\Query();
-        $query -> select(['producto.producto, Localizacion.Localizacion, origen.origen, Round(avg(precio),3) as preciomedio, DATEPART(week, Datos_generales_mayoristas.fecha) as Semana'])
+        $query -> select(['producto.producto, Localizacion.Localizacion, origen.origen, Round(avg(precio),3) as preciomedio, DATEPART(week, Datos_generales_mayoristas.fecha) as Semana', 'DATEPART(year, Datos_generales_mayoristas.fecha) as anio'])
                 -> from('Datos_generales_mayoristas')
                 -> innerJoin('Origen', 'Origen.codigo_origen = Datos_generales_mayoristas.cod_origen')
                 -> innerJoin('Localizacion', 'Localizacion.codigo_localizacion = Datos_generales_mayoristas.cod_localizacion')
                 -> innerJoin('Producto', 'Producto.codigo_producto = Datos_generales_mayoristas.cod_producto')
                 ->where($condiciones)
-                ->groupBy(['Producto', 'Localizacion', 'Origen', 'DATEPART(week, Datos_generales_mayoristas.fecha)'])
-                ->orderBy('Semana');
+                ->groupBy(['Producto', 'Localizacion', 'Origen', 'DATEPART(week, Datos_generales_mayoristas.fecha)', 'DATEPART(year, Datos_generales_mayoristas.fecha)'])
+                ->orderBy('anio','Semana');
         $rows = $query -> all(DatosGeneralesMayoristas::getDb());
         return $rows;
     }
@@ -226,7 +226,7 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
      * @param Array $localizaciones
      * @param Array $semanas
      */
-    public function generarCondicionesSemanales($productos, $origenes, $localizaciones, $semanas){
+    public function generarCondicionesSemanales($productos, $origenes, $localizaciones, $semanas, $anio){
         $condiciones = "Datos_generales_mayoristas.cod_categoria = 1";
         
         if ($productos[0] !== ""){
@@ -243,6 +243,16 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
         
         if ($semanas[0] !== ""){
             $condiciones = $this -> generarCondSemanas($semanas, $condiciones);
+        }
+        
+        $nextYear = $anio +1;
+
+        if ($anio != ""){
+            $condiciones .= " and Datos_generales_mayoristas.fecha >= '01-08-".$anio."'";
+        }
+
+        if ($anio != ""){
+            $condiciones .= " and Datos_generales_mayoristas.fecha <= '31-07-".$nextYear."'";
         }
         
         return $condiciones;
@@ -362,7 +372,7 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
      * @param Array $fechaFinal
      * @return string
      */
-    public function generarCondiciones($productos, $origenes, $localizaciones, $fechaInicial, $fechaFinal){
+    public function generarCondiciones($productos, $origenes, $localizaciones, $fechaInicial, $fechaFinal, $anio){
         $condiciones = "Datos_generales_mayoristas.cod_categoria = 1";
         if (isset($productos)){
             $condiciones = $this -> generarCondProductos($productos, $condiciones);

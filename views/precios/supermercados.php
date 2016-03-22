@@ -122,6 +122,7 @@ if (isset($year)) {
             $("input[value='consultaSemanal']").attr('checked', 'checked');
             $('select#yearsMayoristas, select#semanas, #semanas_chosen, .etiquetaOculta').css('visibility', 'visible');
             $('div#fechas').css('display', 'none');
+            $('#campoOculto').attr("value", $('#yearsMayoristas option:selected').val());
         });
     </script>
     <?php
@@ -250,6 +251,7 @@ if (isset($year)) {
                     echo $option;
                     ?>
                 </select>
+                <input id="campoOculto" type="text" name="anio" style="visibility: hidden" value="" />
             </div>
         </div>
         <!--<label>Calcular Medias</label>

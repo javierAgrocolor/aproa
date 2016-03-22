@@ -95,7 +95,7 @@ class DatosOrigen extends \yii\db\ActiveRecord
         $query = new \yii\db\Query();
         $query ->select(['distinct fecha, convert(varchar(10),fecha,103) as fechaCorta, datepart(week,fecha) as week'])
                 ->from('Datos_origen')
-                ->where("fecha>'01-08-".$fechaInicial."'and fecha<'31-07-".$fechaFinal."'")
+                ->where("fecha>='01-08-".$fechaInicial."'and fecha<='31-07-".$fechaFinal."'")
                 ->groupBy('fecha')
                 ->orderBy('Datos_origen.fecha');
         $rows = $query -> all(DatosOrigen::getDb());
@@ -118,7 +118,7 @@ class DatosOrigen extends \yii\db\ActiveRecord
      * @return Array
      * @param Array $productos Contiene los códigos de los productos a filtrar.
      */
-    public function leerDatos($productos, $fechaInicial, $fechaFinal, $tipoConsulta, $semanas){
+    public function leerDatos($productos, $fechaInicial, $fechaFinal, $tipoConsulta, $semanas, $anio){
         
         if ($tipoConsulta == "consultaMedias"){
             $condiciones = $this -> generarCondiciones($productos, $fechaInicial, $fechaFinal);
@@ -131,7 +131,7 @@ class DatosOrigen extends \yii\db\ActiveRecord
         }
         
         if ($tipoConsulta == "consultaSemanal"){
-            $condiciones = $this -> generarCondicionesSemanales($productos, $semanas);
+            $condiciones = $this -> generarCondicionesSemanales($productos, $semanas, $fechaInicial, $fechaFinal, $anio);
             $rows = $this -> consultarMediasSemanales($condiciones);
         }
         
@@ -169,7 +169,7 @@ class DatosOrigen extends \yii\db\ActiveRecord
      * @param Array $productos
      * @param Array $semanas
      */
-    public function generarCondicionesSemanales($productos, $semanas){
+    public function generarCondicionesSemanales($productos, $semanas, $fechaInicial, $fechaFinal, $anio){
         $condiciones = "Datos_origen.cod_presentacion = 0";
         
         if ($productos[0] !== ""){
@@ -178,6 +178,16 @@ class DatosOrigen extends \yii\db\ActiveRecord
         
         if ($semanas[0] !== ""){
             $condiciones = $this -> generarCondSemanas($semanas, $condiciones);
+        }
+        
+        $nextYear = $anio +1;
+
+        if ($anio != ""){
+            $condiciones .= " and Datos_origen.fecha >= '01-08-".$anio."'";
+        }
+
+        if ($anio != ""){
+            $condiciones .= " and Datos_origen.fecha <= '31-07-".$nextYear."'";
         }
         
         return $condiciones;
@@ -289,14 +299,14 @@ class DatosOrigen extends \yii\db\ActiveRecord
      */
     public function consultarMediasSemanales($condiciones){
         $query = new \yii\db\Query();
-        $query -> select(['producto.producto, Localizacion.Localizacion, origen.origen, Round(avg(precio),2) as preciomedio, DATEPART(week, Datos_origen.fecha) as Semana'])
+        $query -> select(['producto.producto, Localizacion.Localizacion, origen.origen, Round(avg(precio),2) as preciomedio, DATEPART(week, Datos_origen.fecha) as Semana', 'DATEPART(year, Datos_origen.fecha) as anio'])
                 -> from('Datos_origen')
                 -> innerJoin('Origen', 'Origen.codigo_origen = Datos_origen.cod_origen')
                 -> innerJoin('Localizacion', 'Localizacion.codigo_localizacion = Datos_origen.cod_localizacion')
                 -> innerJoin('Producto', 'Producto.codigo_producto = Datos_origen.cod_producto')
                 ->where($condiciones)
-                ->groupBy(['Producto', 'Localizacion', 'Origen', 'DATEPART(week, Datos_origen.fecha)'])
-                ->orderBy('Semana');
+                ->groupBy(['Producto', 'Localizacion', 'Origen', 'DATEPART(week, Datos_origen.fecha)', 'DATEPART(year, Datos_origen.fecha)'])
+                ->orderBy('anio', 'Semana');
         $rows = $query -> all(DatosGeneralesMayoristas::getDb());
         return $rows;
     }
