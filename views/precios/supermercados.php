@@ -59,7 +59,7 @@ if (isset($tabla)) {
                     echo ",";
                 }
                 if ($cong2 == 1) {
-                    echo "[" . $pr['Semana'] . "," . $pr['preciomedio'] . "";
+                    echo "['" . $pr['Semana'] . "'," . $pr['preciomedio'] . "";
                     if ($cong2 == $cong) {
                         echo "]";
                     }
