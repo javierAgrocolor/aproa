@@ -225,7 +225,6 @@ class PreciosController extends Controller
             $anio = $request -> get('anio');
             // Establecemos la consulta de datos con los parametros recibidos.
             $resultado = $origenModel ->leerDatos($productos, $fechaInicial, $fechaFinal, $tipoConsulta, $semanas, $anio);
-            
             return $this->render('origen', [
                 'listaProductos' => $listaProductos,
                 'listaYears' => $listaYears,

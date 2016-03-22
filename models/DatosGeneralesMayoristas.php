@@ -194,7 +194,7 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
                 -> innerJoin('Producto', 'Producto.codigo_producto = Datos_generales_mayoristas.cod_producto')
                 ->where($condiciones)
                 ->groupBy(['Producto', 'Localizacion', 'Origen', 'DATEPART(week, Datos_generales_mayoristas.fecha)', 'DATEPART(year, Datos_generales_mayoristas.fecha)'])
-                ->orderBy('anio','Semana');
+                ->orderBy('anio, Semana, Producto');
         $rows = $query -> all(DatosGeneralesMayoristas::getDb());
         return $rows;
     }
