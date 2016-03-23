@@ -109,6 +109,8 @@ if (isset($tabla)) {
             $('select#yearsMayoristas, select#semanas, #semanas_chosen, .etiquetaOculta').css('visibility', 'hidden');
             $('div#fechas').css('display', 'initial');
         });
+        
+        $('#campoOculto').attr("value", $('#yearsMayoristas option:selected').val());
 
     });
 </script>

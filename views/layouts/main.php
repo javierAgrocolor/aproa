@@ -118,8 +118,8 @@ AppAsset::register($this);
             'Septiembre','Octubre','Noviembre','Diciembre',
            ],
            dayOfWeek:[
-            "So.", "Mo", "Di", "Mi", 
-            "Do", "Fr", "Sa.",
+            "Mo", "Di", "Mi", 
+            "Do", "Fr", "Sa.","So.", 
            ]
           }
          },
@@ -138,8 +138,8 @@ AppAsset::register($this);
             'Septiembre','Octubre','Noviembre','Diciembre',
            ],
            dayOfWeek:[
-            "So.", "Mo", "Di", "Mi", 
-            "Do", "Fr", "Sa.",
+            "Mo", "Di", "Mi", 
+            "Do", "Fr", "Sa.","So.",
            ]
           }
          },
@@ -158,8 +158,8 @@ AppAsset::register($this);
             'Septiembre','Octubre','Noviembre','Diciembre',
            ],
            dayOfWeek:[
-            "So.", "Mo", "Di", "Mi", 
-            "Do", "Fr", "Sa.",
+            "Mo", "Di", "Mi", 
+            "Do", "Fr", "Sa.","So.",
            ]
           }
          },
@@ -178,8 +178,8 @@ AppAsset::register($this);
             'Septiembre','Octubre','Noviembre','Diciembre',
            ],
            dayOfWeek:[
-            "So.", "Mo", "Di", "Mi", 
-            "Do", "Fr", "Sa.",
+            "Mo", "Di", "Mi", 
+            "Do", "Fr", "Sa.","So.", 
            ]
           }
          },
@@ -198,8 +198,8 @@ AppAsset::register($this);
             'Septiembre','Octubre','Noviembre','Diciembre',
            ],
            dayOfWeek:[
-            "So.", "Mo", "Di", "Mi", 
-            "Do", "Fr", "Sa.",
+            "Mo", "Di", "Mi", 
+            "Do", "Fr", "Sa.","So.", 
            ]
           }
          },
