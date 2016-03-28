@@ -355,7 +355,7 @@ if (isset($tabla)) {
                             <div class="span12 contenedoresTable margintop">
                                 <div class="table-responsive">
                                     <table class="table">
-					<p class='margintop' align='center'> Para una correcta representación de los datos en el gráfico,debería: Seleccionar entre 1-5 productos, un único origen y un unico supermercado.</p>
+					<p class='margintop' align='center'> Para una correcta representación de los datos en el gráfico,debería: Seleccionar entre 1-5 productos, un único origen, un unico supermercado y una única presentación.</p>
                                         <p class='margintop' align='center'>*Además, todos los productos seleccionados deberán contener datos en las semanas elegidas, de los contrario la gráfica podría no generarse correctamente.</p>   
                                             <?php
                                         if (isset($tabla)) {
