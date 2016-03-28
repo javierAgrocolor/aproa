@@ -37,11 +37,29 @@ if (isset($tabla)) {
         var data = google.visualization.arrayToDataTable([
         <?php
         if (isset($productos)) {
-            $pro = array();
+            /*$pro = array();
             $cong = 1;
             foreach ($productos as $p) {
                 $pro[$cong] = $p;
                 $cong++;
+            }
+            $cong--;*/
+            $pro = array();
+            $cong = 1;
+            $pro[$cong]=$tabla[0]['producto'];
+            $cong++;
+            
+            foreach($tabla as $tab){  
+                $insertar=true;
+                for($x=1;$x<$cong;$x++){
+                    if($tab['producto']==$pro[$x]){
+                        $insertar=false;
+                    }
+                }
+                if($insertar==true){
+                    $pro[$cong] = $tab['producto'];                
+                    $cong++;
+                }                
             }
             $cong--;
         }
@@ -50,7 +68,8 @@ if (isset($tabla)) {
         <?php
         if (isset($productos)) {
             for ($i = 1; $i <= $cong; $i++) {
-                echo ",document.getElementById('" . $pro[$i] . "')";
+                //echo ",document.getElementById('" . $pro[$i] . "')";
+                echo ",'" . $pro[$i] . "'";
             }
             echo "],";
             $cong2 = 1;
