@@ -89,7 +89,7 @@ class PreciosController extends Controller
             $fechaFinal = $request->get('fechaFinal');
             $tipoConsulta = $request->get('opcionesConsulta');
             $semanas = $request->get('semanas');
-            $presentaciones = $request->get('presentaciones');
+            $presentaciones = $request->get('presentacion');
             $anio = $request -> get('anio');
             // Establecemos la consulta de datos con los parametros recibidos.            
             $resultado = $supermercadosModel ->leerDatos($productos, $origen, $localizacion, $fechaInicial, $fechaFinal, $tipoConsulta, $semanas, $presentaciones, $anio);
