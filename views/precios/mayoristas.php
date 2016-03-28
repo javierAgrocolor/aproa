@@ -46,7 +46,6 @@ if (isset($tabla)) {
             $cong--;
         }
         ?>
-
             ['Semanas'
         <?php
         if (isset($productos)) {
