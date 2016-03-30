@@ -146,6 +146,7 @@ if (isset($tabla)) {
             hAxis: {format:'#',title: 'Semanas'},
 	    pointSize: 6,
             seriesType: 'line',
+            interpolateNulls: true,
             series: {}
         };
 
@@ -401,8 +402,7 @@ if (isset($tabla)) {
                                 <div class="table-responsive">
                                     <table class="table">
 				    <p class='margintop' align='center'> Para una correcta representación de los datos en el gráfico,debería: Seleccionar entre 1-5 productos, un único origen y un unico Mercado Mayorista.</p>
-                                    <p class='margintop' align='center'>*Además, todos los productos seleccionados deberán contener datos en las semanas elegidas, de los contrario la gráfica podría no generarse correctamente.</p>       
-                                        <?php
+                                    <?php
                                         if (isset($tabla)) {
                                             if (isset($tabla[0]['preciomedio']) && isset($productos)) {
                                                 echo '<div id="chart_div_mayoristas" style="width: 1000px; height: 500px;"></div>';
