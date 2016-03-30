@@ -31,56 +31,120 @@ if (isset($tabla)) {
 
 
             function drawVisualization() {
-                // Some raw data (not necessarily accurate)        
-                var data = google.visualization.arrayToDataTable([
+        // Some raw data (not necessarily accurate)        
+        var data = google.visualization.arrayToDataTable([
         <?php
-        if (isset($productos)) {
+        if (isset($productos)) {            
+            //Comprobacion de productos 
             $pro = array();
             $cong = 1;
-            foreach ($productos as $p) {
-                $pro[$cong] = $p;
-                $cong++;
+            $pro[$cong] = $tabla[0]['producto'];
+            $cong++;
+
+            foreach ($tabla as $tab) {
+                $insertar = true;
+                for ($x = 1; $x < $cong; $x++) {
+                    if ($tab['producto'] == $pro[$x]) {
+                        $insertar = false;
+                    }
+                }
+                if ($insertar == true) {
+                    $pro[$cong] = $tab['producto'];
+                    $cong++;
+                }
             }
             $cong--;
+
+            //Comprobacion de semanas
+            $sem = array();
+            $cons = 1;
+            $sem[$cons] = $tabla[0]['Semana'];
+            $cons++;
+
+            foreach ($tabla as $tab) {
+                $insertar = true;
+                for ($x = 1; $x < $cons; $x++) {
+                    if ($tab['Semana'] == $sem[$x]) {
+                        $insertar = false;
+                    }
+                }
+                if ($insertar == true) {
+                    $sem[$cons] = $tab['Semana'];
+                    $cons++;
+                }
+            }
+            $cons--;
+
+            //Tamaño array
+            $tampro = count($pro);
+            $tamsem = count($sem);
+            $tampro++;
+            $tamsem++;
+
+            //Construccion de array de datos            
+            $datos = array();
+            
+            for ($x = 0; $x < $tamsem; $x++) {                
+                for ($y = 0; $y < $tampro; $y++) {                    
+                       $datos[$x][$y]=null;           
+                    
+                }
+            }
+            
+            $datos[0][0]='Semanas';
+            for ($x = 1; $x < $tampro; $x++) {
+                $datos[0][$x]=$pro[$x];
+            }
+            for ($x = 1; $x < $tamsem; $x++) {
+                $datos[$x][0]=$sem[$x];
+            }
+            
+
+            if (isset($productos)) {
+                foreach ($tabla as $pr) {
+                    for ($x = 1; $x < $tamsem; $x++) {                        
+                            for ($y = 1; $y < $tampro; $y++) {   
+                               
+                                if ($pr['Semana'] == $sem[$x] && $pr['producto'] == $pro[$y]) {                                    
+                                    $datos[$x][$y] = $pr['preciomedio'];
+                                }
+                            }
+                        
+                    }
+                }
+            }
         }
         ?>
 
-                    ['Semanas'
+            //['Semanas'
         <?php
-        if (isset($productos)) {
-            for ($i = 1; $i <= $cong; $i++) {
-                echo ",document.getElementById('" . $pro[$i] . "')";
-            }
-            echo "],";
-            $cong2 = 1;
-            foreach ($tabla as $pr) {
-                if ($cong2 > $cong) {
-                    $cong2 = 1;
-                    echo ",";
-                }
-                if ($cong2 == 1) {
-                    echo "['" . $pr['Semana'] . "'," . $pr['preciomedio'] . "";
-                    if ($cong2 == $cong) {
-                        echo "]";
-                    }
-                    $cong2++;
-                } else {
-                    echo "," . $pr['preciomedio'] . "";
-                    if ($cong2 == $cong) {
-                        echo "]";
-                    }
-                    $cong2++;
-                }
-            }
+        echo "['" . $datos[0][0] . "'";
+        for($z=1;$z<$tampro;$z++){
+            echo ",'" . $datos[0][$z] . "'";
         }
+        echo "]";
+        //echo "['" . $datos[0][0] . "','" . $datos[0][1] . "','".$datos[0][2]."']";
+        for ($x = 1; $x < $tamsem; $x++) {
+            echo ",['" . $datos[$x][0] . "'";
+            for ($y = 1; $y <$tampro; $y++) {
+                if ($datos[$x][$y] != null) {
+                    echo "," . $datos[$x][$y] . "";
+                } else {
+                    echo ",null";
+                }
+            }
+            echo "]";
+        }
+
         ?>
-                ]);
+        ]);
                 var options = {
                     title: 'Medias Semanales',
                     vAxis: {title: 'Precio Medio'},
                     hAxis: {format:'#',title: 'Semanas'},
 		    pointSize: 6,
                     seriesType: 'line',
+                    interpolateNulls: true,
                     series: {}
                 };
 
@@ -355,9 +419,8 @@ if (isset($tabla)) {
                             <div class="span12 contenedoresTable margintop">
                                 <div class="table-responsive">
                                     <table class="table">
-					<p class='margintop' align='center'> Para una correcta representación de los datos en el gráfico,debería: Seleccionar entre 1-5 productos, un único origen y un unico supermercado.</p>
-                                        <p class='margintop' align='center'>*Además, todos los productos seleccionados deberán contener datos en las semanas elegidas, de los contrario la gráfica podría no generarse correctamente.</p>   
-                                            <?php
+					<p class='margintop' align='center'> Para una correcta representación de los datos en el gráfico,debería: Seleccionar entre 1-5 productos, un único origen, un unico supermercado y una única presentación.</p>
+                                        <?php
                                         if (isset($tabla)) {
                                             if (isset($tabla[0]['preciomedio']) && isset($productos)) {
                                                 echo '<div id="chart_div_supermercados" style="width: 1000px; height: 500px;"></div>';

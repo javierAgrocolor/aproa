@@ -65,7 +65,7 @@ if(!isset($diano))
 {
 	exit("Faltan datos para mostrar el contenido.");	
 }
-//echo "<h3>Boletín con fecha: ".strtotime("January 1st +".($dia-1)." days")."</h3>";
+//echo "<h3>Boletï¿½n con fecha: ".strtotime("January 1st +".($dia-1)." days")."</h3>";
 function imagen($nombre)
 {	
 	if(file_exists('./boletines_correos/img2/'.$nombre)){
@@ -122,7 +122,7 @@ $adminParam = $admin == 1? '&admin=1':'';
 </head>
 <body style="background-color:#FFFFFF;">
 <form action="cdiario2.php">
-  Buscar por fecha:  
+  Buscar por fecha (dd-mm-aaaa):  
   <input type="text" name="fecha" value="" method="get">
   <?if($admin==1):?>
   <input type="hidden" name="admin" value="<?=$admin?>" method="get" >

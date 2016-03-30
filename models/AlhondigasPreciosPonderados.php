@@ -165,7 +165,7 @@ class AlhondigasPreciosPonderados extends \yii\db\ActiveRecord {
                 ->from('alhondigas')
                 ->where('Empresa LIKE :empresa', array(':empresa' => 'LA UNION'))
                 ->andWhere('Fecha=:fecha', array(':fecha' => $fecha_actual))
-                ->orderBy('Producto');
+                ->orderBy('Producto,Tipo');
         $rows = $query->all(AlhondigasPreciosPonderados::getDb());
         return $rows;
     }
@@ -182,7 +182,7 @@ class AlhondigasPreciosPonderados extends \yii\db\ActiveRecord {
                 ->from('alhondigas')
                 ->where('Empresa LIKE :empresa', array(':empresa' => 'CASI'))
                 ->andWhere('Fecha=:fecha', array(':fecha' => $fecha_actual))
-                ->orderBy('Producto');
+                ->orderBy('Producto,Tipo');
         $rows = $query->all(AlhondigasPreciosPonderados::getDb());
         return $rows;
     }
@@ -199,7 +199,7 @@ class AlhondigasPreciosPonderados extends \yii\db\ActiveRecord {
                 ->from('alhondigas')
                 ->where('Empresa LIKE :empresa', array(':empresa' => 'COSTA'))
                 ->andWhere('Fecha=:fecha', array(':fecha' => $fecha_actual))
-                ->orderBy('Producto');
+                ->orderBy('Producto,Tipo');
         $rows = $query->all(AlhondigasPreciosPonderados::getDb());
         return $rows;
     }
@@ -216,7 +216,7 @@ class AlhondigasPreciosPonderados extends \yii\db\ActiveRecord {
                 ->from('alhondigas')
                 ->where('Empresa LIKE :empresa', array(':empresa' => 'FEMAGO'))
                 ->andWhere('Fecha=:fecha', array(':fecha' => $fecha_actual))
-                ->orderBy('Producto');
+                ->orderBy('Producto,Tipo');
         $rows = $query->all(AlhondigasPreciosPonderados::getDb());
         return $rows;
     }
@@ -233,7 +233,7 @@ class AlhondigasPreciosPonderados extends \yii\db\ActiveRecord {
                 ->from('alhondigas')
                 ->where('Empresa LIKE :empresa', array(':empresa' => 'AGROPONIENTE'))
                 ->andWhere('Fecha=:fecha', array(':fecha' => $fecha_actual))
-                ->orderBy('Producto');
+                ->orderBy('Producto,Tipo');
         $rows = $query->all(AlhondigasPreciosPonderados::getDb());
         return $rows;
     }
