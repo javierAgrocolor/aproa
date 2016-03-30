@@ -35,14 +35,7 @@ if (isset($tabla)) {
         // Some raw data (not necessarily accurate)        
         var data = google.visualization.arrayToDataTable([
         <?php
-        if (isset($productos)) {
-            /* $pro = array();
-              $cong = 1;
-              foreach ($productos as $p) {
-              $pro[$cong] = $p;
-              $cong++;
-              }
-              $cong--; */
+        if (isset($productos)) {            
             //Comprobacion de productos 
             $pro = array();
             $cong = 1;
@@ -89,20 +82,7 @@ if (isset($tabla)) {
             $tampro++;
             $tamsem++;
 
-            //Construccion de array de datos
-            /*$datos = array();
-              $datos[0][0]='Semanas';
-              $datos[0][1]='Producto1';
-              $datos[0][2]='Producto2';
-              $datos[1][0]='31';
-              $datos[1][1]=$tampro;
-              $datos[1][2]=$tamsem;
-              $datos[2][0]='32';
-              $datos[2][1]=16;
-              $datos[2][2]=4;
-              $datos[3][0]='33';
-              $datos[3][1]=14;
-              $datos[3][2]=13; */
+            //Construccion de array de datos            
             $datos = array();
             
             for ($x = 0; $x < $tamsem; $x++) {                
@@ -157,33 +137,6 @@ if (isset($tabla)) {
             echo "]";
         }
 
-        /* if (isset($productos)) {
-          for ($i = 1; $i <= $cong; $i++) {
-          //echo ",document.getElementById('" . $pro[$i] . "')";
-          echo ",'" . $pro[$i] . "'";
-          }
-          echo "],";
-          $cong2 = 1;
-          foreach ($tabla as $pr) {
-          if ($cong2 > $cong) {
-          $cong2 = 1;
-          echo ",";
-          }
-          if ($cong2 == 1) {
-          echo "['". $pr['Semana'] . "'," . $pr['preciomedio'] . "";
-          if ($cong2 == $cong) {
-          echo "]";
-          }
-          $cong2++;
-          } else {
-          echo "," . $pr['preciomedio'] . "";
-          if ($cong2 == $cong) {
-          echo "]";
-          }
-          $cong2++;
-          }
-          }
-          } */
         ?>
         ]);
         var options = {
