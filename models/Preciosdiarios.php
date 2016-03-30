@@ -172,7 +172,7 @@ class Preciosdiarios extends \yii\db\ActiveRecord
         $query -> select('alhondiga')
                 -> from('preciosdiarios')
                 -> where("fecha = '".$today."'")
-                -> orderBy('id', 'DESC')
+                -> orderBy('id DESC')
                 -> limit(1);
         $rows = $query -> all(Preciosdiarios::getDb());
         return $rows;
@@ -184,7 +184,8 @@ class Preciosdiarios extends \yii\db\ActiveRecord
                 -> from('preciosdiarios')
                 -> innerJoin('productos', 'productos.codigo = preciosdiarios.idproducto')
                 -> where("fecha = '".$today."'")
-                -> andWhere("alhondiga = '".$ultimaAlhondiga[0]['alhondiga']."'");
+                -> andWhere("alhondiga = '".$ultimaAlhondiga[0]['alhondiga']."'")
+		-> orderBy('preciosdiarios.nombre');
         $rows = $query -> all(Preciosdiarios::getDb());
         return $rows;
     }

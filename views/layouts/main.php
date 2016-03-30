@@ -27,18 +27,18 @@ AppAsset::register($this);
     <script src="/js/jquery.js"></script>
     <!--<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>-->
-    <script src="../../assets/pluginDropdown/docsupport/prism.js"></script>
-    <link href="../../assets/pluginDropdown/docsupport/prism.css" type="text/css" rel="stylesheet" />
-    <script src="../../assets/pluginDropdown/chosen.jquery.js"></script>
-    <link href="../../assets/pluginDropdown/chosen.css" type="text/css" rel="stylesheet" />
+    <script src="/../../assets/pluginDropdown/docsupport/prism.js"></script>
+    <link href="/../../assets/pluginDropdown/docsupport/prism.css" type="text/css" rel="stylesheet" />
+    <script src="/../../assets/pluginDropdown/chosen.jquery.js"></script>
+    <link href="/../../assets/pluginDropdown/chosen.css" type="text/css" rel="stylesheet" />
 
     <script type="text/javascript">
     $(document).ready(function($){
         $('.chosen-select-width').chosen();
     });
     </script>
-    <script src="../../js/funciones.js" type="text/javascript"></script>
-    <script src="../../js/jquery.simplePagination.js" type="text/javascript"></script>
+    <script src="/../../js/funciones.js" type="text/javascript"></script>
+    <script src="/../../js/jquery.simplePagination.js" type="text/javascript"></script>
     <?php $this->registerJsFile(Yii::$app->request->baseUrl.'/assets/pluginDropdown/chosen.jquery.js',['depends' => [\yii\web\JqueryAsset::className()]]); ?>
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
 </head>
@@ -103,9 +103,9 @@ AppAsset::register($this);
 <?php $this->endBody() ?>
 </body>
     <!-- this should go after your </body> -->
-    <link rel="stylesheet" type="text/css" href="../../assets/datetimepicker-master/jquery.datetimepicker.css" />
+    <link rel="stylesheet" type="text/css" href="/../../assets/datetimepicker-master/jquery.datetimepicker.css" />
     <!--<script src="../../assets/datetimepicker-master/jquery.js"></script>-->
-    <script src="../../assets/datetimepicker-master/build/jquery.datetimepicker.full.min.js"></script>
+    <script src="/../../assets/datetimepicker-master/build/jquery.datetimepicker.full.min.js"></script>
     <script>
         jQuery.datetimepicker.setLocale('es');
 

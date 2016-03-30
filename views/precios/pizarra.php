@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <input id="datetimepicker2" name="fechaPizarra" type="text" class="form-control" />
             </div>
             <div class='col-lg-2'>
-                <input class="btn btn-primary col-md-12 marginbotton" type="submit" value="Ver fecha" />
+                <input class="btn btn-primary col-md-12 marginbotton" id="verPizarra" value="Ver fecha" />
             </div>
         </form>
     </div>

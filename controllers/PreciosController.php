@@ -374,7 +374,7 @@ class PreciosController extends Controller
         $contadorTabla = 0;
         
         
-        while($contadorTabla < count($resultadoConsulta)-1){
+        while($contadorTabla < count($resultadoConsulta)){
             $fila = array();
             array_push($fila, $resultadoConsulta[$contadorTabla]['semana']);
             foreach ($listaAlhondigas as $alhondiga){
