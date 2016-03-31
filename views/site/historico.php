@@ -60,7 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
         <!-- Publi APK -->
         <div class="span12">
-            <img src="/images/apkdescarga.png" class="img-responsive center-block">
+            <a href="http://www.aproa.eu/crisis/apps/apk.apk"><img src="/images/apkdescarga.png" class="img-responsive center-block"></a>
         </div>
     </div>
 </div>
