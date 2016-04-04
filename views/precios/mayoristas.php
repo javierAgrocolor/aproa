@@ -142,7 +142,7 @@ if (isset($tabla)) {
         ]);
         var options = {
             title: 'Medias Semanales',
-            vAxis: {title: 'Precio Medio'},
+            vAxis: {minValue: 0,title: 'Precio Medio'},
             hAxis: {format:'#',title: 'Semanas'},
 	    pointSize: 6,
             seriesType: 'line',
