@@ -136,8 +136,8 @@ class SiteController extends Controller {
                 return $this->render('preciosponderados', ['tablaLaunion' => $resultado, 'tablaCasi' => $resultado2, 'tablaCosta' => $resultado3
                             , 'tablaFemago' => $resultado4, 'tablaAgroponiente' => $resultado5, 'tablaGraficoppt' => $grafico1, 'tablaGraficoevolucion' => $grafico2]);
             } else {
-                $fecha_actual = date('Y-m-d');
-
+                $fecha_actual2 = date('Y-m-d');
+                $fecha_actual = date( 'Y-m-d', strtotime( '-1 day', strtotime( $fecha_actual2 ) ) );
                 $resultado = $alhondigasppModels->laUnion($fecha_actual);
                 $resultado2 = $alhondigasppModels->casi($fecha_actual);
                 $resultado3 = $alhondigasppModels->costa($fecha_actual);
