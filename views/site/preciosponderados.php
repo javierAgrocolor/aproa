@@ -267,7 +267,16 @@ $this->params['breadcrumbs'][] = $this->title;
                                     }
                                     //echo "<tr id='fila" . $i . "'>";
                                     for ($g = 1; $g < 14; $g++) {
-                                        echo "<td class='columna" . $g . "'></td>";
+                                        $fila=$i;
+                                        $fila--;
+                                        if($g==2 && isset($tablaCompararPrecios[$fila])){
+                                            echo "<td class='columna" . $g . "'>".$tablaCompararPrecios[$fila]."</td>";
+                                        }else if($g==3 && isset($tablaCompararToneladas[$fila])){
+                                            echo "<td class='columna" . $g . "'>".$tablaCompararToneladas[$fila]."</td>";
+                                        }else{
+                                            echo "<td class='columna" . $g . "'></td>";
+                                        }
+                                        
                                     }
                                     echo "</tr>";
                                 }

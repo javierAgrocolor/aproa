@@ -48,7 +48,7 @@ class SiteController extends Controller {
         ];
     }
 
-    public function actionIndex() {        
+    public function actionIndex() {
         //return $this->render('index');
         if (!\Yii::$app->user->isGuest) {
             return $this->render('index');
@@ -126,6 +126,44 @@ class SiteController extends Controller {
                 $sd = $request->get('sd');
                 $fechafin = $request->get('datetimepicker-2');
 
+                //COMPARADOR PRECIOS Y TONELADAS PP
+                $ayer = $alhondigasppModels->leerDiaAnterior($fecha_actual);
+                $ayer = $ayer[0]['Fecha'];
+
+                $ToneladasAyer = $alhondigasppModels->consultarToneladas($ayer);
+                $PreciosAyer = $alhondigasppModels->consultarPrecios($ayer);
+                $ToneladasHoy = $alhondigasppModels->consultarToneladas($fecha_actual);
+                $PreciosHoy = $alhondigasppModels->consultarPrecios($fecha_actual);
+
+                $compararPrecios = array();
+                $compararToneladas = array();
+                for ($x = 0; $x < 13; $x++) {
+                    if (isset($PreciosAyer[$x]['Pond_Suma']) && isset($PreciosHoy[$x]['Pond_Suma'])) {
+                        if ($PreciosAyer[$x]['Pond_Suma'] < $PreciosHoy[$x]['Pond_Suma']) {
+                            $compararPrecios[$x] = "<img class='flechas' src='/images/flechaVerde.png'/>";                            
+                        }else if($PreciosAyer[$x]['Pond_Suma'] > $PreciosHoy[$x]['Pond_Suma']){
+                            $compararPrecios[$x] = "<img class='flechas' src='/images/flechaRoja.png'/>";                            
+                        }else{
+                            $compararPrecios[$x] = "<img class='flechas' src='/images/igual.png'/>";
+                        }
+                    } else {
+                        $compararPrecios[$x] = "";
+                    }
+
+                    if (isset($ToneladasAyer[$x]['Pond_Suma']) && isset($ToneladasHoy[$x]['Pond_Suma'])) {
+                        if ($ToneladasAyer[$x]['Pond_Suma'] < $ToneladasHoy[$x]['Pond_Suma']) {
+                            $compararToneladas[$x] = "<img class='flechas' src='/images/flechaVerde.png'/>";
+                        }else if($ToneladasAyer[$x]['Pond_Suma'] > $ToneladasHoy[$x]['Pond_Suma']){
+                            $compararToneladas[$x] = "<img class='flechas' src='/images/flechaRoja.png'/>";
+                        }else{
+                            $compararToneladas[$x] = "<img class='flechas' src='/images/igual.png'/>";
+                        }
+                    } else {
+                        $compararPrecios[$x] = "";
+                    }
+                }
+                //
+
                 $resultado = $alhondigasppModels->laUnion($fecha_actual);
                 $resultado2 = $alhondigasppModels->casi($fecha_actual);
                 $resultado3 = $alhondigasppModels->costa($fecha_actual);
@@ -134,10 +172,50 @@ class SiteController extends Controller {
                 $grafico1 = $alhondigasppModels->graficoPpt($fecha_actual);
                 $grafico2 = $alhondigasppModels->graficoEvolucion($productos, $empresas, $sd, $fechafin);
                 return $this->render('preciosponderados', ['tablaLaunion' => $resultado, 'tablaCasi' => $resultado2, 'tablaCosta' => $resultado3
-                            , 'tablaFemago' => $resultado4, 'tablaAgroponiente' => $resultado5, 'tablaGraficoppt' => $grafico1, 'tablaGraficoevolucion' => $grafico2]);
+                            , 'tablaFemago' => $resultado4, 'tablaAgroponiente' => $resultado5, 'tablaGraficoppt' => $grafico1, 'tablaGraficoevolucion' => $grafico2
+                            , 'tablaCompararToneladas' => $compararToneladas, 'tablaCompararPrecios' => $compararPrecios]);
             } else {
                 $fecha_actual2 = date('Y-m-d');
-                $fecha_actual = date( 'Y-m-d', strtotime( '-1 day', strtotime( $fecha_actual2 ) ) );
+                $fecha_actual = date('Y-m-d', strtotime('-1 day', strtotime($fecha_actual2)));
+
+                //COMPARADOR PRECIOS Y TONELADAS PP
+                $ayer = $alhondigasppModels->leerDiaAnterior($fecha_actual);
+                $ayer = $ayer[0]['Fecha'];
+
+                $ToneladasAyer = $alhondigasppModels->consultarToneladas($ayer);
+                $PreciosAyer = $alhondigasppModels->consultarPrecios($ayer);
+                $ToneladasHoy = $alhondigasppModels->consultarToneladas($fecha_actual);
+                $PreciosHoy = $alhondigasppModels->consultarPrecios($fecha_actual);
+
+                $compararPrecios = array();
+                $compararToneladas = array();
+                for ($x = 0; $x < 13; $x++) {
+                    if (isset($PreciosAyer[$x]['Pond_Suma']) && isset($PreciosHoy[$x]['Pond_Suma'])) {
+                        if ($PreciosAyer[$x]['Pond_Suma'] < $PreciosHoy[$x]['Pond_Suma']) {
+                            $compararPrecios[$x] = "<img class='flechas' src='/images/flechaVerde.png'/>";                            
+                        }else if($PreciosAyer[$x]['Pond_Suma'] > $PreciosHoy[$x]['Pond_Suma']){
+                            $compararPrecios[$x] = "<img class='flechas' src='/images/flechaRoja.png'/>";                            
+                        }else{
+                            $compararPrecios[$x] = "<img class='flechas' src='/images/igual.png'/>";
+                        }
+                    } else {
+                        $compararPrecios[$x] = "";
+                    }
+
+                    if (isset($ToneladasAyer[$x]['Pond_Suma']) && isset($ToneladasHoy[$x]['Pond_Suma'])) {
+                        if ($ToneladasAyer[$x]['Pond_Suma'] < $ToneladasHoy[$x]['Pond_Suma']) {
+                            $compararToneladas[$x] = "<img class='flechas' src='/images/flechaVerde.png'/>";
+                        }else if($ToneladasAyer[$x]['Pond_Suma'] > $ToneladasHoy[$x]['Pond_Suma']){
+                            $compararToneladas[$x] = "<img class='flechas' src='/images/flechaRoja.png'/>";
+                        }else{
+                            $compararToneladas[$x] = "<img class='flechas' src='/images/igual.png'/>";
+                        }
+                    } else {
+                        $compararPrecios[$x] = "";
+                    }
+                }
+                //
+
                 $resultado = $alhondigasppModels->laUnion($fecha_actual);
                 $resultado2 = $alhondigasppModels->casi($fecha_actual);
                 $resultado3 = $alhondigasppModels->costa($fecha_actual);
@@ -146,7 +224,8 @@ class SiteController extends Controller {
                 $grafico1 = $alhondigasppModels->graficoPpt($fecha_actual);
 
                 return $this->render('preciosponderados', ['tablaLaunion' => $resultado, 'tablaCasi' => $resultado2, 'tablaCosta' => $resultado3
-                            , 'tablaFemago' => $resultado4, 'tablaAgroponiente' => $resultado5, 'tablaGraficoppt' => $grafico1]);
+                            , 'tablaFemago' => $resultado4, 'tablaAgroponiente' => $resultado5, 'tablaGraficoppt' => $grafico1
+                            , 'tablaCompararToneladas' => $compararToneladas, 'tablaCompararPrecios' => $compararPrecios]);
             }
         } else {
             return $this->goHome();
@@ -168,17 +247,17 @@ class SiteController extends Controller {
             $request = yii::$app->request;
             if (count($request->queryParams) != 0) {
                 $tipo = $request->get('informes');
-                if ($tipo != 'Historico' && $tipo != 'Otros' && $tipo!='Cuotasmercado') {
+                if ($tipo != 'Historico' && $tipo != 'Otros' && $tipo != 'Cuotasmercado') {
                     $filename = $boletinesModels->buscarPdf($tipo);
                     //exit($filename[0]['Boletin']);  
-			$ruta = '/pdf/'.$filename[0]['Boletin'].'.pdf';
-			//exit($ruta);
+                    $ruta = '/pdf/' . $filename[0]['Boletin'] . '.pdf';
+                    //exit($ruta);
                     return $this->redirect($ruta);
                 } else {
                     if ($tipo != 'Otros' && $tipo != 'Historico') {
                         $cuotasmercado = $boletinesModels->buscarCuotasmercado();
                         return $this->render('cuotasmercado', ['tablaCuotasmercado' => $cuotasmercado]);
-                    }else if ($tipo != 'Otros') {
+                    } else if ($tipo != 'Otros') {
                         $historico = $boletinesModels->buscarHistorico();
                         return $this->render('historico', ['tablaHistorico' => $historico]);
                     } else {

@@ -291,5 +291,39 @@ class AlhondigasPreciosPonderados extends \yii\db\ActiveRecord {
             return $rows;
         }
     }
+    
+    public function leerDiaAnterior($fecha){
+	    
+	$condicion = "Fecha < '".$fecha."'";    
+	$query = new \yii\db\Query();
+        $query -> select('Fecha')
+		-> distinct('Fecha')
+		-> from ('alhondigas')
+		-> where ($condicion)
+		-> orderBy ('Fecha DESC')
+		-> limit (1);
+        $rows = $query -> all(AlhondigasPreciosPonderados::getDb());
+        return $rows;    
+    }
+    
+    public function consultarToneladas($fecha){
+        $query = new \yii\db\Query();
+        $query ->select('Producto,Fecha,Tipo,SUM(Pond_Suma) as Pond_Suma')
+                ->from('alhondigas')
+                ->where('Tipo=:tipo and Fecha=:fecha',array(':tipo'=>'Toneladas',':fecha'=>$fecha))
+                ->groupBy('Producto');
+        $rows = $query -> all(AlhondigasPreciosPonderados::getDb());
+        return $rows; 
+    }
+    
+    public function consultarPrecios($fecha){
+        $query = new \yii\db\Query();
+        $query ->select('Producto,Fecha,Tipo,AVG(Pond_Suma) as Pond_Suma')
+                ->from('alhondigas')
+                ->where('Tipo=:tipo and Fecha=:fecha',array(':tipo'=>'Precios',':fecha'=>$fecha))
+                ->groupBy('Producto');
+        $rows = $query -> all(AlhondigasPreciosPonderados::getDb());
+        return $rows; 
+    }
 
 }
