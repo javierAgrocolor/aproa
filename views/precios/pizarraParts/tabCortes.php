@@ -10,6 +10,10 @@
     $(document).ready(function(){
         $('#enlaceTabCortes').click(function(){
             $('#modalCortes').modal('show');
+            for ($i = 1; $i < 16; $i++){
+               $('.corte'+$i).show();
+               $('.corteCabecera'+$i).show();
+            }
         });
         
         $('#confirmarModalCortes').click(function(){
