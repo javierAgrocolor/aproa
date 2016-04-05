@@ -127,40 +127,45 @@ class SiteController extends Controller {
                 $fechafin = $request->get('datetimepicker-2');
 
                 //COMPARADOR PRECIOS Y TONELADAS PP
-                $ayer = $alhondigasppModels->leerDiaAnterior($fecha_actual);
-                $ayer = $ayer[0]['Fecha'];
+                if (isset($fecha_actual)) {
+                    $ayer = $alhondigasppModels->leerDiaAnterior($fecha_actual);
+                    $ayer = $ayer[0]['Fecha'];
 
-                $ToneladasAyer = $alhondigasppModels->consultarToneladas($ayer);
-                $PreciosAyer = $alhondigasppModels->consultarPrecios($ayer);
-                $ToneladasHoy = $alhondigasppModels->consultarToneladas($fecha_actual);
-                $PreciosHoy = $alhondigasppModels->consultarPrecios($fecha_actual);
+                    $ToneladasAyer = $alhondigasppModels->consultarToneladas($ayer);
+                    $PreciosAyer = $alhondigasppModels->consultarPrecios($ayer);
+                    $ToneladasHoy = $alhondigasppModels->consultarToneladas($fecha_actual);
+                    $PreciosHoy = $alhondigasppModels->consultarPrecios($fecha_actual);
 
-                $compararPrecios = array();
-                $compararToneladas = array();
-                for ($x = 0; $x < 13; $x++) {
-                    if (isset($PreciosAyer[$x]['Pond_Suma']) && isset($PreciosHoy[$x]['Pond_Suma'])) {
-                        if ($PreciosAyer[$x]['Pond_Suma'] < $PreciosHoy[$x]['Pond_Suma']) {
-                            $compararPrecios[$x] = "<img class='flechas' src='/images/flechaVerde.png'/>";                            
-                        }else if($PreciosAyer[$x]['Pond_Suma'] > $PreciosHoy[$x]['Pond_Suma']){
-                            $compararPrecios[$x] = "<img class='flechas' src='/images/flechaRoja.png'/>";                            
-                        }else{
-                            $compararPrecios[$x] = "<img class='flechas' src='/images/igual.png'/>";
+                    $compararPrecios = array();
+                    $compararToneladas = array();
+                    for ($x = 0; $x < 13; $x++) {
+                        if (isset($PreciosAyer[$x]['Pond_Suma']) && isset($PreciosHoy[$x]['Pond_Suma'])) {
+                            if ($PreciosAyer[$x]['Pond_Suma'] < $PreciosHoy[$x]['Pond_Suma']) {
+                                $compararPrecios[$x] = "<img class='flechas' src='/images/flechaVerde.png'/>";
+                            } else if ($PreciosAyer[$x]['Pond_Suma'] > $PreciosHoy[$x]['Pond_Suma']) {
+                                $compararPrecios[$x] = "<img class='flechas' src='/images/flechaRoja.png'/>";
+                            } else {
+                                $compararPrecios[$x] = "<img class='flechas' src='/images/igual.png'/>";
+                            }
+                        } else {
+                            $compararPrecios[$x] = "";
                         }
-                    } else {
-                        $compararPrecios[$x] = "";
-                    }
 
-                    if (isset($ToneladasAyer[$x]['Pond_Suma']) && isset($ToneladasHoy[$x]['Pond_Suma'])) {
-                        if ($ToneladasAyer[$x]['Pond_Suma'] < $ToneladasHoy[$x]['Pond_Suma']) {
-                            $compararToneladas[$x] = "<img class='flechas' src='/images/flechaVerde.png'/>";
-                        }else if($ToneladasAyer[$x]['Pond_Suma'] > $ToneladasHoy[$x]['Pond_Suma']){
-                            $compararToneladas[$x] = "<img class='flechas' src='/images/flechaRoja.png'/>";
-                        }else{
-                            $compararToneladas[$x] = "<img class='flechas' src='/images/igual.png'/>";
+                        if (isset($ToneladasAyer[$x]['Pond_Suma']) && isset($ToneladasHoy[$x]['Pond_Suma'])) {
+                            if ($ToneladasAyer[$x]['Pond_Suma'] < $ToneladasHoy[$x]['Pond_Suma']) {
+                                $compararToneladas[$x] = "<img class='flechas' src='/images/flechaVerde.png'/>";
+                            } else if ($ToneladasAyer[$x]['Pond_Suma'] > $ToneladasHoy[$x]['Pond_Suma']) {
+                                $compararToneladas[$x] = "<img class='flechas' src='/images/flechaRoja.png'/>";
+                            } else {
+                                $compararToneladas[$x] = "<img class='flechas' src='/images/igual.png'/>";
+                            }
+                        } else {
+                            $compararPrecios[$x] = "";
                         }
-                    } else {
-                        $compararPrecios[$x] = "";
                     }
+                } else {
+                    $compararPrecios = array();
+                    $compararToneladas = array();
                 }
                 //
 
@@ -171,6 +176,7 @@ class SiteController extends Controller {
                 $resultado5 = $alhondigasppModels->agroponiente($fecha_actual);
                 $grafico1 = $alhondigasppModels->graficoPpt($fecha_actual);
                 $grafico2 = $alhondigasppModels->graficoEvolucion($productos, $empresas, $sd, $fechafin);
+
                 return $this->render('preciosponderados', ['tablaLaunion' => $resultado, 'tablaCasi' => $resultado2, 'tablaCosta' => $resultado3
                             , 'tablaFemago' => $resultado4, 'tablaAgroponiente' => $resultado5, 'tablaGraficoppt' => $grafico1, 'tablaGraficoevolucion' => $grafico2
                             , 'tablaCompararToneladas' => $compararToneladas, 'tablaCompararPrecios' => $compararPrecios]);
@@ -192,10 +198,10 @@ class SiteController extends Controller {
                 for ($x = 0; $x < 13; $x++) {
                     if (isset($PreciosAyer[$x]['Pond_Suma']) && isset($PreciosHoy[$x]['Pond_Suma'])) {
                         if ($PreciosAyer[$x]['Pond_Suma'] < $PreciosHoy[$x]['Pond_Suma']) {
-                            $compararPrecios[$x] = "<img class='flechas' src='/images/flechaVerde.png'/>";                            
-                        }else if($PreciosAyer[$x]['Pond_Suma'] > $PreciosHoy[$x]['Pond_Suma']){
-                            $compararPrecios[$x] = "<img class='flechas' src='/images/flechaRoja.png'/>";                            
-                        }else{
+                            $compararPrecios[$x] = "<img class='flechas' src='/images/flechaVerde.png'/>";
+                        } else if ($PreciosAyer[$x]['Pond_Suma'] > $PreciosHoy[$x]['Pond_Suma']) {
+                            $compararPrecios[$x] = "<img class='flechas' src='/images/flechaRoja.png'/>";
+                        } else {
                             $compararPrecios[$x] = "<img class='flechas' src='/images/igual.png'/>";
                         }
                     } else {
@@ -205,9 +211,9 @@ class SiteController extends Controller {
                     if (isset($ToneladasAyer[$x]['Pond_Suma']) && isset($ToneladasHoy[$x]['Pond_Suma'])) {
                         if ($ToneladasAyer[$x]['Pond_Suma'] < $ToneladasHoy[$x]['Pond_Suma']) {
                             $compararToneladas[$x] = "<img class='flechas' src='/images/flechaVerde.png'/>";
-                        }else if($ToneladasAyer[$x]['Pond_Suma'] > $ToneladasHoy[$x]['Pond_Suma']){
+                        } else if ($ToneladasAyer[$x]['Pond_Suma'] > $ToneladasHoy[$x]['Pond_Suma']) {
                             $compararToneladas[$x] = "<img class='flechas' src='/images/flechaRoja.png'/>";
-                        }else{
+                        } else {
                             $compararToneladas[$x] = "<img class='flechas' src='/images/igual.png'/>";
                         }
                     } else {
