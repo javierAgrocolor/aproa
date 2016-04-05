@@ -33,7 +33,8 @@ $(document).ready(function(){
     $contador = 0;
     $pp.each(function(){
         $contador++;
-        $('#fila'+$contador+' td.columna2').html(parseFloat($(this).html()));
+        $anteriorPre = $('#fila'+$contador+ ' td.columna2').html();
+        $('#fila'+$contador+' td.columna2').html($anteriorPre+" "+parseFloat($(this).html()));
         
         if($contador < 8){
             $('#fila'+$contador+' td.columna6').html(parseFloat($(this).html()));
@@ -102,13 +103,15 @@ $(document).ready(function(){
         
         
         $sumaToneladas = $tonUnion + $tonAgroponiente + $tonFemago + $tonCosta;
-        $('#fila'+$i+ ' td.columna3').html($sumaToneladas);
+        $anteriorTon = $('#fila'+$i+ ' td.columna3').html();
+        $('#fila'+$i+ ' td.columna3').html($anteriorTon+" "+$sumaToneladas);
     }
     
     $contador = 7;
     $toneladasCasi.each(function(){
         $contador++;
-        $('#fila'+$contador+ ' td.columna3').html(parseFloat($(this).html()));
+        $anteriorTon = $('#fila'+$contador+ ' td.columna3').html();
+        $('#fila'+$contador+ ' td.columna3').html($anteriorTon+" "+parseFloat($(this).html()));
     })
     
     
