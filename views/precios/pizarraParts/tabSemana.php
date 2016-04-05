@@ -47,7 +47,7 @@ if (isset($tablaSemana)) {
                 <h4 class="modal-title">Filtros Precios Por Semana</h4>
             </div>
             <div class="modal-body">
-                <form action="pizarraprecios" method="get" id="filtrosModalSemanas">
+                <form action="/index.php/precios/pizarraprecios" method="get" id="filtrosModalSemanas">
                     <div class="fechasFiltroSemanas">
                         <label>Fecha Inicial</label>
                         <input id="datetimepicker2"  name="fechaInicial" type="text" class="form-control datetimepickers datetimepicker-2" />
