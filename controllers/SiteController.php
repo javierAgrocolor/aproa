@@ -182,7 +182,12 @@ class SiteController extends Controller {
                             , 'tablaCompararToneladas' => $compararToneladas, 'tablaCompararPrecios' => $compararPrecios]);
             } else {
                 $fecha_actual2 = date('Y-m-d');
-                $fecha_actual = date('Y-m-d', strtotime('-1 day', strtotime($fecha_actual2)));
+                if(date("l")=="Monday"){
+                    $fecha_actual = date('Y-m-d', strtotime('-2 day', strtotime($fecha_actual2)));
+                }else{
+                    $fecha_actual = date('Y-m-d', strtotime('-1 day', strtotime($fecha_actual2)));
+                }
+                
 
                 //COMPARADOR PRECIOS Y TONELADAS PP
                 $ayer = $alhondigasppModels->leerDiaAnterior($fecha_actual);
