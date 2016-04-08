@@ -286,8 +286,34 @@ class SiteController extends Controller {
         if (!\Yii::$app->user->isGuest) {
             $request = yii::$app->request;
             if (count($request->queryParams) != 0) {
-                $diano = $request->get('diano');
-                return $this->render('boletindiario', ['diano' => $diano]);
+                $fecha = $request->get('fecha');
+                $fecha2 = $request->get('diano');
+                $sumres = $request->get('sumres');
+                if(isset($fecha)){
+                    $dia = (date('z Y', strtotime($fecha)))+1;	
+                    $anio = date('Y', strtotime($fecha));
+                    $diano = $anio."-".$dia;	
+                }else if(isset($fecha2)){
+                    if($sumres=='true'){
+                        $fecha = date('Y-m-d', strtotime('-1 day', strtotime($fecha2)));
+                        $dia = (date('z Y', strtotime($fecha)))+1;	
+                        $anio = date('Y', strtotime($fecha));
+                        $diano = $anio."-".$dia;
+                    }else if($sumres=='false'){
+                        $fecha = date('Y-m-d', strtotime('+1 day', strtotime($fecha2)));
+                        $dia = (date('z Y', strtotime($fecha)))+1;	
+                        $anio = date('Y', strtotime($fecha));
+                        $diano = $anio."-".$dia;
+                    }else{
+                        $fecha = date('Y-m-d');
+			$dia = (date('z Y', strtotime($fecha)))+1;	
+                        $anio = date('Y', strtotime($fecha));
+                        $diano = $anio."-".$dia;
+                    }                    
+                }
+                
+                //$diano = $request->get('diano');
+                return $this->render('boletindiario', ['diano' => $diano,'fecha'=>$fecha]);
             }
         } else {
             return $this->goHome();
