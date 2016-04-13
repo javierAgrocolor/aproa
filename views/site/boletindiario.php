@@ -6,9 +6,18 @@ use yii\helpers\Html;
 $this->title = 'Boletín Diario';
 $this->params['breadcrumbs'][] = $this->title;
 
-$siguiente = $diano+1;
-$anterior = $diano-1;
+//$siguiente = $diano+1;
+//$anterior = $diano-1;
+//echo $diano;
 ?>
+
+<div class="col-md-12 marginbotton">
+<form>
+    <label>Buscar por fecha (aaaa-mm-dd):</label>  
+  <input type="text" name="fecha" value="" method="get">
+  <input type="submit" value="Enviar" class="btn btn-primary">
+</form>
+</div>    
 <div>
     <p class="titulosPaginaPrincipal"><?= Html::encode($this->title) ?></p>
 
@@ -18,18 +27,18 @@ $anterior = $diano-1;
             <div class="col-md-12">
             <div class="col-md-1 col-md-offset-4">
             <?php 
-            echo"<a class='titulos2' href='boletines?diano=$anterior'><img src='/images/anterior.png' class='img-responsive'/></a>";
+            echo"<a class='titulos2' href='boletines?diano=".$fecha."&sumres=true'><img src='/images/anterior.png' class='img-responsive'/></a>";
             ?>
             </div>
                 <div class="col-md-2">
                     <?php 
-                    $diaactual=date('z')+1;
-            echo"<a class='enlaceDiaActual' href='boletines?diano=$diaactual'>DÍA ACTUAL</a>";
+                    $diaactual=date('Y-m-d');
+            echo"<a class='enlaceDiaActual' href='boletines?diano=".$diaactual."'>DÍA ACTUAL</a>";
             ?>
                 </div>
             <div class="col-md-1">
             <?php
-            echo"<a class='titulos2' href='boletines?diano=$siguiente'><img src='/images/siguiente.png' class='img-responsive'/></a>";
+            echo"<a class='titulos2' href='boletines?diano=".$fecha."&sumres=false'><img src='/images/siguiente.png' class='img-responsive'/></a>";
             ?>
             </div>
             </div>
@@ -37,8 +46,8 @@ $anterior = $diano-1;
             <?php
             //echo $diano;
             for($x=1;$x<15;$x++){
-            if(file_exists('./boletines_correos/img2/2016-'.$diano.'-'.$x.'.jpg')){
-                echo"<img src='/boletines_correos/img2/2016-".$diano."-".$x.".jpg' class='img-responsive center-block'/>";
+            if(file_exists('./boletines_correos/img2/'.$diano.'-'.$x.'.jpg')){
+                echo"<img src='/boletines_correos/img2/".$diano."-".$x.".jpg' class='img-responsive center-block'/>";
             }
             }
             ?>

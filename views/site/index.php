@@ -232,7 +232,7 @@ $this->title = 'APROA - Gestión de Crisis';
                 </ul>
             </div>
             <div class="col-md-3">
-                <a target="_blank" href="index.php/site/buscar?informes=Seguimiento_de_Campaña"><img src="/images/boton13.jpg" class="img-responsive center-block imgInformes"></a>
+                <a target="_blank" href="index.php/site/buscar?informes=Seguimiento_de_Campana"><img src="/images/boton13.jpg" class="img-responsive center-block imgInformes"></a>
                 <ul class="nav nav-pills">
                     <li class="dropdown">
                         <img src="/images/boton14.jpg"  data-toggle="dropdown" class="dropdown-toggle img-responsive imgInformes">
