@@ -14,9 +14,10 @@ $(document).ready(function(){
     
     $contador = 0;
     
-    $ppUnion = $('.laUnion .precios td.columnaPP');
+    $ppUnion = $('.laUnion .precios td.columnaPP');    
     $ppCasi = $('.casi .precios td.columnaPP');
     $pp = $ppUnion.add($ppCasi);
+    
     
     $toneladasCasi = $('.casi .toneladas td.columnaPP');
     $toneladasLaUnion = $('.laUnion .toneladas td.columnaPP');
@@ -33,9 +34,16 @@ $(document).ready(function(){
     $contador = 0;
     $pp.each(function(){
         $contador++;
+	
         $anteriorPre = $('#fila'+$contador+ ' td.columna2').html();
-        $('#fila'+$contador+' td.columna2').html($anteriorPre+" "+parseFloat($(this).html()));
-        
+        if(parseFloat($(this).html())>0){
+		$('#fila'+$contador+' td.columna2').html($anteriorPre+" "+parseFloat($(this).html()));
+	}else{
+		$('#fila'+$contador+' td.columna2').html("");
+	}
+	
+               
+	
         if($contador < 8){
             $('#fila'+$contador+' td.columna6').html(parseFloat($(this).html()));
         }

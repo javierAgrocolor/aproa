@@ -25,10 +25,20 @@ $this->params['breadcrumbs'][] = $this->title;
     foreach ($tablaGraficoppt as $grafico) {
         if ($con == 1) {
             $con = 2;
-            echo ",['" . $grafico['Producto'] . "'," . $grafico['Suma'];
+	    if($grafico['Suma']==0){
+		    echo ",['" . $grafico['Producto'] . "',null";
+	    }else{
+		    echo ",['" . $grafico['Producto'] . "'," . $grafico['Suma'];
+	    }
+            
         } else {
             $con = 1;
-            echo "," . $grafico['Suma'] . "]";
+	    if($grafico['Suma']==0){
+		    echo ",null]";
+	    }else{
+		    echo "," . $grafico['Suma'] . "]";
+	    }
+            
         }
     }
     ?>
@@ -85,16 +95,29 @@ $this->params['breadcrumbs'][] = $this->title;
         if ($con2 == 1) {
             $con2 = 2;
             if ($grafico['Fecha'] < 60) {
-                echo ",['" . $grafico['Fecha'] . "'," . $grafico['Precio'];
+		    if($grafico['Precio']==0){
+			echo ",['" . $grafico['Fecha'] . "',null";
+		    }else{
+			echo ",['" . $grafico['Fecha'] . "'," . $grafico['Precio'];
+		    }                
             } else {
                 echo ",['";
 		$time=strtotime($grafico['Fecha']); 
 		echo $time = date('d-m-Y',$time); 
-		echo "'," . $grafico['Pond_Suma'];
+		if($grafico['Pond_Suma']==0){
+			echo "',null";
+		}else{
+			echo "'," . $grafico['Pond_Suma'];
+		}		
             }
         } else {
             $con2 = 1;
-            echo "," . $grafico['Pond_Suma'] . "]";
+	    if($grafico['Pond_Suma']==0){
+		    echo ",null]";
+	    }else{
+		   echo "," . $grafico['Pond_Suma'] . "]";
+	    }
+            
         }
     }
     ?>
@@ -351,9 +374,14 @@ $this->params['breadcrumbs'][] = $this->title;
                                     }
 
                                     echo "<td class='columnaProducto'>" . $row['Producto'] . "</td>                    
-                    <td>" . $row['Tipo'] . "</td>
-                    <td class='columnaPP'>" . $row['Pond_Suma'] . "</td>
-                    <td>" . $row['Media'] . "</td>
+                    <td>" . $row['Tipo'] . "</td>";
+                    if($row['Pond_Suma']==0){
+			  echo "<td class='columnaPP'></td>";
+		    }else{
+			  echo "<td class='columnaPP'>" . $row['Pond_Suma'] . "</td>";  
+		    }
+		    
+                    echo "<td>" . $row['Media'] . "</td>
                     <td>" . $row['C1'] . "</td>
                     <td>" . $row['C2'] . "</td>
                     <td>" . $row['C3'] . "</td>
@@ -439,9 +467,14 @@ $this->params['breadcrumbs'][] = $this->title;
                                     }
 
                                     echo "<td class='columnaProducto'>" . $row['Producto'] . "</td>                    
-                    <td>" . $row['Tipo'] . "</td>
-                    <td class='columnaPP'>" . $row['Pond_Suma'] . "</td>
-                    <td>" . $row['Media'] . "</td>
+                    <td>" . $row['Tipo'] . "</td>";
+		    if($row['Pond_Suma']==0){
+			    echo "<td class='columnaPP'></td>";
+		    }else{
+			    echo "<td class='columnaPP'>" . $row['Pond_Suma'] . "</td>";
+		    }
+                    
+                    echo "<td>" . $row['Media'] . "</td>
                     <td>" . $row['C1'] . "</td>
                     <td>" . $row['C2'] . "</td>
                     <td>" . $row['C3'] . "</td>

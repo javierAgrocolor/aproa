@@ -284,7 +284,7 @@ class AlhondigasPreciosPonderados extends \yii\db\ActiveRecord {
         } else {            
             $query->select('WEEKOFYEAR(Fecha) as Fecha,Producto,Empresa,SUM(Pond_Suma) as Pond_Suma,AVG(Pond_Suma) as Precio')
                     ->from('alhondigas')
-                    ->where('Producto=:producto and Empresa=:empresa and  Fecha BETWEEN :fechaini AND :fechafin', array(':producto' => $productos, ':empresa' => $empresas, ':fechaini' => '2015-09-01', ':fechafin' => $fechafin))
+                    ->where('Producto=:producto and Pond_Suma>0 and Empresa=:empresa and  Fecha BETWEEN :fechaini AND :fechafin', array(':producto' => $productos, ':empresa' => $empresas, ':fechaini' => '2015-09-01', ':fechafin' => $fechafin))
                     ->groupBy('WEEKOFYEAR(Fecha),Tipo')
                     ->orderBy('YEAR(Fecha),WEEKOFYEAR(Fecha),Tipo');
             $rows = $query->all(AlhondigasPreciosPonderados::getDb());
