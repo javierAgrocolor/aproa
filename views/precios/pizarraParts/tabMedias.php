@@ -41,7 +41,7 @@
 
                 if($contador < count($mediasAnteriores)-1){
                     if(strcmp($productoGlobal['nombre'], $mediasAnteriores[$contador]['nombre']) > 0){
-                        while(strcmp($productoGlobal['nombre'], $mediasAnteriores[$contador]['nombre']) > 0 && $contador < count($mediasAnteriores)){
+                        while(strcmp($productoGlobal['nombre'], $mediasAnteriores[$contador]['nombre']) > 0 && $contador < count($mediasAnteriores)-1){
                             $contador++;
                         }
                     }
