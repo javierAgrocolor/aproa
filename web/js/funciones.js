@@ -25,6 +25,14 @@ $(document).ready(function () {
         }   
     });
     
+    $('#confirmarPreciosToneladas').click(function(){
+        if ($('#datetimepicker2').val() !== ""){
+            $('#filtroPreciosponderados').submit();
+        }else{
+            alert("Debe seleccionar una fecha.");
+        }   
+    });
+    
     //PAGINATION!!!!!
 
     // mind the slight change below, personal idea of best practices

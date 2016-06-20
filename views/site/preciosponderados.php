@@ -215,7 +215,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <form id="filtroPreciosponderados">   
                 <label>Fecha</label>
                 <input id="datetimepicker2" name="datetimepicker2" type="text" class="form-control" />    
-                <input class="btn btn-primary col-md-12" type="submit">
+                <button id="confirmarPreciosToneladas" class="btn btn-primary col-md-12">Enviar</button>
             </form>
         </div>
     </div>

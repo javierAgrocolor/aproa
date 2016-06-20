@@ -127,7 +127,7 @@ class SiteController extends Controller {
                 $fechafin = $request->get('datetimepicker-2');
 
                 //COMPARADOR PRECIOS Y TONELADAS PP
-                if (isset($fecha_actual)) {
+                if ($fecha_actual!="") {
                     $ayer = $alhondigasppModels->leerDiaAnterior($fecha_actual);
                     $ayer = $ayer[0]['Fecha'];
 
