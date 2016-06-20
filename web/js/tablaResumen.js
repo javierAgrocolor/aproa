@@ -37,7 +37,7 @@ $(document).ready(function(){
 	
         $anteriorPre = $('#fila'+$contador+ ' td.columna2').html();
         if(parseFloat($(this).html())>0){
-		$('#fila'+$contador+' td.columna2').html($anteriorPre+" "+parseFloat($(this).html()));
+		$('#fila'+$contador+' td.columna2').html($anteriorPre+" "+(parseFloat($(this).html())).toFixed(2));
 	}else{
 		$('#fila'+$contador+' td.columna2').html("");
 	}
@@ -45,11 +45,11 @@ $(document).ready(function(){
                
 	
         if($contador < 8){
-            $('#fila'+$contador+' td.columna6').html(parseFloat($(this).html()));
+            $('#fila'+$contador+' td.columna6').html((parseFloat($(this).html())).toFixed(2));
         }
         
         if ($contador > 7){
-            $('#fila'+$contador+' td.columna4').html(parseFloat($(this).html()));
+            $('#fila'+$contador+' td.columna4').html((parseFloat($(this).html())).toFixed(2));
         }
         
     });
@@ -57,31 +57,31 @@ $(document).ready(function(){
     $contador = 7;
     $toneladasCasi.each(function(){
         $contador++;
-        $('#fila'+$contador+ ' td.columna5').html(parseFloat($(this).html()));
+        $('#fila'+$contador+ ' td.columna5').html((parseFloat($(this).html())).toFixed(2));
     });
     
     $contador = 0;
     $toneladasLaUnion.each(function(){
         $contador++;
-        $('#fila'+$contador+ ' td.columna7').html(parseFloat($(this).html()));
+        $('#fila'+$contador+ ' td.columna7').html((parseFloat($(this).html())).toFixed(2));
     });
     
     $contador = 0;
     $toneladasAgroponiente.each(function(){
         $contador++;
-        $('#fila'+$contador+ ' td.columna9').html(parseFloat($(this).html()));
+        $('#fila'+$contador+ ' td.columna9').html((parseFloat($(this).html())).toFixed(2));
     });
     
     $contador = 0;
     $toneladasFemago.each(function(){
         $contador++;
-        $('#fila'+$contador+ ' td.columna11').html(parseFloat($(this).html()));
+        $('#fila'+$contador+ ' td.columna11').html((parseFloat($(this).html())).toFixed(2));
     });
     
     $contador = 0;
     $toneladasCosta.each(function(){
         $contador++;
-        $('#fila'+$contador+ ' td.columna13').html(parseFloat($(this).html()));
+        $('#fila'+$contador+ ' td.columna13').html((parseFloat($(this).html())).toFixed(2));
     });
     
     for($i = 1; $i < 8; $i++){
@@ -112,14 +112,14 @@ $(document).ready(function(){
         
         $sumaToneladas = $tonUnion + $tonAgroponiente + $tonFemago + $tonCosta;
         $anteriorTon = $('#fila'+$i+ ' td.columna3').html();
-        $('#fila'+$i+ ' td.columna3').html($anteriorTon+" "+$sumaToneladas);
+        $('#fila'+$i+ ' td.columna3').html($anteriorTon+" "+$sumaToneladas.toFixed(2));
     }
     
     $contador = 7;
     $toneladasCasi.each(function(){
         $contador++;
         $anteriorTon = $('#fila'+$contador+ ' td.columna3').html();
-        $('#fila'+$contador+ ' td.columna3').html($anteriorTon+" "+parseFloat($(this).html()));
+        $('#fila'+$contador+ ' td.columna3').html($anteriorTon+" "+(parseFloat($(this).html())).toFixed(2));
     })
     
     
