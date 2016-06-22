@@ -306,6 +306,18 @@ class AlhondigasPreciosPonderados extends \yii\db\ActiveRecord {
         return $rows;    
     }
     
+    public function leerUltimoDia(){	    
+	    
+	$query = new \yii\db\Query();
+        $query -> select('Fecha')
+		-> distinct('Fecha')
+		-> from ('alhondigas')		
+		-> orderBy ('Fecha DESC')
+		-> limit (1);
+        $rows = $query -> all(AlhondigasPreciosPonderados::getDb());
+        return $rows;    
+    }
+    
     public function consultarToneladas($fecha){
         $query = new \yii\db\Query();
         $query ->select('Producto,Fecha,Tipo,SUM(Pond_Suma) as Pond_Suma')

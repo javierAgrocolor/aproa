@@ -181,12 +181,17 @@ class SiteController extends Controller {
                             , 'tablaFemago' => $resultado4, 'tablaAgroponiente' => $resultado5, 'tablaGraficoppt' => $grafico1, 'tablaGraficoevolucion' => $grafico2
                             , 'tablaCompararToneladas' => $compararToneladas, 'tablaCompararPrecios' => $compararPrecios]);
             } else {
-                $fecha_actual2 = date('Y-m-d');
+                //CODIGO PARA MOSTRAR DATOS DEL DIA ANTERIOR
+                /*$fecha_actual2 = date('Y-m-d');
                 if(date("l")=="Monday"){
                     $fecha_actual = date('Y-m-d', strtotime('-2 day', strtotime($fecha_actual2)));
                 }else{
                     $fecha_actual = date('Y-m-d', strtotime('-1 day', strtotime($fecha_actual2)));
-                }
+                }*/
+                
+                //CODIGO PARA MOSTRAR DASTOS DEL ULTIMO DIA DISPONIBLE
+                $fecha_actual = $alhondigasppModels->leerUltimoDia();
+                $fecha_actual = $fecha_actual[0]['Fecha'];
                 
 
                 //COMPARADOR PRECIOS Y TONELADAS PP
