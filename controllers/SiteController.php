@@ -125,6 +125,7 @@ class SiteController extends Controller {
                 $productos = $request->get('productos');
                 $sd = $request->get('sd');
                 $fechafin = $request->get('datetimepicker-2');
+                $fechainicio = $request->get('datetimepicker-3');
 
                 //COMPARADOR PRECIOS Y TONELADAS PP
                 if ($fecha_actual!="") {
@@ -175,7 +176,7 @@ class SiteController extends Controller {
                 $resultado4 = $alhondigasppModels->femago($fecha_actual);
                 $resultado5 = $alhondigasppModels->agroponiente($fecha_actual);
                 $grafico1 = $alhondigasppModels->graficoPpt($fecha_actual);
-                $grafico2 = $alhondigasppModels->graficoEvolucion($productos, $empresas, $sd, $fechafin);
+                $grafico2 = $alhondigasppModels->graficoEvolucion($productos, $empresas, $sd, $fechafin,$fechainicio);
 
                 return $this->render('preciosponderados', ['tablaLaunion' => $resultado, 'tablaCasi' => $resultado2, 'tablaCosta' => $resultado3
                             , 'tablaFemago' => $resultado4, 'tablaAgroponiente' => $resultado5, 'tablaGraficoppt' => $grafico1, 'tablaGraficoevolucion' => $grafico2

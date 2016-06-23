@@ -372,7 +372,7 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
      * @param Array $fechaFinal
      * @return string
      */
-    public function generarCondiciones($productos, $origenes, $localizaciones, $fechaInicial, $fechaFinal, $anio){
+    public function generarCondiciones($productos, $origenes, $localizaciones, $fechaInicial, $fechaFinal){
         $condiciones = "Datos_generales_mayoristas.cod_categoria = 1";
         if (isset($productos)){
             $condiciones = $this -> generarCondProductos($productos, $condiciones);

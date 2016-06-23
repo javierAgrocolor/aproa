@@ -147,7 +147,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p class="titulos2">EVOLUCIÓN DE PRECIOS Y TONELADAS PARA TODA LA CAMPAÑA</p>
     <div class="row marginbotton col-md-10 col-md-offset-1">                   
         <form id="filtroGraficaevolucion">
-            <div class="col-lg-3">
+            <div class="col-lg-2">
                 <label>Empresa</label>
                 <select id="empresas" name="empresas" class="form-control">            
                     <option value="LA UNION">LA UNION</option>
@@ -179,8 +179,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     <option value="1">Semanas</option>            
                 </select>      
             </div>
-            <div class="col-lg-3">
-                <label>Fecha Final</label>
+            <div class="col-lg-2">
+                <label>Fecha Inicio</label>
+                <input id="datetimepicker-3" name="datetimepicker-3" type="text" class="form-control" />
+            </div>
+            <div class="col-lg-2">
+                <label>Fecha Fin</label>
                 <input id="datetimepicker-2" name="datetimepicker-2" type="text" class="form-control" />
             </div>
     </div>

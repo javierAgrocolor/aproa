@@ -265,26 +265,29 @@ class AlhondigasPreciosPonderados extends \yii\db\ActiveRecord {
      * @param type $fechafin 
      * @return type
      */
-    public function graficoEvolucion($productos, $empresas, $sd, $fechafin) {
+    public function graficoEvolucion($productos, $empresas, $sd, $fechafin,$fechainicio) {
         $query = new \yii\db\Query();
         /* $query->select('Fecha,Producto,sum(Pond_Suma) as Suma')
           ->from('alhondigas')
           ->where('Fecha=:fecha',array(':fecha'=>'2015-10-23'))
           ->groupBy('Producto,Tipo'); */
+        if($fechainicio==''){
+            $fechainicio=  date('2015-09-01');
+        } 
         if($fechafin==''){
             $fechafin=  date('Y-m-d');
         }        
         if($sd!='1') {
             $query->select('Fecha,Pond_Suma,Producto,Empresa')
                     ->from('alhondigas')
-                    ->where('Producto=:producto and Empresa=:empresa and  Fecha BETWEEN :fechaini AND :fechafin', array(':producto' => $productos, ':empresa' => $empresas, ':fechaini' => '2015-09-01', ':fechafin' => $fechafin))
+                    ->where('Producto=:producto and Empresa=:empresa and  Fecha BETWEEN :fechaini AND :fechafin', array(':producto' => $productos, ':empresa' => $empresas, ':fechaini' => $fechainicio, ':fechafin' => $fechafin))
                     ->orderBy('Fecha,Tipo');
             $rows = $query->all(AlhondigasPreciosPonderados::getDb());
             return $rows;
         } else {            
             $query->select('WEEKOFYEAR(Fecha) as Fecha,Producto,Empresa,SUM(Pond_Suma) as Pond_Suma,AVG(Pond_Suma) as Precio')
                     ->from('alhondigas')
-                    ->where('Producto=:producto and Pond_Suma>0 and Empresa=:empresa and  Fecha BETWEEN :fechaini AND :fechafin', array(':producto' => $productos, ':empresa' => $empresas, ':fechaini' => '2015-09-01', ':fechafin' => $fechafin))
+                    ->where('Producto=:producto and Pond_Suma>0 and Empresa=:empresa and  Fecha BETWEEN :fechaini AND :fechafin', array(':producto' => $productos, ':empresa' => $empresas, ':fechaini' => $fechainicio, ':fechafin' => $fechafin))
                     ->groupBy('WEEKOFYEAR(Fecha),Tipo')
                     ->orderBy('YEAR(Fecha),WEEKOFYEAR(Fecha),Tipo');
             $rows = $query->all(AlhondigasPreciosPonderados::getDb());
