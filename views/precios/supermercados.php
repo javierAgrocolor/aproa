@@ -296,6 +296,7 @@ if (isset($year)) {
                     <?php
                     $i = 0;
                     $aux = 0;
+                    $option = "";
                     for ($x = 0; $x < count($listaSemanas); $x++) {
                         $yearValue = substr($listaSemanas[$x]['fechaCorta'], 6, 4);
                         if (strlen($listaSemanas[$x]['week']) < 2) {
