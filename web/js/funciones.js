@@ -33,6 +33,16 @@ $(document).ready(function () {
         }   
     });
     
+    $('#verPizarra').click(function(){
+        if ($('#datetimepicker2').val() !== ""){
+            var fecha = $('#datetimepicker2').val();
+    window.location.href = 'http://crisis.aproa.eu:8080/index.php/precios/pizarraprecios/?fechaPizarra='+fecha;
+        }else{
+         alert("Debe seleccionar una fecha.");
+        }
+
+    });
+    
     //PAGINATION!!!!!
 
     // mind the slight change below, personal idea of best practices
