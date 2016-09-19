@@ -174,7 +174,7 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
         $query = new \yii\db\Query();
         $query ->select(['distinct fecha, convert(varchar(10),fecha,103) as fechaCorta, datepart(week,fecha) as week'])
                 ->from('Datos_generales_mayoristas')
-                ->where("fecha>'01-08-".$fechaInicial."'and fecha<'31-07-".$fechaFinal."'")
+                ->where("fecha>='01-08-".$fechaInicial."'and fecha<='31-07-".$fechaFinal."'")
                 ->groupBy('fecha')
                 ->orderBy('Datos_generales_mayoristas.fecha');
         $rows = $query -> all(DatosGeneralesMayoristas::getDb());

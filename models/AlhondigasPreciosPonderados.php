@@ -152,6 +152,19 @@ class AlhondigasPreciosPonderados extends \yii\db\ActiveRecord {
         $rows = $query->all(AlhondigasPreciosPonderados::getDb());
         return $rows;
     }
+    
+    public function buscarDatosProducto($producto,$fecha,$empresa){
+        $query = new \yii\db\Query();
+        //$fecha_actual = date('Y-m-d');
+        $query->select('*')
+                ->from('alhondigas')
+                ->where('Producto LIKE :producto', array(':producto' => $producto))
+                ->andWhere('Empresa LIKE :empresa', array(':empresa' => $empresa))
+                ->andWhere('Fecha=:fecha', array(':fecha' => $fecha))
+                ->orderBy('Producto,Tipo');
+        $rows = $query->all(AlhondigasPreciosPonderados::getDb());
+        return $rows;
+    }
 
     /**
      * Extrae los valores para dicha empresa en una fecha.

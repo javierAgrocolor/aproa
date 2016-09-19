@@ -179,7 +179,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <option value="1">Semanas</option>            
                 </select>      
             </div>
-            <div class="col-lg-2">
+           <div class="col-lg-2">
                 <label>Fecha Inicio</label>
                 <input id="datetimepicker-3" name="datetimepicker-3" type="text" class="form-control" />
             </div>
@@ -219,7 +219,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <form id="filtroPreciosponderados">   
                 <label>Fecha</label>
                 <input id="datetimepicker2" name="datetimepicker2" type="text" class="form-control" />    
-                <button id="confirmarPreciosToneladas" class="btn btn-primary col-md-12">Enviar</button>
+                <button id="confirmarPreciosToneladas" class="btn btn-primary col-md-12">Enviar</button>		
             </form>
         </div>
     </div>
@@ -372,13 +372,15 @@ $this->params['breadcrumbs'][] = $this->title;
                                     if ($contr != 1) {
                                         $contr = 1;
                                         echo "<tr class='danger toneladas'>";
+                                        echo "<td class='columnaProducto'> </td>";
                                     } else {
                                         $contr = 2;
                                         echo "<tr class='precios'>";
+                                        echo "<td class='columnaProducto'><a href='datosproductos?prepondproducto=". $row['Producto']."&prepondfecha=".$tablaLaunion[0]['Fecha']."&prepondempresa=LA UNION' target='_blank'>" . $row['Producto'] . "</a></td>";
+                                        
                                     }
-
-                                    echo "<td class='columnaProducto'>" . $row['Producto'] . "</td>                    
-                    <td>" . $row['Tipo'] . "</td>";
+                                    echo "<td>" . $row['Tipo'] . "</td>";
+                                    //echo "<td class='columnaProducto'>" . $row['Producto'] . "</td><td>" . $row['Tipo'] . "</td>";
                     if($row['Pond_Suma']==0){
 			  echo "<td class='columnaPP'></td>";
 		    }else{
@@ -465,13 +467,15 @@ $this->params['breadcrumbs'][] = $this->title;
                                     if ($contr != 1) {
                                         $contr = 1;
                                         echo "<tr class='danger toneladas'>";
+                                        echo "<td class='columnaProducto'> </td>";
                                     } else {
                                         $contr = 2;
                                         echo "<tr class='precios'>";
+                                        echo "<td class='columnaProducto'><a href='datosproductos?prepondproducto=". $row['Producto']."&prepondfecha=".$tablaCasi[0]['Fecha']."&prepondempresa=CASI' target='_blank'>" . $row['Producto'] . "</a></td>";
                                     }
 
-                                    echo "<td class='columnaProducto'>" . $row['Producto'] . "</td>                    
-                    <td>" . $row['Tipo'] . "</td>";
+                                    echo "<td>" . $row['Tipo'] . "</td>";
+                                   // echo "<td class='columnaProducto'>" . $row['Producto'] . "</td><td>" . $row['Tipo'] . "</td>";
 		    if($row['Pond_Suma']==0){
 			    echo "<td class='columnaPP'></td>";
 		    }else{

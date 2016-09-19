@@ -101,6 +101,27 @@ class SiteController extends Controller {
     public function actionAbout() {
         return $this->render('about');
     }
+    
+    public function actionDatosproductos(){
+        if (!\Yii::$app->user->isGuest) {
+            //Iniciamos instancia con el modelo
+            $alhondigasppModels = new AlhondigasPreciosPonderados();
+
+            $request = yii::$app->request;
+            if (count($request->queryParams) != 0) {
+                $producto = $request->get('prepondproducto');
+                $fecha = $request->get('prepondfecha');
+                $empresa = $request->get('prepondempresa');
+               
+                $datosProducto = $alhondigasppModels->buscarDatosProducto($producto,$fecha,$empresa);
+                
+                return $this->render('datosproductos',['datosProducto' => $datosProducto]);
+            }
+        } else {
+            return $this->goHome();
+        }
+        
+    }
 
     /**
      * Se encarga de gestion de datos para las diferentes graficas y tablas 
