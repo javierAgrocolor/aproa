@@ -5,6 +5,7 @@ use yii\helpers\Html;
 
 $this->title = 'Datos producto';
 $this->params['breadcrumbs'][] = $this->title;
+//print_r($datosProducto);
 ?>
 <div>
     <p class="titulosPaginaPrincipal"><?= Html::encode($this->title) ?></p>

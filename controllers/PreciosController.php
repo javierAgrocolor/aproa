@@ -404,8 +404,9 @@ class PreciosController extends Controller
         
         $contador = 0;
         $suma = 0;
-        for($i = 1; $i < count($producto)-3; $i++){
-            //exit(print_r(gettype($producto['corte'.$i])));
+        //for($i = 1; $i < count($producto)-3; $i++){
+        for($i = 1; $i < 16; $i++){
+            //exit(print_r(gettype($producto['corte'.$i])));        
             if(isset($producto['corte'.$i])){
                 $numero = $producto['corte'.$i];
                 if(round($numero, 3) != 0){
