@@ -244,7 +244,7 @@ class Preciosdiarios extends \yii\db\ActiveRecord
         $query -> select([$seleccion])
                 -> from ('preciosdiarios')
                 -> where($condiciones)
-                -> groupBy("WEEK(fecha), nombre, alhondiga")
+                -> groupBy("semana, nombre, alhondiga")
                 -> orderBy("year(fecha), week(fecha), alhondiga, nombre");
         $rows = $query -> all(Preciosdiarios::getDb());
         return $rows;
@@ -306,7 +306,7 @@ class Preciosdiarios extends \yii\db\ActiveRecord
             $seleccion .= ", avg(nullif(corte".($corteInicial).",0)) as corte".$corteInicial;
             $contador++;
         }
-        $seleccion .= " , nombre, idProducto, WEEK(fecha) as semana, YEAR(fecha), alhondiga";
+        $seleccion .= " , nombre, idProducto, WEEK(fecha,3) as semana, YEAR(fecha), alhondiga";
         
         return $seleccion;
     }

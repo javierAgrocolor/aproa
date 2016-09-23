@@ -73,7 +73,8 @@ class DatosSupermercados extends \yii\db\ActiveRecord
         
         $fechaFinal = $fechaInicial + 1;
         $query = new \yii\db\Query();
-        $query ->select(['distinct fecha, convert(varchar(10),fecha,103) as fechaCorta, datepart(week,fecha) as week'])
+        //Cambio de datepart(week,fecha) por (datepart(DY, datediff(d,0,fecha)/7*7+3)+6)/7
+        $query ->select(['distinct fecha, convert(varchar(10),fecha,103) as fechaCorta, (datepart(DY, datediff(d,0,fecha)/7*7+3)+6)/7 as week'])
                 ->from('Datos_supermercados')
                 ->where("fecha>='01-08-".$fechaInicial."'and fecha<='31-07-".$fechaFinal."'")
                 ->groupBy('fecha')
@@ -312,7 +313,8 @@ class DatosSupermercados extends \yii\db\ActiveRecord
     public function generarCondSemanas($semanas, $condiciones){
         $contador = 0;
         if(isset($semanas)){
-            $condiciones .= " and DATEPART(week, Datos_supermercados.fecha) in (";
+            //Cambio de datepart(week,Datos_supermercados.fecha) por (datepart(DY, datediff(d,0,Datos_supermercados.fecha)/7*7+3)+6)/7
+            $condiciones .= " and (datepart(DY, datediff(d,0,Datos_supermercados.fecha)/7*7+3)+6)/7 in (";
             // Recorremos una vez el array para añadir la condición de la semana.
             foreach($semanas as $semana){
                 if ($contador === 0){
@@ -346,14 +348,15 @@ class DatosSupermercados extends \yii\db\ActiveRecord
      */
     public function consultarMediasSemanales($condiciones){
         $query = new \yii\db\Query();
-        $query -> select(['producto.producto, Localizacion.Localizacion, origen.origen, Round(avg(precio),3) as preciomedio, DATEPART(week, Datos_Supermercados.fecha) as Semana, presentacion.presentacion', 'DATEPART(year, Datos_Supermercados.fecha) as anio'])
+        //Cambio de datepart(week,Datos_supermercados.fecha) por (datepart(DY, datediff(d,0,Datos_supermercados.fecha)/7*7+3)+6)/7
+        $query -> select(['producto.producto, Localizacion.Localizacion, origen.origen, Round(avg(precio),3) as preciomedio, (datepart(DY, datediff(d,0,Datos_supermercados.fecha)/7*7+3)+6)/7 as Semana, presentacion.presentacion', 'DATEPART(year, Datos_Supermercados.fecha) as anio'])
                 -> from('Datos_Supermercados')
                 -> innerJoin('Origen', 'Origen.codigo_origen = Datos_Supermercados.cod_origen')
                 -> innerJoin('Localizacion', 'Localizacion.codigo_localizacion = Datos_Supermercados.cod_localizacion')
                 -> innerJoin('Producto', 'Producto.codigo_producto = Datos_Supermercados.cod_producto')
                 -> innerJoin('presentacion', 'presentacion.codigo = Datos_Supermercados.cod_presentacion')
                 ->where($condiciones)
-                ->groupBy(['Producto', 'Localizacion', 'Origen', 'presentacion','DATEPART(week, Datos_Supermercados.fecha)', 'DATEPART(year, Datos_Supermercados.fecha)'])
+                ->groupBy(['Producto', 'Localizacion', 'Origen', 'presentacion','(datepart(DY, datediff(d,0,Datos_supermercados.fecha)/7*7+3)+6)/7', 'DATEPART(year, Datos_Supermercados.fecha)'])
                 ->orderBy('anio, Semana, Producto');
         $rows = $query -> all(DatosSupermercados::getDb());
         return $rows;

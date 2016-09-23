@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?php
 //RESULTADO
-if (isset($tabla)) {
+if (isset($tabla) and isset($datos)) {
     if (isset($tabla[0]['preciomedio']) && isset($tabla[0]['Semana'])) {
         ?>
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>

@@ -172,7 +172,8 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
         
         $fechaFinal = $fechaInicial + 1;
         $query = new \yii\db\Query();
-        $query ->select(['distinct fecha, convert(varchar(10),fecha,103) as fechaCorta, datepart(week,fecha) as week'])
+        //Cambio de datepart(week,fecha) por (datepart(DY, datediff(d,0,fecha)/7*7+3)+6)/7
+        $query ->select(['distinct fecha, convert(varchar(10),fecha,103) as fechaCorta, (datepart(DY, datediff(d,0,fecha)/7*7+3)+6)/7 as week'])
                 ->from('Datos_generales_mayoristas')
                 ->where("fecha>='01-08-".$fechaInicial."'and fecha<='31-07-".$fechaFinal."'")
                 ->groupBy('fecha')
@@ -187,13 +188,14 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
      */
     public function consultarMediasSemanales($condiciones){
         $query = new \yii\db\Query();
-        $query -> select(['producto.producto, Localizacion.Localizacion, origen.origen, Round(avg(precio),3) as preciomedio, DATEPART(week, Datos_generales_mayoristas.fecha) as Semana', 'DATEPART(year, Datos_generales_mayoristas.fecha) as anio'])
+        //Se cambio datepart(week,Datos_generales_mayoristas.fecha) por (datepart(DY, datediff(d,0,Datos_generales_mayoristas.fecha)/7*7+3)+6)/7
+        $query -> select(['producto.producto, Localizacion.Localizacion, origen.origen, Round(avg(precio),3) as preciomedio, (datepart(DY, datediff(d,0,Datos_generales_mayoristas.fecha)/7*7+3)+6)/7 as Semana', 'DATEPART(year, Datos_generales_mayoristas.fecha) as anio'])
                 -> from('Datos_generales_mayoristas')
                 -> innerJoin('Origen', 'Origen.codigo_origen = Datos_generales_mayoristas.cod_origen')
                 -> innerJoin('Localizacion', 'Localizacion.codigo_localizacion = Datos_generales_mayoristas.cod_localizacion')
                 -> innerJoin('Producto', 'Producto.codigo_producto = Datos_generales_mayoristas.cod_producto')
                 ->where($condiciones)
-                ->groupBy(['Producto', 'Localizacion', 'Origen', 'DATEPART(week, Datos_generales_mayoristas.fecha)', 'DATEPART(year, Datos_generales_mayoristas.fecha)'])
+                ->groupBy(['Producto', 'Localizacion', 'Origen', '(datepart(DY, datediff(d,0,Datos_generales_mayoristas.fecha)/7*7+3)+6)/7', 'DATEPART(year, Datos_generales_mayoristas.fecha)'])
                 ->orderBy('anio, Semana, Producto');
         $rows = $query -> all(DatosGeneralesMayoristas::getDb());
         return $rows;
@@ -268,7 +270,8 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
         $contador = 0;
         
         if (isset($semanas)){
-            $condiciones .= " and DATEPART(week, Datos_generales_mayoristas.fecha) in (";
+            //Se cambio datepart(week,Datos_generales_mayoristas.fecha) por (datepart(DY, datediff(d,0,Datos_generales_mayoristas.fecha)/7*7+3)+6)/7
+            $condiciones .= " and (datepart(DY, datediff(d,0,Datos_generales_mayoristas.fecha)/7*7+3)+6)/7 in (";
             // Recorremos una vez el array para añadir la condición de la semana.
             foreach($semanas as $semana){
                 if ($contador === 0){
