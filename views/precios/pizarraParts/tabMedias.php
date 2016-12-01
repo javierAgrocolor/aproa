@@ -5,6 +5,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+use yii\helpers\Url;
+
 ?>
 <div class="span12 contenedoresTable margintop">
     <div class="table-responsive">
@@ -35,6 +37,7 @@
         <?php 
         $contr = 1;
         $contador = 0;
+        $fecha -> sub(new \DateInterval('P1D'));
             foreach ($mediasGlobales as $productoGlobal){
                 $mediaActualCalculada = $productoGlobal['media']*10000;
                 
@@ -53,7 +56,7 @@
                 if ($contr != 1) {
                             $contr = 1;
                             echo "<tr class='danger'>";
-                echo "<td>".$productoGlobal['nombre']."</td>";
+                echo "<td><a href='".Url::home()."/precios/datosmediaglobalproducto?mediaglobalproducto=".$productoGlobal['nombre']."&mediaglobalfecha=".$fecha-> format('Y-m-d')."' target='_blank'>".$productoGlobal['nombre']."</a></td>";
                     if($productoGlobal['media'] != 0){
                         echo "<td>". sprintf("%.2f", round($productoGlobal['media'],2))."</td>";
                     }else{
@@ -88,7 +91,7 @@
                         } else {
                             $contr = 2;
                             echo "<tr>";
-                echo "<td>".$productoGlobal['nombre']."</td>";
+                echo "<td><a href='".Url::home()."/precios/datosmediaglobalproducto?mediaglobalproducto=".$productoGlobal['nombre']."&mediaglobalfecha=".$fecha-> format('Y-m-d')."' target='_blank'>".$productoGlobal['nombre']."</a></td>";
                     if($productoGlobal['media'] != 0){
                         echo "<td>".sprintf("%.2f", round($productoGlobal['media'],2))."</td>";
                     }else{

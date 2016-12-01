@@ -437,4 +437,84 @@ class DatosSupermercados extends \yii\db\ActiveRecord
         return $rows;
     }
     
+    /**
+     * CONSULTAS PAGINA PRODUCTOS
+     */
+    
+    public function productosSupermercado($fechaini,$fechafin,$condicion){
+        $query = new \yii\db\Query();
+        
+        
+        $date = new \DateTime($fechaini);
+        $fechaini = $date->format('Y-d-m H:i:s');
+        $date = new \DateTime($fechafin);
+        $fechafin = $date->format('Y-d-m H:i:s');
+        
+        
+        
+        $query->select(['Producto.producto,cod_producto,AVG(precio) as precio'])
+                ->from('Datos_Supermercados')
+                ->innerJoin('Origen', 'Origen.codigo_origen = Datos_Supermercados.cod_origen')
+                ->innerJoin('Localizacion', 'Localizacion.codigo_localizacion = Datos_Supermercados.cod_localizacion')
+                ->innerJoin('Producto', 'Producto.codigo_producto = Datos_Supermercados.cod_producto')
+                -> where ("fecha <= '".$fechaini."'")
+                ->andWhere("fecha >= '".$fechafin."'")                
+                ->andWhere($condicion)
+                ->orderBy('producto')
+                ->groupBy('producto,cod_producto');
+              
+        $rows = $query->all(DatosSupermercados::getDb());
+        return $rows;
+    }
+        
+    public function productosTablaSupermercado($fechaini,$fechafin,$condicion){
+        $query = new \yii\db\Query();
+        
+        
+        $date = new \DateTime($fechaini);
+        $fechaini = $date->format('Y-d-m H:i:s');
+        $date = new \DateTime($fechafin);
+        $fechafin = $date->format('Y-d-m H:i:s');
+               
+        $query->select(['Producto.[producto],cod_producto,precio,Origen.[origen],Localizacion.[Localizacion],fecha,Presentacion.[presentacion]'])
+                ->from('Datos_Supermercados')
+                ->innerJoin('Origen', 'Origen.codigo_origen = Datos_Supermercados.cod_origen')
+                ->innerJoin('Localizacion', 'Localizacion.codigo_localizacion = Datos_Supermercados.cod_localizacion')
+                ->innerJoin('Producto', 'Producto.codigo_producto = Datos_Supermercados.cod_producto')
+                ->innerJoin('Presentacion', 'Presentacion.codigo = Datos_Supermercados.cod_presentacion')
+                -> where ("fecha <= '".$fechaini."'")
+                ->andWhere("fecha >= '".$fechafin."'")                
+                ->andWhere($condicion)
+                ->orderBy('producto');
+              
+        $rows = $query->all(DatosSupermercados::getDb());
+        return $rows;
+    }
+    
+    public function productosSupermercadoOrigen($fechaini,$fechafin,$condicion){
+        $query = new \yii\db\Query();
+        
+        
+        $date = new \DateTime($fechaini);
+        $fechaini = $date->format('Y-d-m H:i:s');
+        $date = new \DateTime($fechafin);
+        $fechafin = $date->format('Y-d-m H:i:s');
+        
+        
+        
+        $query->select(['Producto.[producto],cod_producto,Origen.[origen],cod_origen,AVG(precio) as precio'])
+                ->from('Datos_Supermercados')
+                ->innerJoin('Origen', 'Origen.codigo_origen = Datos_Supermercados.cod_origen')
+                ->innerJoin('Localizacion', 'Localizacion.codigo_localizacion = Datos_Supermercados.cod_localizacion')
+                ->innerJoin('Producto', 'Producto.codigo_producto = Datos_Supermercados.cod_producto')
+                -> where ("fecha <= '".$fechaini."'")
+                ->andWhere("fecha >= '".$fechafin."'")                
+                ->andWhere($condicion)
+                ->orderBy('producto')
+                ->groupBy('producto,cod_producto,origen,cod_origen');
+              
+        $rows = $query->all(DatosSupermercados::getDb());
+        return $rows;
+    }
+    
 }

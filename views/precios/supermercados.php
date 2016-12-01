@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?php
 //RESULTADO
-if (isset($tabla)&& count($productos)>0) {
+if (isset($tabla)&& count($productos)>0 && count($origen)==1 && count($localizacion)==1 && count($presentaciones)==1) {
     if (isset($tabla[0]['preciomedio']) && isset($tabla[0]['Semana'])) {
         ?>
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -139,7 +139,7 @@ if (isset($tabla)&& count($productos)>0) {
         ?>
         ]);
                 var options = {
-                    title: 'Medias Semanales',
+                    title: 'Medias Semanales<?php if(isset($anio)){echo " - Campaña ".$anio."/".($anio+1)."";}?>',
                     vAxis: {minValue: 0,title: 'Precio Medio'},
                     hAxis: {format:'#',title: 'Semanas'},
 		    pointSize: 6,
@@ -341,10 +341,10 @@ if (isset($tabla)) {
                 <div class="col-lg-12">        
                     <ul class="nav nav-tabs" id="navSupermercados">
                         <li role="tablero" class="pizarra active">
-                            <a id="enlaceResultado" href="#resultado" role="tab" data-toggle="tab">Resultado</a>
+                            <a id="enlaceResultado" href="#resultado" role="tab" data-toggle="tab">Datos</a>
                         </li>
                         <li role="tablero" class="pizarra">
-                            <a id="enlaceGrafico" href="#graficaSupermercado" role="tab" data-toggle="tab">Grafica</a>
+                            <a id="enlaceGrafico" href="#graficaSupermercado" role="tab" data-toggle="tab">Gráfico</a>
                         </li>            
                     </ul>
                     <!-- Tab panes -->
@@ -380,7 +380,7 @@ if (isset($tabla)) {
                         <th>Supermercado</th>
                         <th>Origen</th>
                         <th>Presentación</th>
-                        <th>Precio Medio</th>
+                        <th>Precio Medio (€/kg)</th>
                         <?php
                         if (isset($tabla[0]['Semana'])) {
                             echo "<th>Semana</th>";
@@ -420,13 +420,14 @@ if (isset($tabla)) {
                             <div class="span12 contenedoresTable margintop">
                                 <div class="table-responsive">
                                     <table class="table">
-					<p class='margintop' align='center'> Para una correcta representación de los datos en el gráfico,debería: Seleccionar entre 1-5 productos, un único origen, un unico supermercado y una única presentación.</p>
+					
                                         <?php
                                         if (isset($tabla)) {
-                                            if (isset($tabla[0]['preciomedio']) && isset($productos)) {
+                                            if (isset($tabla[0]['preciomedio']) && isset($productos) && count($origen)==1 && count($localizacion)==1 && count($presentaciones)==1) {
                                                 echo '<div id="chart_div_supermercados" style="width: 1000px; height: 500px;"></div>';
                                             } else {
-                                                echo "<p class='margintop' align='center'>No se puede mostrar la gráfica, ha introducido demasiados valores o hay datos insuficientes.</p>";
+                                                echo "<p class='margintop' align='center'> Para una correcta representación de los datos en el gráfico,debería: Seleccionar entre 1-5 productos, un único origen, un unico supermercado y una única presentación.</p>";
+                                                //echo "<p class='margintop' align='center'>No se puede mostrar la gráfica, ha introducido demasiados valores o hay datos insuficientes.</p>";
                                             }
                                         }
                                         ?>   

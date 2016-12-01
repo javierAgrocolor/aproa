@@ -441,5 +441,85 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
         return $rows;
     }
     
+    /**
+     * CONSULTAS PAGINA PRODUCTOS
+     */
+    
+    public function productosMayoristas($fechaini,$fechafin,$condicion){
+        $query = new \yii\db\Query();
+        
+        
+        $date = new \DateTime($fechaini);
+        $fechaini = $date->format('Y-d-m H:i:s');
+        $date = new \DateTime($fechafin);
+        $fechafin = $date->format('Y-d-m H:i:s');
+        
+        
+        
+        $query->select(['Producto.producto,cod_producto,AVG(precio) as precio'])
+                ->from('Datos_generales_mayoristas')
+                ->innerJoin('Origen', 'Origen.codigo_origen = Datos_generales_mayoristas.cod_origen')
+                ->innerJoin('Localizacion', 'Localizacion.codigo_localizacion = Datos_generales_mayoristas.cod_localizacion')
+                ->innerJoin('Producto', 'Producto.codigo_producto = Datos_generales_mayoristas.cod_producto')
+                -> where ("fecha <= '".$fechaini."'")
+                ->andWhere("fecha >= '".$fechafin."'")                
+                ->andWhere($condicion)
+                ->orderBy('producto')
+                ->groupBy('producto,cod_producto');
+              
+        $rows = $query->all(DatosGeneralesMayoristas::getDb());
+        return $rows;
+    }
+    
+    public function productosTablaMayoristas($fechaini,$fechafin,$condicion){
+        $query = new \yii\db\Query();
+        
+        
+        $date = new \DateTime($fechaini);
+        $fechaini = $date->format('Y-d-m H:i:s');
+        $date = new \DateTime($fechafin);
+        $fechafin = $date->format('Y-d-m H:i:s');
+        
+        
+        
+        $query->select(['Producto.[producto],cod_producto,precio,Origen.[origen],Localizacion.[Localizacion],fecha'])
+                ->from('Datos_generales_mayoristas')
+                ->innerJoin('Origen', 'Origen.codigo_origen = Datos_generales_mayoristas.cod_origen')
+                ->innerJoin('Localizacion', 'Localizacion.codigo_localizacion = Datos_generales_mayoristas.cod_localizacion')
+                ->innerJoin('Producto', 'Producto.codigo_producto = Datos_generales_mayoristas.cod_producto')
+                -> where ("fecha <= '".$fechaini."'")
+                ->andWhere("fecha >= '".$fechafin."'")                
+                ->andWhere($condicion)
+                ->orderBy('producto');
+              
+        $rows = $query->all(DatosGeneralesMayoristas::getDb());
+        return $rows;
+    }
+    
+    public function productosMayoristasOrigen($fechaini,$fechafin,$condicion){
+        $query = new \yii\db\Query();
+        
+        
+        $date = new \DateTime($fechaini);
+        $fechaini = $date->format('Y-d-m H:i:s');
+        $date = new \DateTime($fechafin);
+        $fechafin = $date->format('Y-d-m H:i:s');
+        
+        
+        
+        $query->select(['Producto.[producto],cod_producto,Origen.[origen],cod_origen,AVG(precio) as precio'])
+                ->from('Datos_generales_mayoristas')
+                ->innerJoin('Origen', 'Origen.codigo_origen = Datos_generales_mayoristas.cod_origen')
+                ->innerJoin('Localizacion', 'Localizacion.codigo_localizacion = Datos_generales_mayoristas.cod_localizacion')
+                ->innerJoin('Producto', 'Producto.codigo_producto = Datos_generales_mayoristas.cod_producto')
+                -> where ("fecha <= '".$fechaini."'")
+                ->andWhere("fecha >= '".$fechafin."'")                
+                ->andWhere($condicion)
+                ->orderBy('producto')
+                ->groupBy('producto,cod_producto,origen,cod_origen');
+              
+        $rows = $query->all(DatosGeneralesMayoristas::getDb());
+        return $rows;
+    }
     
 }

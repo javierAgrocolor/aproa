@@ -106,7 +106,9 @@ class PreciosController extends Controller
                 'tabla' => $resultado,
                 'listaSemanas' => $listaSemanas,
                 'fechaInicial' => $fechaInicial,
-                'fechaFinal' => $fechaFinal
+                'fechaFinal' => $fechaFinal,
+                'anio' => $anio,
+                'presentaciones' => $presentaciones
             ]);
         }else{
             return $this->render('supermercados', [
@@ -176,7 +178,8 @@ class PreciosController extends Controller
                 'tabla' => $resultado,
                 'listaSemanas' => $listaSemanas,
                 'fechaInicial' => $fechaInicial,
-                'fechaFinal' => $fechaFinal
+                'fechaFinal' => $fechaFinal,
+                'anio' => $anio
         ]);
         }else{
             return $this->render('mayoristas', [
@@ -547,6 +550,34 @@ class PreciosController extends Controller
         }else{
         return $this->goHome();
     }
+    }
+    
+    public function actionDatosmediaglobalproducto(){
+        if (!\Yii::$app->user->isGuest) {
+            //Iniciamos instancia con el modelo
+            $pizarraModel = new Preciosdiarios();
+
+            $prueba = array();
+            
+            $request = yii::$app->request;
+            if (count($request->queryParams) != 0) {
+                $producto = $request->get('mediaglobalproducto');
+                $fecha = $request->get('mediaglobalfecha');
+                //$empresa = $request->get('mediaglobalempresa');
+               
+                $datosmediaglobalProducto = $pizarraModel->buscarDatosMediaGlobalProducto($producto,$fecha);
+                                                     
+                      $fecha2 =  date( "Y-m-d", strtotime( "-28 day", strtotime( $fecha ) ) );      
+                      $mediasGlobalesProducto = $pizarraModel ->leerMediasGlobalesProducto($producto,$fecha,$fecha2);
+                      $mediasGlobalesProducto = $this -> calcularMediasArray($mediasGlobalesProducto);
+                      
+                return $this->render('datosmediaglobalproducto',['datosmediaglobalProducto' => $datosmediaglobalProducto,'mediaglobalProducto' => $mediasGlobalesProducto]);
+                               
+            }
+        } else {
+            return $this->goHome();
+        }
+        
     }
     
 }

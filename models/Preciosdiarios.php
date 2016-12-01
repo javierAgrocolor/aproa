@@ -325,5 +325,28 @@ class Preciosdiarios extends \yii\db\ActiveRecord
         return $rows;    
     }
     
+    public function buscarDatosMediaGlobalProducto($producto,$fecha){
+        $query = new Query();
+        $query -> select(['preciosdiarios.nombre,preciosdiarios.alhondiga,preciosdiarios.fecha,Round(avg(nullif(corte1, 0)),2) as corte1, Round(avg(nullif(corte2, 0)),2) as corte2, Round(avg(nullif(corte3, 0)),2) as corte3, Round(avg(nullif(corte4, 0)),2) as corte4, Round(avg(nullif(corte5, 0)),2) as corte5, Round(avg(nullif(corte6, 0)),2) as corte6, Round(avg(nullif(corte7, 0)),2) as corte7, Round(avg(nullif(corte8, 0)),2) as corte8, Round(avg(nullif(corte9, 0)),2) as corte9, Round(avg(nullif(corte10, 0)),2) as corte10, Round(avg(nullif(corte11,0)),2) as corte11, Round(avg(nullif(corte12,0)),2) as corte12, Round(avg(nullif(corte13,0)),2) as corte13, Round(avg(nullif(corte14,0)),2) as corte14, Round(avg(nullif(corte15,0)),2) as corte15'])
+                -> from ('preciosdiarios')
+                -> where ("fecha = '".$fecha."'")
+                ->andWhere("nombre LIKE '".$producto."'")
+                -> orderBy ('alhondiga')
+                -> groupBy ("alhondiga");
+        $rows = $query -> all(Preciosdiarios::getDb());
+        return $rows;
+    }
     
+    public function leerMediasGlobalesProducto($producto,$fecha1,$fecha2){
+        $query = new Query();
+        $query -> select(['preciosdiarios.nombre,preciosdiarios.fecha, Round(avg(nullif(corte1, 0)),2) as corte1, Round(avg(nullif(corte2, 0)),2) as corte2, Round(avg(nullif(corte3, 0)),2) as corte3, Round(avg(nullif(corte4, 0)),2) as corte4, Round(avg(nullif(corte5, 0)),2) as corte5, Round(avg(nullif(corte6, 0)),2) as corte6, Round(avg(nullif(corte7, 0)),2) as corte7, Round(avg(nullif(corte8, 0)),2) as corte8, Round(avg(nullif(corte9, 0)),2) as corte9, Round(avg(nullif(corte10, 0)),2) as corte10, Round(avg(nullif(corte11,0)),2) as corte11, Round(avg(nullif(corte12,0)),2) as corte12, Round(avg(nullif(corte13,0)),2) as corte13, Round(avg(nullif(corte14,0)),2) as corte14, Round(avg(nullif(corte15,0)),2) as corte15'])
+                -> from ('preciosdiarios')
+                -> where ("fecha <= '".$fecha1."'")
+                ->andWhere("fecha >= '".$fecha2."'")
+                ->andWhere("nombre LIKE '".$producto."'")
+                -> orderBy ('fecha')
+                -> groupBy ("fecha");
+        $rows = $query -> all(Preciosdiarios::getDb());
+        return $rows;
+    }
 }

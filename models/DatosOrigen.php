@@ -326,4 +326,45 @@ class DatosOrigen extends \yii\db\ActiveRecord
         return $rows;
     }
     
+    /**
+     * CONSULTAS PAGINA PRODUCTOS
+     */
+    
+    public function productosOrigen($fechaini,$fechafin,$condicion){
+        $query = new \yii\db\Query();
+        
+        
+        $date = new \DateTime($fechaini);
+        $fechaini = $date->format('Y-d-m H:i:s');
+        $date = new \DateTime($fechafin);
+        $fechafin = $date->format('Y-d-m H:i:s');
+        
+        
+        
+        $query->select(['Producto.producto,cod_producto,AVG(precio) as precio'])
+                ->from('Datos_origen')
+                ->innerJoin('Origen', 'Origen.codigo_origen = Datos_origen.cod_origen')
+                ->innerJoin('Localizacion', 'Localizacion.codigo_localizacion = Datos_origen.cod_localizacion')
+                ->innerJoin('Producto', 'Producto.codigo_producto = Datos_origen.cod_producto')
+                -> where ("fecha <= '".$fechaini."'")
+                ->andWhere("fecha >= '".$fechafin."'")
+                ->andWhere('cod_localizacion=1 and cod_origen = 17')   
+                ->andWhere($condicion)
+                ->orderBy('producto')
+                ->groupBy('producto,cod_producto');
+      
+        /*SELECT AVG(precio) FROM Datos_Origen, Producto, Origen, Localizacion WHERE 
+                fecha<='" & Me.DateTimePicker1.Value.Date & "' 
+                AND Datos_Origen.cod_producto=Producto.codigo_producto 
+                AND Datos_Origen.cod_localizacion=Localizacion.codigo_localizacion 
+                AND Datos_Origen.cod_origen=Origen.codigo_origen 
+                AND producto='" & productosql & "' 
+                AND localizacion='" & localizacionsql & "' 
+                AND origen='" & origensql & "' 
+                AND fecha>='" & Me.DateTimePicker1.Value.Date.AddDays(-6) & "' 
+                AND tipo_precio=0*/
+        
+        $rows = $query->all(DatosOrigen::getDb());
+        return $rows;
+    }
 }

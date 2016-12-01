@@ -118,4 +118,19 @@ class Boletines extends \yii\db\ActiveRecord
         $rows = $query->all(Boletines::getDb());
         return $rows;
     }
+    
+    public function buscarPdfProducto($tipo,$fecha){
+        $query = new \yii\db\Query(); 
+                
+            $query->select('Boletin')
+                ->from('boletines')
+                ->where('Tipo LIKE :tipo',array(':tipo'=>$tipo))  
+                ->andWhere('Fecha = :fecha',array(':fecha'=>$fecha))
+                //->andWhere('Fecha = "2015-10-09"')
+                ->orderBy('Fecha DESC')
+                ->limit(1);
+                        
+        $rows = $query->all(Boletines::getDb());
+        return $rows;
+    }
 }

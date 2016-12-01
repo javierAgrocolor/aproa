@@ -20,7 +20,7 @@ foreach ($listaPizarras[$y] as $row) {
             $row['corte'.$i] = "-";
         }
     }
-    if($contador = 0){
+    if($contador == 0){
         $media = 0;
     }else{
         $media = $suma/$contador;
