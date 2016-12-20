@@ -4,153 +4,178 @@
  * and open the template in the editor.
  */
 
-$(document).ready(function () {
-
-
-
+$(document).ready(function(){
+    
+    
+    
     $productosUnion = $('.laUnion .precios td.columnaProducto');
     $productosCasi = $('.casi .precios td.columnaProducto');
     $productos = $productosUnion.add($productosCasi);
-
+    
     $contador = 0;
-
-    $ppUnion = $('.laUnion .precios td.columnaPP');
+    
+    $ppUnion = $('.laUnion .precios td.columnaPP');    
     $ppCasi = $('.casi .precios td.columnaPP');
     $pp = $ppUnion.add($ppCasi);
-
-
+    
+    
     $toneladasCasi = $('.casi .toneladas td.columnaPP');
     $toneladasLaUnion = $('.laUnion .toneladas td.columnaPP');
     $toneladasAgroponiente = $('.agroponiente td.columnaPP');
     $toneladasFemago = $('.femago td.columnaPP');
     $toneladasCosta = $('.costa td.columnaPP');
-
-
-    $productos.each(function () {
+    
+    
+    $productos.each(function(){
         $contador++;
-        $('#fila' + $contador + ' td.columna1').html($(this).html());
+        $('#fila'+$contador+' td.columna1').html($(this).html());
     });
-
+    $totalproductos = $contador;
     $contador = 0;
-    $pp.each(function () {
+    $pp.each(function(){
         $contador++;
-
-        $anteriorPre = $('#fila' + $contador + ' td.columna2').html();
-        if (parseFloat($(this).html()) > 0) {
-            $('#fila' + $contador + ' td.columna2').html($anteriorPre + " " + (parseFloat($(this).html())).toFixed(2));
-        } else {
-            $('#fila' + $contador + ' td.columna2').html("");
-        }
-
-
-
-        if ($contador < 8 && parseFloat($(this).html()) > 0) {
-            $('#fila' + $contador + ' td.columna6').html((parseFloat($(this).html())).toFixed(2));
-        } else {
-            $('#fila' + $contador + ' td.columna6').html("");
-        }
-
-        if ($contador > 7 && parseFloat($(this).html()) > 0) {
+	
+	if($totalproductos > 7){
+        $anteriorPre = $('#fila'+$contador+ ' td.columna2').html();
+	}else{
+        $anteriorPre = $('#fila'+($contador+6)+ ' td.columna2').html();
+	}
+        
+        if(parseFloat($(this).html())>0){
+		$('#fila'+$contador+' td.columna2').html($anteriorPre+" "+(parseFloat($(this).html())).toFixed(2));
+	}else{
+		$('#fila'+$contador+' td.columna2').html("");
+	}
+	
+               
+	
+        if($contador < 8 && parseFloat($(this).html())>0 && $ppUnion.size()>0){
+            $('#fila'+$contador+' td.columna6').html((parseFloat($(this).html())).toFixed(2));
+        }else{
+		$('#fila'+$contador+' td.columna6').html("");
+	}
+	
+	if ($contador < 8 && parseFloat($(this).html()) > 0 && $ppUnion.size()<1) {
             $('#fila' + $contador + ' td.columna4').html((parseFloat($(this).html())).toFixed(2));
-        } else {
-            $('#fila' + $contador + ' td.columna4').html("");
         }
-
+        
+        if ($contador > 7 && parseFloat($(this).html())>0){
+            $('#fila'+$contador+' td.columna4').html((parseFloat($(this).html())).toFixed(2));
+        }else{
+		
+	}	
+        
     });
-
-    $contador = 7;
-    $toneladasCasi.each(function () {
+    
+     if($totalproductos > 7){
+        $contador = 7;
+    }else{
+        $contador = 0;
+    }
+    $toneladasCasi.each(function(){
         $contador++;
-        if (parseFloat($(this).html()) > 0) {
-            $('#fila' + $contador + ' td.columna5').html((parseFloat($(this).html())).toFixed(2));
-        } else {
-            $('#fila' + $contador + ' td.columna5').html("");
-        }
+        if(parseFloat($(this).html())>0){
+		$('#fila'+$contador+ ' td.columna5').html((parseFloat($(this).html())).toFixed(2));
+	}else{
+		$('#fila'+$contador+ ' td.columna5').html("");
+	}
     });
-
+    
     $contador = 0;
-    $toneladasLaUnion.each(function () {
+    $toneladasLaUnion.each(function(){
         $contador++;
-        if (parseFloat($(this).html()) > 0) {
-            $('#fila' + $contador + ' td.columna7').html((parseFloat($(this).html())).toFixed(2));
-        } else {
-            $('#fila' + $contador + ' td.columna7').html("");
-        }
-
+	if(parseFloat($(this).html())>0){
+		$('#fila'+$contador+ ' td.columna7').html((parseFloat($(this).html())).toFixed(2));
+	}else{
+		$('#fila'+$contador+ ' td.columna7').html("");
+	}
+        
     });
-
+    
     $contador = 0;
-    $toneladasAgroponiente.each(function () {
+    $toneladasAgroponiente.each(function(){
         $contador++;
-        if (parseFloat($(this).html()) > 0) {
-            $('#fila' + $contador + ' td.columna9').html((parseFloat($(this).html())).toFixed(2));
-        } else {
-            $('#fila' + $contador + ' td.columna9').html("");
-        }
+        if(parseFloat($(this).html())>0){
+		$('#fila'+$contador+ ' td.columna9').html((parseFloat($(this).html())).toFixed(2));
+	}else{
+		$('#fila'+$contador+ ' td.columna9').html("");
+	}
     });
-
+    
     $contador = 0;
-    $toneladasFemago.each(function () {
+    $toneladasFemago.each(function(){
         $contador++;
-        if (parseFloat($(this).html()) > 0) {
-            $('#fila' + $contador + ' td.columna11').html((parseFloat($(this).html())).toFixed(2));
-        } else {
-            $('#fila' + $contador + ' td.columna11').html("");
-        }
+        if(parseFloat($(this).html())>0){
+		$('#fila'+$contador+ ' td.columna11').html((parseFloat($(this).html())).toFixed(2));
+	}else{
+		$('#fila'+$contador+ ' td.columna11').html("");
+	}
     });
-
+    
     $contador = 0;
-    $toneladasCosta.each(function () {
+    $toneladasCosta.each(function(){
         $contador++;
-        if (parseFloat($(this).html()) > 0) {
-            $('#fila' + $contador + ' td.columna13').html((parseFloat($(this).html())).toFixed(2));
-        } else {
-            $('#fila' + $contador + ' td.columna13').html("");
-        }
+        if(parseFloat($(this).html())>0){
+		$('#fila'+$contador+ ' td.columna13').html((parseFloat($(this).html())).toFixed(2));
+	}else{
+		$('#fila'+$contador+ ' td.columna13').html("");
+	}
     });
-
-    for ($i = 1; $i < 8; $i++) {
-        $tonUnion = parseFloat($('#fila' + $i + ' td.columna7').html());
-        $tonAgroponiente = parseFloat($('#fila' + $i + ' td.columna9').html());
-        if ($i !== 7) {
-            $tonFemago = parseFloat($('#fila' + $i + ' td.columna11').html());
-        } else {
+    
+    for($i = 1; $i < 8; $i++){
+        $tonUnion = parseFloat($('#fila'+$i+ ' td.columna7').html());
+        $tonAgroponiente = parseFloat($('#fila'+$i+ ' td.columna9').html());
+        if($i !== 7){
+            $tonFemago = parseFloat($('#fila'+$i+ ' td.columna11').html());
+        }else{
             $tonFemago = 0;
         }
-        $tonCosta = parseFloat($('#fila' + $i + ' td.columna13').html());
-        if (isNaN($tonUnion)) {
+        $tonCosta = parseFloat($('#fila'+$i+ ' td.columna13').html());
+        if(isNaN($tonUnion)){
             $tonUnion = 0;
         }
-
-        if (isNaN($tonAgroponiente)) {
+        
+        if(isNaN($tonAgroponiente)){
             $tonAgroponiente = 0;
         }
-
-        if (isNaN($tonFemago)) {
+        
+        if(isNaN($tonFemago)){
             $tonFemago = 0;
         }
-
-        if (isNaN($tonCosta)) {
+        
+        if(isNaN($tonCosta)){
             $tonCosta = 0;
         }
-
-
+        
+        
         $sumaToneladas = $tonUnion + $tonAgroponiente + $tonFemago + $tonCosta;
-        $anteriorTon = $('#fila' + $i + ' td.columna3').html();
-        $('#fila' + $i + ' td.columna3').html($anteriorTon + " " + $sumaToneladas.toFixed(2));
+        $anteriorTon = $('#fila'+$i+ ' td.columna3').html();
+	if($sumaToneladas>0){
+        $('#fila'+$i+ ' td.columna3').html($anteriorTon+" "+$sumaToneladas.toFixed(2));
+	}
     }
-
-    $contador = 7;
-    $toneladasCasi.each(function () {
+    
+    if($totalproductos > 7){
+        $contador = 7;
+    }else{
+        $contador = 0;
+    }
+    $toneladasCasi.each(function(){
         $contador++;
-        $anteriorTon = $('#fila' + $contador + ' td.columna3').html();
-        if (parseFloat($(this).html()) > 0) {
-            $('#fila' + $contador + ' td.columna3').html($anteriorTon + " " + (parseFloat($(this).html())).toFixed(2));
-        } else {
-            $('#fila' + $contador + ' td.columna3').html("");
-        }
-    })
-
-
+	if($totalproductos > 7){
+        $anteriorTon = $('#fila'+$contador+ ' td.columna3').html();
+	}else{
+        $anteriorTon = $('#fila'+($contador+6)+ ' td.columna3').html();
+	}
+        
+	if(parseFloat($(this).html())>0){
+		$('#fila'+$contador+ ' td.columna3').html($anteriorTon+" "+(parseFloat($(this).html())).toFixed(2));
+	}else{
+		$('#fila'+$contador+' td.columna3').html("");
+	}	
+	
+        
+   })
+    
+    
 });
-

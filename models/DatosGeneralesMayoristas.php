@@ -490,7 +490,7 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
                 -> where ("fecha <= '".$fechaini."'")
                 ->andWhere("fecha >= '".$fechafin."'")                
                 ->andWhere($condicion)
-                ->orderBy('producto');
+                ->orderBy('fecha DESC,producto');
               
         $rows = $query->all(DatosGeneralesMayoristas::getDb());
         return $rows;

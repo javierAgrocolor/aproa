@@ -367,4 +367,30 @@ class DatosOrigen extends \yii\db\ActiveRecord
         $rows = $query->all(DatosOrigen::getDb());
         return $rows;
     }
+    
+    public function productosOrigenFecha($fechaini,$fechafin,$condicion){
+        $query = new \yii\db\Query();
+        
+        
+        $date = new \DateTime($fechaini);
+        $fechaini = $date->format('Y-d-m H:i:s');
+        $date = new \DateTime($fechafin);
+        $fechafin = $date->format('Y-d-m H:i:s');
+        
+        
+        
+        $query->select(['fecha'])
+                ->from('Datos_origen')
+                ->innerJoin('Origen', 'Origen.codigo_origen = Datos_origen.cod_origen')
+                ->innerJoin('Localizacion', 'Localizacion.codigo_localizacion = Datos_origen.cod_localizacion')
+                ->innerJoin('Producto', 'Producto.codigo_producto = Datos_origen.cod_producto')
+                -> where ("fecha <= '".$fechaini."'")
+                ->andWhere("fecha >= '".$fechafin."'")
+                ->andWhere('cod_localizacion=1 and cod_origen = 17')   
+                ->andWhere($condicion)
+                ->orderBy('fecha DESC');
+        
+        $rows = $query->all(DatosOrigen::getDb());
+        return $rows;
+    }
 }

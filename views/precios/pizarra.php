@@ -46,17 +46,17 @@ $this->params['breadcrumbs'][] = $this->title;
             <li role="tablero">
                 <a href="#mediaGlobal" role="tab" data-toggle="tab">Media Global</a>
             </li>
-            <li role="tablero">
+            <!--<li role="tablero">
                 <a href="#precioProducto" role="tab" data-toggle="tab">Precios por Producto</a>
-            </li>
+            </li>-->
             <li role="tablero" class="semana">
                 <a id="enlaceTabSemanas" href="#precioSemana" role="tab" data-toggle="tab">Precios por Semana</a>
             </li>
-            <li role="tablero">
+            <!--<li role="tablero">
                 <a id="enlaceTabCortes" href="#precioCortes" role="tab" data-toggle="tab">Precio por Cortes</a>
-            </li>
+            </li>-->
             <li role="tablero">
-                <a id="enlaceTabComision" href="#preciosComision" role="tab" data-toggle="tab">Precios Quitando Comisión</a>
+                <a id="enlaceTabComision" href="#preciosComision" role="tab" data-toggle="tab">Precios por Cortes - Quitando Comisión</a>
             </li>
         </ul>
 
@@ -72,21 +72,21 @@ $this->params['breadcrumbs'][] = $this->title;
                     require($_SERVER['DOCUMENT_ROOT'].'/../views/precios/pizarraParts/tabMedias.php');
                 ?>
             </div>
-            <div role="tabpanel" class="tab-pane" id="precioProducto">
+            <!--<div role="tabpanel" class="tab-pane" id="precioProducto">-->
                 <?php
-                    require($_SERVER['DOCUMENT_ROOT'].'/../views/precios/pizarraParts/tabProducto.php');
+                   // require($_SERVER['DOCUMENT_ROOT'].'/../views/precios/pizarraParts/tabProducto.php');
                 ?>
-            </div>
+            <!--</div>-->
             <div role="tabpanel" class="tab-pane" id="precioSemana">
                 <?php
                     require($_SERVER['DOCUMENT_ROOT'].'/../views/precios/pizarraParts/tabSemana.php');
                 ?>
             </div>
-            <div role="tabpanel" class="tab-pane" id="precioCortes">
+            <!--<div role="tabpanel" class="tab-pane" id="precioCortes">-->
                 <?php
-                    require($_SERVER['DOCUMENT_ROOT'].'/../views/precios/pizarraParts/tabCortes.php');
+                    //require($_SERVER['DOCUMENT_ROOT'].'/../views/precios/pizarraParts/tabCortes.php');
                 ?>
-            </div>
+            <!--</div>-->
             <div role="tabpanel" class="tab-pane" id="preciosComision">
                 <?php
                     require($_SERVER['DOCUMENT_ROOT'].'/../views/precios/pizarraParts/tabComision.php');

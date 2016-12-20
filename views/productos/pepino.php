@@ -255,104 +255,105 @@ $this->params['breadcrumbs'][] = $this->title;
                 ['', 'Última semana', 'Semana anterior', 'Última semana campaña pasada'],
            <?php 
 //ESPAÑA - controlar fecha
-    $valido = false;
+    $valido = false;$espana = true;
     for ($x = 0; $x < count($mayoristasfechaesp); $x++) {
         if ($mayoristasfechaesp[$x]['cod_producto'] == 30) {
             echo "['España'," . sprintf("%.2f", round($mayoristasfechaesp[$x]['precio'], 2)) . "";
             $valido = true;
         }    }
-    if ($valido == false) {        echo "['España',0";    }
+    if ($valido == false) {       /* echo "['España',0"; */$espana = false;   }
 //controlar semana
     $valido = false;
     for ($x = 0; $x < count($mayoristassemanaesp); $x++) {
-        if ($mayoristassemanaesp[$x]['cod_producto'] == 30) {
+        if ($mayoristassemanaesp[$x]['cod_producto'] == 30 && $espana == true) {
             echo "," . sprintf("%.2f", round($mayoristassemanaesp[$x]['precio'], 2)) . "";
             $valido = true;
         }    }
-    if ($valido == false) {        echo ",0";    }
+    if ($valido == false && $espana == true) {        echo ",0";    }
 //controlar año
     $valido = false;
     for ($x = 0; $x < count($mayoristasyearesp); $x++) {
-        if ($mayoristasyearesp[$x]['cod_producto'] == 30) {
+        if ($mayoristasyearesp[$x]['cod_producto'] == 30 && $espana == true) {
             echo "," . sprintf("%.2f", round($mayoristasyearesp[$x]['precio'], 2)) . "],";
             $valido = true;
         }    }
-    if ($valido == false) {        echo ",0],";    }
+    if ($valido == false && $espana == true) {        echo ",0],";    }
     
 //ALEMANIA - controlar fecha
-    $valido = false;
+    $valido = false;$alemania = true;
     for ($x = 0; $x < count($mayoristasfechaale); $x++) {
         if ($mayoristasfechaale[$x]['cod_producto'] == 30) {
             echo "['Alemania'," . sprintf("%.2f", round($mayoristasfechaale[$x]['precio'], 2)) . "";
             $valido = true;
         }    }
-    if ($valido == false) {        echo "['Alemania',0";    }
+    if ($valido == false) {       /* echo "['Alemania',0";*/$alemania = false;    }
 //controlar semana
     $valido = false;
     for ($x = 0; $x < count($mayoristassemanaale); $x++) {
-        if ($mayoristassemanaale[$x]['cod_producto'] == 30) {
+        if ($mayoristassemanaale[$x]['cod_producto'] == 30 && $alemania == true) {
             echo "," . sprintf("%.2f", round($mayoristassemanaale[$x]['precio'], 2)) . "";
             $valido = true;
         }    }
-    if ($valido == false) {        echo ",0";    }
+    if ($valido == false && $alemania == true) {        echo ",0";    }
 //controlar año
     $valido = false;
     for ($x = 0; $x < count($mayoristasyearale); $x++) {
-        if ($mayoristasyearale[$x]['cod_producto'] == 30) {
+        if ($mayoristasyearale[$x]['cod_producto'] == 30 && $alemania == true) {
             echo "," . sprintf("%.2f", round($mayoristasyearale[$x]['precio'], 2)) . "],";
             $valido = true;
         }    }
-    if ($valido == false) {        echo ",0],";    }
+    if ($valido == false && $alemania == true) {        echo ",0],";    }
     
     //FRANCIA - controlar fecha
-    $valido = false;
+    $valido = false;$francia = true;
     for ($x = 0; $x < count($mayoristasfechafra); $x++) {
         if ($mayoristasfechafra[$x]['cod_producto'] == 30) {
             echo "['Francia'," . sprintf("%.2f", round($mayoristasfechafra[$x]['precio'], 2)) . "";
             $valido = true;
         }    }
-    if ($valido == false) {        echo "['Francia',0";    }
+    if ($valido == false) {        /*echo "['Francia',0";*/$francia = false;    }
 //controlar semana
     $valido = false;
     for ($x = 0; $x < count($mayoristassemanafra); $x++) {
-        if ($mayoristassemanafra[$x]['cod_producto'] == 30) {
+        if ($mayoristassemanafra[$x]['cod_producto'] == 30 && $francia == true) {
             echo "," . sprintf("%.2f", round($mayoristassemanafra[$x]['precio'], 2)) . "";
             $valido = true;
         }    }
-    if ($valido == false) {        echo ",0";    }
+    if ($valido == false && $francia == true) {        echo ",0";    }
 //controlar año
     $valido = false;
     for ($x = 0; $x < count($mayoristasyearfra); $x++) {
-        if ($mayoristasyearfra[$x]['cod_producto'] == 30) {
+        if ($mayoristasyearfra[$x]['cod_producto'] == 30 && $francia == true) {
             echo "," . sprintf("%.2f", round($mayoristasyearfra[$x]['precio'], 2)) . "],";
             $valido = true;
         }    }
-    if ($valido == false) {        echo ",0],";    }
+    if ($valido == false && $francia == true) {        echo ",0],";    }
     
     //REINO UNIDO - controlar fecha
-    $valido = false;
+    $valido = false;$reinounido = true;
     for ($x = 0; $x < count($mayoristasfecharei); $x++) {
         if ($mayoristasfecharei[$x]['cod_producto'] == 30) {
             echo "['Reino Unido'," . sprintf("%.2f", round($mayoristasfecharei[$x]['precio'], 2)) . "";
             $valido = true;
         }    }
-    if ($valido == false) {        echo "['Reino Unido',0";    }
+    if ($valido == false) {       /* echo "['Reino Unido',0";*/$reinounido = false;    }
 //controlar semana
     $valido = false;
     for ($x = 0; $x < count($mayoristassemanarei); $x++) {
-        if ($mayoristassemanarei[$x]['cod_producto'] == 30) {
+        if ($mayoristassemanarei[$x]['cod_producto'] == 30 && $reinounido == true) {
             echo "," . sprintf("%.2f", round($mayoristassemanarei[$x]['precio'], 2)) . "";
             $valido = true;
         }    }
-    if ($valido == false) {        echo ",0";    }
+    if ($valido == false && $reinounido == true) {        echo ",0";    }
 //controlar año
     $valido = false;
     for ($x = 0; $x < count($mayoristasyearrei); $x++) {
-        if ($mayoristasyearrei[$x]['cod_producto'] == 30) {
+        if ($mayoristasyearrei[$x]['cod_producto'] == 30 && $reinounido == true) {
             echo "," . sprintf("%.2f", round($mayoristasyearrei[$x]['precio'], 2)) . "]";
             $valido = true;
         }    }
-    if ($valido == false) {        echo ",0]";    }
+    if ($valido == false && $reinounido == true) {        echo ",0]";    }
+    if($espana == false && $alemania == false && $francia == false && $reinounido == false){echo "['',0,0,0]";}
     ?>          
           ]);
 
@@ -410,7 +411,9 @@ $this->params['breadcrumbs'][] = $this->title;
         data.addRows([
             <?php 
             foreach ($mayoristastabla as $row) {
-                echo '["'.$row['producto'].'","'.$row['Localizacion'].'","'.$row['origen'].'","'.$row['fecha'].'",'.sprintf("%.2f", round($row['precio'], 2)).'],';
+                $date = new DateTime($row['fecha']);
+                $row['fecha'] = $date;
+                echo '["'.$row['producto'].'","'.$row['Localizacion'].'","'.$row['origen'].'","'.$row['fecha']->format('d-m-Y').'",'.sprintf("%.2f", round($row['precio'], 2)).'],';
             }
             ?>          
         ]);
@@ -509,129 +512,130 @@ $this->params['breadcrumbs'][] = $this->title;
                 ['', 'Última semana', 'Semana anterior', 'Última semana campaña pasada'],
            <?php 
 //ESPAÑA - controlar fecha
-    $valido = false;
+    $valido = false;$espana = true;
     for ($x = 0; $x < count($supermercadofechaesp); $x++) {
         if ($supermercadofechaesp[$x]['cod_producto'] == 30) {
             echo "['España'," . sprintf("%.2f", round($supermercadofechaesp[$x]['precio'], 2)) . "";
             $valido = true;
         }    }
-    if ($valido == false) {        echo "['España',0";    }
+    if ($valido == false) {       /* echo "['España',0";*/$espana = false;    }
 //controlar semana
     $valido = false;
     for ($x = 0; $x < count($supermercadosemanaesp); $x++) {
-        if ($supermercadosemanaesp[$x]['cod_producto'] == 30) {
+        if ($supermercadosemanaesp[$x]['cod_producto'] == 30 && $espana == true) {
             echo "," . sprintf("%.2f", round($supermercadosemanaesp[$x]['precio'], 2)) . "";
             $valido = true;
         }    }
-    if ($valido == false) {        echo ",0";    }
+    if ($valido == false && $espana == true) {        echo ",0";    }
 //controlar año
     $valido = false;
     for ($x = 0; $x < count($supermercadoyearesp); $x++) {
-        if ($supermercadoyearesp[$x]['cod_producto'] == 30) {
+        if ($supermercadoyearesp[$x]['cod_producto'] == 30 && $espana == true) {
             echo "," . sprintf("%.2f", round($supermercadoyearesp[$x]['precio'], 2)) . "],";
             $valido = true;
         }    }
-    if ($valido == false) {        echo ",0],";    }
+    if ($valido == false && $espana == true) {        echo ",0],";    }
     
 //ALEMANIA - controlar fecha
-    $valido = false;
+    $valido = false;$alemania = true;
     for ($x = 0; $x < count($supermercadofechaale); $x++) {
         if ($supermercadofechaale[$x]['cod_producto'] == 30) {
             echo "['Alemania'," . sprintf("%.2f", round($supermercadofechaale[$x]['precio'], 2)) . "";
             $valido = true;
         }    }
-    if ($valido == false) {        echo "['Alemania',0";    }
+    if ($valido == false) {       /* echo "['Alemania',0";*/$alemania=false;    }
 //controlar semana
     $valido = false;
     for ($x = 0; $x < count($supermercadosemanaale); $x++) {
-        if ($supermercadosemanaale[$x]['cod_producto'] == 30) {
+        if ($supermercadosemanaale[$x]['cod_producto'] == 30 && $alemania == true) {
             echo "," . sprintf("%.2f", round($supermercadosemanaale[$x]['precio'], 2)) . "";
             $valido = true;
         }    }
-    if ($valido == false) {        echo ",0";    }
+    if ($valido == false && $alemania == true) {        echo ",0";    }
 //controlar año
     $valido = false;
     for ($x = 0; $x < count($supermercadoyearale); $x++) {
-        if ($supermercadoyearale[$x]['cod_producto'] == 30) {
+        if ($supermercadoyearale[$x]['cod_producto'] == 30 && $alemania == true) {
             echo "," . sprintf("%.2f", round($supermercadoyearale[$x]['precio'], 2)) . "],";
             $valido = true;
         }    }
-    if ($valido == false) {        echo ",0],";    }
+    if ($valido == false && $alemania == true) {        echo ",0],";    }
     
     //FRANCIA - controlar fecha
-    $valido = false;
+    $valido = false;$francia = true;
     for ($x = 0; $x < count($supermercadofechafra); $x++) {
         if ($supermercadofechafra[$x]['cod_producto'] == 30) {
             echo "['Francia'," . sprintf("%.2f", round($supermercadofechafra[$x]['precio'], 2)) . "";
             $valido = true;
         }    }
-    if ($valido == false) {        echo "['Francia',0";    }
+    if ($valido == false) {       /* echo "['Francia',0";*/$francia = false;    }
 //controlar semana
     $valido = false;
     for ($x = 0; $x < count($supermercadosemanafra); $x++) {
-        if ($supermercadosemanafra[$x]['cod_producto'] == 30) {
+        if ($supermercadosemanafra[$x]['cod_producto'] == 30 && $francia == true) {
             echo "," . sprintf("%.2f", round($supermercadosemanafra[$x]['precio'], 2)) . "";
             $valido = true;
         }    }
-    if ($valido == false) {        echo ",0";    }
+    if ($valido == false && $francia == true) {        echo ",0";    }
 //controlar año
     $valido = false;
     for ($x = 0; $x < count($supermercadoyearfra); $x++) {
-        if ($supermercadoyearfra[$x]['cod_producto'] == 30) {
+        if ($supermercadoyearfra[$x]['cod_producto'] == 30 && $francia == true) {
             echo "," . sprintf("%.2f", round($supermercadoyearfra[$x]['precio'], 2)) . "],";
             $valido = true;
         }    }
-    if ($valido == false) {        echo ",0],";    }
+    if ($valido == false && $francia == true) {        echo ",0],";    }
     
     //POLONIA - controlar fecha
-    $valido = false;
+    $valido = false;$polonia = true;
     for ($x = 0; $x < count($supermercadofechapol); $x++) {
         if ($supermercadofechapol[$x]['cod_producto'] == 30) {
             echo "['Polonia'," . sprintf("%.2f", round($supermercadofechapol[$x]['precio'], 2)) . "";
             $valido = true;
         }    }
-    if ($valido == false) {        echo "['Polonia',0";    }
+    if ($valido == false) {       /* echo "['Polonia',0"; */$polonia = false;   }
 //controlar semana
     $valido = false;
     for ($x = 0; $x < count($supermercadosemanapol); $x++) {
-        if ($supermercadosemanapol[$x]['cod_producto'] == 30) {
+        if ($supermercadosemanapol[$x]['cod_producto'] == 30 && $polonia == true) {
             echo "," . sprintf("%.2f", round($supermercadosemanapol[$x]['precio'], 2)) . "";
             $valido = true;
         }    }
-    if ($valido == false) {        echo ",0";    }
+    if ($valido == false && $polonia == true) {        echo ",0";    }
 //controlar año
     $valido = false;
     for ($x = 0; $x < count($supermercadoyearpol); $x++) {
-        if ($supermercadoyearpol[$x]['cod_producto'] == 30) {
+        if ($supermercadoyearpol[$x]['cod_producto'] == 30 && $polonia == true) {
             echo "," . sprintf("%.2f", round($supermercadoyearpol[$x]['precio'], 2)) . "],";
             $valido = true;
         }    }
-    if ($valido == false) {        echo ",0],";    }
+    if ($valido == false && $polonia == true) {        echo ",0],";    }
     
     //REINO UNIDO - controlar fecha
-    $valido = false;
+    $valido = false;$reinounido = true;
     for ($x = 0; $x < count($supermercadofecharei); $x++) {
         if ($supermercadofecharei[$x]['cod_producto'] == 30) {
             echo "['Reino Unido'," . sprintf("%.2f", round($supermercadofecharei[$x]['precio'], 2)) . "";
             $valido = true;
         }    }
-    if ($valido == false) {        echo "['Reino Unido',0";    }
+    if ($valido == false) {        /*echo "['Reino Unido',0"; */$reinounido = false;   }
 //controlar semana
     $valido = false;
     for ($x = 0; $x < count($supermercadosemanarei); $x++) {
-        if ($supermercadosemanarei[$x]['cod_producto'] == 30) {
+        if ($supermercadosemanarei[$x]['cod_producto'] == 30 && $reinounido == true) {
             echo "," . sprintf("%.2f", round($supermercadosemanarei[$x]['precio'], 2)) . "";
             $valido = true;
         }    }
-    if ($valido == false) {        echo ",0";    }
+    if ($valido == false && $reinounido == true) {        echo ",0";    }
 //controlar año
     $valido = false;
     for ($x = 0; $x < count($supermercadoyearrei); $x++) {
-        if ($supermercadoyearrei[$x]['cod_producto'] == 30) {
+        if ($supermercadoyearrei[$x]['cod_producto'] == 30 && $reinounido == true) {
             echo "," . sprintf("%.2f", round($supermercadoyearrei[$x]['precio'], 2)) . "]";
             $valido = true;
         }    }
-    if ($valido == false) {        echo ",0]";    }
+    if ($valido == false && $reinounido == true) {        echo ",0]";    }
+    if($espana == false && $alemania == false && $francia == false && $reinounido == false && $polonia == false){echo "['',0,0,0]";}
     ?>          
           ]);
 
@@ -674,129 +678,130 @@ $this->params['breadcrumbs'][] = $this->title;
                 ['', 'Última semana', 'Semana anterior', 'Última semana campaña pasada'],
            <?php 
 //ESPAÑA - controlar fecha
-    $valido = false;
+    $valido = false;$espana = true;
     for ($x = 0; $x < count($supermercadofechaesp); $x++) {
         if ($supermercadofechaesp[$x]['cod_producto'] == 32) {
             echo "['España'," . sprintf("%.2f", round($supermercadofechaesp[$x]['precio'], 2)) . "";
             $valido = true;
         }    }
-    if ($valido == false) {        echo "['España',0";    }
+    if ($valido == false) {        /*echo "['España',0"; */$espana = false;   }
 //controlar semana
     $valido = false;
     for ($x = 0; $x < count($supermercadosemanaesp); $x++) {
-        if ($supermercadosemanaesp[$x]['cod_producto'] == 32) {
+        if ($supermercadosemanaesp[$x]['cod_producto'] == 32 && $espana == true) {
             echo "," . sprintf("%.2f", round($supermercadosemanaesp[$x]['precio'], 2)) . "";
             $valido = true;
         }    }
-    if ($valido == false) {        echo ",0";    }
+    if ($valido == false && $espana == true) {        echo ",0";    }
 //controlar año
     $valido = false;
     for ($x = 0; $x < count($supermercadoyearesp); $x++) {
-        if ($supermercadoyearesp[$x]['cod_producto'] == 32) {
+        if ($supermercadoyearesp[$x]['cod_producto'] == 32 && $espana == true) {
             echo "," . sprintf("%.2f", round($supermercadoyearesp[$x]['precio'], 2)) . "],";
             $valido = true;
         }    }
-    if ($valido == false) {        echo ",0],";    }
+    if ($valido == false && $espana == true) {        echo ",0],";    }
     
 //ALEMANIA - controlar fecha
-    $valido = false;
+    $valido = false;$alemania = true;
     for ($x = 0; $x < count($supermercadofechaale); $x++) {
         if ($supermercadofechaale[$x]['cod_producto'] == 32) {
             echo "['Alemania'," . sprintf("%.2f", round($supermercadofechaale[$x]['precio'], 2)) . "";
             $valido = true;
         }    }
-    if ($valido == false) {        echo "['Alemania',0";    }
+    if ($valido == false) {       /* echo "['Alemania',0";*/$alemania = false;    }
 //controlar semana
     $valido = false;
     for ($x = 0; $x < count($supermercadosemanaale); $x++) {
-        if ($supermercadosemanaale[$x]['cod_producto'] == 32) {
+        if ($supermercadosemanaale[$x]['cod_producto'] == 32 && $alemania == true) {
             echo "," . sprintf("%.2f", round($supermercadosemanaale[$x]['precio'], 2)) . "";
             $valido = true;
         }    }
-    if ($valido == false) {        echo ",0";    }
+    if ($valido == false && $alemania == true) {        echo ",0";    }
 //controlar año
     $valido = false;
     for ($x = 0; $x < count($supermercadoyearale); $x++) {
-        if ($supermercadoyearale[$x]['cod_producto'] == 32) {
+        if ($supermercadoyearale[$x]['cod_producto'] == 32 && $alemania == true) {
             echo "," . sprintf("%.2f", round($supermercadoyearale[$x]['precio'], 2)) . "],";
             $valido = true;
         }    }
-    if ($valido == false) {        echo ",0],";    }
+    if ($valido == false && $alemania == true) {        echo ",0],";    }
     
     //FRANCIA - controlar fecha
-    $valido = false;
+    $valido = false;$francia = true;
     for ($x = 0; $x < count($supermercadofechafra); $x++) {
         if ($supermercadofechafra[$x]['cod_producto'] == 32) {
             echo "['Francia'," . sprintf("%.2f", round($supermercadofechafra[$x]['precio'], 2)) . "";
             $valido = true;
         }    }
-    if ($valido == false) {        echo "['Francia',0";    }
+    if ($valido == false) {        /*echo "['Francia',0"; */$francia = false;   }
 //controlar semana
     $valido = false;
     for ($x = 0; $x < count($supermercadosemanafra); $x++) {
-        if ($supermercadosemanafra[$x]['cod_producto'] == 32) {
+        if ($supermercadosemanafra[$x]['cod_producto'] == 32 && $francia == true) {
             echo "," . sprintf("%.2f", round($supermercadosemanafra[$x]['precio'], 2)) . "";
             $valido = true;
         }    }
-    if ($valido == false) {        echo ",0";    }
+    if ($valido == false && $francia == true) {        echo ",0";    }
 //controlar año
     $valido = false;
     for ($x = 0; $x < count($supermercadoyearfra); $x++) {
-        if ($supermercadoyearfra[$x]['cod_producto'] == 32) {
+        if ($supermercadoyearfra[$x]['cod_producto'] == 32 && $francia == true) {
             echo "," . sprintf("%.2f", round($supermercadoyearfra[$x]['precio'], 2)) . "],";
             $valido = true;
         }    }
-    if ($valido == false) {        echo ",0],";    }
+    if ($valido == false && $francia == true) {        echo ",0],";    }
     
     //POLONIA - controlar fecha
-    $valido = false;
+    $valido = false;$polonia = true;
     for ($x = 0; $x < count($supermercadofechapol); $x++) {
         if ($supermercadofechapol[$x]['cod_producto'] == 32) {
             echo "['Polonia'," . sprintf("%.2f", round($supermercadofechapol[$x]['precio'], 2)) . "";
             $valido = true;
         }    }
-    if ($valido == false) {        echo "['Polonia',0";    }
+    if ($valido == false) {       /* echo "['Polonia',0";*/$polonia = false;    }
 //controlar semana
     $valido = false;
     for ($x = 0; $x < count($supermercadosemanapol); $x++) {
-        if ($supermercadosemanapol[$x]['cod_producto'] == 32) {
+        if ($supermercadosemanapol[$x]['cod_producto'] == 32 && $polonia == true) {
             echo "," . sprintf("%.2f", round($supermercadosemanapol[$x]['precio'], 2)) . "";
             $valido = true;
         }    }
-    if ($valido == false) {        echo ",0";    }
+    if ($valido == false && $polonia == true) {        echo ",0";    }
 //controlar año
     $valido = false;
     for ($x = 0; $x < count($supermercadoyearpol); $x++) {
-        if ($supermercadoyearpol[$x]['cod_producto'] == 32) {
+        if ($supermercadoyearpol[$x]['cod_producto'] == 32 && $polonia == true) {
             echo "," . sprintf("%.2f", round($supermercadoyearpol[$x]['precio'], 2)) . "],";
             $valido = true;
         }    }
-    if ($valido == false) {        echo ",0],";    }
+    if ($valido == false && $polonia == true) {        echo ",0],";    }
     
     //REINO UNIDO - controlar fecha
-    $valido = false;
+    $valido = false;$reinounido = true;
     for ($x = 0; $x < count($supermercadofecharei); $x++) {
         if ($supermercadofecharei[$x]['cod_producto'] == 32) {
             echo "['Reino Unido'," . sprintf("%.2f", round($supermercadofecharei[$x]['precio'], 2)) . "";
             $valido = true;
         }    }
-    if ($valido == false) {        echo "['Reino Unido',0";    }
+    if ($valido == false) {       /* echo "['Reino Unido',0"; */$reinounido = false;   }
 //controlar semana
     $valido = false;
     for ($x = 0; $x < count($supermercadosemanarei); $x++) {
-        if ($supermercadosemanarei[$x]['cod_producto'] == 32) {
+        if ($supermercadosemanarei[$x]['cod_producto'] == 32 && $reinounido == true) {
             echo "," . sprintf("%.2f", round($supermercadosemanarei[$x]['precio'], 2)) . "";
             $valido = true;
         }    }
-    if ($valido == false) {        echo ",0";    }
+    if ($valido == false && $reinounido == true) {        echo ",0";    }
 //controlar año
     $valido = false;
     for ($x = 0; $x < count($supermercadoyearrei); $x++) {
-        if ($supermercadoyearrei[$x]['cod_producto'] == 32) {
+        if ($supermercadoyearrei[$x]['cod_producto'] == 32 && $reinounido == true) {
             echo "," . sprintf("%.2f", round($supermercadoyearrei[$x]['precio'], 2)) . "]";
             $valido = true;
         }    }
-    if ($valido == false) {        echo ",0]";    }
+    if ($valido == false && $reinounido == true) {        echo ",0]";    }
+    if($espana == false && $alemania == false && $francia == false && $reinounido == false && $polonia == false){echo "['',0,0,0]";}
     ?>          
           ]);
 
@@ -855,7 +860,9 @@ $this->params['breadcrumbs'][] = $this->title;
         data.addRows([
             <?php 
             foreach ($supermercadotabla as $row) {
-                echo '["'.$row['producto'].'","'.$row['Localizacion'].'","'.$row['origen'].'","'.$row['fecha'].'","'.$row['presentacion'].'",'.sprintf("%.2f", round($row['precio'], 2)).'],';
+                $date = new DateTime($row['fecha']);
+                $row['fecha'] = $date;
+                echo '["'.$row['producto'].'","'.$row['Localizacion'].'","'.$row['origen'].'","'.$row['fecha']->format('d-m-Y').'","'.$row['presentacion'].'",'.sprintf("%.2f", round($row['precio'], 2)).'],';
             }
             ?>          
         ]);
@@ -1084,6 +1091,19 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="origen">
                 <div class="row margintop">
+                   <div class="span12">
+                       <div class="col-md-12">
+                           <p class="titulosProductos">Precios en Origen</p>
+                           <?php
+                                if (isset($origenfechaultima[0]['fecha'])) {
+                                    $date = new DateTime($origenfechaultima[0]['fecha']);                                    
+                                    echo '<p class="fechaProductos">Últimos datos disponibles a: '.$date->format('d-m-Y').'</p>';
+                                }
+                           ?>
+                       </div>
+                   </div>
+               </div>
+                <div class="row margintop">
                     <div class="span12">
                         <div class="table-responsive">
                             <table class="table">
@@ -1259,6 +1279,12 @@ $this->params['breadcrumbs'][] = $this->title;
                    <div class="span12">
                        <div class="col-md-12">
                            <p class="titulosProductos">Precios en mayoristas</p>
+                           <?php
+                                if (isset($mayoristastabla[0]['producto'])) {
+                                    $date = new DateTime($mayoristastabla[0]['fecha']);                                    
+                                    echo '<p class="fechaProductos">Últimos datos disponibles a: '.$date->format('d-m-Y').'</p>';
+                                }
+                           ?>
                        </div>
                    </div>
                </div>
@@ -1280,6 +1306,12 @@ $this->params['breadcrumbs'][] = $this->title;
                    <div class="span12">
                        <div class="col-md-12">
                            <p class="titulosProductos">Precios en mayoristas según origen</p>
+                           <?php
+                                if (isset($mayoristastabla[0]['producto'])) {
+                                    $date = new DateTime($mayoristastabla[0]['fecha']);                                    
+                                    echo '<p class="fechaProductos">Últimos datos disponibles a: '.$date->format('d-m-Y').'</p>';
+                                }
+                           ?>
                        </div>
                    </div>
                </div>
@@ -1318,6 +1350,12 @@ $this->params['breadcrumbs'][] = $this->title;
                    <div class="span12">
                        <div class="col-md-12">
                            <p class="titulosProductos">Precios en supermercados</p>
+                           <?php
+                                if (isset($supermercadotabla[0]['producto'])) {
+                                    $date = new DateTime($supermercadotabla[0]['fecha']);                                    
+                                    echo '<p class="fechaProductos">Últimos datos disponibles a: '.$date->format('d-m-Y').'</p>';
+                                }
+                           ?>
                        </div>
                    </div>
                </div>
@@ -1340,6 +1378,12 @@ $this->params['breadcrumbs'][] = $this->title;
                    <div class="span12">
                        <div class="col-md-12">
                            <p class="titulosProductos">Precios en supermercados según origen</p>
+                           <?php
+                                if (isset($supermercadotabla[0]['producto'])) {
+                                    $date = new DateTime($supermercadotabla[0]['fecha']);                                    
+                                    echo '<p class="fechaProductos">Últimos datos disponibles a: '.$date->format('d-m-Y').'</p>';
+                                }
+                           ?>
                        </div>
                    </div>
                </div>

@@ -152,6 +152,21 @@ body {
     margin-top: 25px;
 }
 
+.fechaProductos{
+    font-weight:bold;    
+    font-variant:small-caps;
+    color:#000000;    
+    letter-spacing:1pt;
+    word-spacing:3pt;
+    font-size:14px;    
+    font-family:arial, helvetica, sans-serif;
+    line-height:1;
+    margin-bottom: 10px;
+    //margin-left: 30px;
+    text-align: center;
+    margin-top: 10px;
+}
+
 .paddingTop{
     padding-top: 50px;
 }

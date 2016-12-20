@@ -29,13 +29,13 @@ if (isset($tablaSemana)) {
 
 <script>
     $(document).ready(function () {
-        $('#enlaceTabSemanas').click(function () {
+        /*$('#enlaceTabSemanas').click(function () {
             $('#modalSemana').modal('show');
-        });
+        });*/
     });
 </script>
 
-<button id="botonFiltros" type="button btn-sm" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalSemana">
+<!--<button id="botonFiltros" type="button btn-sm" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalSemana">
     Filtros
 </button>
 
@@ -58,9 +58,9 @@ if (isset($tablaSemana)) {
                         <label>Productos</label><br>
                         <select id="productos" name="productos[]" multiple class="form-control chosen-select-width anchoMulti">
                             <?php
-                            foreach ($listaProductos as $especieOption) {
+                            /*foreach ($listaProductos as $especieOption) {
                                 echo "<option id='" . $especieOption['idProducto'] . "' value='" . $especieOption['idProducto'] . "'>" . $especieOption['nombre'] . "</option>";
-                            }
+                            }*/
                             ?>
                         </select>
                     </div>
@@ -68,9 +68,9 @@ if (isset($tablaSemana)) {
                         <label>Alhondigas</label><br>
                         <select id="alhondigas" name="alhondigas[]" multiple class="form-control chosen-select-width anchoMulti">
                             <?php
-                            foreach ($listaAlhondigas as $alhondiga) {
+                            /*foreach ($listaAlhondigas as $alhondiga) {
                                 echo "<option id='" . $alhondiga['enlace'] . "' value='" . $alhondiga['enlace'] . "'>" . $alhondiga['nombre'] . "</option>";
-                            }
+                            }*/
                             ?>
                         </select>
                     </div>
@@ -78,17 +78,17 @@ if (isset($tablaSemana)) {
                         <label>Corte Inicial</label>
                         <select id="corteInicial" name="corteInicial" class="form-control">
                             <?php
-                            for ($i = 0; $i < 15; $i++) {
+                            /*for ($i = 0; $i < 15; $i++) {
                                 echo "<option id='" . ($i + 1) . "' value='" . ($i + 1) . "'>" . ($i + 1) . "</option>";
-                            }
+                            }*/
                             ?>
                         </select>
                         <label>Corte Final</label>
                         <select id="corteFinal" name="corteFinal" class="form-control">
                             <?php
-                            for ($i = 0; $i < 15; $i++) {
+                            /*for ($i = 0; $i < 15; $i++) {
                                 echo "<option id='" . ($i + 1) . "' value='" . ($i + 1) . "'>" . ($i + 1) . "</option>";
-                            }
+                            }*/
                             ?>
                         </select>
                     </div>
@@ -99,9 +99,87 @@ if (isset($tablaSemana)) {
                 <button type="button" class="btn btn-primary" id="confirmarModalSemanas">Aplicar filtros</button>
             </div>
         </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+    <!--</div><!-- /.modal-dialog -->
+<!--</div><!-- /.modal -->
 
+<button id="botonFiltros" type="button btn-sm" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalSemana">
+    Filtros
+</button>
+
+<div class="row margintop">
+        <div class="span12">            
+<div class="col-md-4 col-md-offset-2" id="modalSemana" role="dialog">
+                <h4 class="modal-title">Filtros Precios Por Semana</h4>
+            </div>
+            </div>
+</div>
+            <div>
+                <form action="/index.php/precios/pizarraprecios" method="get" id="filtrosModalSemanas">
+                    <div class="fechasFiltroSemanas">
+                        <div class="row margintop">
+              <div class="span12">
+                  <div class="col-md-4 col-md-offset-2">
+                        <label>Fecha Inicial</label>
+                        <input id="datetimepicker2"  name="fechaInicial" type="text" class="form-control datetimepickers datetimepicker-2" />
+                        </div>
+                  <div class="col-md-4">
+                        <label>Fecha Final</label>
+                        <input id="datetimepicker-2" name="fechaFinal" type="text" class="form-control datetimepickers datetimepicker-2" />
+                  </div></div></div></div>
+                    <div class="row margintop">
+              <div class="span12">
+                 
+                    <div class="col-md-4 col-md-offset-2">
+                        <label>Productos</label><br>
+                        <select id="productos" name="productos[]" multiple class="form-control chosen-select-width anchoMulti">
+                            <?php
+                            foreach ($listaProductos as $especieOption) {
+                                echo "<option id='" . $especieOption['idProducto'] . "' value='" . $especieOption['idProducto'] . "'>" . $especieOption['nombre'] . "</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="col-md-4 alhondigasFiltro">
+                        <label>Alhondigas</label><br>
+                        <select id="alhondigas" name="alhondigas[]" multiple class="form-control chosen-select-width anchoMulti">
+                            <?php
+                            foreach ($listaAlhondigas as $alhondiga) {
+                                echo "<option id='" . $alhondiga['enlace'] . "' value='" . $alhondiga['enlace'] . "'>" . $alhondiga['nombre'] . "</option>";
+                            }
+                            ?>
+                        </select>
+                    </div></div></div>
+                    <div class="row margintop">
+              <div class="span12">
+                  <div class="col-md-4 col-md-offset-2">
+                        
+                        <label>Corte Inicial</label>
+                        <select id="corteInicial" name="corteInicial" class="form-control">
+                            <?php
+                            for ($i = 0; $i < 15; $i++) {
+                                echo "<option id='" . ($i + 1) . "' value='" . ($i + 1) . "'>" . ($i + 1) . "</option>";
+                            }
+                            ?>
+                        </select>
+                  </div>
+                  <div class="col-md-4">
+                        <label>Corte Final</label>
+                        <select id="corteFinal" name="corteFinal" class="form-control">
+                            <?php
+                            for ($i = 0; $i < 15; $i++) {
+                                echo "<option id='" . ($i + 1) . "' value='" . ($i + 1) . "'>" . ($i + 1) . "</option>";
+                            }
+                            ?>
+                        </select>
+                    </div></div></div>
+                </form>
+            </div>
+            <div class="row margintop">
+              <div class="span12">
+                  <div class="col-md-4 col-md-offset-2">
+                <button type="button" class="btn btn-primary" id="confirmarModalSemanas">Aplicar filtros</button>
+                  </div></div></div>
+        
 
 <div class="span12 contenedoresTable margintop">
     <div class="table-responsive">

@@ -88,6 +88,8 @@ class ProductosController extends Controller {
             $origenSemana = $origenModel -> productosOrigen($semana,$semana2,$condicion);
             $origenYear = $origenModel -> productosOrigen($year,$year2,$condicion);
             
+            $origenFechaUltima = $origenModel -> productosOrigenFecha($fecha,$fecha2,$condicion);
+            
             //MAYORISTA
             $condicionEsp = "(cod_producto=1 or cod_producto=2 or cod_producto=3 or cod_producto=4) and cod_localizacion=24";
             
@@ -173,7 +175,7 @@ class ProductosController extends Controller {
             $date = new \DateTime($fecha);
             $fecha = $date;
 
-            return $this->render('tomate', ['fecha' => $fecha,'origenfecha'=>$origenFecha,'origensemana'=>$origenSemana,'origenyear'=>$origenYear,'mayoristastabla'=>$mayoristasTabla
+            return $this->render('tomate', ['fecha' => $fecha,'origenfechaultima'=>$origenFechaUltima,'origenfecha'=>$origenFecha,'origensemana'=>$origenSemana,'origenyear'=>$origenYear,'mayoristastabla'=>$mayoristasTabla
                                     ,'mayoristasfechaesp'=>$mayoristasFechaEsp,'mayoristassemanaesp'=>$mayoristasSemanaEsp,'mayoristasyearesp'=>$mayoristasYearEsp
                                     ,'mayoristasfechaale'=>$mayoristasFechaAle,'mayoristassemanaale'=>$mayoristasSemanaAle,'mayoristasyearale'=>$mayoristasYearAle
                                     ,'mayoristasfechafra'=>$mayoristasFechaFra,'mayoristassemanafra'=>$mayoristasSemanaFra,'mayoristasyearfra'=>$mayoristasYearFra
@@ -218,6 +220,8 @@ class ProductosController extends Controller {
             $origenFecha = $origenModel -> productosOrigen($fecha,$fecha2,$condicion);
             $origenSemana = $origenModel -> productosOrigen($semana,$semana2,$condicion);
             $origenYear = $origenModel -> productosOrigen($year,$year2,$condicion);
+            
+            $origenFechaUltima = $origenModel -> productosOrigenFecha($fecha,$fecha2,$condicion);
             
             //MAYORISTA
             $condicionEsp = "(cod_producto=5 or cod_producto=6 or cod_producto=7 or cod_producto=11) and cod_localizacion=24";
@@ -304,7 +308,7 @@ class ProductosController extends Controller {
             $date = new \DateTime($fecha);
             $fecha = $date;
 
-            return $this->render('pimiento', ['fecha' => $fecha,'origenfecha'=>$origenFecha,'origensemana'=>$origenSemana,'origenyear'=>$origenYear,'mayoristastabla'=>$mayoristasTabla
+            return $this->render('pimiento', ['fecha' => $fecha,'origenfechaultima'=>$origenFechaUltima,'origenfecha'=>$origenFecha,'origensemana'=>$origenSemana,'origenyear'=>$origenYear,'mayoristastabla'=>$mayoristasTabla
                                     ,'mayoristasfechaesp'=>$mayoristasFechaEsp,'mayoristassemanaesp'=>$mayoristasSemanaEsp,'mayoristasyearesp'=>$mayoristasYearEsp
                                     ,'mayoristasfechaale'=>$mayoristasFechaAle,'mayoristassemanaale'=>$mayoristasSemanaAle,'mayoristasyearale'=>$mayoristasYearAle
                                     ,'mayoristasfechafra'=>$mayoristasFechaFra,'mayoristassemanafra'=>$mayoristasSemanaFra,'mayoristasyearfra'=>$mayoristasYearFra
@@ -348,6 +352,8 @@ class ProductosController extends Controller {
             $origenFecha = $origenModel -> productosOrigen($fecha,$fecha2,$condicion);
             $origenSemana = $origenModel -> productosOrigen($semana,$semana2,$condicion);
             $origenYear = $origenModel -> productosOrigen($year,$year2,$condicion);
+            
+            $origenFechaUltima = $origenModel -> productosOrigenFecha($fecha,$fecha2,$condicion);
             
             //MAYORISTA
             $condicionEsp = "(cod_producto=30) and cod_localizacion=24";
@@ -434,7 +440,7 @@ class ProductosController extends Controller {
             $date = new \DateTime($fecha);
             $fecha = $date;
 
-            return $this->render('pepino', ['fecha' => $fecha,'origenfecha'=>$origenFecha,'origensemana'=>$origenSemana,'origenyear'=>$origenYear,'mayoristastabla'=>$mayoristasTabla
+            return $this->render('pepino', ['fecha' => $fecha,'origenfechaultima'=>$origenFechaUltima,'origenfecha'=>$origenFecha,'origensemana'=>$origenSemana,'origenyear'=>$origenYear,'mayoristastabla'=>$mayoristasTabla
                                     ,'mayoristasfechaesp'=>$mayoristasFechaEsp,'mayoristassemanaesp'=>$mayoristasSemanaEsp,'mayoristasyearesp'=>$mayoristasYearEsp
                                     ,'mayoristasfechaale'=>$mayoristasFechaAle,'mayoristassemanaale'=>$mayoristasSemanaAle,'mayoristasyearale'=>$mayoristasYearAle
                                     ,'mayoristasfechafra'=>$mayoristasFechaFra,'mayoristassemanafra'=>$mayoristasSemanaFra,'mayoristasyearfra'=>$mayoristasYearFra
@@ -478,6 +484,8 @@ class ProductosController extends Controller {
             $origenFecha = $origenModel -> productosOrigen($fecha,$fecha2,$condicion);
             $origenSemana = $origenModel -> productosOrigen($semana,$semana2,$condicion);
             $origenYear = $origenModel -> productosOrigen($year,$year2,$condicion);
+            
+            $origenFechaUltima = $origenModel -> productosOrigenFecha($fecha,$fecha2,$condicion);
             
             //MAYORISTA
             $condicionEsp = "(cod_producto=12) and cod_localizacion=24";
@@ -564,7 +572,7 @@ class ProductosController extends Controller {
             $date = new \DateTime($fecha);
             $fecha = $date;
 
-            return $this->render('berenjena', ['fecha' => $fecha,'origenfecha'=>$origenFecha,'origensemana'=>$origenSemana,'origenyear'=>$origenYear,'mayoristastabla'=>$mayoristasTabla
+            return $this->render('berenjena', ['fecha' => $fecha,'origenfechaultima'=>$origenFechaUltima,'origenfecha'=>$origenFecha,'origensemana'=>$origenSemana,'origenyear'=>$origenYear,'mayoristastabla'=>$mayoristasTabla
                                     ,'mayoristasfechaesp'=>$mayoristasFechaEsp,'mayoristassemanaesp'=>$mayoristasSemanaEsp,'mayoristasyearesp'=>$mayoristasYearEsp
                                     ,'mayoristasfechaale'=>$mayoristasFechaAle,'mayoristassemanaale'=>$mayoristasSemanaAle,'mayoristasyearale'=>$mayoristasYearAle
                                     ,'mayoristasfechafra'=>$mayoristasFechaFra,'mayoristassemanafra'=>$mayoristasSemanaFra,'mayoristasyearfra'=>$mayoristasYearFra
@@ -608,6 +616,8 @@ class ProductosController extends Controller {
             $origenFecha = $origenModel -> productosOrigen($fecha,$fecha2,$condicion);
             $origenSemana = $origenModel -> productosOrigen($semana,$semana2,$condicion);
             $origenYear = $origenModel -> productosOrigen($year,$year2,$condicion);
+            
+            $origenFechaUltima = $origenModel -> productosOrigenFecha($fecha,$fecha2,$condicion);
             
             //MAYORISTA
             $condicionEsp = "(cod_producto=13) and cod_localizacion=24";
@@ -694,7 +704,7 @@ class ProductosController extends Controller {
             $date = new \DateTime($fecha);
             $fecha = $date;
 
-            return $this->render('calabacin',  ['fecha' => $fecha,'origenfecha'=>$origenFecha,'origensemana'=>$origenSemana,'origenyear'=>$origenYear,'mayoristastabla'=>$mayoristasTabla
+            return $this->render('calabacin',  ['fecha' => $fecha,'origenfechaultima'=>$origenFechaUltima,'origenfecha'=>$origenFecha,'origensemana'=>$origenSemana,'origenyear'=>$origenYear,'mayoristastabla'=>$mayoristasTabla
                                     ,'mayoristasfechaesp'=>$mayoristasFechaEsp,'mayoristassemanaesp'=>$mayoristasSemanaEsp,'mayoristasyearesp'=>$mayoristasYearEsp
                                     ,'mayoristasfechaale'=>$mayoristasFechaAle,'mayoristassemanaale'=>$mayoristasSemanaAle,'mayoristasyearale'=>$mayoristasYearAle
                                     ,'mayoristasfechafra'=>$mayoristasFechaFra,'mayoristassemanafra'=>$mayoristasSemanaFra,'mayoristasyearfra'=>$mayoristasYearFra
@@ -739,6 +749,7 @@ class ProductosController extends Controller {
             $origenSemana = $origenModel -> productosOrigen($semana,$semana2,$condicion);
             $origenYear = $origenModel -> productosOrigen($year,$year2,$condicion);
             
+            $origenFechaUltima = $origenModel -> productosOrigenFecha($fecha,$fecha2,$condicion);
             
             //MAYORISTA
             $condicionEsp = "(cod_producto=14 or cod_producto=401 or cod_producto=31) and cod_localizacion=24";
@@ -825,7 +836,7 @@ class ProductosController extends Controller {
             $date = new \DateTime($fecha);
             $fecha = $date;
 
-            return $this->render('judia', ['fecha' => $fecha,'origenfecha'=>$origenFecha,'origensemana'=>$origenSemana,'origenyear'=>$origenYear,'mayoristastabla'=>$mayoristasTabla
+            return $this->render('judia', ['fecha' => $fecha,'origenfechaultima'=>$origenFechaUltima,'origenfecha'=>$origenFecha,'origensemana'=>$origenSemana,'origenyear'=>$origenYear,'mayoristastabla'=>$mayoristasTabla
                                     ,'mayoristasfechaesp'=>$mayoristasFechaEsp,'mayoristassemanaesp'=>$mayoristasSemanaEsp,'mayoristasyearesp'=>$mayoristasYearEsp
                                     ,'mayoristasfechaale'=>$mayoristasFechaAle,'mayoristassemanaale'=>$mayoristasSemanaAle,'mayoristasyearale'=>$mayoristasYearAle
                                     ,'mayoristasfechafra'=>$mayoristasFechaFra,'mayoristassemanafra'=>$mayoristasSemanaFra,'mayoristasyearfra'=>$mayoristasYearFra
@@ -869,6 +880,8 @@ class ProductosController extends Controller {
             $origenFecha = $origenModel -> productosOrigen($fecha,$fecha2,$condicion);
             $origenSemana = $origenModel -> productosOrigen($semana,$semana2,$condicion);
             $origenYear = $origenModel -> productosOrigen($year,$year2,$condicion);
+            
+            $origenFechaUltima = $origenModel -> productosOrigenFecha($fecha,$fecha2,$condicion);
             
             //MAYORISTA
             $condicionEsp = "(cod_producto=20 or cod_producto=19 or cod_producto=44 or cod_producto=18 or cod_producto=48) and cod_localizacion=24";
@@ -955,7 +968,7 @@ class ProductosController extends Controller {
             $date = new \DateTime($fecha);
             $fecha = $date;
 
-            return $this->render('melon', ['fecha' => $fecha,'origenfecha'=>$origenFecha,'origensemana'=>$origenSemana,'origenyear'=>$origenYear,'mayoristastabla'=>$mayoristasTabla
+            return $this->render('melon', ['fecha' => $fecha,'origenfechaultima'=>$origenFechaUltima,'origenfecha'=>$origenFecha,'origensemana'=>$origenSemana,'origenyear'=>$origenYear,'mayoristastabla'=>$mayoristasTabla
                                     ,'mayoristasfechaesp'=>$mayoristasFechaEsp,'mayoristassemanaesp'=>$mayoristasSemanaEsp,'mayoristasyearesp'=>$mayoristasYearEsp
                                     ,'mayoristasfechaale'=>$mayoristasFechaAle,'mayoristassemanaale'=>$mayoristasSemanaAle,'mayoristasyearale'=>$mayoristasYearAle
                                     ,'mayoristasfechafra'=>$mayoristasFechaFra,'mayoristassemanafra'=>$mayoristasSemanaFra,'mayoristasyearfra'=>$mayoristasYearFra
@@ -999,6 +1012,8 @@ class ProductosController extends Controller {
             $origenFecha = $origenModel -> productosOrigen($fecha,$fecha2,$condicion);
             $origenSemana = $origenModel -> productosOrigen($semana,$semana2,$condicion);
             $origenYear = $origenModel -> productosOrigen($year,$year2,$condicion);
+            
+            $origenFechaUltima = $origenModel -> productosOrigenFecha($fecha,$fecha2,$condicion);
             
             //MAYORISTA
             $condicionEsp = "(cod_producto=16) and cod_localizacion=24";
@@ -1085,7 +1100,7 @@ class ProductosController extends Controller {
             $date = new \DateTime($fecha);
             $fecha = $date;
 
-            return $this->render('sandia', ['fecha' => $fecha,'origenfecha'=>$origenFecha,'origensemana'=>$origenSemana,'origenyear'=>$origenYear,'mayoristastabla'=>$mayoristasTabla
+            return $this->render('sandia', ['fecha' => $fecha,'origenfechaultima'=>$origenFechaUltima,'origenfecha'=>$origenFecha,'origensemana'=>$origenSemana,'origenyear'=>$origenYear,'mayoristastabla'=>$mayoristasTabla
                                     ,'mayoristasfechaesp'=>$mayoristasFechaEsp,'mayoristassemanaesp'=>$mayoristasSemanaEsp,'mayoristasyearesp'=>$mayoristasYearEsp
                                     ,'mayoristasfechaale'=>$mayoristasFechaAle,'mayoristassemanaale'=>$mayoristasSemanaAle,'mayoristasyearale'=>$mayoristasYearAle
                                     ,'mayoristasfechafra'=>$mayoristasFechaFra,'mayoristassemanafra'=>$mayoristasSemanaFra,'mayoristasyearfra'=>$mayoristasYearFra

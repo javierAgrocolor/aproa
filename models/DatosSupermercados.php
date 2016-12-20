@@ -485,7 +485,7 @@ class DatosSupermercados extends \yii\db\ActiveRecord
                 -> where ("fecha <= '".$fechaini."'")
                 ->andWhere("fecha >= '".$fechafin."'")                
                 ->andWhere($condicion)
-                ->orderBy('producto');
+                ->orderBy('fecha DESC,producto');
               
         $rows = $query->all(DatosSupermercados::getDb());
         return $rows;

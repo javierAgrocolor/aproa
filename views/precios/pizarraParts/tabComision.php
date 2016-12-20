@@ -9,9 +9,9 @@
 ?>
 <script type="text/javascript">
     $(document).ready(function(){
-        $('#enlaceTabComision').click(function(){
+        /*$('#enlaceTabComision').click(function(){
             $('#modalComision').modal('show');
-        });
+        });*/
         
         $('#confirmarModalComision').click(function(){
            $corteInicial = $('#selectCorteInicialComision option:selected').val();
@@ -26,7 +26,7 @@
                $('.corteCabecera'+(parseFloat($corteFinal)+1)).hide();
            }
            
-           $('#modalComision').modal('hide');
+           //$('#modalComision').modal('hide');
            
            $descuento = $('#descuentoFiltro').val();
            
@@ -51,7 +51,7 @@
         
     });
 </script>
-<div class="modal fade" id="modalComision" tabindex="-1" role="dialog">
+<!--<div class="modal fade" id="modalComision" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -62,12 +62,54 @@
             <label>Corte Inicial</label>
             <select id="selectCorteInicialComision" name="corteInicial" class="form-control">
                 <?php 
-                    for($i = 0; $i < 15; $i++){
-                        echo "<option id='".($i+1)."' value='".($i+1)."'>".($i+1)."</option>";
-                    }
+                    //for($i = 0; $i < 15; $i++){
+                    //    echo "<option id='".($i+1)."' value='".($i+1)."'>".($i+1)."</option>";
+                    //}
                 ?>
             </select>
             <label>Corte Final</label>
+            <select id="selectCorteFinalComision" name="corteFinal" class="form-control">
+                <?php
+                    //for ($i = 0; $i < 15; $i++){
+                    //    echo "<option id='".($i+1)."' value='".($i+1)."'>".($i+1)."</option>";
+                    //}
+                ?>
+            </select>
+            <label>Descuentos</label>
+            <input type="number" name="descuento" id="descuentoFiltro" class="form-control" value="0"/>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" id="confirmarModalComision">Aplicar Filtros</button>
+      </div>
+    </div><!-- /.modal-content -->
+  <!--</div><!-- /.modal-dialog -->
+<!--</div><!-- /.modal -->
+
+     <div class="panel-group margintop" id="accordion4" role="tablist" aria-multiselectable="true">
+     
+     <div class="row margintop">
+        <div class="span12">
+            <div class="col-md-4 col-md-offset-2" id="modalComision" role="dialog">
+                <h4>Filtro Cortes y Comisión</h4>
+            </div>
+        </div>
+     </div>
+      <div>
+          <div class="row margintop">
+              <div class="span12">
+                  <div class="col-md-4 col-md-offset-2">
+                      <label>Corte Inicial</label>
+                        <select id="selectCorteInicialComision" name="corteInicial" class="form-control">
+                        <?php 
+                        for($i = 0; $i < 15; $i++){
+                            echo "<option id='".($i+1)."' value='".($i+1)."'>".($i+1)."</option>";
+                        }
+                        ?>
+                        </select>
+                  </div>
+                  <div class="col-md-4">
+                      <label>Corte Final</label>
             <select id="selectCorteFinalComision" name="corteFinal" class="form-control">
                 <?php
                     for ($i = 0; $i < 15; $i++){
@@ -75,19 +117,26 @@
                     }
                 ?>
             </select>
-            <label>Descuentos</label>
-            <input type="number" name="descuento" id="descuentoFiltro" class="form-control" />
+                  </div>
+                  </div>
+                  </div>
+                  <div class="row margintop">
+              <div class="span12">
+                  <div class="col-md-4 col-md-offset-2">
+                      <label>Descuentos</label>
+            <input type="number" name="descuento" id="descuentoFiltro" class="form-control" value="0"/>
+                  </div>
+              </div>                  
+          </div>                          
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" id="confirmarModalComision">Aplicar Filtros</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-     <div class="panel-group margintop" id="accordion4" role="tablist" aria-multiselectable="true">
-
+     <div class="row margintop marginbotton30">
+        <div class="span12">
+            <div class="col-md-2 col-md-offset-2">                
+                <button type="button" class="btn btn-primary" id="confirmarModalComision">Aplicar Filtros</button>
+            </div>
+        </div>
+     </div>
+    
 <?php 
 $y = 0;
 foreach ($listaAlhondigas as $alhondiga){

@@ -5,7 +5,7 @@ use yii\helpers\Html;
 
 $this->title = 'Datos Media Global Producto';
 $this->params['breadcrumbs'][] = $this->title;
-//print_r($mediaglobalProducto);
+//print_r($datosmediaglobalProducto);
 ?>
 <div>
     <p class="titulosPaginaPrincipal"><?= Html::encode($this->title) ?></p>
@@ -34,15 +34,12 @@ $this->params['breadcrumbs'][] = $this->title;
       ]);
 
       var view = new google.visualization.DataView(data);
-            view.setColumns([0, 1, {
-                    calc: "stringify",
-                    sourceColumn: 1,
-                    type: "string",
-                    role: "annotation"
-                }]);
+            
 
     var options = {
       title : 'Evolución Diaria (Último Mes)',
+      pointSize: 5,
+      point: {visible: true},
       legend: {position: 'top'},
                 vAxis: {0: {format: '#'}},
                 hAxis: {title: 'Días'},
@@ -86,6 +83,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <thead>
                                 <tr>                                    
                                     <th>Alhondiga</th>
+                                    <th>Media</th>
                                     <th>C1</th>
                                     <th>C2</th>
                                     <th>C3</th>
@@ -109,6 +107,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                 $contr = 1;
                                 $contador = array();
                                 $corte = array();
+                                $mediatotal = 0;
+                                $contotal = 0;
                                 for($x=1;$x<16;$x++){
                                         $corte[$x]=0;
                                         $contador[$x]=0;
@@ -124,16 +124,23 @@ $this->params['breadcrumbs'][] = $this->title;
                                        
                                     }
                                     
+                                    $media = 0;
+                                    $cont = 0;
                                    
                                     for($x=1;$x<16;$x++){
                                         $corte[$x]=$corte[$x]+$row['corte'.$x.''];
+                                        $media = $media +$row['corte'.$x.''];
                                         if($row['corte'.$x.'']!=0){
+                                            $cont++;
                                             $contador[$x]=$contador[$x]+1;
                                         }                                        
                                     }
-                                   
+                                    $media = $media / $cont;
+                                    $mediatotal = $mediatotal + $media;
+                                    $contotal++;
                     
                     echo "<td>" . $row['alhondiga'] . "</td>
+                    <td>" . sprintf("%.2f", round($media, 2)) . "</td>
                     <td>" . $row['corte1'] . "</td>
                     <td>" . $row['corte2'] . "</td>
                     <td>" . $row['corte3'] . "</td>
@@ -150,7 +157,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     <td>" . $row['corte14'] . "</td>
                     <td>" . $row['corte15'] . "</td></tr>";
                                 }
-                                echo "<tr class='info'><td>Media</td>";
+                                $mediatotal = $mediatotal/$contotal;
+                                echo "<tr class='info'><td>Media</td><td>".sprintf("%.2f", round($mediatotal, 2))."</td>";
                                 for($x=1;$x<16;$x++){
                                         if($corte[$x]!=0){                                            
                                             echo "<td>" . sprintf("%.2f", round($corte[$x]/$contador[$x], 2)). "</td>";
@@ -175,7 +183,7 @@ $this->params['breadcrumbs'][] = $this->title;
     if (isset($mediaglobalProducto[0]['media'])) {
         echo '<div class="table-responsive">';
         echo '<table class="table">';
-        echo '<div id="chart_divMediasGlobales" style="width: 1100px; height: 500px;"></div>';
+        echo '<div id="chart_divMediasGlobales" style="width: 1080px; height: 500px;"></div>';
         echo '</table></div>';
     } else {
         ?>
