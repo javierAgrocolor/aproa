@@ -28,13 +28,22 @@ $this->title = 'APROA - Gestión de Crisis';
             </div>
             <div class="row-fluid">
                 <div class="col-md-4  marginbotton30 margintop">
-                    <a href="index.php/precios/origen"><img src="/images/pizarra3.png" class="img-responsive center-block"></a>
+                    <!--<a href="index.php/precios/origen"><img src="/images/pizarra3.png" class="img-responsive center-block"></a>-->
+                    <ul class="nav nav-pills">
+                        <li class="dropdown">
+                            <img src="/images/pizarra3.png"  data-toggle="dropdown" class="dropdown-toggle img-responsive">
+                            <ul class="dropdown-menu menuDesplegable2" id="menu1">
+                                <li class="dropdown-menu-li"><a href="index.php/precios/origen">Origen en Alhóndigas</a></li>
+                                <li class="dropdown-menu-li"><a href="index.php/precios/origencooperativas">Origen en Cooperativas</a></li>                                                
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
                 <div class="col-md-4 marginbotton30 margintop">
-                    <a href="index.php/precios/mayoristas"><img src="/images/pizarra4.png" class="img-responsive center-block"></a>
+                    <a href="index.php/precios/mayoristas"><img src="/images/pizarra4.png" class="img-responsive"></a>
                 </div>
                 <div class="col-md-4 marginbotton30 margintop">
-                    <a href="index.php/precios/supermercados"><img src="/images/pizarra5.png" class="img-responsive center-block"></a>
+                    <a href="index.php/precios/supermercados"><img src="/images/pizarra5.png" class="img-responsive"></a>
                 </div>
             </div>
         </div>
@@ -89,7 +98,7 @@ $this->title = 'APROA - Gestión de Crisis';
         <div class="row ">    
             <div class="span12">
                 <div class="col-md-3">
-                    <a target="_blank" href="index.php/site/buscar?informes=Calidad-Total_Hortalizas"><img src="/images/boton1.jpg" class="img-responsive center-block imgInformes"></a>            
+                    <a target="_blank" href="index.php/site/buscar?informes=Cuotasmercado"><img src="/images/boton4-2.jpg" class="img-responsive center-block imgInformes"></a>                    
                     <ul class="nav nav-pills">
                         <li class="dropdown">
                             <img src="/images/boton2.jpg"  data-toggle="dropdown" class="dropdown-toggle img-responsive imgInformes">
@@ -121,12 +130,14 @@ $this->title = 'APROA - Gestión de Crisis';
                             </ul>
                         </li>
                     </ul>
-
                     <a target="_blank" href="index.php/site/buscar?informes=Prevision_de_Cultivos"><img src="/images/boton3.jpg" class="img-responsive center-block imgInformes"></a>
-                    <a target="_blank" href="index.php/site/buscar?informes=Cuotasmercado"><img src="/images/boton4.jpg" class="img-responsive center-block imgInformes"></a>
+                    <a target="_blank" href="index.php/site/buscar?informes=Calidad-Total_Hortalizas"><img src="/images/boton1.jpg" class="img-responsive center-block imgInformes"></a>       
+                    <a href="index.php/site/buscar?informes=Otros"><img src="/images/boton16-2.jpg" class="img-responsive center-block imgInformes"></a>
                 </div>
                 <div class="col-md-3">
-                    <a target="_blank" href="index.php/site/buscar?informes=Comercializacion-Aproa_semanal"><img src="/images/boton5.jpg" class="img-responsive center-block imgInformes"></a>
+                    <a target="_blank" href="index.php/site/buscar?informes=Comercializacion-Aproa_semanal"><img src="/images/boton5-2.jpg" class="img-responsive center-block imgInformes"></a>
+                    <a target="_blank" href="index.php/site/buscar?informes=Supermercados"><img src="/images/boton8.jpg" class="img-responsive center-block imgInformes"></a>
+                    <a target="_blank" href="index.php/site/buscar?informes=Clima"><img src="/images/boton7.jpg" class="img-responsive center-block imgInformes"></a>
                     <ul class="nav nav-pills">
                         <li class="dropdown">
                             <img src="/images/boton6.jpg"  data-toggle="dropdown" class="dropdown-toggle img-responsive imgInformes">
@@ -139,10 +150,37 @@ $this->title = 'APROA - Gestión de Crisis';
                             </ul>
                         </li>
                     </ul>
-                    <a target="_blank" href="index.php/site/buscar?informes=Clima"><img src="/images/boton7.jpg" class="img-responsive center-block imgInformes"></a>
-                    <a target="_blank" href="index.php/site/buscar?informes=Supermercados"><img src="/images/boton8.jpg" class="img-responsive center-block imgInformes"></a>
+                    
+                    
                 </div>
-                <div class="col-md-3">                
+                <div class="col-md-3">  
+                    <ul class="nav nav-pills">
+                        <li class="dropdown">
+                            <img src="/images/boton11-2.jpg"  data-toggle="dropdown" class="dropdown-toggle img-responsive imgInformes">
+                            <ul class="dropdown-menu menuDesplegable2" id="menu1">
+                                <li>
+                                    <a href="#">Cotización <span class=" menu-ico-collapse"><i class="glyphicon glyphicon-chevron-right"></i></span></a>
+                                    <ul class="dropdown-menu sub-menu">
+                                        <li><a target="_blank" href="index.php/site/buscar?informes=Origen-Cotizaciones-Alhondigas-Diario">Alhondigas diario</a></li>
+                                        <li><a target="_blank" href="index.php/site/buscar?informes=Origen-Cotizaciones-Cooperativas-Semanal">Cooperativas semanal</a></li>                                    
+                                    </ul>
+                                </li>                            
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    
+
+                    <ul class="nav nav-pills">
+                        <li class="dropdown">
+                            <img src="/images/boton10.jpg"  data-toggle="dropdown" class="dropdown-toggle img-responsive imgInformes">
+                            <ul class="dropdown-menu menuDesplegable2" id="menu1">
+                                <li><a target="_blank" href="index.php/site/buscar?informes=Mayoristas-Cotizaciones">Cotización</a></li>
+                                <li><a target="_blank" href="index.php/site/buscar?informes=Mayoristas-Volumen">Volumen</a></li>                                                
+                            </ul>
+                        </li>
+                    </ul>
+                    <a target="_blank" href="index.php/site/buscar?informes=Exp. Tomate Provincias. Semana%"><img src="/images/boton17.jpg" class="img-responsive center-block imgInformes"></a>
                     <ul class="nav nav-pills">
                         <li class="dropdown">
                             <img src="/images/boton9.jpg"  data-toggle="dropdown" class="dropdown-toggle img-responsive imgInformes">
@@ -229,31 +267,10 @@ $this->title = 'APROA - Gestión de Crisis';
                         </li>
                     </ul>
 
-                    <ul class="nav nav-pills">
-                        <li class="dropdown">
-                            <img src="/images/boton10.jpg"  data-toggle="dropdown" class="dropdown-toggle img-responsive imgInformes">
-                            <ul class="dropdown-menu menuDesplegable2" id="menu1">
-                                <li><a target="_blank" href="index.php/site/buscar?informes=Mayoristas-Cotizaciones">Cotización</a></li>
-                                <li><a target="_blank" href="index.php/site/buscar?informes=Mayoristas-Volumen">Volumen</a></li>                                                
-                            </ul>
-                        </li>
-                    </ul>
-
-                    <ul class="nav nav-pills">
-                        <li class="dropdown">
-                            <img src="/images/boton11.jpg"  data-toggle="dropdown" class="dropdown-toggle img-responsive imgInformes">
-                            <ul class="dropdown-menu menuDesplegable2" id="menu1">
-                                <li>
-                                    <a href="#">Cotización <span class=" menu-ico-collapse"><i class="glyphicon glyphicon-chevron-right"></i></span></a>
-                                    <ul class="dropdown-menu sub-menu">
-                                        <li><a target="_blank" href="index.php/site/buscar?informes=Origen-Cotizaciones-Alhondigas-Diario">Alhondigas diario</a></li>
-                                        <li><a target="_blank" href="index.php/site/buscar?informes=Origen-Cotizaciones-Cooperativas-Semanal">Cooperativas semanal</a></li>                                    
-                                    </ul>
-                                </li>                            
-                            </ul>
-                        </li>
-                    </ul>
-
+                    
+                </div>
+                <div class="col-md-3">
+                    <a target="_blank" href="index.php/site/buscar?informes=Seguimiento_de_Campana"><img src="/images/boton13-2.jpg" class="img-responsive center-block imgInformes"></a>
                     <ul class="nav nav-pills">
                         <li class="dropdown">
                             <img src="/images/boton12.jpg"  data-toggle="dropdown" class="dropdown-toggle img-responsive imgInformes">
@@ -269,9 +286,16 @@ $this->title = 'APROA - Gestión de Crisis';
                             </ul>
                         </li>
                     </ul>
-                </div>
-                <div class="col-md-3">
-                    <a target="_blank" href="index.php/site/buscar?informes=Seguimiento_de_Campana"><img src="/images/boton13.jpg" class="img-responsive center-block imgInformes"></a>
+                    <ul class="nav nav-pills">
+                        <li class="dropdown">
+                            <img src="/images/boton18.jpg"  data-toggle="dropdown" class="dropdown-toggle img-responsive imgInformes">
+                            <ul class="dropdown-menu menuDesplegable2" id="menu1">
+                                <li><a target="_blank" href="index.php/site/buscar?informes=%Seguimiento Semanal de Pepino%">Pepino</a></li>
+                                <li><a target="_blank" href="index.php/site/buscar?informes=%Seguimiento Semanal de Melón%">Melón</a></li>                            
+                                <li><a target="_blank" href="index.php/site/buscar?informes=%Seguimiento Semanal de Sandía%">Sandía</a></li>                                                          
+                            </ul>
+                        </li>
+                    </ul>
                     <ul class="nav nav-pills">
                         <li class="dropdown">
                             <img src="/images/boton14.jpg"  data-toggle="dropdown" class="dropdown-toggle img-responsive imgInformes">
@@ -285,7 +309,7 @@ $this->title = 'APROA - Gestión de Crisis';
                         </li>
                     </ul>
                     <a href="index.php/site/buscar?informes=Historico"><img src="/images/boton15.jpg" class="img-responsive center-block imgInformes"></a>
-                    <a href="index.php/site/buscar?informes=Otros"><img src="/images/boton16.jpg" class="img-responsive center-block imgInformes"></a>
+                    
                 </div>
             </div>
         </div>

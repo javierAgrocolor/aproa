@@ -12,6 +12,7 @@ use app\models\DatosSupermercados;
 use app\models\Preciosdiarios;
 use app\models\Producto;
 use app\models\Origen;
+use app\models\OrigenCooperativas;
 use app\models\Presentacion;
 use app\models\Localizacion;
 class PreciosController extends Controller
@@ -242,6 +243,63 @@ class PreciosController extends Controller
             ]);
         }else{
             return $this->render('origen', [
+                'listaProductos' => $listaProductos,
+                'listaYears' => $listaYears,
+                'listaSemanas' => $listaSemanas
+            ]);
+        }
+        }else{
+        return $this->goHome();
+    }
+    }
+    
+    public function actionOrigencooperativas()
+    {
+        if (!\Yii::$app->user->isGuest) {
+        //Construimos los modelos que vamos a necesitar.
+        $productModel = new Producto();
+        $origenModel = new OrigenCooperativas();
+        
+        // Leemos el contenido de las tablas.
+        $listaProductos = $origenModel -> leerProductos();
+        $listaYears = $origenModel -> leerYears();
+        $ultimaFecha = $origenModel ->leerUltimaFecha();
+        
+        $contadorYears = count($listaYears);
+        if(substr($ultimaFecha[0]['fecha'], 5, 2) > 7){
+            $listaYears[$contadorYears]['year'] = substr($ultimaFecha[0]['fecha'], 0, 4)+1;
+        }
+        
+        $contadorYears = count($listaYears);
+        $listaSemanas = $origenModel ->leerSemanas($listaYears[$contadorYears-2]['year']);
+        // Leemos la petición POST/GET
+        $request = yii::$app->request;
+        // En base a si recibimos parámetros GET/POST mandamos unos datos a la vista o mandamos otros.
+        if (count($request->queryParams) != 0){
+            $productos = $request->get('productos');
+            $origen = $request->get('origen');
+            $localizacion = $request->get('localizacion');
+            $fechaInicial = $request->get('fechaInicial');
+            $fechaFinal = $request->get('fechaFinal');
+            $tipoConsulta = $request->get('opcionesConsulta');
+            $semanas = $request->get('semanas');
+            $anio = $request -> get('anio');
+            // Establecemos la consulta de datos con los parametros recibidos.
+            $resultado = $origenModel ->leerDatos($productos, $fechaInicial, $fechaFinal, $tipoConsulta, $semanas, $anio);
+            return $this->render('origencooperativas', [
+                'listaProductos' => $listaProductos,
+                'listaYears' => $listaYears,
+                'productos' => $productos,
+                'origen' => $origen,
+                'localizacion' => $localizacion,
+                'tabla' => $resultado,
+                'listaSemanas' => $listaSemanas,
+                'fechaInicial' => $fechaInicial,
+                'fechaFinal' => $fechaFinal,
+                'anio' => $anio
+            ]);
+        }else{
+            return $this->render('origencooperativas', [
                 'listaProductos' => $listaProductos,
                 'listaYears' => $listaYears,
                 'listaSemanas' => $listaSemanas
@@ -492,6 +550,7 @@ class PreciosController extends Controller
         //Construimos los modelos que vamos a necesitar.
         $productModel = new Producto();
         $datosOrigenModel = new DatosOrigen();
+        $origenCooperativasModel = new OrigenCooperativas();
         $localizacionModel = new Localizacion();
         $mayoristasModel = new DatosGeneralesMayoristas();
         $origenModel = new Origen();
@@ -542,6 +601,19 @@ class PreciosController extends Controller
                         'listaPresentaciones' => $listaPresentaciones,
                         'year' => $year
                     ]);
+                }else{
+                    if ($tipoConsultaSemanas == 'origencooperativas'){
+            $listaProductos = $origenCooperativasModel ->leerProductos();
+            $listaSemanas = $origenCooperativasModel -> leerSemanas($year);
+            
+            return $this -> render ('origencooperativas', [
+                'listaProductos' => $listaProductos,
+                'listaYears' => $listaYears,
+                'listaSemanas' => $listaSemanas,
+                'year' => $year
+            ]);
+            
+        }
                 }
             }
             

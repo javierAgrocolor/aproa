@@ -310,7 +310,7 @@ class DatosOrigen extends \yii\db\ActiveRecord
                 ->where($condiciones)
                 ->groupBy(['Producto', 'Localizacion', 'Origen', '(datepart(DY, datediff(d,0,Datos_origen.fecha)/7*7+3)+6)/7', 'DATEPART(year, Datos_origen.fecha)'])
                 ->orderBy('anio, Semana, Producto');
-        $rows = $query -> all(DatosGeneralesMayoristas::getDb());
+        $rows = $query -> all(DatosOrigen::getDb());
         return $rows;
     }
     

@@ -371,6 +371,11 @@ ul.simple-pagination {
     color: white;
 }
 
+.dropdown-menu-li > a:hover, .dropdown-menu-li > a:focus {
+    background-color:#00b22d !important;
+    color: white;
+}
+
 .sidebar-nav {
     padding: 9px 0;
 }

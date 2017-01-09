@@ -61,7 +61,8 @@ AppAsset::register($this);
             ['label' => 'Home', 'url' => Yii::$app->homeUrl],
            /* ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],*/
-            ['label' => 'Origen', 'url' => ['/precios/origen']],
+            ['label' => 'Origen Alhóndigas', 'url' => ['/precios/origen']],
+            ['label' => 'Origen Cooperativas', 'url' => ['/precios/origencooperativas']],
             ['label' => 'Mayoristas', 'url' => ['/precios/mayoristas']],
             ['label' => 'Supermercados', 'url' => ['/precios/supermercados']],
             ['label' => 'Precios Ponderados', 'url' => ['/site/preciosponderados']],

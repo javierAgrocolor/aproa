@@ -9,7 +9,7 @@ use yii\helpers\Html;
  * and open the template in the editor.
  */
 
-$this->title = 'Precios Origen Alhóndigas';
+$this->title = 'Precios Origen Cooperativas';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <script type="text/javascript">// <![CDATA[
@@ -200,8 +200,8 @@ if (isset($year)) {
 </div>
 <div class="span12 bordetop">         
 </div>
-<form action="leersemanas2" id="formYears"><input class="inputOculto" name="tipoConsultaSemanas" value="origen" /></form>
-<form action="origen" id="filtroProducto">
+<form action="leersemanas2" id="formYears"><input class="inputOculto" name="tipoConsultaSemanas" value="origencooperativas" /></form>
+<form action="origencooperativas" id="filtroProducto">
     <div class="row marginbotton30">
         <div class="col-lg-5 col-lg-offset-1">
             <label>Productos</label>
@@ -428,3 +428,4 @@ if (isset($tabla)) {
 
     </div>
 </div>
+
