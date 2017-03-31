@@ -2805,8 +2805,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                             }
                                             ?>  
                                         </td>                                        
-                                        <td align="center"><?php if($fechaPrecio==0 or $semanaPrecio==0){echo "";}else if($fechaPrecio>$semanaPrecio){echo "<img class='flechas' src='/images/flecharoja.png'>";}else if($fechaPrecio<$semanaPrecio){echo "<img class='flechas' src='/images/flechaverde.png'>";}else{echo "<img class='flechas' src='/images/igual.png'>";} ?></td>
-                                        <td align="center"><?php if($fechaPrecio==0 or $yearPrecio==0){echo "";}else if($fechaPrecio>$yearPrecio){echo "<img class='flechas' src='/images/flecharoja.png'>";}else if($fechaPrecio<$yearPrecio){echo "<img class='flechas' src='/images/flechaverde.png'>";}else{echo "<img class='flechas' src='/images/igual.png'>";} ?></td>
+                                        <td align="center"><?php if($fechaPrecio==0 or $semanaPrecio==0){echo "";}else if($fechaPrecio>$semanaPrecio){echo "<img class='flechas' src='/images/flechaverde.png'>";}else if($fechaPrecio<$semanaPrecio){echo "<img class='flechas' src='/images/flecharoja.png'>";}else{echo "<img class='flechas' src='/images/igual.png'>";} ?></td>
+                                        <td align="center"><?php if($fechaPrecio==0 or $yearPrecio==0){echo "";}else if($fechaPrecio>$yearPrecio){echo "<img class='flechas' src='/images/flechaverde.png'>";}else if($fechaPrecio<$yearPrecio){echo "<img class='flechas' src='/images/flecharoja.png'>";}else{echo "<img class='flechas' src='/images/igual.png'>";} ?></td>
                                     </tr>
                                     <tr bgcolor="#f0f4e9">
                                         <td align="center">Pto. Calif. Rojo</td>
@@ -2844,8 +2844,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                             }
                                             ?>  
                                         </td>                                        
-                                        <td align="center"><?php if($fechaPrecio==0 or $semanaPrecio==0){echo "";}else if($fechaPrecio>$semanaPrecio){echo "<img class='flechas' src='/images/flecharoja.png'>";}else if($fechaPrecio<$semanaPrecio){echo "<img class='flechas' src='/images/flechaverde.png'>";}else{echo "<img class='flechas' src='/images/igual.png'>";} ?></td>
-                                        <td align="center"><?php if($fechaPrecio==0 or $yearPrecio==0){echo "";}else if($fechaPrecio>$yearPrecio){echo "<img class='flechas' src='/images/flecharoja.png'>";}else if($fechaPrecio<$yearPrecio){echo "<img class='flechas' src='/images/flechaverde.png'>";}else{echo "<img class='flechas' src='/images/igual.png'>";} ?></td>
+                                        <td align="center"><?php if($fechaPrecio==0 or $semanaPrecio==0){echo "";}else if($fechaPrecio>$semanaPrecio){echo "<img class='flechas' src='/images/flechaverde.png'>";}else if($fechaPrecio<$semanaPrecio){echo "<img class='flechas' src='/images/flecharoja.png'>";}else{echo "<img class='flechas' src='/images/igual.png'>";} ?></td>
+                                        <td align="center"><?php if($fechaPrecio==0 or $yearPrecio==0){echo "";}else if($fechaPrecio>$yearPrecio){echo "<img class='flechas' src='/images/flechaverde.png'>";}else if($fechaPrecio<$yearPrecio){echo "<img class='flechas' src='/images/flecharoja.png'>";}else{echo "<img class='flechas' src='/images/igual.png'>";} ?></td>
                                     </tr>
                                     <tr>
                                         <td align="center">Pto. Calif. Amarillo</td>
@@ -2883,8 +2883,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                             }
                                             ?>  
                                         </td>                                        
-                                        <td align="center"><?php if($fechaPrecio==0 or $semanaPrecio==0){echo "";}else if($fechaPrecio>$semanaPrecio){echo "<img class='flechas' src='/images/flecharoja.png'>";}else if($fechaPrecio<$semanaPrecio){echo "<img class='flechas' src='/images/flechaverde.png'>";}else{echo "<img class='flechas' src='/images/igual.png'>";} ?></td>
-                                        <td align="center"><?php if($fechaPrecio==0 or $yearPrecio==0){echo "";}else if($fechaPrecio>$yearPrecio){echo "<img class='flechas' src='/images/flecharoja.png'>";}else if($fechaPrecio<$yearPrecio){echo "<img class='flechas' src='/images/flechaverde.png'>";}else{echo "<img class='flechas' src='/images/igual.png'>";} ?></td>
+                                        <td align="center"><?php if($fechaPrecio==0 or $semanaPrecio==0){echo "";}else if($fechaPrecio>$semanaPrecio){echo "<img class='flechas' src='/images/flechaverde.png'>";}else if($fechaPrecio<$semanaPrecio){echo "<img class='flechas' src='/images/flecharoja.png'>";}else{echo "<img class='flechas' src='/images/igual.png'>";} ?></td>
+                                        <td align="center"><?php if($fechaPrecio==0 or $yearPrecio==0){echo "";}else if($fechaPrecio>$yearPrecio){echo "<img class='flechas' src='/images/flechaverde.png'>";}else if($fechaPrecio<$yearPrecio){echo "<img class='flechas' src='/images/flecharoja.png'>";}else{echo "<img class='flechas' src='/images/igual.png'>";} ?></td>
                                     </tr>
                                     <tr bgcolor="#f0f4e9">
                                         <td align="center">Pto. Lamuyo Verde</td>
@@ -2922,8 +2922,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                             }
                                             ?>  
                                         </td>                                        
-                                        <td align="center"><?php if($fechaPrecio==0 or $semanaPrecio==0){echo "";}else if($fechaPrecio>$semanaPrecio){echo "<img class='flechas' src='/images/flecharoja.png'>";}else if($fechaPrecio<$semanaPrecio){echo "<img class='flechas' src='/images/flechaverde.png'>";}else{echo "<img class='flechas' src='/images/igual.png'>";} ?></td>
-                                        <td align="center"><?php if($fechaPrecio==0 or $yearPrecio==0){echo "";}else if($fechaPrecio>$yearPrecio){echo "<img class='flechas' src='/images/flecharoja.png'>";}else if($fechaPrecio<$yearPrecio){echo "<img class='flechas' src='/images/flechaverde.png'>";}else{echo "<img class='flechas' src='/images/igual.png'>";} ?></td>
+                                        <td align="center"><?php if($fechaPrecio==0 or $semanaPrecio==0){echo "";}else if($fechaPrecio>$semanaPrecio){echo "<img class='flechas' src='/images/flechaverde.png'>";}else if($fechaPrecio<$semanaPrecio){echo "<img class='flechas' src='/images/flecharoja.png'>";}else{echo "<img class='flechas' src='/images/igual.png'>";} ?></td>
+                                        <td align="center"><?php if($fechaPrecio==0 or $yearPrecio==0){echo "";}else if($fechaPrecio>$yearPrecio){echo "<img class='flechas' src='/images/flechaverde.png'>";}else if($fechaPrecio<$yearPrecio){echo "<img class='flechas' src='/images/flecharoja.png'>";}else{echo "<img class='flechas' src='/images/igual.png'>";} ?></td>
                                     </tr>
                                     <tr>
                                         <td align="center">Pto. Lamuyo Rojo</td>
@@ -2961,8 +2961,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                             }
                                             ?>  
                                         </td>                                        
-                                        <td align="center"><?php if($fechaPrecio==0 or $semanaPrecio==0){echo "";}else if($fechaPrecio>$semanaPrecio){echo "<img class='flechas' src='/images/flecharoja.png'>";}else if($fechaPrecio<$semanaPrecio){echo "<img class='flechas' src='/images/flechaverde.png'>";}else{echo "<img class='flechas' src='/images/igual.png'>";} ?></td>
-                                        <td align="center"><?php if($fechaPrecio==0 or $yearPrecio==0){echo "";}else if($fechaPrecio>$yearPrecio){echo "<img class='flechas' src='/images/flecharoja.png'>";}else if($fechaPrecio<$yearPrecio){echo "<img class='flechas' src='/images/flechaverde.png'>";}else{echo "<img class='flechas' src='/images/igual.png'>";} ?></td>
+                                        <td align="center"><?php if($fechaPrecio==0 or $semanaPrecio==0){echo "";}else if($fechaPrecio>$semanaPrecio){echo "<img class='flechas' src='/images/flechaverde.png'>";}else if($fechaPrecio<$semanaPrecio){echo "<img class='flechas' src='/images/flecharoja.png'>";}else{echo "<img class='flechas' src='/images/igual.png'>";} ?></td>
+                                        <td align="center"><?php if($fechaPrecio==0 or $yearPrecio==0){echo "";}else if($fechaPrecio>$yearPrecio){echo "<img class='flechas' src='/images/flechaverde.png'>";}else if($fechaPrecio<$yearPrecio){echo "<img class='flechas' src='/images/flecharoja.png'>";}else{echo "<img class='flechas' src='/images/igual.png'>";} ?></td>
                                     </tr>
                                     <tr bgcolor="#f0f4e9">
                                         <td align="center">Pto. Lamuyo Amarillo</td>
@@ -3000,8 +3000,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                             }
                                             ?>  
                                         </td>                                        
-                                        <td align="center"><?php if($fechaPrecio==0 or $semanaPrecio==0){echo "";}else if($fechaPrecio>$semanaPrecio){echo "<img class='flechas' src='/images/flecharoja.png'>";}else if($fechaPrecio<$semanaPrecio){echo "<img class='flechas' src='/images/flechaverde.png'>";}else{echo "<img class='flechas' src='/images/igual.png'>";} ?></td>
-                                        <td align="center"><?php if($fechaPrecio==0 or $yearPrecio==0){echo "";}else if($fechaPrecio>$yearPrecio){echo "<img class='flechas' src='/images/flecharoja.png'>";}else if($fechaPrecio<$yearPrecio){echo "<img class='flechas' src='/images/flechaverde.png'>";}else{echo "<img class='flechas' src='/images/igual.png'>";} ?></td>
+                                        <td align="center"><?php if($fechaPrecio==0 or $semanaPrecio==0){echo "";}else if($fechaPrecio>$semanaPrecio){echo "<img class='flechas' src='/images/flechaverde.png'>";}else if($fechaPrecio<$semanaPrecio){echo "<img class='flechas' src='/images/flecharoja.png'>";}else{echo "<img class='flechas' src='/images/igual.png'>";} ?></td>
+                                        <td align="center"><?php if($fechaPrecio==0 or $yearPrecio==0){echo "";}else if($fechaPrecio>$yearPrecio){echo "<img class='flechas' src='/images/flechaverde.png'>";}else if($fechaPrecio<$yearPrecio){echo "<img class='flechas' src='/images/flecharoja.png'>";}else{echo "<img class='flechas' src='/images/igual.png'>";} ?></td>
                                     </tr>
                                     <tr>
                                         <td align="center">Pto. Italiano Verde</td>
@@ -3039,8 +3039,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                             }
                                             ?>  
                                         </td>                                        
-                                        <td align="center"><?php if($fechaPrecio==0 or $semanaPrecio==0){echo "";}else if($fechaPrecio>$semanaPrecio){echo "<img class='flechas' src='/images/flecharoja.png'>";}else if($fechaPrecio<$semanaPrecio){echo "<img class='flechas' src='/images/flechaverde.png'>";}else{echo "<img class='flechas' src='/images/igual.png'>";} ?></td>
-                                        <td align="center"><?php if($fechaPrecio==0 or $yearPrecio==0){echo "";}else if($fechaPrecio>$yearPrecio){echo "<img class='flechas' src='/images/flecharoja.png'>";}else if($fechaPrecio<$yearPrecio){echo "<img class='flechas' src='/images/flechaverde.png'>";}else{echo "<img class='flechas' src='/images/igual.png'>";} ?></td>
+                                        <td align="center"><?php if($fechaPrecio==0 or $semanaPrecio==0){echo "";}else if($fechaPrecio>$semanaPrecio){echo "<img class='flechas' src='/images/flechaverde.png'>";}else if($fechaPrecio<$semanaPrecio){echo "<img class='flechas' src='/images/flecharoja.png'>";}else{echo "<img class='flechas' src='/images/igual.png'>";} ?></td>
+                                        <td align="center"><?php if($fechaPrecio==0 or $yearPrecio==0){echo "";}else if($fechaPrecio>$yearPrecio){echo "<img class='flechas' src='/images/flechaverde.png'>";}else if($fechaPrecio<$yearPrecio){echo "<img class='flechas' src='/images/flecharoja.png'>";}else{echo "<img class='flechas' src='/images/igual.png'>";} ?></td>
                                     </tr>
                                 </tbody>
                             </table>

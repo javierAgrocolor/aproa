@@ -349,6 +349,7 @@ class DatosOrigen extends \yii\db\ActiveRecord
                 -> where ("fecha <= '".$fechaini."'")
                 ->andWhere("fecha >= '".$fechafin."'")
                 ->andWhere('cod_localizacion=1 and cod_origen = 17')   
+                ->andWhere('cod_presentacion!=4')
                 ->andWhere($condicion)
                 ->orderBy('producto')
                 ->groupBy('producto,cod_producto');
@@ -386,7 +387,8 @@ class DatosOrigen extends \yii\db\ActiveRecord
                 ->innerJoin('Producto', 'Producto.codigo_producto = Datos_origen.cod_producto')
                 -> where ("fecha <= '".$fechaini."'")
                 ->andWhere("fecha >= '".$fechafin."'")
-                ->andWhere('cod_localizacion=1 and cod_origen = 17')   
+                ->andWhere('cod_localizacion=1 and cod_origen = 17')  
+                ->andWhere('cod_presentacion!=4')
                 ->andWhere($condicion)
                 ->orderBy('fecha DESC');
         

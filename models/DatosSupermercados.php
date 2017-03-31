@@ -458,7 +458,8 @@ class DatosSupermercados extends \yii\db\ActiveRecord
                 ->innerJoin('Localizacion', 'Localizacion.codigo_localizacion = Datos_Supermercados.cod_localizacion')
                 ->innerJoin('Producto', 'Producto.codigo_producto = Datos_Supermercados.cod_producto')
                 -> where ("fecha <= '".$fechaini."'")
-                ->andWhere("fecha >= '".$fechafin."'")                
+                ->andWhere("fecha >= '".$fechafin."'")   
+                ->andWhere('cod_presentacion!=4')
                 ->andWhere($condicion)
                 ->orderBy('producto')
                 ->groupBy('producto,cod_producto');
@@ -483,7 +484,8 @@ class DatosSupermercados extends \yii\db\ActiveRecord
                 ->innerJoin('Producto', 'Producto.codigo_producto = Datos_Supermercados.cod_producto')
                 ->innerJoin('Presentacion', 'Presentacion.codigo = Datos_Supermercados.cod_presentacion')
                 -> where ("fecha <= '".$fechaini."'")
-                ->andWhere("fecha >= '".$fechafin."'")                
+                ->andWhere("fecha >= '".$fechafin."'")   
+                ->andWhere('cod_presentacion!=4')
                 ->andWhere($condicion)
                 ->orderBy('fecha DESC,producto');
               
@@ -508,7 +510,8 @@ class DatosSupermercados extends \yii\db\ActiveRecord
                 ->innerJoin('Localizacion', 'Localizacion.codigo_localizacion = Datos_Supermercados.cod_localizacion')
                 ->innerJoin('Producto', 'Producto.codigo_producto = Datos_Supermercados.cod_producto')
                 -> where ("fecha <= '".$fechaini."'")
-                ->andWhere("fecha >= '".$fechafin."'")                
+                ->andWhere("fecha >= '".$fechafin."'")   
+                ->andWhere('cod_presentacion!=4')
                 ->andWhere($condicion)
                 ->orderBy('producto')
                 ->groupBy('producto,cod_producto,origen,cod_origen');

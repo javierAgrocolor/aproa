@@ -28,8 +28,8 @@ $this->title = 'APROA - Gestión de Crisis';
             </div>
             <div class="row-fluid">
                 <div class="col-md-4  marginbotton30 margintop">
-                    <!--<a href="index.php/precios/origen"><img src="/images/pizarra3.png" class="img-responsive center-block"></a>-->
-                    <ul class="nav nav-pills">
+                    <a href="index.php/precios/origen"><img src="/images/pizarra3.png" class="img-responsive center-block"></a>
+                    <!--<ul class="nav nav-pills">
                         <li class="dropdown">
                             <img src="/images/pizarra3.png"  data-toggle="dropdown" class="dropdown-toggle img-responsive">
                             <ul class="dropdown-menu menuDesplegable2" id="menu1">
@@ -37,7 +37,7 @@ $this->title = 'APROA - Gestión de Crisis';
                                 <li class="dropdown-menu-li"><a href="index.php/precios/origencooperativas">Origen en Cooperativas</a></li>                                                
                             </ul>
                         </li>
-                    </ul>
+                    </ul>-->
                 </div>
                 <div class="col-md-4 marginbotton30 margintop">
                     <a href="index.php/precios/mayoristas"><img src="/images/pizarra4.png" class="img-responsive"></a>
@@ -180,7 +180,7 @@ $this->title = 'APROA - Gestión de Crisis';
                             </ul>
                         </li>
                     </ul>
-                    <a target="_blank" href="index.php/site/buscar?informes=Exp. Tomate Provincias. Semana%"><img src="/images/boton17.jpg" class="img-responsive center-block imgInformes"></a>
+                    <a target="_blank" href="index.php/site/buscar?informes=Exportacion-Tomate"><img src="/images/boton17.jpg" class="img-responsive center-block imgInformes"></a>
                     <ul class="nav nav-pills">
                         <li class="dropdown">
                             <img src="/images/boton9.jpg"  data-toggle="dropdown" class="dropdown-toggle img-responsive imgInformes">
@@ -290,9 +290,11 @@ $this->title = 'APROA - Gestión de Crisis';
                         <li class="dropdown">
                             <img src="/images/boton18.jpg"  data-toggle="dropdown" class="dropdown-toggle img-responsive imgInformes">
                             <ul class="dropdown-menu menuDesplegable2" id="menu1">
-                                <li><a target="_blank" href="index.php/site/buscar?informes=%Seguimiento Semanal de Pepino%">Pepino</a></li>
-                                <li><a target="_blank" href="index.php/site/buscar?informes=%Seguimiento Semanal de Melón%">Melón</a></li>                            
-                                <li><a target="_blank" href="index.php/site/buscar?informes=%Seguimiento Semanal de Sandía%">Sandía</a></li>                                                          
+                                <li><a target="_blank" href="index.php/site/buscar?informes=%Seguimiento Pepino%">Pepino</a></li>
+                                <li><a target="_blank" href="index.php/site/buscar?informes=%Seguimiento Melón%">Melón</a></li>                            
+                                <li><a target="_blank" href="index.php/site/buscar?informes=%Seguimiento Sandía%">Sandía</a></li>  
+                                <li><a target="_blank" href="index.php/site/buscar?informes=%Seguimiento Tomate%">Tomate</a></li>
+                                <li><a target="_blank" href="index.php/site/buscar?informes=%Seguimiento Pimiento%">Pimiento</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -325,13 +327,13 @@ $this->title = 'APROA - Gestión de Crisis';
                 <!--<p class="titulos2">Aun no se han generado boletines para este día.</p>-->
                 <?php
                 $hoy = date('z') + 1;
-                if (file_exists('./boletines_correos/img2/2016-' . $hoy . '-1.jpg') && file_exists('./boletines_correos/img2/2016-' . $hoy . '-2.jpg') && file_exists('./boletines_correos/img2/2016-' . $hoy . '-3.jpg')) {
+                if (file_exists('./boletines_correos/img2/2017-' . $hoy . '-1.jpg') && file_exists('./boletines_correos/img2/2017-' . $hoy . '-2.jpg') && file_exists('./boletines_correos/img2/2017-' . $hoy . '-3.jpg')) {
 
-                    echo"<a href='index.php/site/boletines?diano=$hoy' target='_blank'><img src='/boletines_correos/img2/2016-" . $hoy . "-1.jpg' class='img-responsive center-block'/></a>";
+                    echo"<a href='index.php/site/boletines?diano=$hoy' target='_blank'><img src='/boletines_correos/img2/2017-" . $hoy . "-1.jpg' class='img-responsive center-block'/></a>";
 
-                    echo"<a href='index.php/site/boletines?diano=$hoy' target='_blank'><img src='/boletines_correos/img2/2016-" . $hoy . "-2.jpg' class='img-responsive center-block'/></a>";
+                    echo"<a href='index.php/site/boletines?diano=$hoy' target='_blank'><img src='/boletines_correos/img2/2017-" . $hoy . "-2.jpg' class='img-responsive center-block'/></a>";
 
-                    echo"<a href='index.php/site/boletines?diano=$hoy' target='_new'><img src='/boletines_correos/img2/2016-" . $hoy . "-3.jpg' class='img-responsive center-block'/></a>";
+                    echo"<a href='index.php/site/boletines?diano=$hoy' target='_new'><img src='/boletines_correos/img2/2017-" . $hoy . "-3.jpg' class='img-responsive center-block'/></a>";
                 } else {
                     echo"<a class='titulos2' href='index.php/site/boletines?diano=$hoy' target='_new'>El boletín de " . date("d/m/y") . " aun no está disponible. Pulse aquí para visualizar otros boletines.</a>";
                 }

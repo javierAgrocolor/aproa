@@ -111,8 +111,8 @@ class Boletines extends \yii\db\ActiveRecord
         $prueba = 'Origen%';
         $query->select('*')
                 ->from('boletines')       
-                ->where('Tipo NOT LIKE :tipo and Tipo NOT LIKE :tipo2 and Tipo NOT LIKE :tipo3 and Tipo NOT LIKE :tipo4 and Tipo NOT LIKE :tipo5 and Tipo NOT LIKE :tipo6 and Tipo NOT LIKE :tipo7 and Tipo NOT LIKE :tipo8 and Tipo NOT LIKE :tipo9 and Tipo NOT LIKE :tipo10 and Tipo NOT LIKE :tipo11 and Tipo NOT LIKE :tipo12 and Tipo NOT LIKE :tipo13',
-                        array(':tipo'=>'Origen%',':tipo2'=>'Calidad%',':tipo3'=>'Exportacion%',':tipo4'=>'Analisis%',':tipo5'=>'Comercializacion%',':tipo6'=>'Supermercados%',':tipo7'=>'Clima%',':tipo8'=>'Prevision%',':tipo9'=>'Mayoristas%',':tipo10'=>'Distribucion%',':tipo11'=>'Seguimiento%',':tipo12'=>'Citricos%',':tipo13'=>'Consumo%'))                
+                ->where('Tipo NOT LIKE :tipo and Tipo NOT LIKE :tipo2 and Tipo NOT LIKE :tipo3 and Tipo NOT LIKE :tipo4 and Tipo NOT LIKE :tipo5 and Tipo NOT LIKE :tipo6 and Tipo NOT LIKE :tipo7 and Tipo NOT LIKE :tipo8 and Tipo NOT LIKE :tipo9 and Tipo NOT LIKE :tipo10 and Tipo NOT LIKE :tipo11 and Tipo NOT LIKE :tipo12 and Tipo NOT LIKE :tipo13 and Tipo NOT LIKE :tipo14',
+                        array(':tipo'=>'Origen%',':tipo2'=>'Calidad%',':tipo3'=>'Exportacion%',':tipo4'=>'Analisis%',':tipo5'=>'Comercializacion%',':tipo6'=>'Supermercados%',':tipo7'=>'Clima%',':tipo8'=>'Prevision%',':tipo9'=>'Mayoristas%',':tipo10'=>'Distribucion%',':tipo11'=>'Seguimiento%',':tipo12'=>'Citricos%',':tipo13'=>'Consumo%',':tipo14'=>'Exp. Tomate Provincias. Semana%'))                
                 ->orderBy('Fecha DESC');
                 //->limit(30);
         $rows = $query->all(Boletines::getDb());

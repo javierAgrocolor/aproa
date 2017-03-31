@@ -462,7 +462,8 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
                 ->innerJoin('Localizacion', 'Localizacion.codigo_localizacion = Datos_generales_mayoristas.cod_localizacion')
                 ->innerJoin('Producto', 'Producto.codigo_producto = Datos_generales_mayoristas.cod_producto')
                 -> where ("fecha <= '".$fechaini."'")
-                ->andWhere("fecha >= '".$fechafin."'")                
+                ->andWhere("fecha >= '".$fechafin."'")     
+                ->andWhere('cod_presentacion!=4')
                 ->andWhere($condicion)
                 ->orderBy('producto')
                 ->groupBy('producto,cod_producto');
@@ -488,7 +489,8 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
                 ->innerJoin('Localizacion', 'Localizacion.codigo_localizacion = Datos_generales_mayoristas.cod_localizacion')
                 ->innerJoin('Producto', 'Producto.codigo_producto = Datos_generales_mayoristas.cod_producto')
                 -> where ("fecha <= '".$fechaini."'")
-                ->andWhere("fecha >= '".$fechafin."'")                
+                ->andWhere("fecha >= '".$fechafin."'") 
+                ->andWhere('cod_presentacion!=4')
                 ->andWhere($condicion)
                 ->orderBy('fecha DESC,producto');
               
@@ -513,7 +515,8 @@ class DatosGeneralesMayoristas extends \yii\db\ActiveRecord
                 ->innerJoin('Localizacion', 'Localizacion.codigo_localizacion = Datos_generales_mayoristas.cod_localizacion')
                 ->innerJoin('Producto', 'Producto.codigo_producto = Datos_generales_mayoristas.cod_producto')
                 -> where ("fecha <= '".$fechaini."'")
-                ->andWhere("fecha >= '".$fechafin."'")                
+                ->andWhere("fecha >= '".$fechafin."'")   
+                ->andWhere('cod_presentacion!=4')
                 ->andWhere($condicion)
                 ->orderBy('producto')
                 ->groupBy('producto,cod_producto,origen,cod_origen');
