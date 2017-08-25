@@ -9,6 +9,22 @@ $this->params['breadcrumbs'][] = $this->title;
 <div >
     <p class="titulosPaginaPrincipal"><?= Html::encode($this->title) ?></p>
 </div>
+<script>
+function validateForm() {    
+    var field1 = document.getElementById('datetimepicker-3').value;  
+    var field2 = document.getElementById('datetimepicker-2').value;  
+    if(field1 == "" || field2 == ""){
+         alert("Debe seleccionar al menos una fecha inicial y una fecha final.");
+        return false;
+    }else{
+        return true;
+    }     
+}
+</script>
+
+<?php
+//print_r(count($tablaGraficoevolucion))
+?>
 <!-- GRAFICO PRECIOS Y TONELADAS -->
 <?php if (isset($tablaGraficoppt[0]['Producto'])) { ?>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -89,9 +105,68 @@ $this->params['breadcrumbs'][] = $this->title;
             // Some raw data (not necessarily accurate)
             var data = google.visualization.arrayToDataTable([
     <?php
+    if($empresaGraEvo == 'TOTAL'){
     echo "['Producto', 'Precio: Euro/kg', 'Cantidad: Toneladas']";
     $con2 = 1;
+    $count1 = count($tablaGraficoevolucion);
+    $count2 = 0;
     foreach ($tablaGraficoevolucion as $grafico) {
+        $count2++;       
+        
+        if($count1%2==0 || $count1 > $count2){
+            
+        if ($con2 == 1) {
+            $con2 = 2;
+            if ($grafico['Fecha'] < 60) {
+		    if($grafico['Precio']==0){
+			echo ",['" . $grafico['Fecha'] . "',null";
+		    }else{
+			echo ",['" . $grafico['Fecha'] . "'," . $grafico['Precio'];
+		    }                
+            } else {
+                echo ",['";
+		$time=strtotime($grafico['Fecha']); 
+		echo $time = date('d-m-Y',$time); 
+		if($grafico['Precio']==0){
+			echo "',null";
+		}else{
+			echo "'," . $grafico['Precio'];
+		}		
+            }
+        } else {
+            $con2 = 1;
+	    if($grafico['Pond_Suma']==0){
+		    echo ",null]";
+	    }else{
+		   echo "," . $grafico['Pond_Suma'] . "]";
+	    }            
+        }
+        }        
+    }
+    }else if($empresaGraEvo == 'COSTA' ||$empresaGraEvo == 'AGROPONIENTE'||$empresaGraEvo == 'FEMAGO'){
+        echo "['Producto','Cantidad: Toneladas']";
+        foreach ($tablaGraficoevolucion as $grafico) {
+            if ($grafico['Fecha'] < 60) {
+		    if($grafico['Pond_Suma']==0){
+			echo ",['" . $grafico['Fecha'] . "',null]";
+		    }else{
+			echo ",['" . $grafico['Fecha'] . "'," . $grafico['Pond_Suma']."]";
+		    }                
+            } else {
+                echo ",['";
+		$time=strtotime($grafico['Fecha']); 
+		echo $time = date('d-m-Y',$time); 
+		if($grafico['Pond_Suma']==0){
+			echo "',null]";
+		}else{
+			echo "'," . $grafico['Pond_Suma']."]";
+		}		
+            }
+        }
+    }else{
+      echo "['Producto', 'Precio: Euro/kg', 'Cantidad: Toneladas']";
+      $con2 = 1;
+      foreach ($tablaGraficoevolucion as $grafico) {  
         if ($con2 == 1) {
             $con2 = 2;
             if ($grafico['Fecha'] < 60) {
@@ -116,23 +191,31 @@ $this->params['breadcrumbs'][] = $this->title;
 		    echo ",null]";
 	    }else{
 		   echo "," . $grafico['Pond_Suma'] . "]";
-	    }
-            
-        }
+	    }            
+      }
+      
+    }
     }
     ?>
             ]);
             var view = new google.visualization.DataView(data);
             var options = {
-                title: 'Producto: <?php echo $tablaGraficoevolucion[0]['Producto']; ?>, <?php echo $tablaGraficoevolucion[0]['Empresa']; ?>',
+                title: 'Producto: <?php echo $tablaGraficoevolucion[0]['Producto']; ?>, <?php echo $empresaGraEvo; ?>',
                 legend: {position: 'top'},
                 vAxis: {0: {format: '#'}, 1: {format: '#'}},
                 hAxis: {title: ''},
                 backgroundColor: '#ffffff',
-                series: {
-                    0: {type: "line", color: '#cd010d', targetAxisIndex: 0},
-                    1: {type: "bars", color: '#FF8300', targetAxisIndex: 1}
+            <?php
+                if($empresaGraEvo == 'COSTA' ||$empresaGraEvo == 'AGROPONIENTE'||$empresaGraEvo == 'FEMAGO'){
+                    echo "series: {                    
+                    0: {type: 'bars', color: '#FF8300', targetAxisIndex: 0}}";
+                }else{
+                    echo "series: {
+                    0: {type: 'line', color: '#cd010d', targetAxisIndex: 0},
+                    1: {type: 'bars', color: '#FF8300', targetAxisIndex: 1}}";
                 }
+            ?>
+            
             };
             var chart = new google.visualization.ComboChart(document.getElementById('chart_div2'));
             chart.draw(view, options);
@@ -146,12 +229,16 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="span12 contenedores">
     <p class="titulos2">EVOLUCIÓN DE PRECIOS Y TONELADAS PARA TODA LA CAMPAÑA</p>
     <div class="row marginbotton col-md-10 col-md-offset-1">                   
-        <form id="filtroGraficaevolucion">
+        <form id="filtroGraficaevolucion" onsubmit="return validateForm()">
             <div class="col-lg-2">
                 <label>Empresa</label>
-                <select id="empresas" name="empresas" class="form-control">            
+                <select id="empresas" name="empresas" class="form-control">   
+                    <option value="TOTAL">TOTAL</option>
                     <option value="LA UNION">LA UNION</option>
                     <option value="CASI">CASI</option>
+                    <option value="COSTA">COSTA</option>
+                    <option value="AGROPONIENTE">AGROPONIENTE</option>
+                    <option value="FEMAGO">FEMAGO</option>
                 </select>
             </div>
             <div class="col-lg-3">

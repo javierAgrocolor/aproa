@@ -753,22 +753,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="span12 bordetop">   
 </div>
 
-    <div class="row">    
-    <div class="col-md-12">
-        <div class="col-md-3">
-          <img src="/images/calabacin.png" class="img-responsive">  
-        </div>
-        <div class="col-md-1 paddingTop">
-            <?php echo "<a id='flechaIzquierda' href='".Url::home()."/productos/calabacin/?fecha=".$fecha -> sub(new \DateInterval('P1D'))-> format('Y-m-d')."' value='".$fecha -> format('Y-m-d')."'><img src='/images/flechaIzquierda.png' /></a>"; ?>
-        </div>
-        <div class="col-md-6 paddingTop">
-            <p class="titulosProductos">Datos a mostrar: <?php echo $fecha-> add(new \DateInterval('P1D')) -> format('d-m-Y'); ?></p>
-        </div>
-        <div class='col-md-1 paddingTop'>
-            <?php echo "<a id='flechaDerecha' href='".Url::home()."/productos/calabacin/?fecha=". $fecha -> add(new \DateInterval('P1D'))-> format('Y-m-d')."' value='".$fecha -> format('Y-m-d')."'><img src='/images/flechaDerecha.png' /></a>"; ?>
-        </div>
-    </div>
-    </div>
+    
 
     <div class="row-fluid margintop">
     <div class="col-md-12">
@@ -787,6 +772,22 @@ $this->params['breadcrumbs'][] = $this->title;
         <!-- Tab panes -->
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="origen">
+                 <div class="row margintop">    
+                    <div class="col-md-12">
+                    <div class="col-md-3">
+                        <img src="/images/calabacin.png" class="img-responsive">  
+                    </div>
+                    <div class="col-md-1 paddingTop">
+                        <?php echo "<a id='flechaIzquierda' href='" . Url::home() . "/productos/calabacin/?fechaorigen=" . $fechaorigen->sub(new \DateInterval('P1D'))->format('Y-m-d') . "' value='" . $fechaorigen->format('Y-m-d') . "'><img src='/images/flechaIzquierda.png' /></a>"; ?>
+                    </div>
+                    <div class="col-md-6 paddingTop">
+                        <p class="titulosProductos">Datos a mostrar: <?php echo $fechaorigen->add(new \DateInterval('P1D'))->format('d-m-Y'); ?></p>
+                    </div>
+                    <div class='col-md-1 paddingTop'>
+                        <?php echo "<a id='flechaDerecha' href='" . Url::home() . "/productos/calabacin/?fechaorigen=" . $fechaorigen->add(new \DateInterval('P1D'))->format('Y-m-d') . "' value='" . $fechaorigen->format('Y-m-d') . "'><img src='/images/flechaDerecha.png' /></a>"; ?>
+                    </div>
+                    </div>
+                </div>
                 <div class="row margintop">
                    <div class="span12">
                        <div class="col-md-12">
@@ -921,6 +922,22 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
             <div role="tabpanel" class="tab-pane" id="mayoristas">
+                <div class="row margintop">    
+                    <div class="col-md-12">
+                    <div class="col-md-3">
+                        <img src="/images/calabacin.png" class="img-responsive">  
+                    </div>
+                    <div class="col-md-1 paddingTop">
+                        <?php echo "<a id='flechaIzquierda' href='" . Url::home() . "/productos/calabacin/?fechamayorista=" . $fechamayorista->sub(new \DateInterval('P1D'))->format('Y-m-d') . "' value='" . $fechamayorista->format('Y-m-d') . "'><img src='/images/flechaIzquierda.png' /></a>"; ?>
+                    </div>
+                    <div class="col-md-6 paddingTop">
+                        <p class="titulosProductos">Datos a mostrar: <?php echo $fechamayorista->add(new \DateInterval('P1D'))->format('d-m-Y'); ?></p>
+                    </div>
+                    <div class='col-md-1 paddingTop'>
+                        <?php echo "<a id='flechaDerecha' href='" . Url::home() . "/productos/calabacin/?fechamayorista=" . $fechamayorista->add(new \DateInterval('P1D'))->format('Y-m-d') . "' value='" . $fechamayorista->format('Y-m-d') . "'><img src='/images/flechaDerecha.png' /></a>"; ?>
+                    </div>
+                    </div>
+                </div>
                 <div class="row margintop">
                    <div class="span12">
                        <div class="col-md-12">
@@ -992,6 +1009,22 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
             <div role="tabpanel" class="tab-pane" id="supermercados">
+                <div class="row margintop">    
+                    <div class="col-md-12">
+                    <div class="col-md-3">
+                        <img src="/images/calabacin.png" class="img-responsive">  
+                    </div>
+                    <div class="col-md-1 paddingTop">
+                        <?php echo "<a id='flechaIzquierda' href='" . Url::home() . "/productos/calabacin/?fechasupermercado=" . $fechasupermercado->sub(new \DateInterval('P1D'))->format('Y-m-d') . "' value='" . $fechasupermercado->format('Y-m-d') . "'><img src='/images/flechaIzquierda.png' /></a>"; ?>
+                    </div>
+                    <div class="col-md-6 paddingTop">
+                        <p class="titulosProductos">Datos a mostrar: <?php echo $fechasupermercado->add(new \DateInterval('P1D'))->format('d-m-Y'); ?></p>
+                    </div>
+                    <div class='col-md-1 paddingTop'>
+                        <?php echo "<a id='flechaDerecha' href='" . Url::home() . "/productos/calabacin/?fechasupermercado=" . $fechasupermercado->add(new \DateInterval('P1D'))->format('Y-m-d') . "' value='" . $fechasupermercado->format('Y-m-d') . "'><img src='/images/flechaDerecha.png' /></a>"; ?>
+                    </div>
+                    </div>
+                </div>
                 <div class="row margintop">
                    <div class="span12">
                        <div class="col-md-12">

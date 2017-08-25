@@ -290,7 +290,43 @@ class AlhondigasPreciosPonderados extends \yii\db\ActiveRecord {
         if($fechafin==''){
             $fechafin=  date('Y-m-d');
         }        
-        if($sd!='1') {
+        if($empresas == 'TOTAL'){
+            if($sd!='1') {
+            $query->select('Fecha,Producto,SUM(Pond_Suma) as Pond_Suma,AVG(Pond_Suma) as Precio')
+                    ->from('alhondigas')
+                    ->where('Producto=:producto and Fecha BETWEEN :fechaini AND :fechafin', array(':producto' => $productos, ':fechaini' => $fechainicio, ':fechafin' => $fechafin))
+                    ->groupBy('Fecha,Tipo')
+                    ->orderBy('Fecha,Tipo');
+            $rows = $query->all(AlhondigasPreciosPonderados::getDb());
+            return $rows;
+        } else {            
+            $query->select('WEEKOFYEAR(Fecha) as Fecha,Producto,SUM(Pond_Suma) as Pond_Suma,AVG(Pond_Suma) as Precio')
+                    ->from('alhondigas')
+                    ->where('Producto=:producto and Pond_Suma>0 and  Fecha BETWEEN :fechaini AND :fechafin', array(':producto' => $productos, ':fechaini' => $fechainicio, ':fechafin' => $fechafin))
+                    ->groupBy('WEEKOFYEAR(Fecha),Tipo')
+                    ->orderBy('YEAR(Fecha),WEEKOFYEAR(Fecha),Tipo');
+            $rows = $query->all(AlhondigasPreciosPonderados::getDb());
+            return $rows;
+        }
+        }else if($empresas == 'COSTA' ||$empresas == 'AGROPONIENTE'||$empresas == 'FEMAGO'){
+            if($sd!='1') {
+            $query->select('Fecha,Pond_Suma,Producto,Empresa')
+                    ->from('alhondigas')
+                    ->where('Producto=:producto and Empresa=:empresa and  Fecha BETWEEN :fechaini AND :fechafin', array(':producto' => $productos, ':empresa' => $empresas, ':fechaini' => $fechainicio, ':fechafin' => $fechafin))
+                    ->orderBy('Fecha,Tipo');
+            $rows = $query->all(AlhondigasPreciosPonderados::getDb());
+            return $rows;
+        } else {            
+            $query->select('WEEKOFYEAR(Fecha) as Fecha,Producto,Empresa,SUM(Pond_Suma) as Pond_Suma')
+                    ->from('alhondigas')
+                    ->where('Producto=:producto and Pond_Suma>0 and Empresa=:empresa and  Fecha BETWEEN :fechaini AND :fechafin', array(':producto' => $productos, ':empresa' => $empresas, ':fechaini' => $fechainicio, ':fechafin' => $fechafin))
+                    ->groupBy('WEEKOFYEAR(Fecha),Tipo')
+                    ->orderBy('YEAR(Fecha),WEEKOFYEAR(Fecha),Tipo');
+            $rows = $query->all(AlhondigasPreciosPonderados::getDb());
+            return $rows;
+        }
+        }else{
+            if($sd!='1') {
             $query->select('Fecha,Pond_Suma,Producto,Empresa')
                     ->from('alhondigas')
                     ->where('Producto=:producto and Empresa=:empresa and  Fecha BETWEEN :fechaini AND :fechafin', array(':producto' => $productos, ':empresa' => $empresas, ':fechaini' => $fechainicio, ':fechafin' => $fechafin))
@@ -306,6 +342,8 @@ class AlhondigasPreciosPonderados extends \yii\db\ActiveRecord {
             $rows = $query->all(AlhondigasPreciosPonderados::getDb());
             return $rows;
         }
+        }
+        
     }
     
     public function leerDiaAnterior($fecha){

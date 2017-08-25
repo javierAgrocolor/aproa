@@ -201,7 +201,7 @@ class SiteController extends Controller {
 
                 return $this->render('preciosponderados', ['tablaLaunion' => $resultado, 'tablaCasi' => $resultado2, 'tablaCosta' => $resultado3
                             , 'tablaFemago' => $resultado4, 'tablaAgroponiente' => $resultado5, 'tablaGraficoppt' => $grafico1, 'tablaGraficoevolucion' => $grafico2
-                            , 'tablaCompararToneladas' => $compararToneladas, 'tablaCompararPrecios' => $compararPrecios]);
+                            , 'tablaCompararToneladas' => $compararToneladas, 'tablaCompararPrecios' => $compararPrecios,'empresaGraEvo' => $empresas]);
             } else {
                 //CODIGO PARA MOSTRAR DATOS DEL DIA ANTERIOR
                 /*$fecha_actual2 = date('Y-m-d');

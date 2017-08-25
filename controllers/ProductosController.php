@@ -68,11 +68,17 @@ class ProductosController extends Controller {
             $supermercadoModel = new DatosSupermercados();
             $nombreorigenModel = new Origen();
             
+            
             $request = yii::$app->request;
-            if (count($request->get('fecha')) != 0) {
-                $fecha = $request->get('fecha');
+            
+            //CONDICION ORIGEN
+            if (count($request->get('fechaorigen')) != 0) {
+                $fecha = $request->get('fechaorigen');
+                $fechaorigen =  $request->get('fechaorigen');
             } else {
-                $fecha = date('Y-m-d');
+                $fecha = $origenModel ->leerUltimaFechaCon("cod_producto=1 or cod_producto=2 or cod_producto=3 or cod_producto=4");
+                $fecha = $fecha[0]['fecha'];                
+                $fechaorigen = $fecha;
             }
 
             $fecha2 =  date( "Y-m-d", strtotime( "-6 day", strtotime( $fecha ) ) ); 
@@ -89,6 +95,22 @@ class ProductosController extends Controller {
             $origenYear = $origenModel -> productosOrigen($year,$year2,$condicion);
             
             $origenFechaUltima = $origenModel -> productosOrigenFecha($fecha,$fecha2,$condicion);
+            
+            //CONDICION MAYORISTA
+            if (count($request->get('fechamayorista')) != 0) {
+                $fecha = $request->get('fechamayorista');
+                $fechamayorista =  $request->get('fechamayorista');
+            } else {
+                $fecha = $mayoristasModel ->leerUltimaFecha();
+                $fecha = $fecha[0]['fecha'];                
+                $fechamayorista = $fecha;
+            }
+
+            $fecha2 =  date( "Y-m-d", strtotime( "-6 day", strtotime( $fecha ) ) ); 
+            $semana =  date( "Y-m-d", strtotime( "-7 day", strtotime( $fecha ) ) ); 
+            $semana2 =  date( "Y-m-d", strtotime( "-13 day", strtotime( $fecha ) ) ); 
+            $year =  date( "Y-m-d", strtotime( "-1 year", strtotime( $fecha ) ) ); 
+            $year2 =  date( "Y-m-d", strtotime( "-7 day", strtotime( $year ) ) ); 
             
             //MAYORISTA
             $condicionEsp = "(cod_producto=1 or cod_producto=2 or cod_producto=3 or cod_producto=4) and cod_localizacion=24";
@@ -127,7 +149,23 @@ class ProductosController extends Controller {
             $mayoristasFechaOrigen = $mayoristasModel ->productosMayoristasOrigen($fecha,$fecha2,$condicionOrigen);
             $mayoristasSemanaOrigen = $mayoristasModel ->productosMayoristasOrigen($semana,$semana2,$condicionOrigen);
             $mayoristasYearOrigen = $mayoristasModel -> productosMayoristasOrigen($year,$year2,$condicionOrigen);
-                                    
+            
+            //CONDICION SUPERMERCADO
+             if (count($request->get('fechasupermercado')) != 0) {
+                $fecha = $request->get('fechasupermercado');
+                $fechasupermercado =  $request->get('fechasupermercado');
+            } else {
+                $fecha = $supermercadoModel ->leerUltimaFecha();
+                $fecha = $fecha[0]['fecha'];                
+                $fechasupermercado = $fecha;
+            }
+
+            $fecha2 =  date( "Y-m-d", strtotime( "-6 day", strtotime( $fecha ) ) ); 
+            $semana =  date( "Y-m-d", strtotime( "-7 day", strtotime( $fecha ) ) ); 
+            $semana2 =  date( "Y-m-d", strtotime( "-13 day", strtotime( $fecha ) ) ); 
+            $year =  date( "Y-m-d", strtotime( "-1 year", strtotime( $fecha ) ) ); 
+            $year2 =  date( "Y-m-d", strtotime( "-7 day", strtotime( $year ) ) ); 
+            
             //SUPERMERCADOS
             $condicionEspSup = "(cod_producto=1 or cod_producto=2 or cod_producto=3 or cod_producto=4 or cod_producto=24 or cod_producto=26) and (cod_localizacion=75 or cod_localizacion=30 or cod_localizacion=11 or cod_localizacion=84 or cod_localizacion=31 or cod_localizacion=32 or cod_localizacion=10)";
             
@@ -174,8 +212,14 @@ class ProductosController extends Controller {
 
             $date = new \DateTime($fecha);
             $fecha = $date;
+            $date2 = new \DateTime($fechaorigen);
+            $fechaorigen = $date2;
+            $date3 = new \DateTime($fechamayorista);
+            $fechamayorista = $date3;
+            $date4 = new \DateTime($fechasupermercado);
+            $fechasupermercado = $date4;
 
-            return $this->render('tomate', ['fecha' => $fecha,'origenfechaultima'=>$origenFechaUltima,'origenfecha'=>$origenFecha,'origensemana'=>$origenSemana,'origenyear'=>$origenYear,'mayoristastabla'=>$mayoristasTabla
+            return $this->render('tomate', ['fecha' => $fecha,'fechaorigen' => $fechaorigen,'fechamayorista' => $fechamayorista,'fechasupermercado' => $fechasupermercado,'origenfechaultima'=>$origenFechaUltima,'origenfecha'=>$origenFecha,'origensemana'=>$origenSemana,'origenyear'=>$origenYear,'mayoristastabla'=>$mayoristasTabla
                                     ,'mayoristasfechaesp'=>$mayoristasFechaEsp,'mayoristassemanaesp'=>$mayoristasSemanaEsp,'mayoristasyearesp'=>$mayoristasYearEsp
                                     ,'mayoristasfechaale'=>$mayoristasFechaAle,'mayoristassemanaale'=>$mayoristasSemanaAle,'mayoristasyearale'=>$mayoristasYearAle
                                     ,'mayoristasfechafra'=>$mayoristasFechaFra,'mayoristassemanafra'=>$mayoristasSemanaFra,'mayoristasyearfra'=>$mayoristasYearFra
@@ -202,10 +246,15 @@ class ProductosController extends Controller {
             $nombreorigenModel = new Origen();
             
             $request = yii::$app->request;
-            if (count($request->get('fecha')) != 0) {
-                $fecha = $request->get('fecha');
+            
+            //CONDICION ORIGEN           
+            if (count($request->get('fechaorigen')) != 0) {
+                $fecha = $request->get('fechaorigen');
+                $fechaorigen =  $request->get('fechaorigen');
             } else {
-                $fecha = date('Y-m-d');
+                $fecha = $origenModel ->leerUltimaFechaCon("cod_producto=5 or cod_producto=6 or cod_producto=7 or cod_producto=8 or cod_producto=9 or cod_producto=10 or cod_producto=11");
+                $fecha = $fecha[0]['fecha'];                
+                $fechaorigen = $fecha;
             }
 
             $fecha2 =  date( "Y-m-d", strtotime( "-6 day", strtotime( $fecha ) ) ); 
@@ -222,6 +271,22 @@ class ProductosController extends Controller {
             $origenYear = $origenModel -> productosOrigen($year,$year2,$condicion);
             
             $origenFechaUltima = $origenModel -> productosOrigenFecha($fecha,$fecha2,$condicion);
+            
+            //CONDICION MAYORISTA
+            if (count($request->get('fechamayorista')) != 0) {
+                $fecha = $request->get('fechamayorista');
+                $fechamayorista =  $request->get('fechamayorista');
+            } else {
+                $fecha = $mayoristasModel ->leerUltimaFecha();
+                $fecha = $fecha[0]['fecha'];                
+                $fechamayorista = $fecha;
+            }
+
+            $fecha2 =  date( "Y-m-d", strtotime( "-6 day", strtotime( $fecha ) ) ); 
+            $semana =  date( "Y-m-d", strtotime( "-7 day", strtotime( $fecha ) ) ); 
+            $semana2 =  date( "Y-m-d", strtotime( "-13 day", strtotime( $fecha ) ) ); 
+            $year =  date( "Y-m-d", strtotime( "-1 year", strtotime( $fecha ) ) ); 
+            $year2 =  date( "Y-m-d", strtotime( "-7 day", strtotime( $year ) ) ); 
             
             //MAYORISTA
             $condicionEsp = "(cod_producto=5 or cod_producto=6 or cod_producto=7 or cod_producto=11) and cod_localizacion=24";
@@ -261,6 +326,22 @@ class ProductosController extends Controller {
             $mayoristasSemanaOrigen = $mayoristasModel ->productosMayoristasOrigen($semana,$semana2,$condicionOrigen);
             $mayoristasYearOrigen = $mayoristasModel -> productosMayoristasOrigen($year,$year2,$condicionOrigen);
                                     
+            //CONDICION SUPERMERCADO
+             if (count($request->get('fechasupermercado')) != 0) {
+                $fecha = $request->get('fechasupermercado');
+                $fechasupermercado =  $request->get('fechasupermercado');
+            } else {
+                $fecha = $supermercadoModel ->leerUltimaFecha();
+                $fecha = $fecha[0]['fecha'];                
+                $fechasupermercado = $fecha;
+            }
+
+            $fecha2 =  date( "Y-m-d", strtotime( "-6 day", strtotime( $fecha ) ) ); 
+            $semana =  date( "Y-m-d", strtotime( "-7 day", strtotime( $fecha ) ) ); 
+            $semana2 =  date( "Y-m-d", strtotime( "-13 day", strtotime( $fecha ) ) ); 
+            $year =  date( "Y-m-d", strtotime( "-1 year", strtotime( $fecha ) ) ); 
+            $year2 =  date( "Y-m-d", strtotime( "-7 day", strtotime( $year ) ) ); 
+            
             //SUPERMERCADOS
             $condicionEspSup = "(cod_producto=5 or cod_producto=6 or cod_producto=7 or cod_producto=11 or cod_producto=28) and (cod_localizacion=75 or cod_localizacion=30 or cod_localizacion=11 or cod_localizacion=84 or cod_localizacion=31 or cod_localizacion=32 or cod_localizacion=10)";
             
@@ -307,8 +388,14 @@ class ProductosController extends Controller {
 
             $date = new \DateTime($fecha);
             $fecha = $date;
+            $date2 = new \DateTime($fechaorigen);
+            $fechaorigen = $date2;
+            $date3 = new \DateTime($fechamayorista);
+            $fechamayorista = $date3;
+            $date4 = new \DateTime($fechasupermercado);
+            $fechasupermercado = $date4;
 
-            return $this->render('pimiento', ['fecha' => $fecha,'origenfechaultima'=>$origenFechaUltima,'origenfecha'=>$origenFecha,'origensemana'=>$origenSemana,'origenyear'=>$origenYear,'mayoristastabla'=>$mayoristasTabla
+            return $this->render('pimiento', ['fecha' => $fecha,'fechaorigen' => $fechaorigen,'fechamayorista' => $fechamayorista,'fechasupermercado' => $fechasupermercado,'origenfechaultima'=>$origenFechaUltima,'origenfecha'=>$origenFecha,'origensemana'=>$origenSemana,'origenyear'=>$origenYear,'mayoristastabla'=>$mayoristasTabla
                                     ,'mayoristasfechaesp'=>$mayoristasFechaEsp,'mayoristassemanaesp'=>$mayoristasSemanaEsp,'mayoristasyearesp'=>$mayoristasYearEsp
                                     ,'mayoristasfechaale'=>$mayoristasFechaAle,'mayoristassemanaale'=>$mayoristasSemanaAle,'mayoristasyearale'=>$mayoristasYearAle
                                     ,'mayoristasfechafra'=>$mayoristasFechaFra,'mayoristassemanafra'=>$mayoristasSemanaFra,'mayoristasyearfra'=>$mayoristasYearFra
@@ -334,10 +421,15 @@ class ProductosController extends Controller {
             $nombreorigenModel = new Origen();
             
             $request = yii::$app->request;
-            if (count($request->get('fecha')) != 0) {
-                $fecha = $request->get('fecha');
+            
+            //CONDICION ORIGEN            
+            if (count($request->get('fechaorigen')) != 0) {
+                $fecha = $request->get('fechaorigen');
+                $fechaorigen =  $request->get('fechaorigen');
             } else {
-                $fecha = date('Y-m-d');
+                $fecha = $origenModel ->leerUltimaFechaCon("cod_producto=30 or cod_producto=32 or cod_producto=33");
+                $fecha = $fecha[0]['fecha'];                
+                $fechaorigen = $fecha;
             }
 
             $fecha2 =  date( "Y-m-d", strtotime( "-6 day", strtotime( $fecha ) ) ); 
@@ -355,6 +447,22 @@ class ProductosController extends Controller {
             
             $origenFechaUltima = $origenModel -> productosOrigenFecha($fecha,$fecha2,$condicion);
             
+            //CONDICION MAYORISTA
+            if (count($request->get('fechamayorista')) != 0) {
+                $fecha = $request->get('fechamayorista');
+                $fechamayorista =  $request->get('fechamayorista');
+            } else {
+                $fecha = $mayoristasModel ->leerUltimaFecha();
+                $fecha = $fecha[0]['fecha'];                
+                $fechamayorista = $fecha;
+            }
+
+            $fecha2 =  date( "Y-m-d", strtotime( "-6 day", strtotime( $fecha ) ) ); 
+            $semana =  date( "Y-m-d", strtotime( "-7 day", strtotime( $fecha ) ) ); 
+            $semana2 =  date( "Y-m-d", strtotime( "-13 day", strtotime( $fecha ) ) ); 
+            $year =  date( "Y-m-d", strtotime( "-1 year", strtotime( $fecha ) ) ); 
+            $year2 =  date( "Y-m-d", strtotime( "-7 day", strtotime( $year ) ) ); 
+                        
             //MAYORISTA
             $condicionEsp = "(cod_producto=30) and cod_localizacion=24";
             
@@ -393,6 +501,22 @@ class ProductosController extends Controller {
             $mayoristasSemanaOrigen = $mayoristasModel ->productosMayoristasOrigen($semana,$semana2,$condicionOrigen);
             $mayoristasYearOrigen = $mayoristasModel -> productosMayoristasOrigen($year,$year2,$condicionOrigen);
 
+            //CONDICION SUPERMERCADO
+             if (count($request->get('fechasupermercado')) != 0) {
+                $fecha = $request->get('fechasupermercado');
+                $fechasupermercado =  $request->get('fechasupermercado');
+            } else {
+                $fecha = $supermercadoModel ->leerUltimaFecha();
+                $fecha = $fecha[0]['fecha'];                
+                $fechasupermercado = $fecha;
+            }
+
+            $fecha2 =  date( "Y-m-d", strtotime( "-6 day", strtotime( $fecha ) ) ); 
+            $semana =  date( "Y-m-d", strtotime( "-7 day", strtotime( $fecha ) ) ); 
+            $semana2 =  date( "Y-m-d", strtotime( "-13 day", strtotime( $fecha ) ) ); 
+            $year =  date( "Y-m-d", strtotime( "-1 year", strtotime( $fecha ) ) ); 
+            $year2 =  date( "Y-m-d", strtotime( "-7 day", strtotime( $year ) ) ); 
+            
             //SUPERMERCADOS
             $condicionEspSup = "(cod_producto=30 or cod_producto=32) and (cod_localizacion=75 or cod_localizacion=30 or cod_localizacion=11 or cod_localizacion=84 or cod_localizacion=31 or cod_localizacion=32 or cod_localizacion=10)";
             
@@ -439,8 +563,14 @@ class ProductosController extends Controller {
             
             $date = new \DateTime($fecha);
             $fecha = $date;
+            $date2 = new \DateTime($fechaorigen);
+            $fechaorigen = $date2;
+            $date3 = new \DateTime($fechamayorista);
+            $fechamayorista = $date3;
+            $date4 = new \DateTime($fechasupermercado);
+            $fechasupermercado = $date4;
 
-            return $this->render('pepino', ['fecha' => $fecha,'origenfechaultima'=>$origenFechaUltima,'origenfecha'=>$origenFecha,'origensemana'=>$origenSemana,'origenyear'=>$origenYear,'mayoristastabla'=>$mayoristasTabla
+            return $this->render('pepino', ['fecha' => $fecha,'fechaorigen' => $fechaorigen,'fechamayorista' => $fechamayorista,'fechasupermercado' => $fechasupermercado,'origenfechaultima'=>$origenFechaUltima,'origenfecha'=>$origenFecha,'origensemana'=>$origenSemana,'origenyear'=>$origenYear,'mayoristastabla'=>$mayoristasTabla
                                     ,'mayoristasfechaesp'=>$mayoristasFechaEsp,'mayoristassemanaesp'=>$mayoristasSemanaEsp,'mayoristasyearesp'=>$mayoristasYearEsp
                                     ,'mayoristasfechaale'=>$mayoristasFechaAle,'mayoristassemanaale'=>$mayoristasSemanaAle,'mayoristasyearale'=>$mayoristasYearAle
                                     ,'mayoristasfechafra'=>$mayoristasFechaFra,'mayoristassemanafra'=>$mayoristasSemanaFra,'mayoristasyearfra'=>$mayoristasYearFra
@@ -466,10 +596,15 @@ class ProductosController extends Controller {
             $nombreorigenModel = new Origen();
             
             $request = yii::$app->request;
-            if (count($request->get('fecha')) != 0) {
-                $fecha = $request->get('fecha');
+            
+             //CONDICION ORIGEN            
+            if (count($request->get('fechaorigen')) != 0) {
+                $fecha = $request->get('fechaorigen');
+                $fechaorigen =  $request->get('fechaorigen');
             } else {
-                $fecha = date('Y-m-d');
+                $fecha = $origenModel ->leerUltimaFechaCon("cod_producto=34 or cod_producto=36");
+                $fecha = $fecha[0]['fecha'];                
+                $fechaorigen = $fecha;
             }
 
             $fecha2 =  date( "Y-m-d", strtotime( "-6 day", strtotime( $fecha ) ) ); 
@@ -487,6 +622,22 @@ class ProductosController extends Controller {
             
             $origenFechaUltima = $origenModel -> productosOrigenFecha($fecha,$fecha2,$condicion);
             
+            //CONDICION MAYORISTA
+            if (count($request->get('fechamayorista')) != 0) {
+                $fecha = $request->get('fechamayorista');
+                $fechamayorista =  $request->get('fechamayorista');
+            } else {
+                $fecha = $mayoristasModel ->leerUltimaFecha();
+                $fecha = $fecha[0]['fecha'];                
+                $fechamayorista = $fecha;
+            }
+
+            $fecha2 =  date( "Y-m-d", strtotime( "-6 day", strtotime( $fecha ) ) ); 
+            $semana =  date( "Y-m-d", strtotime( "-7 day", strtotime( $fecha ) ) ); 
+            $semana2 =  date( "Y-m-d", strtotime( "-13 day", strtotime( $fecha ) ) ); 
+            $year =  date( "Y-m-d", strtotime( "-1 year", strtotime( $fecha ) ) ); 
+            $year2 =  date( "Y-m-d", strtotime( "-7 day", strtotime( $year ) ) ); 
+               
             //MAYORISTA
             $condicionEsp = "(cod_producto=12) and cod_localizacion=24";
             
@@ -525,6 +676,22 @@ class ProductosController extends Controller {
             $mayoristasSemanaOrigen = $mayoristasModel ->productosMayoristasOrigen($semana,$semana2,$condicionOrigen);
             $mayoristasYearOrigen = $mayoristasModel -> productosMayoristasOrigen($year,$year2,$condicionOrigen);
 
+            //CONDICION SUPERMERCADO
+             if (count($request->get('fechasupermercado')) != 0) {
+                $fecha = $request->get('fechasupermercado');
+                $fechasupermercado =  $request->get('fechasupermercado');
+            } else {
+                $fecha = $supermercadoModel ->leerUltimaFecha();
+                $fecha = $fecha[0]['fecha'];                
+                $fechasupermercado = $fecha;
+            }
+
+            $fecha2 =  date( "Y-m-d", strtotime( "-6 day", strtotime( $fecha ) ) ); 
+            $semana =  date( "Y-m-d", strtotime( "-7 day", strtotime( $fecha ) ) ); 
+            $semana2 =  date( "Y-m-d", strtotime( "-13 day", strtotime( $fecha ) ) ); 
+            $year =  date( "Y-m-d", strtotime( "-1 year", strtotime( $fecha ) ) ); 
+            $year2 =  date( "Y-m-d", strtotime( "-7 day", strtotime( $year ) ) ); 
+            
             //SUPERMERCADOS
             $condicionEspSup = "(cod_producto=12) and (cod_localizacion=75 or cod_localizacion=30 or cod_localizacion=11 or cod_localizacion=84 or cod_localizacion=31 or cod_localizacion=32 or cod_localizacion=10)";
             
@@ -571,8 +738,14 @@ class ProductosController extends Controller {
 
             $date = new \DateTime($fecha);
             $fecha = $date;
+            $date2 = new \DateTime($fechaorigen);
+            $fechaorigen = $date2;
+            $date3 = new \DateTime($fechamayorista);
+            $fechamayorista = $date3;
+            $date4 = new \DateTime($fechasupermercado);
+            $fechasupermercado = $date4;
 
-            return $this->render('berenjena', ['fecha' => $fecha,'origenfechaultima'=>$origenFechaUltima,'origenfecha'=>$origenFecha,'origensemana'=>$origenSemana,'origenyear'=>$origenYear,'mayoristastabla'=>$mayoristasTabla
+            return $this->render('berenjena', ['fecha' => $fecha,'fechaorigen' => $fechaorigen,'fechamayorista' => $fechamayorista,'fechasupermercado' => $fechasupermercado,'origenfechaultima'=>$origenFechaUltima,'origenfecha'=>$origenFecha,'origensemana'=>$origenSemana,'origenyear'=>$origenYear,'mayoristastabla'=>$mayoristasTabla
                                     ,'mayoristasfechaesp'=>$mayoristasFechaEsp,'mayoristassemanaesp'=>$mayoristasSemanaEsp,'mayoristasyearesp'=>$mayoristasYearEsp
                                     ,'mayoristasfechaale'=>$mayoristasFechaAle,'mayoristassemanaale'=>$mayoristasSemanaAle,'mayoristasyearale'=>$mayoristasYearAle
                                     ,'mayoristasfechafra'=>$mayoristasFechaFra,'mayoristassemanafra'=>$mayoristasSemanaFra,'mayoristasyearfra'=>$mayoristasYearFra
@@ -598,10 +771,15 @@ class ProductosController extends Controller {
             $nombreorigenModel = new Origen();
             
             $request = yii::$app->request;
-            if (count($request->get('fecha')) != 0) {
-                $fecha = $request->get('fecha');
+            
+             //CONDICION ORIGEN            
+            if (count($request->get('fechaorigen')) != 0) {
+                $fecha = $request->get('fechaorigen');
+                $fechaorigen =  $request->get('fechaorigen');
             } else {
-                $fecha = date('Y-m-d');
+                $fecha = $origenModel ->leerUltimaFechaCon("cod_producto=13 or cod_producto=39");
+                $fecha = $fecha[0]['fecha'];                
+                $fechaorigen = $fecha;
             }
 
             $fecha2 =  date( "Y-m-d", strtotime( "-6 day", strtotime( $fecha ) ) ); 
@@ -619,6 +797,22 @@ class ProductosController extends Controller {
             
             $origenFechaUltima = $origenModel -> productosOrigenFecha($fecha,$fecha2,$condicion);
             
+            //CONDICION MAYORISTA
+            if (count($request->get('fechamayorista')) != 0) {
+                $fecha = $request->get('fechamayorista');
+                $fechamayorista =  $request->get('fechamayorista');
+            } else {
+                $fecha = $mayoristasModel ->leerUltimaFecha();
+                $fecha = $fecha[0]['fecha'];                
+                $fechamayorista = $fecha;
+            }
+
+            $fecha2 =  date( "Y-m-d", strtotime( "-6 day", strtotime( $fecha ) ) ); 
+            $semana =  date( "Y-m-d", strtotime( "-7 day", strtotime( $fecha ) ) ); 
+            $semana2 =  date( "Y-m-d", strtotime( "-13 day", strtotime( $fecha ) ) ); 
+            $year =  date( "Y-m-d", strtotime( "-1 year", strtotime( $fecha ) ) ); 
+            $year2 =  date( "Y-m-d", strtotime( "-7 day", strtotime( $year ) ) ); 
+               
             //MAYORISTA
             $condicionEsp = "(cod_producto=13) and cod_localizacion=24";
             
@@ -657,6 +851,22 @@ class ProductosController extends Controller {
             $mayoristasSemanaOrigen = $mayoristasModel ->productosMayoristasOrigen($semana,$semana2,$condicionOrigen);
             $mayoristasYearOrigen = $mayoristasModel -> productosMayoristasOrigen($year,$year2,$condicionOrigen);
 
+             //CONDICION SUPERMERCADO
+             if (count($request->get('fechasupermercado')) != 0) {
+                $fecha = $request->get('fechasupermercado');
+                $fechasupermercado =  $request->get('fechasupermercado');
+            } else {
+                $fecha = $supermercadoModel ->leerUltimaFecha();
+                $fecha = $fecha[0]['fecha'];                
+                $fechasupermercado = $fecha;
+            }
+
+            $fecha2 =  date( "Y-m-d", strtotime( "-6 day", strtotime( $fecha ) ) ); 
+            $semana =  date( "Y-m-d", strtotime( "-7 day", strtotime( $fecha ) ) ); 
+            $semana2 =  date( "Y-m-d", strtotime( "-13 day", strtotime( $fecha ) ) ); 
+            $year =  date( "Y-m-d", strtotime( "-1 year", strtotime( $fecha ) ) ); 
+            $year2 =  date( "Y-m-d", strtotime( "-7 day", strtotime( $year ) ) ); 
+            
             //SUPERMERCADOS
             $condicionEspSup = "(cod_producto=13) and (cod_localizacion=75 or cod_localizacion=30 or cod_localizacion=11 or cod_localizacion=84 or cod_localizacion=31 or cod_localizacion=32 or cod_localizacion=10)";
             
@@ -703,8 +913,14 @@ class ProductosController extends Controller {
 
             $date = new \DateTime($fecha);
             $fecha = $date;
+            $date2 = new \DateTime($fechaorigen);
+            $fechaorigen = $date2;
+            $date3 = new \DateTime($fechamayorista);
+            $fechamayorista = $date3;
+            $date4 = new \DateTime($fechasupermercado);
+            $fechasupermercado = $date4;
 
-            return $this->render('calabacin',  ['fecha' => $fecha,'origenfechaultima'=>$origenFechaUltima,'origenfecha'=>$origenFecha,'origensemana'=>$origenSemana,'origenyear'=>$origenYear,'mayoristastabla'=>$mayoristasTabla
+            return $this->render('calabacin',  ['fecha' => $fecha,'fechaorigen' => $fechaorigen,'fechamayorista' => $fechamayorista,'fechasupermercado' => $fechasupermercado,'origenfechaultima'=>$origenFechaUltima,'origenfecha'=>$origenFecha,'origensemana'=>$origenSemana,'origenyear'=>$origenYear,'mayoristastabla'=>$mayoristasTabla
                                     ,'mayoristasfechaesp'=>$mayoristasFechaEsp,'mayoristassemanaesp'=>$mayoristasSemanaEsp,'mayoristasyearesp'=>$mayoristasYearEsp
                                     ,'mayoristasfechaale'=>$mayoristasFechaAle,'mayoristassemanaale'=>$mayoristasSemanaAle,'mayoristasyearale'=>$mayoristasYearAle
                                     ,'mayoristasfechafra'=>$mayoristasFechaFra,'mayoristassemanafra'=>$mayoristasSemanaFra,'mayoristasyearfra'=>$mayoristasYearFra
@@ -730,12 +946,17 @@ class ProductosController extends Controller {
             $nombreorigenModel = new Origen();
             
             $request = yii::$app->request;
-            if (count($request->get('fecha')) != 0) {
-                $fecha = $request->get('fecha');
+            
+             //CONDICION ORIGEN            
+            if (count($request->get('fechaorigen')) != 0) {
+                $fecha = $request->get('fechaorigen');
+                $fechaorigen =  $request->get('fechaorigen');
             } else {
-                $fecha = date('Y-m-d');
+                $fecha = $origenModel ->leerUltimaFechaCon("cod_producto=14 or cod_producto=37 or cod_producto=45");
+                $fecha = $fecha[0]['fecha'];                
+                $fechaorigen = $fecha;
             }
-
+            
             $fecha2 =  date( "Y-m-d", strtotime( "-6 day", strtotime( $fecha ) ) ); 
             $semana =  date( "Y-m-d", strtotime( "-7 day", strtotime( $fecha ) ) ); 
             $semana2 =  date( "Y-m-d", strtotime( "-13 day", strtotime( $fecha ) ) ); 
@@ -751,6 +972,22 @@ class ProductosController extends Controller {
             
             $origenFechaUltima = $origenModel -> productosOrigenFecha($fecha,$fecha2,$condicion);
             
+            //CONDICION MAYORISTA
+            if (count($request->get('fechamayorista')) != 0) {
+                $fecha = $request->get('fechamayorista');
+                $fechamayorista =  $request->get('fechamayorista');
+            } else {
+                $fecha = $mayoristasModel ->leerUltimaFecha();
+                $fecha = $fecha[0]['fecha'];                
+                $fechamayorista = $fecha;
+            }
+
+            $fecha2 =  date( "Y-m-d", strtotime( "-6 day", strtotime( $fecha ) ) ); 
+            $semana =  date( "Y-m-d", strtotime( "-7 day", strtotime( $fecha ) ) ); 
+            $semana2 =  date( "Y-m-d", strtotime( "-13 day", strtotime( $fecha ) ) ); 
+            $year =  date( "Y-m-d", strtotime( "-1 year", strtotime( $fecha ) ) ); 
+            $year2 =  date( "Y-m-d", strtotime( "-7 day", strtotime( $year ) ) ); 
+             
             //MAYORISTA
             $condicionEsp = "(cod_producto=14 or cod_producto=401 or cod_producto=31) and cod_localizacion=24";
             
@@ -788,7 +1025,23 @@ class ProductosController extends Controller {
             $mayoristasFechaOrigen = $mayoristasModel ->productosMayoristasOrigen($fecha,$fecha2,$condicionOrigen);
             $mayoristasSemanaOrigen = $mayoristasModel ->productosMayoristasOrigen($semana,$semana2,$condicionOrigen);
             $mayoristasYearOrigen = $mayoristasModel -> productosMayoristasOrigen($year,$year2,$condicionOrigen);
-                                    
+                    
+            //CONDICION SUPERMERCADO
+             if (count($request->get('fechasupermercado')) != 0) {
+                $fecha = $request->get('fechasupermercado');
+                $fechasupermercado =  $request->get('fechasupermercado');
+            } else {
+                $fecha = $supermercadoModel ->leerUltimaFecha();
+                $fecha = $fecha[0]['fecha'];                
+                $fechasupermercado = $fecha;
+            }
+
+            $fecha2 =  date( "Y-m-d", strtotime( "-6 day", strtotime( $fecha ) ) ); 
+            $semana =  date( "Y-m-d", strtotime( "-7 day", strtotime( $fecha ) ) ); 
+            $semana2 =  date( "Y-m-d", strtotime( "-13 day", strtotime( $fecha ) ) ); 
+            $year =  date( "Y-m-d", strtotime( "-1 year", strtotime( $fecha ) ) ); 
+            $year2 =  date( "Y-m-d", strtotime( "-7 day", strtotime( $year ) ) ); 
+            
             //SUPERMERCADOS
             $condicionEspSup = "(cod_producto=14 or cod_producto=37 or cod_producto=45 or cod_producto=31) and (cod_localizacion=75 or cod_localizacion=30 or cod_localizacion=11 or cod_localizacion=84 or cod_localizacion=31 or cod_localizacion=32 or cod_localizacion=10)";
             
@@ -835,8 +1088,14 @@ class ProductosController extends Controller {
 
             $date = new \DateTime($fecha);
             $fecha = $date;
+            $date2 = new \DateTime($fechaorigen);
+            $fechaorigen = $date2;
+            $date3 = new \DateTime($fechamayorista);
+            $fechamayorista = $date3;
+            $date4 = new \DateTime($fechasupermercado);
+            $fechasupermercado = $date4;
 
-            return $this->render('judia', ['fecha' => $fecha,'origenfechaultima'=>$origenFechaUltima,'origenfecha'=>$origenFecha,'origensemana'=>$origenSemana,'origenyear'=>$origenYear,'mayoristastabla'=>$mayoristasTabla
+            return $this->render('judia',  ['fecha' => $fecha,'fechaorigen' => $fechaorigen,'fechamayorista' => $fechamayorista,'fechasupermercado' => $fechasupermercado,'origenfechaultima'=>$origenFechaUltima,'origenfecha'=>$origenFecha,'origensemana'=>$origenSemana,'origenyear'=>$origenYear,'mayoristastabla'=>$mayoristasTabla
                                     ,'mayoristasfechaesp'=>$mayoristasFechaEsp,'mayoristassemanaesp'=>$mayoristasSemanaEsp,'mayoristasyearesp'=>$mayoristasYearEsp
                                     ,'mayoristasfechaale'=>$mayoristasFechaAle,'mayoristassemanaale'=>$mayoristasSemanaAle,'mayoristasyearale'=>$mayoristasYearAle
                                     ,'mayoristasfechafra'=>$mayoristasFechaFra,'mayoristassemanafra'=>$mayoristasSemanaFra,'mayoristasyearfra'=>$mayoristasYearFra
@@ -862,10 +1121,15 @@ class ProductosController extends Controller {
             $nombreorigenModel = new Origen();
             
             $request = yii::$app->request;
-            if (count($request->get('fecha')) != 0) {
-                $fecha = $request->get('fecha');
+            
+             //CONDICION ORIGEN            
+            if (count($request->get('fechaorigen')) != 0) {
+                $fecha = $request->get('fechaorigen');
+                $fechaorigen =  $request->get('fechaorigen');
             } else {
-                $fecha = date('Y-m-d');
+                $fecha = $origenModel ->leerUltimaFechaCon("cod_producto=19 or cod_producto=20 or cod_producto=42");
+                $fecha = $fecha[0]['fecha'];                
+                $fechaorigen = $fecha;
             }
 
             $fecha2 =  date( "Y-m-d", strtotime( "-6 day", strtotime( $fecha ) ) ); 
@@ -883,6 +1147,22 @@ class ProductosController extends Controller {
             
             $origenFechaUltima = $origenModel -> productosOrigenFecha($fecha,$fecha2,$condicion);
             
+            //CONDICION MAYORISTA
+            if (count($request->get('fechamayorista')) != 0) {
+                $fecha = $request->get('fechamayorista');
+                $fechamayorista =  $request->get('fechamayorista');
+            } else {
+                $fecha = $mayoristasModel ->leerUltimaFecha();
+                $fecha = $fecha[0]['fecha'];                
+                $fechamayorista = $fecha;
+            }
+
+            $fecha2 =  date( "Y-m-d", strtotime( "-6 day", strtotime( $fecha ) ) ); 
+            $semana =  date( "Y-m-d", strtotime( "-7 day", strtotime( $fecha ) ) ); 
+            $semana2 =  date( "Y-m-d", strtotime( "-13 day", strtotime( $fecha ) ) ); 
+            $year =  date( "Y-m-d", strtotime( "-1 year", strtotime( $fecha ) ) ); 
+            $year2 =  date( "Y-m-d", strtotime( "-7 day", strtotime( $year ) ) ); 
+             
             //MAYORISTA
             $condicionEsp = "(cod_producto=20 or cod_producto=19 or cod_producto=44 or cod_producto=18 or cod_producto=48) and cod_localizacion=24";
             
@@ -920,7 +1200,23 @@ class ProductosController extends Controller {
             $mayoristasFechaOrigen = $mayoristasModel ->productosMayoristasOrigen($fecha,$fecha2,$condicionOrigen);
             $mayoristasSemanaOrigen = $mayoristasModel ->productosMayoristasOrigen($semana,$semana2,$condicionOrigen);
             $mayoristasYearOrigen = $mayoristasModel -> productosMayoristasOrigen($year,$year2,$condicionOrigen);
-                                    
+                  
+            //CONDICION SUPERMERCADO
+             if (count($request->get('fechasupermercado')) != 0) {
+                $fecha = $request->get('fechasupermercado');
+                $fechasupermercado =  $request->get('fechasupermercado');
+            } else {
+                $fecha = $supermercadoModel ->leerUltimaFecha();
+                $fecha = $fecha[0]['fecha'];                
+                $fechasupermercado = $fecha;
+            }
+
+            $fecha2 =  date( "Y-m-d", strtotime( "-6 day", strtotime( $fecha ) ) ); 
+            $semana =  date( "Y-m-d", strtotime( "-7 day", strtotime( $fecha ) ) ); 
+            $semana2 =  date( "Y-m-d", strtotime( "-13 day", strtotime( $fecha ) ) ); 
+            $year =  date( "Y-m-d", strtotime( "-1 year", strtotime( $fecha ) ) ); 
+            $year2 =  date( "Y-m-d", strtotime( "-7 day", strtotime( $year ) ) ); 
+            
             //SUPERMERCADOS
             $condicionEspSup = "(cod_producto=20 or cod_producto=19 or cod_producto=18 or cod_producto=48) and (cod_localizacion=75 or cod_localizacion=30 or cod_localizacion=11 or cod_localizacion=84 or cod_localizacion=31 or cod_localizacion=32 or cod_localizacion=10)";
             
@@ -967,8 +1263,14 @@ class ProductosController extends Controller {
 
             $date = new \DateTime($fecha);
             $fecha = $date;
+            $date2 = new \DateTime($fechaorigen);
+            $fechaorigen = $date2;
+            $date3 = new \DateTime($fechamayorista);
+            $fechamayorista = $date3;
+            $date4 = new \DateTime($fechasupermercado);
+            $fechasupermercado = $date4;
 
-            return $this->render('melon', ['fecha' => $fecha,'origenfechaultima'=>$origenFechaUltima,'origenfecha'=>$origenFecha,'origensemana'=>$origenSemana,'origenyear'=>$origenYear,'mayoristastabla'=>$mayoristasTabla
+            return $this->render('melon',  ['fecha' => $fecha,'fechaorigen' => $fechaorigen,'fechamayorista' => $fechamayorista,'fechasupermercado' => $fechasupermercado,'origenfechaultima'=>$origenFechaUltima,'origenfecha'=>$origenFecha,'origensemana'=>$origenSemana,'origenyear'=>$origenYear,'mayoristastabla'=>$mayoristasTabla
                                     ,'mayoristasfechaesp'=>$mayoristasFechaEsp,'mayoristassemanaesp'=>$mayoristasSemanaEsp,'mayoristasyearesp'=>$mayoristasYearEsp
                                     ,'mayoristasfechaale'=>$mayoristasFechaAle,'mayoristassemanaale'=>$mayoristasSemanaAle,'mayoristasyearale'=>$mayoristasYearAle
                                     ,'mayoristasfechafra'=>$mayoristasFechaFra,'mayoristassemanafra'=>$mayoristasSemanaFra,'mayoristasyearfra'=>$mayoristasYearFra
@@ -994,10 +1296,15 @@ class ProductosController extends Controller {
             $nombreorigenModel = new Origen();
             
             $request = yii::$app->request;
-            if (count($request->get('fecha')) != 0) {
-                $fecha = $request->get('fecha');
+            
+             //CONDICION ORIGEN            
+            if (count($request->get('fechaorigen')) != 0) {
+                $fecha = $request->get('fechaorigen');
+                $fechaorigen =  $request->get('fechaorigen');
             } else {
-                $fecha = date('Y-m-d');
+                $fecha = $origenModel ->leerUltimaFechaCon("cod_producto=15 or cod_producto=16 or cod_producto=17");
+                $fecha = $fecha[0]['fecha'];                
+                $fechaorigen = $fecha;
             }
 
             $fecha2 =  date( "Y-m-d", strtotime( "-6 day", strtotime( $fecha ) ) ); 
@@ -1015,6 +1322,22 @@ class ProductosController extends Controller {
             
             $origenFechaUltima = $origenModel -> productosOrigenFecha($fecha,$fecha2,$condicion);
             
+            //CONDICION MAYORISTA
+            if (count($request->get('fechamayorista')) != 0) {
+                $fecha = $request->get('fechamayorista');
+                $fechamayorista =  $request->get('fechamayorista');
+            } else {
+                $fecha = $mayoristasModel ->leerUltimaFecha();
+                $fecha = $fecha[0]['fecha'];                
+                $fechamayorista = $fecha;
+            }
+
+            $fecha2 =  date( "Y-m-d", strtotime( "-6 day", strtotime( $fecha ) ) ); 
+            $semana =  date( "Y-m-d", strtotime( "-7 day", strtotime( $fecha ) ) ); 
+            $semana2 =  date( "Y-m-d", strtotime( "-13 day", strtotime( $fecha ) ) ); 
+            $year =  date( "Y-m-d", strtotime( "-1 year", strtotime( $fecha ) ) ); 
+            $year2 =  date( "Y-m-d", strtotime( "-7 day", strtotime( $year ) ) ); 
+             
             //MAYORISTA
             $condicionEsp = "(cod_producto=16) and cod_localizacion=24";
             
@@ -1053,6 +1376,22 @@ class ProductosController extends Controller {
             $mayoristasSemanaOrigen = $mayoristasModel ->productosMayoristasOrigen($semana,$semana2,$condicionOrigen);
             $mayoristasYearOrigen = $mayoristasModel -> productosMayoristasOrigen($year,$year2,$condicionOrigen);
 
+            //CONDICION SUPERMERCADO
+             if (count($request->get('fechasupermercado')) != 0) {
+                $fecha = $request->get('fechasupermercado');
+                $fechasupermercado =  $request->get('fechasupermercado');
+            } else {
+                $fecha = $supermercadoModel ->leerUltimaFecha();
+                $fecha = $fecha[0]['fecha'];                
+                $fechasupermercado = $fecha;
+            }
+
+            $fecha2 =  date( "Y-m-d", strtotime( "-6 day", strtotime( $fecha ) ) ); 
+            $semana =  date( "Y-m-d", strtotime( "-7 day", strtotime( $fecha ) ) ); 
+            $semana2 =  date( "Y-m-d", strtotime( "-13 day", strtotime( $fecha ) ) ); 
+            $year =  date( "Y-m-d", strtotime( "-1 year", strtotime( $fecha ) ) ); 
+            $year2 =  date( "Y-m-d", strtotime( "-7 day", strtotime( $year ) ) ); 
+            
             //SUPERMERCADOS
             $condicionEspSup = "(cod_producto=16 or cod_producto=52 or cod_producto=53 or cod_producto=17 or cod_producto=15) and (cod_localizacion=75 or cod_localizacion=30 or cod_localizacion=11 or cod_localizacion=84 or cod_localizacion=31 or cod_localizacion=32 or cod_localizacion=10)";
             
@@ -1099,8 +1438,14 @@ class ProductosController extends Controller {
 
             $date = new \DateTime($fecha);
             $fecha = $date;
+            $date2 = new \DateTime($fechaorigen);
+            $fechaorigen = $date2;
+            $date3 = new \DateTime($fechamayorista);
+            $fechamayorista = $date3;
+            $date4 = new \DateTime($fechasupermercado);
+            $fechasupermercado = $date4;
 
-            return $this->render('sandia', ['fecha' => $fecha,'origenfechaultima'=>$origenFechaUltima,'origenfecha'=>$origenFecha,'origensemana'=>$origenSemana,'origenyear'=>$origenYear,'mayoristastabla'=>$mayoristasTabla
+            return $this->render('sandia',  ['fecha' => $fecha,'fechaorigen' => $fechaorigen,'fechamayorista' => $fechamayorista,'fechasupermercado' => $fechasupermercado,'origenfechaultima'=>$origenFechaUltima,'origenfecha'=>$origenFecha,'origensemana'=>$origenSemana,'origenyear'=>$origenYear,'mayoristastabla'=>$mayoristasTabla
                                     ,'mayoristasfechaesp'=>$mayoristasFechaEsp,'mayoristassemanaesp'=>$mayoristasSemanaEsp,'mayoristasyearesp'=>$mayoristasYearEsp
                                     ,'mayoristasfechaale'=>$mayoristasFechaAle,'mayoristassemanaale'=>$mayoristasSemanaAle,'mayoristasyearale'=>$mayoristasYearAle
                                     ,'mayoristasfechafra'=>$mayoristasFechaFra,'mayoristassemanafra'=>$mayoristasSemanaFra,'mayoristasyearfra'=>$mayoristasYearFra

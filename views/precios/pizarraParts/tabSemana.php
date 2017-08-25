@@ -201,6 +201,7 @@ if (isset($tablaSemana)) {
                                 echo "<th id='" . $alhondiga['alhondiga'] . "' class='alhondigas'>" . $alhondiga['alhondiga'] . "</th>";
                             }
                         }
+                        echo "<th id='columnaMediaSemana'></th>";
                     }
                     ?>
                 </tr>
@@ -225,6 +226,7 @@ if (isset($tablaSemana)) {
                                 }
                             }
                         }
+                        echo "<th id='tituloMediaSemana'>Media Semana</th>";
                     }
                     ?>
                 </tr>
@@ -236,10 +238,12 @@ if (isset($tablaSemana)) {
                     $productoAlhondiga = $productostotal / $alhondigastotal;
                     $contaPA = 0;
                     $contaPintar = 0;
-                    $contaFila = 0;
+                    $contaFila = 0;                    
                     foreach ($tablaSemana as $row) {
                         echo "<tr>";
                         $contador = 0;
+                        $mediaFila = 0;
+                        $contaMediaFila = 0;
                         foreach ($row as $celda) {
                             if ($contaFila == 1) {
                                 $contaPintar = 0;
@@ -268,10 +272,16 @@ if (isset($tablaSemana)) {
                                     if ($contaFila == 0) {
                                         $contaPA--;
                                         echo "<td>" . sprintf("%.2f", round($celda, 2)) . "</td>";
+                                        $mediaFila = $mediaFila+$celda;
+                                        $contaMediaFila++;
                                     } else if ($contaPintar != 1) {
                                         echo "<td class='danger'>" . sprintf("%.2f", round($celda, 2)) . "</td>";
+                                        $mediaFila = $mediaFila+$celda;
+                                        $contaMediaFila++;
                                     } else {
                                         echo "<td>" . sprintf("%.2f", round($celda, 2)) . "</td>";
+                                        $mediaFila = $mediaFila+$celda;
+                                        $contaMediaFila++;
                                     }
                                 }
                             } else {
@@ -279,9 +289,11 @@ if (isset($tablaSemana)) {
                                     $contaPA--;
                                     //$celda = $celda+1;
                                     echo "<td>".$celda."</td>";
+                                    $mediaFila = $mediaFila+$celda;
+                                    $contaMediaFila++;
                                     $contador=1;
                                 } else if ($contaPintar != 1) {
-                                    echo "<td class='danger'> - </td>";
+                                    echo "<td class='danger'> - </td>";                                    
                                 } else {
                                     echo "<td> - </td>";
                                 }
@@ -293,6 +305,7 @@ if (isset($tablaSemana)) {
                                 $contaFila = 0;
                             }
                         }
+                        echo "<td>" . sprintf("%.2f", round(($mediaFila/$contaMediaFila), 2)) . "</td>";
                         echo "</tr>";
                     }
                 }
